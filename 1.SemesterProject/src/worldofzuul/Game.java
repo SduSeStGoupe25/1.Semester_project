@@ -19,35 +19,65 @@ public class Game {
         parser = new Parser();
     }
 
-    /**
-     * This private method is used to create the rooms in the game. 
-     */
-    private void createRooms() {
-        //Instantiating the rooms
-        Room outside, theatre, pub, lab, office;
-      
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+
+    private void createRooms()
+    {
+        Room citycenter, shop, tavern, castle, excalibur, tower, cave, farm, forrest, 
+                deepwoods; // creating objects of the Room-class
         
-        //Use a instance of Room to invoke the method setExit, to make the exits in a room
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
-
-        theatre.setExit("west", outside);
-
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        //Sets the curruntRoom to outside
-        currentRoom = outside;
+        citycenter = new Room("in the center of the city"); //initialising new rooms, with explanatory text-output
+        shop = new Room("in the shop"); 
+        tavern = new Room(" in the local tavern");
+        castle = new Room("in the kings castle"); 
+        excalibur = new Room("in the room where excalibur is caught in the stone"); 
+        tower = new Room("in Merlin's chambers"); 
+        cave = new Room("in a dark and gloomy cave"); 
+        farm = new Room("at the local farm"); 
+        forrest = new Room("in the forrest"); 
+        deepwoods = new Room("deeper into the woods, more dark and gloomy"); 
+        
+       //defining exits from the city center 
+       citycenter.setExit("east", tavern); 
+       citycenter.setExit("north", shop); 
+       citycenter.setExit("west", farm); 
+       citycenter.setExit("south", castle); 
+       
+       // defining exits from the shop
+       shop.setExit("south", citycenter);
+       
+       //defining exits form the tavern
+       tavern.setExit("west", citycenter); 
+       
+       // defining exits from the castle
+       castle.setExit("north", citycenter); 
+       castle.setExit("south", tower); 
+       castle.setExit("east", excalibur); 
+       castle.setExit("west", cave); 
+       
+       //defining exits from excalibur
+       excalibur.setExit("west", castle); 
+       
+       //definings exits from tower
+       tower.setExit("north", castle); 
+       
+       //defining exits from cave
+       cave.setExit("north",farm);
+       cave.setExit("east", castle); 
+       
+       //defining exits from farm
+       farm.setExit("east", citycenter); 
+       farm.setExit("west", forrest); 
+       farm.setExit("south",cave);
+       
+       // defining exits from forrest
+       forrest.setExit("east", farm); 
+       forrest.setExit("south",deepwoods); 
+       
+       //defining exits from the deep woods
+       deepwoods.setExit("north", forrest); 
+       
+   
+        currentRoom = citycenter;
     }
 
     /**
