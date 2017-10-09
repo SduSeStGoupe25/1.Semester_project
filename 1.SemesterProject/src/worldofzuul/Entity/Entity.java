@@ -1,5 +1,5 @@
 /*
- *This is a abstract class all charactores in the game extends from.
+ *This is an abstract class that all characters in the game extends from.
  */
 package worldofzuul.Entity;
 
@@ -8,10 +8,10 @@ package worldofzuul.Entity;
  * @author Victor Gram
  */
 public abstract class Entity {
-    protected String name; 
+    protected String name;
     protected int health;
-    protected int armor; 
-    protected int attack; 
+    protected int armor;
+    protected int attack;
     protected int level;
 
     public Entity(String name, int health, int armor, int attack, int level) {
@@ -61,8 +61,8 @@ public abstract class Entity {
     public void setLevel(int level) {
         this.level = level;
     }
-    
-    
-    
-    
+
+
+
+
 }
