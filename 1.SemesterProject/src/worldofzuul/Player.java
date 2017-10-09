@@ -27,8 +27,8 @@ public class Player extends Entity implements Moveable {
         this.currentRoom = currentRoom;
         this.exp = exp;
         questLog = new HashMap<>(); 
-        itemInventory = new Inventory(); 
-        equipableInventory = new Inventory();
+        itemInventory = new Inventory(20); 
+        equipableInventory = new Inventory(3);
         questHandler = new QuestHandler(); 
     }
 
