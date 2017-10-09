@@ -25,7 +25,8 @@ public class Game {
         Room citycenter, shop, tavern, castle, excalibur, tower, cave, farm, forrest, 
                 deepwoods; // creating objects of the Room-class
         
-        citycenter = new Room("in the center of the city"); //initialising new rooms, with explanatory text-output
+        //initialising new rooms, with room-description that will be output to the console
+        citycenter = new Room("in the center of the city"); 
         shop = new Room("in the shop"); 
         tavern = new Room(" in the local tavern");
         castle = new Room("in the kings castle"); 
@@ -91,7 +92,7 @@ public class Game {
             Command command = parser.getCommand();  //Gets the user input
             finished = processCommand(command);     //If the command is quit, finished is true otherwise continues
         }
-        System.out.println("Thank you for playing.  Good bye."); //Prints a exit message
+        System.out.println("Thank you for playing.  Good bye."); //Prints an exit message
     }
 
     /**
