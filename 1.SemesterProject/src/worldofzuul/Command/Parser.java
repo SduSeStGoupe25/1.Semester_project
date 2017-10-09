@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  * 
- * This class is responsible for getting the user input from the console
+ * This class is responsible for getting the user input from the console.
  */
 public class Parser {
     private CommandWords commands;  //
