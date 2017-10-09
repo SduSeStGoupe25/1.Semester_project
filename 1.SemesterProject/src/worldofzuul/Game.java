@@ -92,7 +92,7 @@ public class Game {
             Command command = parser.getCommand();  //Gets the user input
             finished = processCommand(command);     //If the command is quit, finished is true otherwise continues
         }
-        System.out.println("Thank you for playing.  Good bye."); //Prints a exit message
+        System.out.println("Thank you for playing.  Good bye."); //Prints an exit message
     }
 
     /**
