@@ -1,5 +1,9 @@
 package worldofzuul;
 
+import worldofzuul.Command.Parser;
+import worldofzuul.Command.Command;
+import worldofzuul.Command.CommandWord;
+
 /**
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30

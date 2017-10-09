@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul;
+package worldofzuul.Entity;
 
+import worldofzuul.Inventory.Inventory;
+import worldofzuul.Entity.Entity;
+import worldofzuul.Entity.Moveable;
 import java.util.HashMap;
+import worldofzuul.Room;
 
 /**
  *

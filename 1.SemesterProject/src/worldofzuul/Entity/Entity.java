@@ -1,7 +1,7 @@
 /*
  *This is a abstract class all charactores in the game extends from
  */
-package worldofzuul;
+package worldofzuul.Entity;
 
 /**
  *
