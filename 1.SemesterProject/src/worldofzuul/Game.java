@@ -20,8 +20,7 @@ public class Game {
     }
 
 
-    private void createRooms()
-    {
+    private void createRooms() {
         Room citycenter, shop, tavern, castle, excalibur, tower, cave, farm, forrest, 
                 deepwoods; // creating objects of the Room-class
         
@@ -77,8 +76,7 @@ public class Game {
        //defining exits from the deep woods
        deepwoods.setExit("north", forrest); 
        
-   
-        currentRoom = citycenter;
+       currentRoom = citycenter;
     }
 
     /**
@@ -173,8 +171,7 @@ public class Game {
      * @param command This is the user input that as to be checked
      * @return boolean true if the user writes only a first word, and false if there also are a second word
      */
-    private boolean quit(Command command) 
-    {
+    private boolean quit(Command command) {
         if(command.hasSecondWord()) { //If command has a second word
             System.out.println("Quit what?");
             return false;

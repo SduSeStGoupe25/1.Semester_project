@@ -12,16 +12,12 @@ package worldofzuul;
 public class Monster extends Entity {
     private int expDrop; 
     
-    
     public Monster(String name, int health, int armor, int attack, int level, int expDrop) {
         super(name, health, armor, attack, level);
         this.expDrop = expDrop; 
     }
     
     public void onDeath() { 
-        
-        
+          
     }
-    
-    
 }

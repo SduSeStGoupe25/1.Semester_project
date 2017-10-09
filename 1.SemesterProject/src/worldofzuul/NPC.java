@@ -13,7 +13,6 @@ public class NPC extends Entity {
     private String talk; 
     private int expDrop;
     
-    
     public NPC(String name, int health, int armor, int attack, int level, int expDrop, String talk) {
         super(name, health, armor, attack, level);
         this.talk = talk; 
@@ -24,11 +23,7 @@ public class NPC extends Entity {
         return talk;
     }
     
-    
-    
     public void onDeath () {
         
     }
-    
-    
 }

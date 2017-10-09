@@ -23,8 +23,6 @@ public abstract class Entity {
         this.attack = attack;
         this.level = level;
     }
-    
-    
 
     public String getName() {
         return name;

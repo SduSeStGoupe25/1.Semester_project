@@ -10,6 +10,5 @@ package worldofzuul;
  * @author rasmusstamm
  */
 public enum ItemType {
-    ARMOR, WEAPON, CONSUMEABLE, NORMAL;
-    
+    ARMOR, WEAPON, CONSUMEABLE, NORMAL;  
 }

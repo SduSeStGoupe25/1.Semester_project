@@ -35,6 +35,5 @@ public class Player extends Entity implements Moveable {
     @Override
     public void move() {
         throw new UnsupportedOperationException("Not supported yet."); 
-    }
-    
+    }   
 }
