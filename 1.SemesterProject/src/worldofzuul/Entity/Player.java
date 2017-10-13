@@ -19,7 +19,6 @@ import worldofzuul.Room;
 public class Player extends Entity implements Moveable {
     private Inventory itemInventory; 
     private Inventory equipableInventory; 
-    private QuestHandler questHandler;
     private int gold; 
     private Room currentRoom; 
     private int exp; 
@@ -33,7 +32,6 @@ public class Player extends Entity implements Moveable {
         questLog = new HashMap<>(); 
         itemInventory = new Inventory(20); 
         equipableInventory = new Inventory(3);
-        questHandler = new QuestHandler(); 
     }
 
     @Override
