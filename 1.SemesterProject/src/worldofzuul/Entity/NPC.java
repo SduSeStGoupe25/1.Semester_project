@@ -9,7 +9,7 @@ package worldofzuul.Entity;
  *
  * @author Victor Gram
  */
-public class NPC extends Entity {
+public class NPC extends CharacterEntity {
     private String talk; 
     private int expDrop;
     

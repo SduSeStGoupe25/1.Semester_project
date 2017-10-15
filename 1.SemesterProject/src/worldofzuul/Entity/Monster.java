@@ -9,7 +9,7 @@ package worldofzuul.Entity;
  *
  * @author Victor Gram
  */
-public class Monster extends Entity {
+public class Monster extends CharacterEntity {
     private int expDrop; 
     
     public Monster(String name, int health, int armor, int attack, int level, int expDrop) {

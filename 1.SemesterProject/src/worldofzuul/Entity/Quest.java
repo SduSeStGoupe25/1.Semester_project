@@ -27,7 +27,7 @@ public class Quest {
         this.questID = questID;
         this.gold = gold; 
         this.exp = exp; 
-        this.items = items; 
+        items = new ArrayList<>();  
         this.giver = giver; 
         this.isMainQuest = isMainQuest; //Ikke sikker på opsætnningen af boolean  
         

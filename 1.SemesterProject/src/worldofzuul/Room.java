@@ -1,7 +1,11 @@
 package worldofzuul;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.HashMap;
+import worldofzuul.Entity.CharacterEntity;
+import worldofzuul.Inventory.Item;
 
 
 /**
@@ -11,10 +15,15 @@ import java.util.HashMap;
 public class Room {
     private String description;
     private HashMap<String, Room> exits;
+    private List<CharacterEntity> charactersInRoom = new ArrayList<>(); 
+    private List<Item> items = new ArrayList<>(); 
+    
 
     public Room(String description) {
         this.description = description;
         exits = new HashMap<>();
+        charactersInRoom = new ArrayList<>(); 
+        items = new ArrayList<>(); 
     }
 
     public void setExit(String direction, Room neighbor) {

@@ -7,14 +7,14 @@ package worldofzuul.Entity;
  *
  * @author Victor Gram
  */
-public abstract class Entity {
+public abstract class CharacterEntity {
     protected String name;
     protected int health;
     protected int armor;
     protected int attack;
     protected int level;
 
-    public Entity(String name, int health, int armor, int attack, int level) {
+    public CharacterEntity(String name, int health, int armor, int attack, int level) {
         this.name = name;
         this.health = health;
         this.armor = armor;

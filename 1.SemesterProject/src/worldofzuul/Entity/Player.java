@@ -6,7 +6,7 @@
 package worldofzuul.Entity;
 
 import worldofzuul.Inventory.Inventory;
-import worldofzuul.Entity.Entity;
+import worldofzuul.Entity.CharacterEntity;
 import worldofzuul.Entity.Moveable;
 import java.util.HashMap;
 import worldofzuul.Room;
@@ -16,7 +16,7 @@ import worldofzuul.Room;
  * @author Victor Gram
  */
 
-public class Player extends Entity implements Moveable {
+public class Player extends CharacterEntity implements Moveable {
     private Inventory itemInventory; 
     private Inventory equipableInventory; 
     private int gold; 
