@@ -11,27 +11,25 @@ import worldofzuul.Inventory.Item;
  * @author Victor Gram
  */
 public class Quest {
-    private String name; 
-    private String description; 
-    private int questID; 
-    private int gold; 
-    private int exp; 
-    private ArrayList<Item> items = new ArrayList<>(); //ArraList til opbevaring af questitems
+
+    private String name;
+    private String description;
+    private int questID;
+    private int gold;
+    private int exp;
+    private ArrayList<Item> items = new ArrayList<>(); //ArrayList til opbevaring af questitems
     private NPC giver; //NPC'en der giver den pågældende quest
-    private boolean isMainQuest; 
-    
-    
-    Quest (String name, String description, int questID, int gold, int exp, ArrayList<Item> items, NPC giver, boolean isMainQuest) {
-        this.name = name; 
-        this.description = description; 
+    private boolean isMainQuest;
+
+    Quest(String name, String description, int questID, int gold, int exp, ArrayList<Item> items, NPC giver, boolean isMainQuest) {
+        this.name = name;
+        this.description = description;
         this.questID = questID;
-        this.gold = gold; 
-        this.exp = exp; 
-        items = new ArrayList<>();  
-        this.giver = giver; 
+        this.gold = gold;
+        this.exp = exp;
+        items = new ArrayList<>();
+        this.giver = giver;
         this.isMainQuest = isMainQuest; //Ikke sikker på opsætnningen af boolean  
-        
-        
     }
 
     public String getName() {
@@ -97,7 +95,5 @@ public class Quest {
     public void setIsMainQuest(boolean isMainQuest) {
         this.isMainQuest = isMainQuest;
     }
-    
-    
-    
+
 }

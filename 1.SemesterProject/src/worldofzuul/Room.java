@@ -16,7 +16,7 @@ public class Room {
     private String description;
     private HashMap<String, Room> exits;
     private List<CharacterEntity> charactersInRoom = new ArrayList<>(); 
-    private List<Item> items = new ArrayList<>(); 
+    private List<Item> items = new ArrayList<>();
     
 
     public Room(String description) {
