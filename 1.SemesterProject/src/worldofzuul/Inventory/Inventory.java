@@ -38,7 +38,7 @@ public class Inventory {
     }
 
     public boolean useItem(int item) {
-        if (!(inventory.get(item).getItemType().equals("CONSUMEABLE"))) { //Er ikke helt sikker på brugen af enums
+        if (!(inventory.get(item).getItemType().equals(ItemType.CONSUMEABLE))) { //Er ikke helt sikker på brugen af enums
             return false;
         } else {
             if (inventory.get(item).getCount() > 1) {

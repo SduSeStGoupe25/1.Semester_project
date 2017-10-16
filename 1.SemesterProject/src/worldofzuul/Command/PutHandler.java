@@ -1,6 +1,7 @@
 package worldofzuul.Command;
 
 import worldofzuul.Game;
+import worldofzuul.Inventory.Item;
 import worldofzuul.Room;
 
 /**
@@ -41,6 +42,9 @@ public class PutHandler {
                 break;
             case GO: //If the commandWord is go
                 goRoom(command); //Class the method goRoom to go to a room
+                break;
+            case INVENTORY:
+                printInventory();
                 break;
             case QUIT: //If the commandWord is quit
                 wantToQuit = quit(command); //Sets wantToQuit true
@@ -114,5 +118,12 @@ public class PutHandler {
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands(); //Prints all commandWords
+    }
+    
+    private void printInventory(){
+        System.out.println("Your inventory contains: ");
+        for(Item i : game.getPlayer().getItemInventory().getInventory()){
+            System.out.println(i.getName() + "  " + i.getItemType() + "  " + i.getCount());
+        }
     }
 }
