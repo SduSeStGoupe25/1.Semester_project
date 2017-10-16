@@ -32,9 +32,22 @@ public class Inventory {
         }
         return false;
     }
-    
-    public void dropItem(int item){
+
+    public void dropItem(int item) {
         inventory.remove(item);
+    }
+
+    public boolean useItem(int item) {
+        if (!(inventory.get(item).getItemType().equals("CONSUMEABLE"))) { //Er ikke helt sikker på brugen af enums
+            return false;
+        } else {
+            if (inventory.get(item).getCount() > 1) {
+                inventory.get(item).reduceCount(1);
+            } else {
+                dropItem(item);
+            }
+        }
+        return true;
     }
 
 }

@@ -13,14 +13,14 @@ public class Item {
     private String name;
     private int sellValue;
     private ItemType itemType;
-    private int ItemValue;
+    private int itemValue;
     private int count;
 
-    public Item(String name, int sellValue, ItemType itemType, int ItemValue, int count) {
+    public Item(String name, int sellValue, ItemType itemType, int itemValue, int count) {
         this.name = name;
         this.sellValue = sellValue;
         this.itemType = itemType;
-        this.ItemValue = ItemValue;
+        this.itemValue = itemValue;
         this.count = count;
     }
 
@@ -33,11 +33,19 @@ public class Item {
     }
 
     public int getItemValue() {
-        return ItemValue;
+        return itemValue;
+    }
+    
+    public int getCount(){
+        return count;
+    }
+    
+    public void reduceCount(int amountUsed){
+        this.count -= amountUsed;
     }
 
-    public void setItemType(ItemType itemType) {
-        this.itemType = itemType;
+    public ItemType getItemType() {
+        return itemType;
     }
     
 }
