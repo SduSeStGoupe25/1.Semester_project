@@ -5,7 +5,9 @@ package worldofzuul.Command;
  * @version 2006.03.30
  */
 public enum CommandWord {
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?");
+    GO("go"), QUIT("quit"), HELP("help"), TALK("talk"), BUY("buy"), SEARCH("search"), 
+    INVENTORY("inventory"), EQUIP("equip"), DROP("drop"), ATTACK("attack"), USE("use"),
+    QUEST("quest"), SELL("sell"), UNKNOWN("?");
     
     private String commandString;
     
