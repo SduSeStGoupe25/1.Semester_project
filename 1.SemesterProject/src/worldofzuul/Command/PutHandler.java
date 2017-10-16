@@ -2,6 +2,7 @@ package worldofzuul.Command;
 
 import worldofzuul.Entity.CharacterEntity;
 import worldofzuul.Game;
+import worldofzuul.Inventory.Item;
 import worldofzuul.Room;
 
 /**
@@ -59,7 +60,7 @@ public class PutHandler {
 
                     break;
                 case INVENTORY:
-
+                    printInventory();
                     break;
                 case EQUIP:
 
@@ -202,5 +203,12 @@ public class PutHandler {
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands(); //Prints all commandWords
+    }
+    
+    private void printInventory(){
+        System.out.println("Your inventory contains: ");
+        for(Item i : game.getPlayer().getItemInventory().getInventory()){
+            System.out.println(i.getName() + "  " + i.getItemType() + "  " + i.getCount());
+        }
     }
 }

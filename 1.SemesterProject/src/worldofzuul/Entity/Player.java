@@ -33,6 +33,22 @@ public class Player extends CharacterEntity implements Moveable {
         itemInventory = new Inventory(20); 
         equipableInventory = new Inventory(3);
     }
+    
+    public void setCurrentRoom(Room nextRoom){
+        currentRoom = nextRoom;
+    }
+    
+    public Room getCurrentRoom(){
+        return currentRoom;
+    }
+
+    public Inventory getItemInventory() {
+        return itemInventory;
+    }
+
+    public Inventory getEquipableInventory() {
+        return equipableInventory;
+    }
 
     @Override
     public void move() {
