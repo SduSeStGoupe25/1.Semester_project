@@ -1,5 +1,5 @@
 /**
- * Klasse til oprettelse og styring af quests
+ * Class creating and controlling quests in the game.
  */
 package worldofzuul.Entity;
 
@@ -14,14 +14,14 @@ public class Quest {
 
     private String name;
     private String description;
-    private int questID;
-    private int gold;
-    private int exp;
-    private ArrayList<Item> items = new ArrayList<>(); //ArrayList til opbevaring af questitems
-    private NPC giver; //NPC'en der giver den pågældende quest
-    private boolean isMainQuest;
+    private int questID; //Reference ID for the quest 
+    private int gold; //how much gold does the player reieve upon completion
+    private int exp; //how much experience the player recieves upon completion
+    private ArrayList<Item> items = new ArrayList<>(); //ArrayList to store questitems
+    private NPC giver; //The NPC from whom the quest is recieved
+    private boolean isMainQuest; //boolean to seperate the main quests and side quests
 
-    Quest(String name, String description, int questID, int gold, int exp, ArrayList<Item> items, NPC giver, boolean isMainQuest) {
+    Quest(String name, String description, int questID, int gold, int exp, ArrayList<Item> items, NPC giver, boolean isMainQuest) { 
         this.name = name;
         this.description = description;
         this.questID = questID;
@@ -29,7 +29,7 @@ public class Quest {
         this.exp = exp;
         items = new ArrayList<>();
         this.giver = giver;
-        this.isMainQuest = isMainQuest; //Ikke sikker på opsætnningen af boolean  
+        this.isMainQuest = isMainQuest;   
     }
 
     public String getName() {

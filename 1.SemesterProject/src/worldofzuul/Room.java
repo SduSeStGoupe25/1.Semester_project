@@ -9,14 +9,19 @@ import worldofzuul.Inventory.Item;
 
 
 /**
+ * Class that creates and controls the game Rooms/areas. This includes both which items
+ * and NPC's there are within the room
+ */
+
+/**
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
 public class Room {
-    private String description;
+    private String description; //The room description, printed upon entering
     private HashMap<String, Room> exits;
-    private List<CharacterEntity> charactersInRoom = new ArrayList<>(); 
-    private List<Item> items = new ArrayList<>();
+    private List<CharacterEntity> charactersInRoom = new ArrayList<>(); //ArrayList containing the NPC's in the room
+    private List<Item> items = new ArrayList<>(); //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
     
 
     public Room(String description) {
@@ -51,11 +56,11 @@ public class Room {
         return exits.get(direction);
     }
     
-    public List<CharacterEntity> getCharactersInRoom(){
+    public List<CharacterEntity> getCharactersInRoom(){ //Returns characters in the room
         return charactersInRoom;
     }
     
-    public void addCharacterToRoom(CharacterEntity ce){
+    public void addCharacterToRoom(CharacterEntity ce){ //Adds characters to the room
         charactersInRoom.add(ce);
     }
 }
