@@ -54,5 +54,9 @@ public class Room {
     public List<CharacterEntity> getCharactersInRoom(){
         return charactersInRoom;
     }
+    
+    public void addCharacterToRoom(CharacterEntity ce){
+        charactersInRoom.add(ce);
+    }
 }
 

@@ -1,6 +1,8 @@
 package worldofzuul;
 
 import worldofzuul.Command.PutHandler;
+import worldofzuul.Entity.MoveableNPC;
+import worldofzuul.Entity.NPC;
 import worldofzuul.Entity.Player;
 
 /**
@@ -16,18 +18,34 @@ public class Game {
     private Room currentRoom;       //The current room
     private Player player;
 
+    public Room citycenter, shop, tavern, castle, excalibur, tower, cave, farm, forrest,
+            deepwoods; // creating objects of the Room-class
+
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
     public Game() {
         player = new Player("Arthur", 100, 0, 10, 1, 0, null, 0);
         createRooms();
+        createNPC();
         putHandler = new PutHandler(this);
     }
 
+    private void createNPC() {
+        citycenter.addCharacterToRoom(new MoveableNPC("Merlin", 10, 10, 10, 10, 10, "Hello", citycenter));
+        
+        tavern.addCharacterToRoom(new NPC("Bartender", 10, 10, 10, 10, 10, "Hello"));
+        tavern.addCharacterToRoom(new NPC("Drunk man", 10, 10, 10, 10, 10, "Hello"));
+        
+        //shop.addCharacterToRoom();
+        
+        castle.addCharacterToRoom(new NPC("King", 10, 10, 10, 10, 10, "Hello"));
+        castle.addCharacterToRoom(new NPC("Princess", 10, 10, 10, 10, 10, "Hello"));
+        
+        farm.addCharacterToRoom(new NPC("Farmer", 10, 10, 10, 10, 10, "Hello"));
+    }
+
     private void createRooms() {
-        Room citycenter, shop, tavern, castle, excalibur, tower, cave, farm, forrest,
-                deepwoods; // creating objects of the Room-class
 
         //initialising new rooms, with room-description that will be output to the console
         citycenter = new Room("in the center of the city");
@@ -95,8 +113,8 @@ public class Game {
         }
         System.out.println("Thank you for playing.  Good bye."); //Prints an exit message
     }
-    
-    public Player getPlayer(){
+
+    public Player getPlayer() {
         return player;
     }
 

@@ -96,8 +96,9 @@ public class PutHandler {
             System.out.println("Attack who?");
             return; //If there are on target don't attack anyone
         }
-        if(isNumeric(command.getSecondWord())){
+        if(!isNumeric(command.getSecondWord())){
             System.out.println("Wrong input, try again"); 
+            return;
         }
 
         int target = Integer.parseInt(command.getSecondWord()); //Gets the targets index
@@ -171,10 +172,11 @@ public class PutHandler {
      * @param room the room to print characters from
      */
     private void printCharactersInRoom(Room room) {
+        System.out.println("Characters in the room: ");
         if (!room.getCharactersInRoom().isEmpty()) { //Checkts if the room are empty
             int count = 1; // The number the character are at in the List + 1
             for (CharacterEntity ce : room.getCharactersInRoom()) { //Prints the name of each charackter in the room
-                System.out.println((count++) + ce.getName());
+                System.out.println((count++) + "  " + ce.getName());
             }
         } else {
             System.out.println("There is no one here!!");
