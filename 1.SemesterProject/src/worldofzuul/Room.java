@@ -50,5 +50,9 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
+    
+    public List<CharacterEntity> getCharactersInRoom(){
+        return charactersInRoom;
+    }
 }
 
