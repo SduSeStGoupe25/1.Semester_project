@@ -3,29 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Command/PutHandler.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Inventory/Inventory.java</file>
             <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Command/Command.java</file>
-            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Game.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Inventory/Item.java</file>
             <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Command/CommandWords.java</file>
             <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Command/CommandWord.java</file>
-=======
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Entity/NPC.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Entity/Monster.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Entity/MoveableNPC.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Command/CommandWord.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Command/Command.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Entity/CharacterEntity.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Entity/Moveable.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Entity/Quest.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Inventory/Inventory.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Entity/Player.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Game.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Room.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Inventory/Item.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Inventory/ItemType.java</file>
-            <file>file:/C:/Users/sjoeh/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Command/CommandWords.java</file>
->>>>>>> 7c225b10f57e6e78ddd1f892d26199ca34da392a
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/worldofzuul/Inventory/ItemType.java</file>
         </group>
     </open-files>
 </project-private>
