@@ -189,8 +189,8 @@ public class PutHandler {
      */
     private void printWelcome() {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to the world of King Arthur!");
+        System.out.println("An adventuregame where you strive to pull Excalibur from the stone, and save the kingdom.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(game.getCurrentRoom().getLongDescription());
@@ -212,5 +212,12 @@ public class PutHandler {
         for(Item i : game.getPlayer().getItemInventory().getInventory()){
             System.out.println(i.getName() + "  " + i.getItemType() + "  " + i.getCount());
         }
+    }
+    
+    /**
+     * Method that returns the Talk-string from the NPC talk in invoked on
+     */
+    public void talkTo() {
+        
     }
 }

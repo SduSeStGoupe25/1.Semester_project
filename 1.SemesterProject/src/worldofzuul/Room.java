@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashMap;
 import worldofzuul.Entity.CharacterEntity;
+import worldofzuul.Entity.Monster;
+import worldofzuul.Entity.Player;
 import worldofzuul.Inventory.Item;
 
 
@@ -22,13 +24,21 @@ public class Room {
     private HashMap<String, Room> exits;
     private List<CharacterEntity> charactersInRoom = new ArrayList<>(); //ArrayList containing the NPC's in the room
     private List<Item> items = new ArrayList<>(); //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
+    private HashMap<String, Monster> allowedMonsters;  
     
 
     public Room(String description) {
-        this.description = description;
+        this(description, null); 
+        
+        
+    }
+    public Room (String description, HashMap<String, Monster> allowedMonsters) { 
+        this.description = description; 
         exits = new HashMap<>();
         charactersInRoom = new ArrayList<>(); 
         items = new ArrayList<>(); 
+        this.allowedMonsters = allowedMonsters; 
+        
     }
 
     public void setExit(String direction, Room neighbor) {
@@ -62,6 +72,10 @@ public class Room {
     
     public void addCharacterToRoom(CharacterEntity ce){ //Adds characters to the room
         charactersInRoom.add(ce);
+    }
+    
+    public void spawnEnemies () { //Spawns randomly generated enemies for the room
+        
     }
 }
 

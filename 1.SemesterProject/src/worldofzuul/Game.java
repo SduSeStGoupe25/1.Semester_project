@@ -111,7 +111,7 @@ public class Game {
         while (!finished) {
             finished = putHandler.processCommand();     //If the command is quit, finished is true otherwise continues
         }
-        System.out.println("Thank you for playing.  Good bye."); //Prints an exit message
+        System.out.println("Thank you for playing.  Goodbye."); //Prints an exit message
     }
 
     public Player getPlayer() {
