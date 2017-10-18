@@ -4,31 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.HashMap;
+import java.util.Map;
 import worldofzuul.Entity.CharacterEntity;
+import worldofzuul.Entity.Monster;
 import worldofzuul.Inventory.Item;
 
-
 /**
- * Class that creates and controls the game Rooms/areas. This includes both which items
- * and NPC's there are within the room
+ * Class that creates and controls the game Rooms/areas. This includes both
+ * which items and NPC's there are within the room
  */
-
 /**
- * @author  Michael Kolling and David J. Barnes
+ * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
 public class Room {
+
     private String description; //The room description, printed upon entering
     private HashMap<String, Room> exits;
     private List<CharacterEntity> charactersInRoom = new ArrayList<>(); //ArrayList containing the NPC's in the room
     private List<Item> items = new ArrayList<>(); //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
-    
 
     public Room(String description) {
         this.description = description;
         exits = new HashMap<>();
-        charactersInRoom = new ArrayList<>(); 
-        items = new ArrayList<>(); 
+        charactersInRoom = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
     public void setExit(String direction, Room neighbor) {
@@ -46,7 +46,7 @@ public class Room {
     private String getExitString() {
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
-        for(String exit : keys) {
+        for (String exit : keys) {
             returnString += " " + exit;
         }
         return returnString;
@@ -55,13 +55,16 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-    
-    public List<CharacterEntity> getCharactersInRoom(){ //Returns characters in the room
+
+    public List<CharacterEntity> getCharactersInRoom() { //Returns characters in the room
         return charactersInRoom;
     }
-    
-    public void addCharacterToRoom(CharacterEntity ce){ //Adds characters to the room
+
+    public void addCharacterToRoom(CharacterEntity ce) { //Adds characters to the room
         charactersInRoom.add(ce);
     }
-}
 
+    public CharacterEntity getCharacterEntity(int index) {
+        return charactersInRoom.get(index);
+    }
+}

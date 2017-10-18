@@ -3,6 +3,7 @@ package worldofzuul.Command;
 import worldofzuul.Entity.CharacterEntity;
 import worldofzuul.Game;
 import worldofzuul.Inventory.Item;
+import worldofzuul.Inventory.ItemType;
 import worldofzuul.Room;
 
 /**
@@ -34,7 +35,7 @@ public class PutHandler {
 
         CommandWord commandWord = command.getCommandWord(); //Gets the commandWord from the command
 
-        if (null != commandWord) {
+        if (!game.getCombat().isRunning()) { //Checks if combat are startet
             switch (commandWord) {
                 case UNKNOWN: //If the commandWord is unknown
                     System.out.println("I don't know what you mean...");
@@ -69,7 +70,6 @@ public class PutHandler {
 
                     break;
                 case ATTACK:
-                    printCharactersInRoom(game.getCurrentRoom());
                     attack(command);
                     break;
                 case USE:
@@ -86,6 +86,41 @@ public class PutHandler {
     }
 
     /**
+     * This class processes commands when in combat
+     * @return true if the command the user gave was valid in combat, and false if not
+     */
+    public boolean processCommandCombat() {
+        Command command = parser.getCommand(); //Gets the next user input
+
+        boolean validCommand = true; //Indicates if the user whats to quit the game
+
+        CommandWord commandWord = command.getCommandWord(); //Gets the commandWord from the command
+
+        switch (commandWord) {
+            case USE:
+                printSpecificItemTypeFromIventory(ItemType.CONSUMEABLE);
+                System.out.println("Eating not here yet"); //Invoke eat here
+                break;
+            case LIGHT:
+                game.getCombat().lightAttack();
+                break;
+            case HEAVY:
+                game.getCombat().heavyAttack();
+                break;
+            case FLEE:
+                System.out.println("Your coward, better luck next time");
+                game.getCombat().setRunning(false);
+                System.out.println(game.getCurrentRoom().getLongDescription()); //Prints a description of the room
+                break;
+            default:
+                System.out.println("Not valid in combat");
+                validCommand = false;
+                break;
+        }
+        return validCommand;
+    }
+
+    /**
      * This private method checks if the command is valid to start combat, if so
      * starts combat
      *
@@ -93,18 +128,19 @@ public class PutHandler {
      */
     private void attack(Command command) {
         if (!command.hasSecondWord()) { //Checks if the user has specifie a correct target
+            printCharactersInRoom(game.getCurrentRoom());
             System.out.println("Attack who?");
             return; //If there are on target don't attack anyone
         }
-        if(!isNumeric(command.getSecondWord())){
-            System.out.println("Wrong input, try again"); 
+        if (!isNumeric(command.getSecondWord())) {
+            System.out.println("Wrong input, try again");
             return;
         }
 
         int target = Integer.parseInt(command.getSecondWord()); //Gets the targets index
 
         if (game.getCurrentRoom().getCharactersInRoom().size() >= target) { //Checks if the target index are a part of the List
-            System.out.println("Combat startet!!"); //Invoke combat here
+            game.getCombat().startCombat(game.getCurrentRoom().getCharacterEntity(target - 1));
         }
     }
 
@@ -206,11 +242,34 @@ public class PutHandler {
         System.out.println("Your command words are:");
         parser.showCommands(); //Prints all commandWords
     }
-    
-    private void printInventory(){
+
+    /**
+     * This private method prints all items of a specific ItemType i the player
+     * inventory
+     *
+     * @param type the ItemType to print
+     */
+    private void printSpecificItemTypeFromIventory(ItemType type) {
+        System.out.println("Your inventoru contains this of the type " + type);
+        for (Item i : game.getPlayer().getItemInventory().getInventory()) {
+            if (i.getItemType().equals(type)) {
+                System.out.println(i.getName() + "  " + i.getItemType() + "  " + i.getCount());
+            }
+        }
+    }
+
+    private void printInventory() {
         System.out.println("Your inventory contains: ");
-        for(Item i : game.getPlayer().getItemInventory().getInventory()){
+        for (Item i : game.getPlayer().getItemInventory().getInventory()) {
             System.out.println(i.getName() + "  " + i.getItemType() + "  " + i.getCount());
         }
+    }
+
+    /**
+     * This class prints the player and opponent stats
+     */
+    public void printStatsInAttack() {
+        System.out.print(game.getPlayer().getName() + " as " + game.getPlayer().getHealth() + " health  |  ");
+        System.out.println(game.getCombat().getOpponent().getName() + " as " + game.getCombat().getOpponent().getHealth() + " health");
     }
 }

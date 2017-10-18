@@ -17,6 +17,7 @@ public class Game {
     private PutHandler putHandler;  //Class responsible for user input and print output
     private Room currentRoom;       //The current room
     private Player player;
+    private Combat combat;
 
     public Room citycenter, shop, tavern, castle, excalibur, tower, cave, farm, forrest,
             deepwoods; // creating objects of the Room-class
@@ -29,19 +30,19 @@ public class Game {
         createRooms();
         createNPC();
         putHandler = new PutHandler(this);
+        combat = new Combat(player, putHandler);
     }
 
     private void createNPC() {
         citycenter.addCharacterToRoom(new MoveableNPC("Merlin", 10, 10, 10, 10, 10, "Hello", citycenter));
-        
+
         tavern.addCharacterToRoom(new NPC("Bartender", 10, 10, 10, 10, 10, "Hello"));
         tavern.addCharacterToRoom(new NPC("Drunk man", 10, 10, 10, 10, 10, "Hello"));
-        
+
         //shop.addCharacterToRoom();
-        
         castle.addCharacterToRoom(new NPC("King", 10, 10, 10, 10, 10, "Hello"));
         castle.addCharacterToRoom(new NPC("Princess", 10, 10, 10, 10, 10, "Hello"));
-        
+
         farm.addCharacterToRoom(new NPC("Farmer", 10, 10, 10, 10, 10, "Hello"));
     }
 
@@ -124,6 +125,10 @@ public class Game {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+
+    public Combat getCombat() {
+        return combat;
     }
 
 }
