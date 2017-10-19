@@ -25,8 +25,14 @@ public class Inventory {
         return inventory;
     }
 
-    public boolean addItem(Item item) {
-        if (inventory.size() < maxSlots) {
+    public boolean addItem(Item item, int amount) {
+        if (inventory.size() < maxSlots) {      //Checks if there is room for the new
+            for (Item i : inventory) {          //Checks if the item should be added as a count or as a new item
+                if (i.getName().equals(item.getName())) {
+                    i.addCount(amount);
+                    return true;
+                }
+            }
             inventory.add(item);
             return true;
         }
@@ -38,7 +44,7 @@ public class Inventory {
     }
 
     public boolean useItem(int item) {
-        if (!(inventory.get(item).getItemType().equals(ItemType.CONSUMEABLE))) { //Er ikke helt sikker på brugen af enums
+        if (!(inventory.get(item).getItemType().equals(ItemType.CONSUMEABLE))) { //Checks if the item is useable
             return false;
         } else {
             if (inventory.get(item).getCount() > 1) {
@@ -49,5 +55,5 @@ public class Inventory {
         }
         return true;
     }
-    
+
 }

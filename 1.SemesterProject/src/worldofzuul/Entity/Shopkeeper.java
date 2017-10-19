@@ -19,14 +19,16 @@ public class Shopkeeper extends NPC {
         
     }
     
-    public boolean buy (Item item, int amount) { 
-        return false; 
-        
+    public boolean buy (Item item, int amount, Player player) { 
+        if (item.getItemValue() > player.getGold()){ //Checks if the player has enough gold to purchase the item
+            return false;
+        }
+        player.removeGold(item.getItemValue()); //Removes gold from player
+        player.getItemInventory().addItem(item, amount); //Adds the item(s) to the players inventory
+        return true; 
     }
     
-    public boolean sell (Item item, int amount) {
+    public boolean sell (Item item, int amount, Player player) {
         return false;
     }
-    
-    
 }

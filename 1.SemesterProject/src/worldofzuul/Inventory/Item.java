@@ -43,6 +43,10 @@ public class Item {
     public void reduceCount(int amountUsed){
         this.count -= amountUsed;
     }
+    
+    public void addCount(int amountAdded){
+        this.count += amountAdded;
+    }
 
     public ItemType getItemType() {
         return itemType;

@@ -49,6 +49,18 @@ public class Player extends CharacterEntity implements Moveable {
     public Inventory getEquipableInventory() {
         return equipableInventory;
     }
+    
+    public int getGold(){
+        return gold;
+    }
+    
+    public void addGold(int amount){
+        gold += amount;
+    }
+    
+    public void removeGold(int amount){
+        gold -= amount;
+    }
 
     @Override
     public void move() {
