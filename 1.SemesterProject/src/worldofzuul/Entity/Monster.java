@@ -16,8 +16,10 @@ public class Monster extends CharacterEntity {
         super(name, health, armor, attack, level);
         this.expDrop = expDrop; 
     }
-    
-    public void onDeath() { 
-          
+
+    @Override
+    public void onDeath() {
+        
     }
+    
 }

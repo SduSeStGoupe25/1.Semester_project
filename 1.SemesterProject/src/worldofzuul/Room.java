@@ -43,6 +43,9 @@ public class Room {
         charactersInRoom = new ArrayList<>();
         items = new ArrayList<>();
     }
+    public void removeCharacterFromRoom(CharacterEntity ce){
+        charactersInRoom.remove(ce);
+    }
 
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);

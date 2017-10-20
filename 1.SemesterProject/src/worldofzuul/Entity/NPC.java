@@ -22,8 +22,9 @@ public class NPC extends CharacterEntity {
     public String getTalk () { 
         return talk;
     }
-    
-    public void onDeath () {
-        
+
+    @Override
+    public void onDeath() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

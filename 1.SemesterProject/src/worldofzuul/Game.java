@@ -26,7 +26,7 @@ public class Game {
      * This is the constructor, which is used when a instance of Game is made.
      */
     public Game() {
-        player = new Player("Arthur", 100, 0, 10, 1, 0, null, 0);
+        player = new Player("Arthur", 100, 1, 10, 8, 0, null, 0);
         createRooms();
         createNPC();
         putHandler = new PutHandler(this);
@@ -34,7 +34,7 @@ public class Game {
     }
 
     private void createNPC() {
-        citycenter.addCharacterToRoom(new MoveableNPC("Merlin", 10, 10, 10, 10, 10, "Hello", citycenter));
+        citycenter.addCharacterToRoom(new MoveableNPC("Merlin", 100, 1, 10, 1, 10, "Hello", citycenter));
 
         tavern.addCharacterToRoom(new NPC("Bartender", 10, 10, 10, 10, 10, "Hello"));
         tavern.addCharacterToRoom(new NPC("Drunk man", 10, 10, 10, 10, 10, "Hello"));
@@ -132,4 +132,4 @@ public class Game {
     }
 
 }
->>>>>>> 3708330f177f1ce22cb94ad367b181bef0da642b
+//>>>>>>> 3708330f177f1ce22cb94ad367b181bef0da642b

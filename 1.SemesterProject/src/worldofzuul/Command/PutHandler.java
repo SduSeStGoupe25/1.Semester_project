@@ -102,10 +102,12 @@ public class PutHandler {
                 System.out.println("Eating not here yet"); //Invoke eat here
                 break;
             case LIGHT:
-                game.getCombat().lightAttack();
+                int lightAttack = game.getCombat().lightAttack();
+                System.out.println((lightAttack >= 0) ? "Success " + lightAttack : "Fail");
                 break;
             case HEAVY:
-                game.getCombat().heavyAttack();
+                int heavyAttack = game.getCombat().heavyAttack();
+                System.out.println((heavyAttack >= 0) ? "Success " + heavyAttack : "Fail");
                 break;
             case FLEE:
                 System.out.println("Your coward, better luck next time");
@@ -140,7 +142,7 @@ public class PutHandler {
         int target = Integer.parseInt(command.getSecondWord()); //Gets the targets index
 
         if (game.getCurrentRoom().getCharactersInRoom().size() >= target) { //Checks if the target index are a part of the List
-            game.getCombat().startCombat(game.getCurrentRoom().getCharacterEntity(target - 1));
+            game.getCombat().startCombat(game.getCurrentRoom().getCharacterEntity(target - 1), game.getCurrentRoom());
         }
     }
 

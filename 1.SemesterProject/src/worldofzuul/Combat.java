@@ -11,6 +11,7 @@ import worldofzuul.Entity.Player;
 public class Combat {
 
     private CharacterEntity opponent; //The characterEntity to fight against 
+    private Room currentRoom; //The current room
     private Player player; //The player
     private boolean running; //Indicating if the combat is running
     private PutHandler puthandler;
@@ -25,8 +26,9 @@ public class Combat {
      *
      * @param opponent the CharacterEntity to fight
      */
-    public void startCombat(CharacterEntity opponent) {
+    public void startCombat(CharacterEntity opponent, Room currentRoom) {
         this.opponent = opponent;
+        this.currentRoom = currentRoom;
         running = true;
         combatLoop();
     }
@@ -38,24 +40,55 @@ public class Combat {
             while (!puthandler.processCommandCombat()) {
             } //Process player command
 
+            if (opponent.getHealth() < 1) {
+                currentRoom.removeCharacterFromRoom(opponent);
+                running = false;
+            }
+
             if (!running) {
                 break; //Break if player flee
             }
             puthandler.printStatsInAttack();
-            opponentMove();
+            System.out.println(opponentMove());
         }
     }
 
-    public void heavyAttack() {
-        System.out.println("Heavy attack");
+    private int attack(int chance, int additionalDamage) {
+        if (diceRoll(10) <= chance) {
+            int attackValue = player.getAttackValue() * (diceRoll(4) + additionalDamage);
+            int damageDealt = 0;
+            if (attackValue >= opponent.getArmor()) {
+                damageDealt = (attackValue - opponent.getArmor()) + 1;
+                opponent.changeHealth(damageDealt * -1);
+            }
+            return damageDealt;
+        }
+        return -1;
     }
 
-    public void lightAttack() {
-        System.out.println("Light attack");
+    public int heavyAttack() {
+        return attack(6, 2);
     }
 
-    private void opponentMove() {
-        System.out.println("OPPONENT MOVE ----------");
+    public int lightAttack() {
+        return attack(9, 0);
+    }
+
+    private int opponentMove() {
+        if (diceRoll(10) <= 9) {
+            int attackValue = (opponent.getAttack() * opponent.getLevel()) * diceRoll(4);
+            int damageDealt = 0;
+            if (attackValue >= player.getArmor()) {
+                damageDealt = (attackValue - player.getArmor()) + 1;
+                player.changeHealth(damageDealt * -1);
+            }
+            return damageDealt;
+        }
+        return -1;
+    }
+
+    private int diceRoll(int sides) {
+        return (int) ((Math.random() * sides) + 1);
     }
 
     public boolean isRunning() {

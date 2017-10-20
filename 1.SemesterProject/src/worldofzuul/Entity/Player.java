@@ -9,6 +9,8 @@ import worldofzuul.Inventory.Inventory;
 import worldofzuul.Entity.CharacterEntity;
 import worldofzuul.Entity.Moveable;
 import java.util.HashMap;
+import worldofzuul.Inventory.Item;
+import worldofzuul.Inventory.ItemType;
 import worldofzuul.Room;
 
 /**
@@ -32,6 +34,16 @@ public class Player extends CharacterEntity implements Moveable {
         questLog = new HashMap<>(); 
         itemInventory = new Inventory(20); 
         equipableInventory = new Inventory(3);
+    }
+    public int getAttackValue(){
+        int attackValue = attack;
+        for (Item item : equipableInventory.getInventory()) {
+            if (item.getItemType().equals(ItemType.WEAPON)) {
+                attackValue += item.getItemValue();
+                break;
+            }
+        }
+        return attackValue;
     }
     
     public void setCurrentRoom(Room nextRoom){
@@ -66,4 +78,9 @@ public class Player extends CharacterEntity implements Moveable {
     public void move() {
         throw new UnsupportedOperationException("Not supported yet."); 
     }   
+
+    @Override
+    public void onDeath() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
