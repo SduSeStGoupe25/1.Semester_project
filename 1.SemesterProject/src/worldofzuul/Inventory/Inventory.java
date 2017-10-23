@@ -82,7 +82,7 @@ public class Inventory {
         }
         if (totalAmount >= amount) {
             int amountBack = amount;
-            for (int i = inventory.size() - 1; i > 0; i--) {
+            for (int i = inventory.size() - 1; i >= 0; i--) {
                 Item j = inventory.get(i);
                 if (j.getName().equals(item.getName())) {
                     if (amountBack >= j.getCount()) {
