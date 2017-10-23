@@ -77,7 +77,7 @@ public class PutHandler {
                     attack(command);
                     break;
                 case USE:
-
+                    use(command);
                     break;
                 case QUEST:
 
@@ -150,9 +150,9 @@ public class PutHandler {
             }
         }
     }
-    
-    private void sell(Command command){
-         if (game.getCurrentRoom().equals(game.shop)) {
+
+    private void sell(Command command) {
+        if (game.getCurrentRoom().equals(game.shop)) {
             if (!command.hasSecondWord()) {
                 printStashList();
                 return;
@@ -171,7 +171,22 @@ public class PutHandler {
                     }
                 }
             }
-        }       
+        }
+    }
+
+    private void use(Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("Please enter the item you want to use");
+            printInventory();
+            return;
+        }
+        Item item = Stash.getItem(command.getSecondWord());
+        if (game.getPlayer().restoreHp(item)) {
+            System.out.println("You restored " + item.getItemValue() + " hp!");
+            System.out.println("Current hp is " + game.getPlayer().getHealth());
+        } else {
+            System.out.println("You either already have full health, or don't own the selected item!");
+        }
     }
 
     /**
@@ -280,8 +295,8 @@ public class PutHandler {
     private void printWelcome() {
         System.out.println();
         System.out.println("Welcome to the world of King Arthur! Game of the year edition.");
-        System.out.println("Venture out into this beautiful world, on your quest to free Excalibur from the stone " + 
-                "and claim your spot as the rightful king.");
+        System.out.println("Venture out into this beautiful world, on your quest to free Excalibur from the stone "
+                + "and claim your spot as the rightful king.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(game.getCurrentRoom().getLongDescription());
@@ -314,9 +329,13 @@ public class PutHandler {
     }
 
     private void printInventory() {
-        System.out.println("Your inventory contains: ");
-        for (Item i : game.getPlayer().getItemInventory().getInventory()) {
-            System.out.println(i.getName() + "  " + i.getItemType() + "  " + i.getCount());
+        if (game.getPlayer().getItemInventory().getInventory().size() <= 0) {
+            System.out.println("Your inventory is empty");
+        } else {
+            System.out.println("Your inventory contains: ");
+            for (Item i : game.getPlayer().getItemInventory().getInventory()) {
+                System.out.println(i.getName() + "  " + i.getItemType() + "  x" + i.getCount());
+            }
         }
     }
 
