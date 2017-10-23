@@ -17,25 +17,26 @@ import worldofzuul.Room;
  *
  * @author Victor Gram
  */
-
 public class Player extends CharacterEntity implements Moveable {
-    private Inventory itemInventory; 
-    private Inventory equipableInventory; 
-    private int gold; 
-    private Room currentRoom; 
-    private int exp; 
-    private HashMap<Integer, String> questLog; 
-    
+
+    private Inventory itemInventory;
+    private Inventory equipableInventory;
+    private int gold;
+    private Room currentRoom;
+    private int exp;
+    private HashMap<Integer, String> questLog;
+
     public Player(String name, int health, int armor, int attack, int level, int gold, Room currentRoom, int exp) {
         super(name, health, armor, attack, level);
-        this.gold = gold; 
+        this.gold = gold;
         this.currentRoom = currentRoom;
         this.exp = exp;
-        questLog = new HashMap<>(); 
-        itemInventory = new Inventory(20); 
+        questLog = new HashMap<>();
+        itemInventory = new Inventory(20);
         equipableInventory = new Inventory(3);
     }
-    public int getAttackValue(){
+
+    public int getAttackValue() {
         int attackValue = attack;
         for (Item item : equipableInventory.getInventory()) {
             if (item.getItemType().equals(ItemType.WEAPON)) {
@@ -45,12 +46,12 @@ public class Player extends CharacterEntity implements Moveable {
         }
         return attackValue;
     }
-    
-    public void setCurrentRoom(Room nextRoom){
+
+    public void setCurrentRoom(Room nextRoom) {
         currentRoom = nextRoom;
     }
-    
-    public Room getCurrentRoom(){
+
+    public Room getCurrentRoom() {
         return currentRoom;
     }
 
@@ -61,23 +62,41 @@ public class Player extends CharacterEntity implements Moveable {
     public Inventory getEquipableInventory() {
         return equipableInventory;
     }
-    
-    public int getGold(){
+
+    public int getGold() {
         return gold;
     }
-    
-    public void addGold(int amount){
+
+    public void addGold(int amount) {
         gold += amount;
     }
-    
-    public void removeGold(int amount){
+
+    public void removeGold(int amount) {
         gold -= amount;
+    }
+
+    public boolean restoreHp(Item item) {
+        if (!(this.health >= this.maxHealth)) {
+            if (item.getItemType().equals(ItemType.CONSUMEABLE)) {
+                if (this.itemInventory.removeItem(item, 1)) {
+                    if (this.health + item.getItemValue() >= this.maxHealth) {
+                        this.health = this.maxHealth;
+                        return true;
+                    }
+                    else{
+                        this.health += item.getItemValue();
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override
     public void move() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }   
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     @Override
     public void onDeath() {
