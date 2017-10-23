@@ -47,6 +47,10 @@ public class Item {
     public void addCount(int amountAdded){
         this.count += amountAdded;
     }
+    
+    public void setCount(int count){
+        this.count = count;
+    }
 
     public ItemType getItemType() {
         return itemType;

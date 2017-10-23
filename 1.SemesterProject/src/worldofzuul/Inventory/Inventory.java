@@ -26,14 +26,16 @@ public class Inventory {
     }
 
     public boolean addItem(Item item, int amount) {
+        Item itemToAdd = item;
         if (inventory.size() < maxSlots) {      //Checks if there is room for the new
             for (Item i : inventory) {          //Checks if the item should be added as a count or as a new item
-                if (i.getName().equals(item.getName())) {
+                if (i.getName().equals(itemToAdd.getName())) {
                     i.addCount(amount);
                     return true;
                 }
             }
-            inventory.add(item);
+            itemToAdd.setCount(amount);
+            inventory.add(itemToAdd);
             return true;
         }
         return false;
