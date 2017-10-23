@@ -9,7 +9,7 @@ package worldofzuul.Inventory;
  *
  * @author rasmusstamm
  */
-public class Item {
+public class Item implements Cloneable{
     private String name;
     private int sellValue;
     private ItemType itemType;
@@ -23,7 +23,18 @@ public class Item {
         this.itemValue = itemValue;
         this.count = count;
     }
-
+    public Object clone() {
+      Object clone = null;
+      
+      try {
+         clone = super.clone();
+         
+      } catch (CloneNotSupportedException e) {
+         e.printStackTrace();
+      }
+      
+      return clone;
+    }
     public String getName() {
         return name;
     }

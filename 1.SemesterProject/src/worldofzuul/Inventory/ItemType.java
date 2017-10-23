@@ -10,5 +10,15 @@ package worldofzuul.Inventory;
  * @author rasmusstamm
  */
 public enum ItemType {
-    ARMOR, WEAPON, CONSUMEABLE, NORMAL;  
+    ARMOR(1), WEAPON(1), CONSUMEABLE(20), NORMAL(10); 
+    private final int MAX_COUNT;
+    ItemType (int MAX_COUNT){
+        this.MAX_COUNT = MAX_COUNT;
+        
+    }
+
+    public int getMAX_COUNT() {
+        return MAX_COUNT;
+    }
+
 }

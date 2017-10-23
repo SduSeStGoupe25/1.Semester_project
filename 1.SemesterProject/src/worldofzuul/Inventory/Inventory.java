@@ -26,19 +26,43 @@ public class Inventory {
     }
 
     public boolean addItem(Item item, int amount) {
-        Item itemToAdd = item;
-        if (inventory.size() < maxSlots) {      //Checks if there is room for the new
-            for (Item i : inventory) {          //Checks if the item should be added as a count or as a new item
-                if (i.getName().equals(itemToAdd.getName())) {
+        for (Item i : inventory) {
+            if (i.getName().equals(item.getName())){
+                if (i.getCount()+ amount <= i.getItemType().getMAX_COUNT()){
                     i.addCount(amount);
                     return true;
                 }
+                else {
+                    if(amount/i.getItemType().getMAX_COUNT()+inventory.size()<=maxSlots){
+                        int amountBack = amount;
+                        for (Item j : inventory) {
+                            if (j.getName().equals(item.getName())){
+                                if (j.getCount()<j.getItemType().getMAX_COUNT()){
+                                    int add = j.getItemType().getMAX_COUNT() - j.getCount();
+                                            j.addCount(add);
+                                    amountBack -= add;
+                                    break;
+                                }
+                            }
+                            
+                        }
+                        while(amountBack > 0){
+                            Item itemToAdd = Stash.getItem(item.getName().toLowerCase());
+                            if (amountBack>item.getItemType().getMAX_COUNT()){
+                                itemToAdd.setCount(item.getItemType().getMAX_COUNT());
+                                inventory.add(itemToAdd);
+                                amountBack-=item.getItemType().getMAX_COUNT();
+                            }else {
+                                itemToAdd
+                            }
+                            
+                        }
+                    } else {
+                        return false;
+                    }
+                }
             }
-            itemToAdd.setCount(amount);
-            inventory.add(itemToAdd);
-            return true;
         }
-        return false;
     }
 
     public void dropItem(int item) {

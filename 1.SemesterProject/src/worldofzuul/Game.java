@@ -4,6 +4,7 @@ import worldofzuul.Command.PutHandler;
 import worldofzuul.Entity.MoveableNPC;
 import worldofzuul.Entity.NPC;
 import worldofzuul.Entity.Player;
+import worldofzuul.Inventory.Stash;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -27,6 +28,7 @@ public class Game {
      */
     public Game() {
         player = new Player("Arthur", 100, 1, 10, 8, 0, null, 0);
+        Stash.loadCache();
         createRooms();
         createNPC();
         putHandler = new PutHandler(this);
@@ -65,6 +67,7 @@ public class Game {
         citycenter.setExit("north", shop);
         citycenter.setExit("west", farm);
         citycenter.setExit("south", castle);
+        citycenter.addItemToRoom(Stash.getItem("rock"));
 
         // defining exits from the shop
         shop.setExit("south", citycenter);

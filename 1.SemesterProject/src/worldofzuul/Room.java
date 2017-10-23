@@ -43,6 +43,9 @@ public class Room {
         charactersInRoom = new ArrayList<>();
         items = new ArrayList<>();
     }
+    public void addItemToRoom(Item i){
+        items.add(i);
+    }
     public void removeCharacterFromRoom(CharacterEntity ce){
         charactersInRoom.remove(ce);
     }
@@ -57,6 +60,7 @@ public class Room {
 
     public String getLongDescription() {
         return "You are " + description + ".\n" + getExitString();
+        
     }
 
     private String getExitString() {
