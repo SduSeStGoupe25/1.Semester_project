@@ -1,9 +1,11 @@
 package worldofzuul.Command;
 
 import worldofzuul.Entity.CharacterEntity;
+import worldofzuul.Entity.Shopkeeper;
 import worldofzuul.Game;
 import worldofzuul.Inventory.Item;
 import worldofzuul.Inventory.ItemType;
+import worldofzuul.Inventory.Stash;
 import worldofzuul.Room;
 
 /**
@@ -52,6 +54,7 @@ public class PutHandler {
                 case TALK:
                     break;
                 case BUY:
+                    buy(command);
 
                     break;
                 case SELL:
@@ -87,7 +90,9 @@ public class PutHandler {
 
     /**
      * This class processes commands when in combat
-     * @return true if the command the user gave was valid in combat, and false if not
+     *
+     * @return true if the command the user gave was valid in combat, and false
+     * if not
      */
     public boolean processCommandCombat() {
         Command command = parser.getCommand(); //Gets the next user input
@@ -120,6 +125,29 @@ public class PutHandler {
                 break;
         }
         return validCommand;
+    }
+
+    private void buy(Command command) {
+        if (game.getCurrentRoom().equals(game.shop)) {
+            if (!command.hasSecondWord()) {
+                printStashList();
+                return;
+            }
+            if (!command.hasThirdWord()) {
+                System.out.println("Please enter an amount");
+                return;
+            }
+            if (Stash.getItemMap().containsKey(command.getSecondWord())) {
+                if (isNumeric(command.getThirdWord()) && Integer.parseInt(command.getThirdWord()) > 0) {
+                    if (game.getCurrentRoom().getCharactersInRoom().size() > 0) {
+                        if (game.getCurrentRoom().getCharacterEntity(0) instanceof Shopkeeper) {
+                            Shopkeeper sk = (Shopkeeper) game.getCurrentRoom().getCharacterEntity(0);
+                            System.out.println(sk.buy(Stash.getItem(command.getSecondWord()), Integer.parseInt(command.getThirdWord()), game.getPlayer()));
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -273,5 +301,11 @@ public class PutHandler {
     public void printStatsInAttack() {
         System.out.print(game.getPlayer().getName() + " as " + game.getPlayer().getHealth() + " health  |  ");
         System.out.println(game.getCombat().getOpponent().getName() + " as " + game.getCombat().getOpponent().getHealth() + " health");
+    }
+
+    private void printStashList() {
+        for (String i : Stash.getItemMap().keySet()) {
+            System.out.println(i + " " + (Stash.getItemMap().get(i).getSellValue() * 2));
+        }
     }
 }

@@ -26,6 +26,7 @@ public class Inventory {
     }
 
     public boolean addItem(Item item, int amount) {
+        System.out.println("addItem" + amount);
         for (Item i : inventory) {
             if (i.getName().equals(item.getName())){
                 if (i.getCount()+ amount <= i.getItemType().getMAX_COUNT()){
@@ -53,33 +54,47 @@ public class Inventory {
                                 inventory.add(itemToAdd);
                                 amountBack-=item.getItemType().getMAX_COUNT();
                             }else {
-                                itemToAdd
+                                itemToAdd.setCount(amountBack);
+                                amountBack = 0;
                             }
                             
-                        }
+                        } return true;
                     } else {
                         return false;
                     }
                 }
             }
         }
+        return false;
     }
 
-    public void dropItem(int item) {
-        inventory.remove(item);
-    }
-
-    public boolean useItem(int item) {
-        if (!(inventory.get(item).getItemType().equals(ItemType.CONSUMEABLE))) { //Checks if the item is useable
-            return false;
-        } else {
-            if (inventory.get(item).getCount() > 1) {
-                inventory.get(item).reduceCount(1);
-            } else {
-                dropItem(item);
+    public boolean removeItem(Item item, int amount) {
+        int totalAmount = 0;
+        for (Item i : inventory) {
+            if (i.getName().equals(item.getName())){
+                totalAmount+= i.getCount();
+            }
+            
+        }
+        if(totalAmount>=amount){
+            int amountBack = amount;
+            for (int i = inventory.size(); i > 0; i--) {
+                Item j = inventory.get(i);
+                if (j.getName().equals(item.getName())){
+                    if(amountBack>= j.getCount()){
+                        amountBack -= j.getCount();
+                        inventory.remove(i);
+                    }else {
+                        j.setCount(j.getCount() - amountBack);
+                        return true;
+                    }
+                }
+                
             }
         }
-        return true;
+        return false;
     }
+
+   
 
 }

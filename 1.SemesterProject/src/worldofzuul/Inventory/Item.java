@@ -51,10 +51,6 @@ public class Item implements Cloneable{
         return count;
     }
     
-    public void reduceCount(int amountUsed){
-        this.count -= amountUsed;
-    }
-    
     public void addCount(int amountAdded){
         this.count += amountAdded;
     }

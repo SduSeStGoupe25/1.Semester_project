@@ -4,6 +4,7 @@ import worldofzuul.Command.PutHandler;
 import worldofzuul.Entity.MoveableNPC;
 import worldofzuul.Entity.NPC;
 import worldofzuul.Entity.Player;
+import worldofzuul.Entity.Shopkeeper;
 import worldofzuul.Inventory.Stash;
 
 /**
@@ -41,7 +42,7 @@ public class Game {
         tavern.addCharacterToRoom(new NPC("Bartender", 10, 10, 10, 10, 10, "Hello"));
         tavern.addCharacterToRoom(new NPC("Drunk man", 10, 10, 10, 10, 10, "Hello"));
 
-        //shop.addCharacterToRoom();
+        shop.addCharacterToRoom(new Shopkeeper("Shopkeeper",10,10,10,10,10,"Hello"));
         castle.addCharacterToRoom(new NPC("King", 10, 10, 10, 10, 10, "Hello"));
         castle.addCharacterToRoom(new NPC("Princess", 10, 10, 10, 10, 10, "Hello"));
 

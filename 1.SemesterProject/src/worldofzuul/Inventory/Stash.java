@@ -23,4 +23,7 @@ public static Item getItem(String name) {
 public static void loadCache() {
     itemMap.put("rock", new Item("Rock", 0, ItemType.WEAPON, 1, 1));
 }
+public static Map<String, Item> getItemMap(){
+    return itemMap;
+}
 }
