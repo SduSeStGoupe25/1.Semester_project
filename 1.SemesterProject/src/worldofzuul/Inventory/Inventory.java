@@ -26,75 +26,77 @@ public class Inventory {
     }
 
     public boolean addItem(Item item, int amount) {
-        System.out.println("addItem" + amount);
-        for (Item i : inventory) {
-            if (i.getName().equals(item.getName())){
-                if (i.getCount()+ amount <= i.getItemType().getMAX_COUNT()){
-                    i.addCount(amount);
-                    return true;
-                }
-                else {
-                    if(amount/i.getItemType().getMAX_COUNT()+inventory.size()<=maxSlots){
-                        int amountBack = amount;
-                        for (Item j : inventory) {
-                            if (j.getName().equals(item.getName())){
-                                if (j.getCount()<j.getItemType().getMAX_COUNT()){
-                                    int add = j.getItemType().getMAX_COUNT() - j.getCount();
-                                            j.addCount(add);
-                                    amountBack -= add;
-                                    break;
-                                }
-                            }
-                            
-                        }
-                        while(amountBack > 0){
-                            Item itemToAdd = Stash.getItem(item.getName().toLowerCase());
-                            if (amountBack>item.getItemType().getMAX_COUNT()){
-                                itemToAdd.setCount(item.getItemType().getMAX_COUNT());
-                                inventory.add(itemToAdd);
-                                amountBack-=item.getItemType().getMAX_COUNT();
-                            }else {
-                                itemToAdd.setCount(amountBack);
-                                amountBack = 0;
-                            }
-                            
-                        } return true;
+        if (inventory.size() != 0) {
+            for (Item i : inventory) {
+                if (i.getName().equals(item.getName())) {
+                    if (i.getCount() + amount <= i.getItemType().getMAX_COUNT()) {
+                        i.addCount(amount);
+                        return true;
                     } else {
-                        return false;
+                        return addInv(amount, item);
                     }
                 }
             }
+        } 
+            return addInv(amount, item);
+    }
+
+    private boolean addInv(int amount, Item item) {
+        if (amount / item.getItemType().getMAX_COUNT() + inventory.size() <= maxSlots) {
+            int amountBack = amount;
+            for (Item j : inventory) {
+                if (j.getName().equals(item.getName())) {
+                    if (j.getCount() < j.getItemType().getMAX_COUNT()) {
+                        int add = j.getItemType().getMAX_COUNT() - j.getCount();
+                        j.addCount(add);
+                        amountBack -= add;
+                        break;
+                    }
+                }
+            }
+            while (amountBack > 0) {
+                Item itemToAdd = Stash.getItem(item.getName().toLowerCase());
+                if (amountBack > item.getItemType().getMAX_COUNT()) {
+                    itemToAdd.setCount(item.getItemType().getMAX_COUNT());
+                    inventory.add(itemToAdd);
+                    amountBack -= item.getItemType().getMAX_COUNT();
+                } else {
+                    itemToAdd.setCount(amountBack);
+                    inventory.add(itemToAdd);
+                    amountBack = 0;
+                }
+            }
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public boolean removeItem(Item item, int amount) {
         int totalAmount = 0;
         for (Item i : inventory) {
-            if (i.getName().equals(item.getName())){
-                totalAmount+= i.getCount();
+            if (i.getName().equals(item.getName())) {
+                totalAmount += i.getCount();
             }
-            
+
         }
-        if(totalAmount>=amount){
+        if (totalAmount >= amount) {
             int amountBack = amount;
             for (int i = inventory.size(); i > 0; i--) {
                 Item j = inventory.get(i);
-                if (j.getName().equals(item.getName())){
-                    if(amountBack>= j.getCount()){
+                if (j.getName().equals(item.getName())) {
+                    if (amountBack >= j.getCount()) {
                         amountBack -= j.getCount();
                         inventory.remove(i);
-                    }else {
+                    } else {
                         j.setCount(j.getCount() - amountBack);
                         return true;
                     }
                 }
-                
+
             }
         }
         return false;
     }
-
-   
 
 }

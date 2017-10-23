@@ -55,7 +55,7 @@ public class PutHandler {
                     break;
                 case BUY:
                     buy(command);
-
+                    printInventory();
                     break;
                 case SELL:
 

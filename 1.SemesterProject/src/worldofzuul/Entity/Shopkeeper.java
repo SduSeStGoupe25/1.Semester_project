@@ -21,6 +21,7 @@ public class Shopkeeper extends NPC {
     }
 
     public boolean buy(Item item, int amount, Player player) {
+        System.out.println("gold " + player.getGold());
         if ((item.getSellValue()*amount) * 2 > player.getGold()) { //Checks if the player has enough gold to purchase the item
             return false;
         }
