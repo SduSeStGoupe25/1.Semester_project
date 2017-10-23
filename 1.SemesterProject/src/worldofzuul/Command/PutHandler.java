@@ -115,7 +115,7 @@ public class PutHandler {
                 System.out.println((heavyAttack >= 0) ? "Success " + heavyAttack : "Fail");
                 break;
             case FLEE:
-                System.out.println("Your coward, better luck next time");
+                System.out.println("You damn coward! Better luck next time");
                 game.getCombat().setRunning(false);
                 System.out.println(game.getCurrentRoom().getLongDescription()); //Prints a description of the room
                 break;
@@ -190,7 +190,7 @@ public class PutHandler {
         Room nextRoom = game.getCurrentRoom().getExit(direction); //Instantiats a room next to the current room
 
         if (nextRoom == null) { //Chechs if the current room has a exit in this direction
-            System.out.println("There is no door!");
+            System.out.println("There is no path here!");
         } else {  //If it has
             game.setCurrentRoom(nextRoom); //Current room is now the nextRoom
             System.out.println(game.getCurrentRoom().getLongDescription()); //Prints a description of the room
@@ -255,8 +255,9 @@ public class PutHandler {
      */
     private void printWelcome() {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to the world of King Arthur! Game of the year edition");
+        System.out.println("Venture out into this beautiful world, on your quest to free Excalibur form the stone " + 
+                "and claim your spot as the rightful king.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(game.getCurrentRoom().getLongDescription());
@@ -267,7 +268,7 @@ public class PutHandler {
      */
     private void printHelp() {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("around.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands(); //Prints all commandWords
@@ -280,7 +281,7 @@ public class PutHandler {
      * @param type the ItemType to print
      */
     private void printSpecificItemTypeFromIventory(ItemType type) {
-        System.out.println("Your inventoru contains this of the type " + type);
+        System.out.println("Your inventory contains this of the type " + type);
         for (Item i : game.getPlayer().getItemInventory().getInventory()) {
             if (i.getItemType().equals(type)) {
                 System.out.println(i.getName() + "  " + i.getItemType() + "  " + i.getCount());
@@ -299,8 +300,8 @@ public class PutHandler {
      * This class prints the player and opponent stats
      */
     public void printStatsInAttack() {
-        System.out.print(game.getPlayer().getName() + " as " + game.getPlayer().getHealth() + " health  |  ");
-        System.out.println(game.getCombat().getOpponent().getName() + " as " + game.getCombat().getOpponent().getHealth() + " health");
+        System.out.print(game.getPlayer().getName() + " has " + game.getPlayer().getHealth() + " health  |  ");
+        System.out.println(game.getCombat().getOpponent().getName() + " has " + game.getCombat().getOpponent().getHealth() + " health");
     }
 
     private void printStashList() {
