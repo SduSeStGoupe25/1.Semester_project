@@ -255,8 +255,8 @@ public class PutHandler {
      */
     private void printWelcome() {
         System.out.println();
-        System.out.println("Welcome to the world of King Arthur! Game of the year edition");
-        System.out.println("Venture out into this beautiful world, on your quest to free Excalibur form the stone " + 
+        System.out.println("Welcome to the world of King Arthur! Game of the year edition.");
+        System.out.println("Venture out into this beautiful world, on your quest to free Excalibur from the stone " + 
                 "and claim your spot as the rightful king.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
