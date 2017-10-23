@@ -58,7 +58,8 @@ public class PutHandler {
                     printInventory();
                     break;
                 case SELL:
-
+                    sell(command);
+                    printInventory();
                     break;
                 case SEARCH:
 
@@ -134,7 +135,7 @@ public class PutHandler {
                 return;
             }
             if (!command.hasThirdWord()) {
-                System.out.println("Please enter an amount");
+                System.out.println("Please enter an amount to buy");
                 return;
             }
             if (Stash.getItemMap().containsKey(command.getSecondWord())) {
@@ -148,6 +149,29 @@ public class PutHandler {
                 }
             }
         }
+    }
+    
+    private void sell(Command command){
+         if (game.getCurrentRoom().equals(game.shop)) {
+            if (!command.hasSecondWord()) {
+                printStashList();
+                return;
+            }
+            if (!command.hasThirdWord()) {
+                System.out.println("Please enter an amount to sell");
+                return;
+            }
+            if (Stash.getItemMap().containsKey(command.getSecondWord())) {
+                if (isNumeric(command.getThirdWord()) && Integer.parseInt(command.getThirdWord()) > 0) {
+                    if (game.getCurrentRoom().getCharactersInRoom().size() > 0) {
+                        if (game.getCurrentRoom().getCharacterEntity(0) instanceof Shopkeeper) {
+                            Shopkeeper sk = (Shopkeeper) game.getCurrentRoom().getCharacterEntity(0);
+                            System.out.println(sk.sell(Stash.getItem(command.getSecondWord()), Integer.parseInt(command.getThirdWord()), game.getPlayer()));
+                        }
+                    }
+                }
+            }
+        }       
     }
 
     /**

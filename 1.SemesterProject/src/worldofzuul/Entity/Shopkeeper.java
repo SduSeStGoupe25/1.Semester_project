@@ -37,6 +37,7 @@ public class Shopkeeper extends NPC {
     public boolean sell(Item item, int amount, Player player) {
         if (player.getItemInventory().removeItem(item, amount)){
             player.addGold(item.getSellValue()*amount);
+            System.out.println("gold " + player.getGold());
             return true;
         }
         return false;
