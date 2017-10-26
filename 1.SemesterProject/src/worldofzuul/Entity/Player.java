@@ -75,6 +75,36 @@ public class Player extends CharacterEntity implements Moveable {
         gold -= amount;
     }
 
+    public boolean equip(Item item) {
+        if (itemInventory.removeItem(item, 1)) {
+            if (item.getItemType().equals(ItemType.WEAPON)) {
+                for (Item i : equipableInventory.getInventory()) {
+                    if (i.getItemType().equals(ItemType.WEAPON)) {
+                        itemInventory.addItem(i, 1);
+                        equipableInventory.removeItem(i, 1);
+                        equipableInventory.addItem(item, 1);
+                        return true;
+                    }
+                }
+                equipableInventory.addItem(item, 1);
+                return true;
+            } else if (item.getItemType().equals(ItemType.ARMOR)) {
+                for (Item i : equipableInventory.getInventory()) {
+                    if (i.getItemType().equals(ItemType.ARMOR)) {
+                        itemInventory.addItem(i, 1);
+                        equipableInventory.removeItem(i, 1);
+                        equipableInventory.addItem(item, 1);
+                        return true;
+                    }
+                }
+                equipableInventory.addItem(item, 1);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
     public boolean restoreHp(Item item) {
         if (!(this.health >= this.maxHealth)) {
             if (item.getItemType().equals(ItemType.CONSUMEABLE)) {
@@ -82,8 +112,7 @@ public class Player extends CharacterEntity implements Moveable {
                     if (this.health + item.getItemValue() >= this.maxHealth) {
                         this.health = this.maxHealth;
                         return true;
-                    }
-                    else{
+                    } else {
                         this.health += item.getItemValue();
                         return true;
                     }

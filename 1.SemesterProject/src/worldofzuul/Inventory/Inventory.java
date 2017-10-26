@@ -88,6 +88,7 @@ public class Inventory {
                     if (amountBack >= j.getCount()) {
                         amountBack -= j.getCount();
                         inventory.remove(i);
+                        return true;
                     } else {
                         j.setCount(j.getCount() - amountBack);
                         return true;

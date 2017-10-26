@@ -68,7 +68,7 @@ public class PutHandler {
                     printInventory();
                     break;
                 case EQUIP:
-
+                    equip(command);
                     break;
                 case DROP:
 
@@ -177,16 +177,37 @@ public class PutHandler {
     private void use(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Please enter the item you want to use");
-            printInventory();
+            this.printSpecificItemTypeFromIventory(ItemType.CONSUMEABLE);
             return;
         }
-        Item item = Stash.getItem(command.getSecondWord());
-        if (game.getPlayer().restoreHp(item)) {
-            System.out.println("You restored " + item.getItemValue() + " hp!");
-            System.out.println("Current hp is " + game.getPlayer().getHealth());
-        } else {
-            System.out.println("You either already have full health, or don't own the selected item!");
+        if (Stash.getItemMap().containsKey(command.getSecondWord())) {
+            Item item = Stash.getItem(command.getSecondWord());
+            if (game.getPlayer().restoreHp(item)) {
+                System.out.println("You restored " + item.getItemValue() + " hp!");
+                System.out.println("Current hp is " + game.getPlayer().getHealth());
+            } else {
+                System.out.println("You already have full health!");
+            }
+            return;
         }
+        System.out.println("You don't have a " + command.getSecondWord() + " in your inventory!");
+    }
+
+    private void equip(Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("Which item do you want to equip?");
+            this.printSpecificItemTypeFromIventory(ItemType.WEAPON);
+            this.printSpecificItemTypeFromIventory(ItemType.ARMOR);
+            return;
+        }
+        if (Stash.getItemMap().containsKey(command.getSecondWord())) {
+            Item item = Stash.getItem(command.getSecondWord());
+            if (game.getPlayer().equip(item)) {
+                System.out.println("You equiped a " + item.getName() + "!");
+                return;
+            }
+        }
+        System.out.println("You don't have a " + command.getSecondWord() + " in your inventory!");
     }
 
     /**
