@@ -5,8 +5,12 @@
  */
 package worldofzuul.Inventory;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import worldofzuul.Entity.Quest;
 
 /**
  *
@@ -28,5 +32,13 @@ public static void loadCache() {
 }
 public static Map<String, Item> getItemMap(){
     return itemMap;
+}
+
+public static LinkedHashMap<Integer, Quest> getQuestMap(){
+    LinkedHashMap<Integer, Quest> questMap = new LinkedHashMap<>();
+    ArrayList<Item> questItem = new ArrayList<>();
+    questItem.add(itemMap.get("rock"));
+    questMap.put(0, new Quest("Start", "The start", 10, 10, new ArrayList<>(questItem), "Merlin"));
+    return questMap;
 }
 }

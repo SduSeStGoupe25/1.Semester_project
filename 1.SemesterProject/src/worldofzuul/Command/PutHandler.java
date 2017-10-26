@@ -80,7 +80,7 @@ public class PutHandler {
                     use(command);
                     break;
                 case QUEST:
-
+                    quest(command);
                     break;
                 default:
                     break;
@@ -171,6 +171,20 @@ public class PutHandler {
                     }
                 }
             }
+        }
+    }
+
+    private void quest(Command command) {
+        int itemCount = 0;
+        if (!command.hasSecondWord()) {
+            System.out.println("Please choose a quest");
+            printQuestList();
+            return;
+        }
+        if (game.getPlayer().checkQuest(game.getCurrentRoom())) {
+            System.out.println("Quest completed!");
+        } else {
+            System.out.println("You don't have the required items to complete this quest!");
         }
     }
 
@@ -372,5 +386,10 @@ public class PutHandler {
         for (String i : Stash.getItemMap().keySet()) {
             System.out.println(i + " " + (Stash.getItemMap().get(i).getSellValue() * 2));
         }
+    }
+
+    private void printQuestList() {
+        System.out.println("Main quest:");
+        System.out.println(game.getPlayer().getCurrentMainQuest().toString());
     }
 }

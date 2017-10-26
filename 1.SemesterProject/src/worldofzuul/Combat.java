@@ -78,8 +78,8 @@ public class Combat {
         if (diceRoll(10) <= 9) {
             int attackValue = (opponent.getAttack() * opponent.getLevel()) * diceRoll(4);
             int damageDealt = 0;
-            if (attackValue >= player.getArmor()) {
-                damageDealt = (attackValue - player.getArmor()) + 1;
+            if (attackValue >= player.getArmorValue()) {
+                damageDealt = (attackValue - player.getArmorValue()) + 1;
                 player.changeHealth(damageDealt * -1);
             }
             return damageDealt;

@@ -28,8 +28,8 @@ public class Game {
      * This is the constructor, which is used when a instance of Game is made.
      */
     public Game() {
-        player = new Player("Arthur", 100, 1, 10, 8, 1000, null, 0);
         Stash.loadCache();
+        player = new Player("Arthur", 100, 1, 10, 8, 1000, null, 0);
         createRooms();
         createNPC();
         putHandler = new PutHandler(this);

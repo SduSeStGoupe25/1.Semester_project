@@ -13,23 +13,21 @@ import worldofzuul.Inventory.Item;
 public class Quest {
 
     private String name;
-    private String description;
-    private int questID; //Reference ID for the quest 
+    private String description; 
     private int gold; //how much gold does the player reieve upon completion
     private int exp; //how much experience the player recieves upon completion
     private ArrayList<Item> items = new ArrayList<>(); //ArrayList to store questitems
-    private NPC giver; //The NPC from whom the quest is recieved
-    private boolean isMainQuest; //boolean to seperate the main quests and side quests
+    private String giver; //The NPC from whom the quest is recieved
+//    private boolean isMainQuest; //boolean to seperate the main quests and side quests
 
-    Quest(String name, String description, int questID, int gold, int exp, ArrayList<Item> items, NPC giver, boolean isMainQuest) { 
+    public Quest(String name, String description, int gold, int exp, ArrayList<Item> items, String giver) { 
         this.name = name;
         this.description = description;
-        this.questID = questID;
         this.gold = gold;
         this.exp = exp;
-        items = new ArrayList<>();
+        this.items = items;
         this.giver = giver;
-        this.isMainQuest = isMainQuest;   
+//        this.isMainQuest = isMainQuest;   
     }
 
     public String getName() {
@@ -46,14 +44,6 @@ public class Quest {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getQuestID() {
-        return questID;
-    }
-
-    public void setQuestID(int questID) {
-        this.questID = questID;
     }
 
     public int getGold() {
@@ -80,20 +70,23 @@ public class Quest {
         this.items = items;
     }
 
-    public NPC getGiver() {
+    public String getGiver() {
         return giver;
     }
+    
+    
+//      Maybe for use later
+//    public boolean isIsMainQuest() {
+//        return isMainQuest;
+//    }
+//
+//    public void setIsMainQuest(boolean isMainQuest) {
+//        this.isMainQuest = isMainQuest;
+//    }
 
-    public void setGiver(NPC giver) {
-        this.giver = giver;
-    }
-
-    public boolean isIsMainQuest() {
-        return isMainQuest;
-    }
-
-    public void setIsMainQuest(boolean isMainQuest) {
-        this.isMainQuest = isMainQuest;
+    @Override
+    public String toString() {
+        return "Quest{" + "name=" + name + ", giver=" + giver + '}';
     }
 
 }
