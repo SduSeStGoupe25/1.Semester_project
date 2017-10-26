@@ -27,7 +27,7 @@ public class Parser {
 
         System.out.print("> ");
 
-        inputLine = reader.nextLine();
+        inputLine = reader.nextLine().toLowerCase();
 
         Scanner tokenizer = new Scanner(inputLine);
         if (tokenizer.hasNext()) {
