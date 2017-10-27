@@ -19,7 +19,7 @@ import worldofzuul.Room;
  *
  * @author Victor Gram
  */
-public class Player extends CharacterEntity implements Moveable {
+public class Player extends CharacterEntity {
 
     private Inventory itemInventory;
     private Inventory equipableInventory;
@@ -138,10 +138,6 @@ public class Player extends CharacterEntity implements Moveable {
         return false;
     }
 
-    @Override
-    public void move() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public void onDeath() {

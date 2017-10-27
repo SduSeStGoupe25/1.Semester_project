@@ -15,10 +15,12 @@ public class Combat {
     private Player player; //The player
     private boolean running; //Indicating if the combat is running
     private PutHandler puthandler;
+    private Game game;
 
-    public Combat(Player player, PutHandler putHandler) {
+    public Combat(Player player, PutHandler putHandler, Game game) {
         this.player = player;
         this.puthandler = putHandler;
+        this.game = game;
     }
 
     /**
@@ -51,6 +53,7 @@ public class Combat {
             puthandler.printStatsInAttack();
             System.out.println(opponentMove());
         }
+        game.moveAllNPC();
     }
 
     private int attack(int chance, int additionalDamage) {

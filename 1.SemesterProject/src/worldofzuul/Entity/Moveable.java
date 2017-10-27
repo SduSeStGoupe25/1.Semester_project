@@ -5,10 +5,12 @@
  */
 package worldofzuul.Entity;
 
+import worldofzuul.Room;
+
 /**
  *
  * @author Victor Gram
  */
 public interface Moveable {
-    public abstract void move (); 
+    public abstract void move (Room currentRoom); 
 }

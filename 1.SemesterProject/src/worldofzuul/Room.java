@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import worldofzuul.Entity.CharacterEntity;
 import worldofzuul.Entity.Monster;
+import worldofzuul.Entity.Moveable;
+import worldofzuul.Entity.MoveableNPC;
 
 import worldofzuul.Entity.Player;
 
@@ -91,5 +93,16 @@ public class Room {
 
     public CharacterEntity getCharacterEntity(int index) {
         return charactersInRoom.get(index);
+    }
+    
+    public void move(){
+        for (int i = charactersInRoom.size()-1;i>=0;i--) {
+            CharacterEntity characterEntity = charactersInRoom.get(i);
+            if (characterEntity instanceof Moveable){
+                ((Moveable) characterEntity).move(this);
+            }
+            
+        }
+                
     }
 }

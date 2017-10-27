@@ -129,7 +129,7 @@ public class PutHandler {
     }
 
     private void buy(Command command) {
-        if (game.getCurrentRoom().equals(game.shop)) {
+        if (game.getCurrentRoom().equals(game.getRoomMap().get("shop"))) {
             if (!command.hasSecondWord()) {
                 printStashList();
                 return;
@@ -152,7 +152,7 @@ public class PutHandler {
     }
 
     private void sell(Command command) {
-        if (game.getCurrentRoom().equals(game.shop)) {
+        if (game.getCurrentRoom().equals(game.getRoomMap().get("shop"))) {
             if (!command.hasSecondWord()) {
                 printStashList();
                 return;

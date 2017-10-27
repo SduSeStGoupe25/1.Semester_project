@@ -5,6 +5,8 @@
  */
 package worldofzuul.Entity;
 
+import java.util.Random;
+import java.util.Set;
 import worldofzuul.Room;
 
 /**
@@ -12,17 +14,53 @@ import worldofzuul.Room;
  * @author Victor Gram
  */
 public class MoveableNPC extends NPC implements Moveable {
-    private Room currentRoom;
 
-    public MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Room currentRoom) {
+    private Set<Room> allowedRooms;
+
+    public MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Set<Room> allowedRooms) {
         super(name, health, armor, attack, level, expDrop, talk);
-        this.currentRoom = currentRoom;
+        this.allowedRooms = allowedRooms;
     }
 
     @Override
-    public void move() {
-        throw new UnsupportedOperationException("Not supported yet.");  
+    public void move(Room currentRoom) {//Fix before deadline
+        Random random = new Random();
+        if (random.nextInt(2) > 0) {
+            while (true) {
+                switch (random.nextInt(4)) {
+                    case 0:
+                        if (moveNPC(currentRoom, "north")) {
+                            return;
+                        }
+                        break;
+                    case 1:
+                        if (moveNPC(currentRoom, "south")) {
+                            return;
+                        }
+                        break;
+                    case 2:
+                        if (moveNPC(currentRoom, "east")) {
+                            return;
+                        }
+                        break;
+                    case 3:
+                        if (moveNPC(currentRoom, "west")) {
+                            return;
+                        }
+                        break;
+                }
+            }
+        }
     }
-    
-    
+
+    private boolean moveNPC(Room currentRoom, String direction) {
+        if (currentRoom.getExit(direction) != null && allowedRooms.contains(currentRoom.getExit(direction))) {
+            currentRoom.removeCharacterFromRoom(this);
+            currentRoom.getExit(direction).addCharacterToRoom(this);
+            System.out.println("Jeg har flytter mig og " + currentRoom.getExit(direction).getShortDescription());
+            return true;
+        }
+        return false;
+    }
+
 }
