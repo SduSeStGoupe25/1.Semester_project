@@ -86,7 +86,17 @@ public class Quest {
 
     @Override
     public String toString() {
-        return "Quest{" + "name=" + name + ", giver=" + giver + '}';
+        StringBuilder output = new StringBuilder("Quest: " + name + " \n" + description + " \n" + giver + " needs these items: " );
+        for(Item i : items){
+            output.append(i.getName());
+            output.append(" x");
+            output.append(i.getCount());
+        }
+        output.append("\n Your reword is Gold: ");
+        output.append(gold);
+        output.append(" Exp: ");
+        output.append(exp);
+        return output.toString();
     }
 
 }

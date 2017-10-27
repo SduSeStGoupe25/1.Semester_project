@@ -36,9 +36,20 @@ public static Map<String, Item> getItemMap(){
 
 public static LinkedHashMap<Integer, Quest> getQuestMap(){
     LinkedHashMap<Integer, Quest> questMap = new LinkedHashMap<>();
+    int questCount = 0;
     ArrayList<Item> questItem = new ArrayList<>();
     questItem.add(itemMap.get("rock"));
-    questMap.put(0, new Quest("Start", "The start", 10, 10, new ArrayList<>(questItem), "Merlin"));
+    questMap.put(questCount++, new Quest("Start 1", "To survive in this kingdom you must be able to fight. "
+                                            + "Practice by killing some sheeps, they are found on the farm." +
+                                            "You may find a weapon, for example, a rock.", 10, 10, 
+                                            new ArrayList<>(questItem), "Merlin"));
+    
+    questItem.clear();
+    questItem.add(itemMap.get("sword"));
+    questMap.put(questCount++, new Quest("Start 2", "The start part 2", 10, 10, new ArrayList<>(questItem), "Shopkeeper"));
+    
+    questItem.clear();
+    questMap.put(questCount++, new Quest("Comming soon!", "More comming soon", 0, 0, new ArrayList<>(questItem), "No one yet"));
     return questMap;
 }
 }
