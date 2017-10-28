@@ -32,7 +32,7 @@ public class Game {
      */
     public Game() {
         Stash.loadCache();
-        player = new Player("Arthur", 100, 1, 10, 8, 1000, null, 0);
+        player = new Player("Arthur", 100, 1, 1, 1, 1000, null, 0);
         rooms = new HashMap<>();
         createRooms();
         createNPC();
@@ -41,7 +41,7 @@ public class Game {
     }
 
     private void createNPC() {
-        rooms.get("citycenter").addCharacterToRoom(new MoveableNPC("Merlin", 100, 1, 10, 1, 10, "Hello", new HashSet(Arrays.asList(rooms.get("citycenter"), rooms.get("shop"), rooms.get("tavern"), rooms.get("tower"), rooms.get("castle")))));
+        rooms.get("citycenter").addCharacterToRoom(new MoveableNPC("Merlin", 100, 1, 1, 10, 10, "Hello", new HashSet(Arrays.asList(rooms.get("citycenter"), rooms.get("shop"), rooms.get("tavern"), rooms.get("tower"), rooms.get("castle")))));
 
         rooms.get("tavern").addCharacterToRoom(new NPC("Bartender", 10, 10, 10, 10, 10, "Hello"));
         rooms.get("tavern").addCharacterToRoom(new NPC("Drunk man", 10, 10, 10, 10, 10, "Hello"));

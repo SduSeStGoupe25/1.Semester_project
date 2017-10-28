@@ -7,7 +7,6 @@ package worldofzuul.Entity;
 
 import worldofzuul.Inventory.Inventory;
 import worldofzuul.Entity.CharacterEntity;
-import worldofzuul.Entity.Moveable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import worldofzuul.Inventory.Item;
@@ -42,7 +41,7 @@ public class Player extends CharacterEntity {
     }
 
     public int getAttackValue() {
-        int attackValue = attack;
+        int attackValue = attack; 
         for (Item item : equipableInventory.getInventory()) {
             if (item.getItemType().equals(ItemType.WEAPON)) {
                 attackValue += item.getItemValue();

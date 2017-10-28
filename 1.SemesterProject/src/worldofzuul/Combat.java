@@ -27,6 +27,7 @@ public class Combat {
      * This class start the combat against a opponent
      *
      * @param opponent the CharacterEntity to fight
+     * @param currentRoom the current room the fight takes place in
      */
     public void startCombat(CharacterEntity opponent, Room currentRoom) {
         this.opponent = opponent;
@@ -79,7 +80,7 @@ public class Combat {
 
     private int opponentMove() {
         if (diceRoll(10) <= 9) {
-            int attackValue = (opponent.getAttack() * opponent.getLevel()) * diceRoll(4);
+            int attackValue = (opponent.getAttack() + (opponent.getLevel() / 2)) * diceRoll(4);
             int damageDealt = 0;
             if (attackValue >= player.getArmorValue()) {
                 damageDealt = (attackValue - player.getArmorValue()) + 1;
@@ -87,7 +88,7 @@ public class Combat {
             }
             return damageDealt;
         }
-        return -1;
+        return 0;
     }
 
     private int diceRoll(int sides) {

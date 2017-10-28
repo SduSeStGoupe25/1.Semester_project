@@ -11,17 +11,16 @@ public abstract class CharacterEntity {
     protected String name;
     protected int health;
     protected int armor;
-    protected int attack;
     protected int level;
     protected int maxHealth;
     protected int baseHealth;
     protected int baseAttack;
+    protected int attack;
 
     public CharacterEntity(String name, int health, int armor, int attack, int level) {
         this.name = name;
         this.health = health;
         this.armor = armor;
-        this.attack = attack;
         this.level = level;
         maxHealth = health;
         baseHealth = health;
