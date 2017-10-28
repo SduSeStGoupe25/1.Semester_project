@@ -1,11 +1,11 @@
-/*
- *This is an abstract class that all characters in the game extends from.
- */
 package worldofzuul.Entity;
 
 /**
  *
  * @author Victor Gram
+ */
+/*
+ *This is an abstract class that all characters in the game extends from.
  */
 public abstract class CharacterEntity {
     protected String name;
@@ -17,6 +17,7 @@ public abstract class CharacterEntity {
     protected int baseAttack;
     protected int attack;
 
+    //Constructor
     public CharacterEntity(String name, int health, int armor, int attack, int level) {
         this.name = name;
         this.health = health;
@@ -28,6 +29,9 @@ public abstract class CharacterEntity {
         levelUp();
     }
 
+    /**
+     * Method used for calculating attributes if CharacterEntity is above level 1
+     */
     private void levelUp(){
         health = ((level - 1) * 10) + baseHealth - (maxHealth - health);
         attack = level * baseAttack;

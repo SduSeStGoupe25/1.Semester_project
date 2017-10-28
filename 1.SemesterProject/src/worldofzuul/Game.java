@@ -40,6 +40,9 @@ public class Game {
         combat = new Combat(player, putHandler, this);
     }
 
+    /**
+     * This method creates all the NPC's in the game. It sets their attributes, and gives moveableNPC's their allowed rooms
+     */
     private void createNPC() {
         rooms.get("citycenter").addCharacterToRoom(new MoveableNPC("Merlin", 100, 1, 1, 10, 10, "Hello", new HashSet(Arrays.asList(rooms.get("citycenter"), rooms.get("shop"), rooms.get("tavern"), rooms.get("tower"), rooms.get("castle")))));
 
@@ -53,6 +56,9 @@ public class Game {
         rooms.get("farm").addCharacterToRoom(new NPC("Farmer", 10, 10, 10, 10, 10, "Hello"));
     }
 
+    /**
+     * This method creates all the rooms in the game, and sets the correct exits.
+     */
     private void createRooms() {
         
         //initialising new rooms, with room-description that will be output to the console
@@ -123,22 +129,43 @@ public class Game {
         System.out.println("Thank you for playing.  Good bye."); //Prints an exit message
     }
 
+    /**
+     * Gets the player
+     * @return Returns the player object
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * Gets the current room
+     * @return Returns the currentRoom object
+     */
     public Room getCurrentRoom() {
         return currentRoom;
     }
 
+    /**
+     * Sets the current room
+     * @param currentRoom Sets the currentRoom
+     */
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
 
+    /**
+     * Gets combat
+     * @return Returns the combat object
+     */
     public Combat getCombat() {
         return combat;
     }
 
+    /**
+     * This method is called when moveableNPC's should move.
+     * It uses a for-each loop to go through all rooms, 
+     * and calls the move() method in each.
+     */
     public void moveAllNPC() {
         for (String room : rooms.keySet()) {
             rooms.get(room).move();
@@ -146,6 +173,10 @@ public class Game {
         }
     }
     
+    /**
+     * Gets the map of rooms
+     * @return Returns the map rooms
+     */
     public Map<String, Room> getRoomMap(){
         return rooms;
     }

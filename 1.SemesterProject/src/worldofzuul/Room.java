@@ -4,13 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Map;
 import worldofzuul.Entity.CharacterEntity;
 import worldofzuul.Entity.Monster;
 import worldofzuul.Entity.Moveable;
-import worldofzuul.Entity.MoveableNPC;
-
-import worldofzuul.Entity.Player;
 
 import worldofzuul.Inventory.Item;
 
