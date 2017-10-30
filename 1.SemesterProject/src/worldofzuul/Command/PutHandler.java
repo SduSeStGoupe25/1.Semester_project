@@ -7,6 +7,7 @@ import worldofzuul.Inventory.Item;
 import worldofzuul.Inventory.ItemType;
 import worldofzuul.Inventory.Stash;
 import worldofzuul.Room;
+import worldofzuul.combat.CombatResponse;
 
 /**
  *
@@ -108,17 +109,13 @@ public class PutHandler {
                 System.out.println("Eating not here yet"); //Invoke eat here
                 break;
             case LIGHT:
-                int lightAttack = game.getCombat().lightAttack();
-                System.out.println((lightAttack >= 0) ? "Success " + lightAttack : "Fail");
+                printCombat(game.getCombat().combatLoop(0));
                 break;
             case HEAVY:
-                int heavyAttack = game.getCombat().heavyAttack();
-                System.out.println((heavyAttack >= 0) ? "Success " + heavyAttack : "Fail");
+                printCombat(game.getCombat().combatLoop(1));
                 break;
             case FLEE:
-                System.out.println("You damn coward! Better luck next time");
-                game.getCombat().setRunning(false);
-                System.out.println(game.getCurrentRoom().getLongDescription()); //Prints a description of the room
+               printCombat(game.getCombat().combatLoop(2));
                 break;
             default:
                 System.out.println("Not valid in combat");
@@ -391,5 +388,11 @@ public class PutHandler {
     private void printQuestList() {
         System.out.println("Main quest:");
         System.out.println(game.getPlayer().getCurrentMainQuest().toString());
+    }
+
+    private void printCombat(CombatResponse c) {
+        System.out.println(c.getPlayer().getName() + " has " + c.getPlayer().getHealth() + " health  |  " + c.getOpponent().getName() + " has " + c.getOpponent().getHealth()+ " health " );
+        System.out.println(c.getPlayerAttack());
+        System.out.println(c.getOpponentAttack());
     }
 }

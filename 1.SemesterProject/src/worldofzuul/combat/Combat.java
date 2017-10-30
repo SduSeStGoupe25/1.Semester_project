@@ -1,8 +1,9 @@
-package worldofzuul;
+package worldofzuul.combat;
 
-import worldofzuul.Command.PutHandler;
 import worldofzuul.Entity.CharacterEntity;
 import worldofzuul.Entity.Player;
+import worldofzuul.Game;
+import worldofzuul.Room;
 
 /**
  *
@@ -14,12 +15,10 @@ public class Combat {
     private Room currentRoom; //The current room
     private Player player; //The player
     private boolean running; //Indicating if the combat is running
-    private PutHandler puthandler;
     private Game game;
 
-    public Combat(Player player, PutHandler putHandler, Game game) {
+    public Combat(Player player, Game game) {
         this.player = player;
-        this.puthandler = putHandler;
         this.game = game;
     }
 
@@ -33,38 +32,53 @@ public class Combat {
         this.opponent = opponent;
         this.currentRoom = currentRoom;
         running = true;
-        combatLoop(); //Starts the main combat loop
+        
     }
 
     /**
      * This method is our combat loop, where all combat mechanics take place.
      */
-    private void combatLoop() {
-        while (running) {
-            puthandler.printStatsInAttack(); //This calls the puthandler to print stats for player and opponent
+    public CombatResponse combatLoop(int action) {
+        CombatResponse cr = new CombatResponse(0, 0, player, opponent);
+        switch (action) {
+            case 0:
+                cr.setPlayerAttack(lightAttack());
+                break;
+            case 1:
+                cr.setPlayerAttack(heavyAttack());
+                break;
+            case 2:
+                running = false;
+                break;
 
-            while (!puthandler.processCommandCombat()) { //A loop waiting for player input, to then process the command
-            } 
-
-            if (opponent.getHealth() < 1) { //If the opponents health is below 1 ( = dead), the opponent gets removed from the room / game.
-                currentRoom.removeCharacterFromRoom(opponent);
-                running = false; //When our opponent has been removed, we set running to false to stop combat.
-            }
-
-            if (!running) {
-                break; //Break if player flees (command), or if opponent is dead
-            }
-            puthandler.printStatsInAttack(); //Prints the stats for player and opponent
-            System.out.println(opponentMove()); //The opponents move
         }
-        game.moveAllNPC(); //At the end of combat we call moveAllNPC, to make all our moveableNPC's move around
+        if (opponent.getHealth() < 1) { //If the opponents health is below 1 ( = dead), the opponent gets removed from the room / game.
+            opponent.onDeath();
+            currentRoom.removeCharacterFromRoom(opponent);
+            running = false; //When our opponent has been removed, we set running to false to stop combat.
+        }
+
+        if (running) {
+            cr.setOpponentAttack(opponentMove()); //The opponents move
+            if(player.getHealth()<1){
+                player.onDeath();
+            }
+        } else {
+            game.moveAllNPC(); //At the end of combat we call moveAllNPC, to make all our moveableNPC's move around
+        }
+        return cr;
     }
 
     /**
-     * This method calculates the players attack damage with a given attack (light / heavy)
-     * @param chance The chance for an attack to successfully deal damage to opponent
-     * @param additionalDamage The additional damage an attack does (heavy does +2 additionalDamage, because it has a smaller chance to hit than light)
-     * @return If the attack is successful, we return the total damage dealt. Otherwise we return 0 (no damage dealt)
+     * This method calculates the players attack damage with a given attack
+     * (light / heavy)
+     *
+     * @param chance The chance for an attack to successfully deal damage to
+     * opponent
+     * @param additionalDamage The additional damage an attack does (heavy does
+     * +2 additionalDamage, because it has a smaller chance to hit than light)
+     * @return If the attack is successful, we return the total damage dealt.
+     * Otherwise we return 0 (no damage dealt)
      */
     private int attack(int chance, int additionalDamage) {
         if (diceRoll(10) <= chance) { //A statement where we call a diceRoll, if we hit under or equals the chance to hit, we calculate the damage
@@ -81,7 +95,9 @@ public class Combat {
 
     /**
      * This method is called when the player chooses to use a heavy attack
-     * @return calls the attack() method, with the specified chance to hit(n out of 10) and additionalDamage
+     *
+     * @return calls the attack() method, with the specified chance to hit(n out
+     * of 10) and additionalDamage
      */
     public int heavyAttack() {
         return attack(6, 2);
@@ -89,7 +105,9 @@ public class Combat {
 
     /**
      * This method is called when the player chooses to use a light attack
-     * @return calls the attack() method, with the specified chance to hit(n out of 10) and additionalDamage
+     *
+     * @return calls the attack() method, with the specified chance to hit(n out
+     * of 10) and additionalDamage
      */
     public int lightAttack() {
         return attack(9, 0);
@@ -97,7 +115,9 @@ public class Combat {
 
     /**
      * This method is used when the opponent has to attack
-     * @return If the opponents attack is successful, we return the total damage dealt. Otherwise we return 0.
+     *
+     * @return If the opponents attack is successful, we return the total damage
+     * dealt. Otherwise we return 0.
      */
     private int opponentMove() {
         if (diceRoll(10) <= 9) { //Here we call diceRoll again, and compare it to a number, since the opponent only has 1 type of attack
@@ -114,8 +134,11 @@ public class Combat {
     }
 
     /**
-     * This method is used to randomize combat. It generates a random number from 1 to sides.
-     * @param sides The number of sides on the dice (how big the range of random numbers is, e.g. 4 is the range 1-4)
+     * This method is used to randomize combat. It generates a random number
+     * from 1 to sides.
+     *
+     * @param sides The number of sides on the dice (how big the range of random
+     * numbers is, e.g. 4 is the range 1-4)
      * @return Returns the random number as an integer.
      */
     private int diceRoll(int sides) {
@@ -124,6 +147,7 @@ public class Combat {
 
     /**
      * This method is used to check if running is true or false
+     *
      * @return Returns true or false
      */
     public boolean isRunning() {
@@ -132,6 +156,7 @@ public class Combat {
 
     /**
      * This method is used to set the state of running (true/false)
+     *
      * @param running Sets the running boolean to true or false
      */
     public void setRunning(boolean running) {
@@ -140,6 +165,7 @@ public class Combat {
 
     /**
      * This method is used to get the opponent CharacterEntity object.
+     *
      * @return Returns the opponent object.
      */
     public CharacterEntity getOpponent() {

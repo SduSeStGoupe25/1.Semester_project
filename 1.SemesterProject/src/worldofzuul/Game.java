@@ -1,5 +1,6 @@
 package worldofzuul;
 
+import worldofzuul.combat.Combat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -26,18 +27,20 @@ public class Game {
     private Combat combat;
 
     public Map<String, Room> rooms; // creating objects of the Room-class
+    private boolean finished = false;
 
+ 
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
     public Game() {
         Stash.loadCache();
-        player = new Player("Arthur", 100, 1, 1, 1, 1000, null, 0);
+        player = new Player("Arthur", 100, 1, 1, 1, 1000, null, 0, this);
         rooms = new HashMap<>();
         createRooms();
         createNPC();
         putHandler = new PutHandler(this);
-        combat = new Combat(player, putHandler, this);
+        combat = new Combat(player, this);
     }
 
     /**
@@ -122,11 +125,13 @@ public class Game {
      */
     public void play() {
 
-        boolean finished = false; //Indicates if the game is finished
         while (!finished) {
+            if(combat.isRunning()){
+                putHandler.processCommandCombat();
+                continue;
+            }
             finished = putHandler.processCommand();     //If the command is quit, finished is true otherwise continues
         }
-        System.out.println("Thank you for playing.  Good bye."); //Prints an exit message
     }
 
     /**
@@ -179,5 +184,8 @@ public class Game {
      */
     public Map<String, Room> getRoomMap(){
         return rooms;
+    }
+       public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 }

@@ -4,6 +4,7 @@ import worldofzuul.Inventory.Inventory;
 import worldofzuul.Entity.CharacterEntity;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import worldofzuul.Game;
 import worldofzuul.Inventory.Item;
 import worldofzuul.Inventory.ItemType;
 import worldofzuul.Inventory.Stash;
@@ -26,11 +27,12 @@ public class Player extends CharacterEntity {
     private LinkedHashMap<Integer, Quest> mainQuest;
     private HashMap<String, Quest> sideQuest;
     private int questsCompleted;
+    private Game game;
 
     /**
      * Player constructor
      */
-    public Player(String name, int health, int armor, int attack, int level, int gold, Room currentRoom, int exp) {
+    public Player(String name, int health, int armor, int attack, int level, int gold, Room currentRoom, int exp, Game game) {
         super(name, health, armor, attack, level);
         this.gold = gold;
         this.currentRoom = currentRoom;
@@ -39,6 +41,7 @@ public class Player extends CharacterEntity {
         itemInventory = new Inventory(20);
         equipableInventory = new Inventory(3);
         questsCompleted = 0;
+        this.game = game;
     }
 
     /**
@@ -162,7 +165,7 @@ public class Player extends CharacterEntity {
 
     @Override
     public void onDeath() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        game.setFinished(true);
     }
 
     public Quest getCurrentMainQuest() {
