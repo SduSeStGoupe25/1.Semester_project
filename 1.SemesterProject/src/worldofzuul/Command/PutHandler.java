@@ -1,6 +1,7 @@
 package worldofzuul.Command;
 
 import worldofzuul.Entity.CharacterEntity;
+import worldofzuul.Entity.NPC;
 import worldofzuul.Entity.Shopkeeper;
 import worldofzuul.Game;
 import worldofzuul.Inventory.Item;
@@ -53,6 +54,7 @@ public class PutHandler {
                     wantToQuit = quit(command); //Sets wantToQuit true
                     break;
                 case TALK:
+                    talk(command);
                     break;
                 case BUY:
                     buy(command);
@@ -105,8 +107,7 @@ public class PutHandler {
 
         switch (commandWord) {
             case USE:
-                printSpecificItemTypeFromIventory(ItemType.CONSUMEABLE);
-                System.out.println("Eating not here yet"); //Invoke eat here
+                use(command); 
                 break;
             case LIGHT:
                 printCombat(game.getCombat().combatLoop(0));
@@ -227,6 +228,30 @@ public class PutHandler {
      *
      * @param command this is the user input about who the target is
      */
+    
+    private void talk(Command command) {
+         if (!command.hasSecondWord()) { //Checks if the user has specifie a correct target
+            printCharactersInRoom(game.getCurrentRoom());
+            System.out.println("Talk to who?");
+            return; //If there are on target don't talk to anyone
+        }
+        if (!isNumeric(command.getSecondWord())) {
+            System.out.println("Wrong input, try again");
+            return;
+        }
+
+        int target = Integer.parseInt(command.getSecondWord()); //Gets the targets index
+
+        if (game.getCurrentRoom().getCharactersInRoom().size() >= target) { //Checks if the target index are a part of the List
+            if(game.getCurrentRoom().getCharacterEntity(target - 1) instanceof NPC) { 
+                NPC npc = (NPC) game.getCurrentRoom().getCharacterEntity(target - 1);
+                System.out.println(npc.getTalk());
+            } 
+        }
+    }
+        
+    
+    
     private void attack(Command command) {
         if (!command.hasSecondWord()) { //Checks if the user has specifie a correct target
             printCharactersInRoom(game.getCurrentRoom());
@@ -242,6 +267,7 @@ public class PutHandler {
 
         if (game.getCurrentRoom().getCharactersInRoom().size() >= target) { //Checks if the target index are a part of the List
             game.getCombat().startCombat(game.getCurrentRoom().getCharacterEntity(target - 1), game.getCurrentRoom());
+            printStatsInAttack(); 
         }
     }
 
@@ -264,6 +290,7 @@ public class PutHandler {
             System.out.println("There is no path here!");
         } else {  //If it has
             game.setCurrentRoom(nextRoom); //Current room is now the nextRoom
+            game.getCurrentRoom().spawnEnemies();
             System.out.println(game.getCurrentRoom().getLongDescription()); //Prints a description of the room
         }
     }
@@ -313,7 +340,7 @@ public class PutHandler {
         if (!room.getCharactersInRoom().isEmpty()) { //Checkts if the room are empty
             int count = 1; // The number the character are at in the List + 1
             for (CharacterEntity ce : room.getCharactersInRoom()) { //Prints the name of each charackter in the room
-                System.out.println((count++) + "  " + ce.getName());
+                System.out.println((count++) + "  " + ce.getName() + " " + "lvl. " + ce.getLevel());
             }
         } else {
             System.out.println("There is no one here!!");

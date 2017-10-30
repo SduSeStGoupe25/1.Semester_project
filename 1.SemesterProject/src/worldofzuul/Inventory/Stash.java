@@ -26,7 +26,7 @@ public static Item getItem(String name) {
 }
 public static void loadCache() {
     itemMap.put("rock", new Item("Rock", 0, ItemType.WEAPON, 1, 1));
-    itemMap.put("hp", new Item("Hp", 1, ItemType.CONSUMEABLE, 1, 1));
+    itemMap.put("hp", new Item("Hp", 1, ItemType.CONSUMEABLE, 25, 1));
     itemMap.put("chest", new Item("Chest", 50, ItemType.ARMOR, 1, 1));
     itemMap.put("sword", new Item("Sword", 50, ItemType.WEAPON, 1 ,1));
 }

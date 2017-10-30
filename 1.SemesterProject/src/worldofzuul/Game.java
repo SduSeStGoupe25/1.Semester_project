@@ -75,7 +75,14 @@ public class Game {
         Room farm = new Room("at the local farm");
         Room forrest = new Room("in the forrest");
         Room deepwoods = new Room("deeper into the woods, more dark and gloomy");
-
+        
+        // Defining allowed monsters for each room
+        forrest.addAllowedMonsters("Imp");
+        forrest.addAllowedMonsters("Bear"); 
+        forrest.addAllowedMonsters("Ogre");
+        
+        farm.addAllowedMonsters("Sheep");
+        
         //defining exits from the city center 
         citycenter.setExit("east", tavern);
         citycenter.setExit("north", shop);

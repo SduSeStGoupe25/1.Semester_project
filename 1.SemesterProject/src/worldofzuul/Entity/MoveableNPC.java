@@ -57,7 +57,6 @@ public class MoveableNPC extends NPC implements Moveable {
         if (currentRoom.getExit(direction) != null && allowedRooms.contains(currentRoom.getExit(direction))) {
             currentRoom.removeCharacterFromRoom(this);
             currentRoom.getExit(direction).addCharacterToRoom(this);
-            System.out.println("Jeg har flytter mig og " + currentRoom.getExit(direction).getShortDescription());
             return true;
         }
         return false;

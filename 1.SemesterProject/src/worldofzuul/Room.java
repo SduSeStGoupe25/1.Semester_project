@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 import worldofzuul.Entity.CharacterEntity;
 import worldofzuul.Entity.Monster;
 import worldofzuul.Entity.Moveable;
@@ -24,20 +25,15 @@ public class Room {
     private HashMap<String, Room> exits;
     private List<CharacterEntity> charactersInRoom = new ArrayList<>(); //ArrayList containing the NPC's in the room
     private List<Item> items = new ArrayList<>(); //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
-    private HashMap<String, Monster> allowedMonsters;  
+    private HashSet<String> allowedMonsters;  
 
 
-    public Room(String description) {
-        this(description, null); 
-        
-        
-    }
-    public Room (String description, HashMap<String, Monster> allowedMonsters) { 
+    public Room (String description) { 
         this.description = description; 
         exits = new HashMap<>();
         charactersInRoom = new ArrayList<>(); 
         items = new ArrayList<>(); 
-        this.allowedMonsters = allowedMonsters; 
+        allowedMonsters = new HashSet<>(); 
         charactersInRoom = new ArrayList<>();
         items = new ArrayList<>();
     }
@@ -81,10 +77,33 @@ public class Room {
     public void addCharacterToRoom(CharacterEntity ce) { //Adds characters to the room
         charactersInRoom.add(ce);
     }
+    
+    public void addAllowedMonsters(String name) { 
+        allowedMonsters.add(name);
+    } 
 
     
-    public void spawnEnemies () { //Spawns randomly generated enemies for the room
+    public void spawnEnemies () { //Spawns a randomly generated amount of enemies for the room
         
+         if (!allowedMonsters.isEmpty()) { 
+             
+             int monsterAmount = ((int) (Math.random() * 5) + 1);  
+             for (int i = 0; i < monsterAmount; i++) { 
+                 int nameValue = (int) Math.random() * allowedMonsters.size();
+                 int count = 0; 
+                 String monsterName = ""; 
+                 for (String name : allowedMonsters) {
+                     if (count == nameValue) { 
+                         monsterName = name; 
+                         break;
+                     }
+                     i++;
+                     
+                 }
+                 this.charactersInRoom.add(new Monster(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 1));
+             }
+         }
+         
     }
 
     public CharacterEntity getCharacterEntity(int index) {
