@@ -1,9 +1,9 @@
-package worldofzuul.combat;
+package WorldofArthur.Combat;
 
-import worldofzuul.Entity.CharacterEntity;
-import worldofzuul.Entity.Player;
-import worldofzuul.Game;
-import worldofzuul.Room;
+import WorldofArthur.Entity.CharacterEntity;
+import WorldofArthur.Entity.Player;
+import WorldofArthur.Game;
+import WorldofArthur.Room;
 
 /**
  *

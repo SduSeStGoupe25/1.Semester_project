@@ -3,48 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul.Inventory;
+package WorldofArthur.Inventory;
 
 /**
  *
  * @author rasmusstamm
  */
-public class Item implements Cloneable{
+public abstract class Item {
     private String name;
     private int sellValue;
-    private ItemType itemType;
-    private int itemValue;
     private int count;
+    private final int MAX_COUNT;
 
-    public Item(String name, int sellValue, ItemType itemType, int itemValue, int count) {
+    public Item(String name, int sellValue, int count, int MAX_COUNT) {
         this.name = name;
         this.sellValue = sellValue;
-        this.itemType = itemType;
-        this.itemValue = itemValue;
         this.count = count;
+        this.MAX_COUNT = MAX_COUNT;
     }
-    public Object clone() {
-      Object clone = null;
-      
-      try {
-         clone = super.clone();
-         
-      } catch (CloneNotSupportedException e) {
-         e.printStackTrace();
-      }
-      
-      return clone;
+
+    public int getMAX_COUNT() {
+        return MAX_COUNT;
     }
+    
     public String getName() {
         return name;
     }
 
     public int getSellValue() {
         return sellValue;
-    }
-
-    public int getItemValue() {
-        return itemValue;
     }
     
     public int getCount(){
@@ -58,9 +45,4 @@ public class Item implements Cloneable{
     public void setCount(int count){
         this.count = count;
     }
-
-    public ItemType getItemType() {
-        return itemType;
-    }
-    
 }

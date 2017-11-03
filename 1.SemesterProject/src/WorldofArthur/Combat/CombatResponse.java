@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul.combat;
+package WorldofArthur.Combat;
 
-import worldofzuul.Entity.CharacterEntity;
-import worldofzuul.Entity.Player;
+import WorldofArthur.Entity.CharacterEntity;
+import WorldofArthur.Entity.Player;
 
 /**
  *

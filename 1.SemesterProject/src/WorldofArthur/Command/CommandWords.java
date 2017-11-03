@@ -1,4 +1,4 @@
-package worldofzuul.Command;
+package WorldofArthur.Command;
 
 import java.util.HashMap;
 
