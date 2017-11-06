@@ -25,22 +25,25 @@ public class Room {
     private HashMap<String, Exit> exits;
     private List<CharacterEntity> charactersInRoom = new ArrayList<>(); //ArrayList containing the NPC's in the room
     private List<Item> items = new ArrayList<>(); //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
-    private HashSet<String> allowedMonsters;  
+    private HashSet<String> allowedMonsters;
+    private Game game;
 
-
-    public Room (String description) { 
-        this.description = description; 
+    public Room(String description, Game game) {
+        this.description = description;
         exits = new HashMap<>();
-        charactersInRoom = new ArrayList<>(); 
-        items = new ArrayList<>(); 
-        allowedMonsters = new HashSet<>(); 
         charactersInRoom = new ArrayList<>();
         items = new ArrayList<>();
+        allowedMonsters = new HashSet<>();
+        charactersInRoom = new ArrayList<>();
+        items = new ArrayList<>();
+        this.game = game;
     }
-    public void addItemToRoom(Item i){
+
+    public void addItemToRoom(Item i) {
         items.add(i);
     }
-    public void removeCharacterFromRoom(CharacterEntity ce){
+
+    public void removeCharacterFromRoom(CharacterEntity ce) {
         charactersInRoom.remove(ce);
     }
 
@@ -54,7 +57,15 @@ public class Room {
 
     public String getLongDescription() {
         return "You are " + description + ".\n" + getExitString();
-        
+
+    }
+    
+    public String getItems(){
+        String s ="";
+        for (Item i : items) {
+            s += i.getName() +"\n";
+        }
+        return s;
     }
 
     private String getExitString() {
@@ -77,47 +88,52 @@ public class Room {
     public void addCharacterToRoom(CharacterEntity ce) { //Adds characters to the room
         charactersInRoom.add(ce);
     }
-    
-    public void addAllowedMonsters(String name) { 
-        allowedMonsters.add(name);
-    } 
 
-    
-    public void spawnEnemies () { //Spawns a randomly generated amount of enemies for the room
-        
-         if (!allowedMonsters.isEmpty()) { 
-             
-             int monsterAmount = ((int) (Math.random() * 5) + 1);  
-             for (int i = 0; i < monsterAmount; i++) { 
-                 int nameValue = (int) Math.random() * allowedMonsters.size();
-                 int count = 0; 
-                 String monsterName = ""; 
-                 for (String name : allowedMonsters) {
-                     if (count == nameValue) { 
-                         monsterName = name; 
-                         break;
-                     }
-                     i++;
-                     
-                 }
-                 this.charactersInRoom.add(new Monster(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 1));
-             }
-         }
-         
+    public void addAllowedMonsters(String name) {
+        allowedMonsters.add(name);
+    }
+
+    public void spawnEnemies() { //Spawns a randomly generated amount of enemies for the room
+
+        if (!allowedMonsters.isEmpty()) {
+
+            int monsterAmount = ((int) (Math.random() * 5) + 1);
+            for (int i = 0; i < monsterAmount; i++) {
+                int nameValue = (int) (Math.random() * allowedMonsters.size());
+                int count = 0;
+                String monsterName = "";
+                for (String name : allowedMonsters) {
+                    if (count == nameValue) {
+                        monsterName = name;
+                        break;
+                    }
+                    count++;
+
+                }
+                this.charactersInRoom.add(new Monster(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 1));
+
+            }
+            if ((int) (Math.random() * 2) == 0) {
+                int nonMonstersInRoom = charactersInRoom.size() - monsterAmount;
+                int opponent = (int) (Math.random() * monsterAmount) + nonMonstersInRoom;
+                game.getCombat().startCombat(charactersInRoom.get(opponent), this);
+            }
+        }
+
     }
 
     public CharacterEntity getCharacterEntity(int index) {
         return charactersInRoom.get(index);
     }
-    
-    public void move(){
-        for (int i = charactersInRoom.size()-1;i>=0;i--) {
+
+    public void move() {
+        for (int i = charactersInRoom.size() - 1; i >= 0; i--) {
             CharacterEntity characterEntity = charactersInRoom.get(i);
-            if (characterEntity instanceof Moveable){
+            if (characterEntity instanceof Moveable) {
                 ((Moveable) characterEntity).move(this);
             }
-            
+
         }
-                
+
     }
 }

@@ -35,13 +35,13 @@ public class Game {
     private boolean finished = false;
 
     private String[][] itemNames = {
-        {"Rock", "Sword"}, {"Chainmail"}, {"Potion", "Meat"}, {"Super secret key"}, {"Wool"}};
+        {"Rock", "Sword"}, {"Chainmail"}, {"Potion", "Meat"}, {"Key", "Key2"}, {"Wool"}};
 
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
     public Game() {
-        player = new Player("Arthur", 100, 1, 1, 1, 1000, null, 0, this);
+        player = new Player("Arthur", 100, 10, 10, 1, 1000, null, 0, this);
         rooms = new HashMap<>();
         createRooms();
         createNPC();
@@ -73,16 +73,16 @@ public class Game {
     private void createRooms() {
 
         //initialising new rooms, with room-description that will be output to the console
-        Room citycenter = new Room("in the center of the city");
-        Room shop = new Room("in the shop");
-        Room tavern = new Room(" in the local tavern");
-        Room castle = new Room("in the kings castle");
-        Room excalibur = new Room("in the room where excalibur is caught in the stone");
-        Room tower = new Room("in Merlin's chambers");
-        Room cave = new Room("in a dark and gloomy cave");
-        Room farm = new Room("at the local farm");
-        Room forrest = new Room("in the forrest");
-        Room deepwoods = new Room("deeper into the woods, more dark and gloomy");
+        Room citycenter = new Room("in the center of the city", this);
+        Room shop = new Room("in the shop", this);
+        Room tavern = new Room(" in the local tavern", this);
+        Room castle = new Room("in the kings castle", this);
+        Room excalibur = new Room("in the room where excalibur is caught in the stone", this);
+        Room tower = new Room("in Merlin's chambers", this);
+        Room cave = new Room("in a dark and gloomy cave", this);
+        Room farm = new Room("at the local farm", this);
+        Room forrest = new Room("in the forrest", this);
+        Room deepwoods = new Room("deeper into the woods, more dark and gloomy", this);
 
         // Defining allowed monsters for each room
         forrest.addAllowedMonsters("Imp");
@@ -98,8 +98,8 @@ public class Game {
         Exit exitCitycenterCastle = new Exit(citycenter, castle);
 
         Exit exitCastleTower = new Exit(castle, tower);
-        Exit exitCastleExcalibur = new Exit(castle, excalibur);
-        Exit exitCastleCave = new Exit(castle, cave);
+        Exit exitCastleExcalibur = new Exit(castle, excalibur, true, 1);
+        Exit exitCastleCave = new Exit(castle, cave, true, 2);
 
         Exit exitCaveDeepwoods = new Exit(cave, deepwoods);
         Exit exitDeepwoodsForrest = new Exit(forrest, deepwoods);
@@ -159,6 +159,11 @@ public class Game {
                 putHandler.processCommandCombat();
                 continue;
             }
+            if (player.getHealth() <= 0) {
+                player.onDeath(currentRoom);
+                continue;
+            }
+            System.out.println(player.getHealth());
             finished = putHandler.processCommand();     //If the command is quit, finished is true otherwise continues
         }
     }
@@ -249,7 +254,7 @@ public class Game {
                 return new Armor(name, 1, 1, 1, 1);
 
             case 2:
-                return new Consumeable(name, 1, 1, 1);
+                return new Consumeable(name, 1, 1, 1, 1);
 
             case 3:
                 return new Key(name, 1, 1, 1);

@@ -68,7 +68,7 @@ public class PutHandler {
                     printInventory();
                     break;
                 case SEARCH:
-
+                    System.out.println(game.getCurrentRoom().getItems());
                     break;
                 case INVENTORY:
                     printInventory();
@@ -202,10 +202,11 @@ public class PutHandler {
             if (itemType != -1) {
             Item item = game.createItem(command.getSecondWord(), itemType);
             if (game.getPlayer().restoreHp(item)) {
-                System.out.println("You restored " + ((Consumeable)item).getUseValue() + " hp!");
+                System.out.println("You used a potion!");
                 System.out.println("Current hp is " + game.getPlayer().getHealth());
+                System.out.println("Current hunger is " + game.getPlayer().getHunger());
             } else {
-                System.out.println("You already have full health!");
+                System.out.println("You already have full health or hunger!");
             }
             return;
         }
@@ -273,6 +274,7 @@ public class PutHandler {
         if (game.getCurrentRoom().getCharactersInRoom().size() >= target) { //Checks if the target index are a part of the List
             game.getCombat().startCombat(game.getCurrentRoom().getCharacterEntity(target - 1), game.getCurrentRoom());
             printStatsInAttack();
+            game.getPlayer().addHunger(-3);
         }
     }
 
@@ -293,9 +295,13 @@ public class PutHandler {
 
         if (exit == null) { //Chechs if the current room has a exit in this direction
             System.out.println("There is no path here!");
-        } else {  //If it has
+        }else if(exit.isLocked(game.getPlayer().getItemInventory())){
+            System.out.println("The door is locked");
+        }
+            else {  //If it has
             Room nextRoom = exit.nextRoom(game.getCurrentRoom());
             game.setCurrentRoom(nextRoom); //Current room is now the nextRoom
+            game.getPlayer().addHunger(-3);
             game.getCurrentRoom().spawnEnemies();
             System.out.println(game.getCurrentRoom().getLongDescription()); //Prints a description of the room
         }

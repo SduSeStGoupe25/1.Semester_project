@@ -54,7 +54,7 @@ public class MoveableNPC extends NPC implements Moveable {
     }
 
     private boolean moveNPC(Room currentRoom, String direction) {
-        if (currentRoom.getExit(direction) != null && allowedRooms.contains(currentRoom.getExit(direction))) {
+        if (currentRoom.getExit(direction) != null && allowedRooms.contains(currentRoom.getExit(direction).nextRoom(currentRoom))) {
             currentRoom.removeCharacterFromRoom(this);
             currentRoom.getExit(direction).nextRoom(currentRoom).addCharacterToRoom(this);
             return true;

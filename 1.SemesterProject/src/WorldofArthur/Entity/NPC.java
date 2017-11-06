@@ -5,6 +5,8 @@
  */
 package WorldofArthur.Entity;
 
+import WorldofArthur.Room;
+
 /**
  *
  * @author Victor Gram
@@ -24,7 +26,7 @@ public class NPC extends CharacterEntity {
     }
 
     @Override
-    public void onDeath() {
+    public void onDeath(Room currentRoom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

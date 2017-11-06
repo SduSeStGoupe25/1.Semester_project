@@ -1,5 +1,7 @@
 package WorldofArthur.Entity;
 
+import WorldofArthur.Room;
+
 /**
  *
  * @author Victor Gram
@@ -38,7 +40,7 @@ public abstract class CharacterEntity {
         maxHealth = ((level - 1) * 10) + baseHealth;
     }
     
-    public abstract void onDeath();
+    public abstract void onDeath(Room currentRoom);
 
     public void changeHealth(int amount){
         health += amount;

@@ -11,13 +11,20 @@ package WorldofArthur.Inventory;
 public class Consumeable extends Item{
     
     private int useValue;
+    private int hungerValue;
 
-    public Consumeable(String name, int sellValue, int count, int useValue) {
+    public Consumeable(String name, int sellValue, int count, int useValue, int hungerValue) {
         super(name, sellValue, count, 20);
         this.useValue = useValue;
+        this.hungerValue = hungerValue;
     }
 
     public int getUseValue() {
         return useValue;
     }
+
+    public int getHungerValue() {
+        return hungerValue;
+    }
+    
 }

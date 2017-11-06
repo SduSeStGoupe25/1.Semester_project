@@ -5,6 +5,9 @@
  */
 package WorldofArthur.Entity;
 
+import WorldofArthur.Inventory.*;
+import WorldofArthur.Room;
+
 /**
  *
  * @author Victor Gram
@@ -18,8 +21,8 @@ public class Monster extends CharacterEntity {
     }
 
     @Override
-    public void onDeath() {
-        
+    public void onDeath(Room currentRoom) {
+        currentRoom.addItemToRoom(new Consumeable("dfghjkl",1,1,1,1));
     }
     
 }
