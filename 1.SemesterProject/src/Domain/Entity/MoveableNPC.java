@@ -7,7 +7,7 @@ package Domain.Entity;
 
 import java.util.Random;
 import java.util.Set;
-import Domain.whaever.Room;
+import Domain.Room;
 
 /**
  *

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain.whaever;
+package Domain;
 
 /**
  *
@@ -11,7 +11,6 @@ package Domain.whaever;
  */
 public class Play {
     public static void main(String[] args) {
-        Game game = new Game();
-        game.play();
+        Game.getInstance().play(); 
     }
 }

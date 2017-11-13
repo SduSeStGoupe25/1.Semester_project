@@ -2,8 +2,8 @@ package Domain.Combat;
 
 import Domain.Entity.CharacterEntity;
 import Domain.Entity.Player;
-import Domain.whaever.Game;
-import Domain.whaever.Room;
+import Domain.Game;
+import Domain.Room;
 
 /**
  *
@@ -53,6 +53,7 @@ public class Combat {
 
         }
         if (opponent.getHealth() < 1) { //If the opponents health is below 1 ( = dead), the opponent gets removed from the room / game.
+            System.out.println("jfk");
             opponent.onDeath(currentRoom);
             currentRoom.removeCharacterFromRoom(opponent);
             running = false; //When our opponent has been removed, we set running to false to stop combat.
@@ -64,6 +65,7 @@ public class Combat {
                 player.onDeath(currentRoom);
             }
         } else {
+            
             game.moveAllNPC(); //At the end of combat we call moveAllNPC, to make all our moveableNPC's move around
         }
         return cr;

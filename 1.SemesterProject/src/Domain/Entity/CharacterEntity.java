@@ -1,6 +1,6 @@
 package Domain.Entity;
 
-import Domain.whaever.Room;
+import Domain.Room;
 
 /**
  *
@@ -34,7 +34,7 @@ public abstract class CharacterEntity {
     /**
      * Method used for calculating attributes if CharacterEntity is above level 1
      */
-    private void levelUp(){
+    protected void levelUp(){
         health = ((level - 1) * 10) + baseHealth - (maxHealth - health);
         attack = level * baseAttack;
         maxHealth = ((level - 1) * 10) + baseHealth;

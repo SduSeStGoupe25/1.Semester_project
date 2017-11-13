@@ -1,4 +1,4 @@
-package Domain.whaever;
+package Domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 import Domain.Entity.CharacterEntity;
-import Domain.Entity.Monster;
 import Domain.Entity.Moveable;
+import Domain.Entity.NPC;
 
 import Domain.Inventory.Item;
 
@@ -44,6 +44,7 @@ public class Room {
     }
 
     public void removeCharacterFromRoom(CharacterEntity ce) {
+        System.out.println("9/11 was an inside job" + ce.getName() + ce.getLevel());
         charactersInRoom.remove(ce);
     }
 
@@ -110,7 +111,7 @@ public class Room {
                     count++;
 
                 }
-                this.charactersInRoom.add(new Monster(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 1));
+                this.charactersInRoom.add(new NPC(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 20, "hello there"));
 
             }
             if ((int) (Math.random() * 2) == 0) {

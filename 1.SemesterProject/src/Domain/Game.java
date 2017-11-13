@@ -1,4 +1,4 @@
-package Domain.whaever;
+package Domain;
 
 import Domain.Combat.Combat;
 import java.util.Arrays;
@@ -26,6 +26,7 @@ import Domain.Inventory.Weapon;
  */
 public class Game {
 
+    private static Game instance = null;
     private PutHandler putHandler;  //Class responsible for user input and print output
     private Room currentRoom;       //The current room
     private Player player;
@@ -40,13 +41,20 @@ public class Game {
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
-    public Game() {
+    private Game() {
         player = new Player("Arthur", 100, 10, 10, 1, 1000, null, 0, this);
         rooms = new HashMap<>();
         createRooms();
         createNPC();
         putHandler = new PutHandler(this);
         combat = new Combat(player, this);
+    }
+    
+    public static Game getInstance () { 
+        if (instance == null) { 
+            instance = new Game(); 
+        }
+        return instance;
     }
 
     /**

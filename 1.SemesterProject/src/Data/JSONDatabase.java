@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain.Entity;
-
-import Domain.Room;
+package Data;
 
 /**
  *
  * @author Victor Gram
  */
-public interface Moveable {
-    public abstract void move (Room currentRoom); 
+public class JSONDatabase {
+    
+    
 }

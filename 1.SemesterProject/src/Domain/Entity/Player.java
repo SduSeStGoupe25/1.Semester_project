@@ -4,13 +4,13 @@ import Domain.Inventory.Inventory;
 import Domain.Entity.CharacterEntity;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import Domain.whaever.Game;
+import Domain.Game;
 import Domain.Inventory.Armor;
 import Domain.Inventory.Consumeable;
 import Domain.Inventory.Item;
 import Domain.Inventory.Stash;
 import Domain.Inventory.Weapon;
-import Domain.whaever.Room;
+import Domain.Room;
 
 /**
  *
@@ -31,6 +31,8 @@ public class Player extends CharacterEntity {
     private int questsCompleted;
     private Game game;
     private int hunger;
+    private int expToLevelUp;
+    private int scoreValue;
 
     /**
      * Player constructor
@@ -46,6 +48,24 @@ public class Player extends CharacterEntity {
         questsCompleted = 0;
         this.game = game;
         this.hunger = 100;
+        this.expToLevelUp = 10;
+        this.scoreValue = 0;
+    }
+
+    public int getScoreValue() {
+        return scoreValue;
+    }
+
+    public void setScoreValue(int scoreValue) {
+        this.scoreValue = scoreValue;
+    }
+
+    public int getExpToLevelUp() {
+        return expToLevelUp;
+    }
+
+    public void setExpToLevelUp(int expToLevelup) {
+        this.expToLevelUp = expToLevelup;
     }
 
     public int getHunger() {
@@ -236,5 +256,25 @@ public class Player extends CharacterEntity {
             }
         }
         return false;
+    }
+
+    @Override
+    public void levelUp() { //Function called to chech wether the player has enough experience to level up, and the fuctionality for leveling up
+        level++;
+        super.levelUp();
+        scoreValue += exp;
+        exp = 0;
+        expToLevelUp += 5;
+        System.out.println("lvl up mofo");
+
+    }
+
+    void addExp(int exp) {
+        this.exp += exp;
+        if (exp >= expToLevelUp) {
+            levelUp();
+            
+
+        }
     }
 }

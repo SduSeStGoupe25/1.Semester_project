@@ -5,7 +5,8 @@
  */
 package Domain.Entity;
 
-import Domain.whaever.Room;
+import Domain.Game;
+import Domain.Room;
 
 /**
  *
@@ -27,6 +28,7 @@ public class NPC extends CharacterEntity {
 
     @Override
     public void onDeath(Room currentRoom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Game.getInstance().getPlayer().addExp(expDrop);
+        System.out.println("he ded");
     }
 }
