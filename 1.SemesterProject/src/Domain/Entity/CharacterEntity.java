@@ -28,13 +28,13 @@ public abstract class CharacterEntity {
         maxHealth = health;
         baseHealth = health;
         baseAttack = attack;
-        levelUp();
+        setStats();
     }
 
     /**
      * Method used for calculating attributes if CharacterEntity is above level 1
      */
-    protected void levelUp(){
+    protected void setStats(){
         health = ((level - 1) * 10) + baseHealth - (maxHealth - health);
         attack = level * baseAttack;
         maxHealth = ((level - 1) * 10) + baseHealth;

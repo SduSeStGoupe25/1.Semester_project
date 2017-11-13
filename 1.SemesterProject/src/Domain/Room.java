@@ -44,7 +44,6 @@ public class Room {
     }
 
     public void removeCharacterFromRoom(CharacterEntity ce) {
-        System.out.println("9/11 was an inside job" + ce.getName() + ce.getLevel());
         charactersInRoom.remove(ce);
     }
 
@@ -111,7 +110,7 @@ public class Room {
                     count++;
 
                 }
-                this.charactersInRoom.add(new NPC(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 20, "hello there"));
+                this.charactersInRoom.add(new NPC(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 20, "Nonono"));
 
             }
             if ((int) (Math.random() * 2) == 0) {

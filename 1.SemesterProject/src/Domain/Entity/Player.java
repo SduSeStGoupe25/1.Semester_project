@@ -258,15 +258,13 @@ public class Player extends CharacterEntity {
         return false;
     }
 
-    @Override
+    
     public void levelUp() { //Function called to chech wether the player has enough experience to level up, and the fuctionality for leveling up
         level++;
-        super.levelUp();
+        super.setStats();
         scoreValue += exp;
         exp = 0;
         expToLevelUp += 5;
-        System.out.println("lvl up mofo");
-
     }
 
     void addExp(int exp) {

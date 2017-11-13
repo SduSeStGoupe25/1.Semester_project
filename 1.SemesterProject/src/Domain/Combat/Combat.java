@@ -53,7 +53,6 @@ public class Combat {
 
         }
         if (opponent.getHealth() < 1) { //If the opponents health is below 1 ( = dead), the opponent gets removed from the room / game.
-            System.out.println("jfk");
             opponent.onDeath(currentRoom);
             currentRoom.removeCharacterFromRoom(opponent);
             running = false; //When our opponent has been removed, we set running to false to stop combat.

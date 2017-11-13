@@ -29,6 +29,6 @@ public class NPC extends CharacterEntity {
     @Override
     public void onDeath(Room currentRoom) {
         Game.getInstance().getPlayer().addExp(expDrop);
-        System.out.println("he ded");
+        
     }
 }
