@@ -5,13 +5,18 @@
  */
 package Domain;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author Victor Gram
  */
 public interface Database {
-    int[] getHighscore(); 
+    List<HighscoreWrapper> getHighscore(); 
     void saveProgress(); 
+    
+    
     
     
 }

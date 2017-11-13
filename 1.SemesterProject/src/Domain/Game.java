@@ -1,5 +1,6 @@
 package Domain;
 
+import Data.JSONDatabase;
 import Domain.Combat.Combat;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -48,6 +49,7 @@ public class Game {
         createNPC();
         putHandler = new PutHandler(this);
         combat = new Combat(player, this);
+        Database db = new JSONDatabase();
     }
     
     public static Game getInstance () { 
