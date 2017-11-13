@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.StatsPanelController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ProgressBar fx:id="hpBar" maxWidth="1.7976931348623157E308" onMouseEntered="#labelClick" prefWidth="200.0" progress="0.45" GridPane.columnIndex="1" />
+      <ProgressBar fx:id="hungerBar" maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.45" style="color: green;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <ProgressBar maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.45" style="color: green;" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="xpBar" />
+      <Label fx:id="armourLabel" text="Defence" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label fx:id="attackLabel" text="Attack" GridPane.rowIndex="3" />
+      <Label fx:id="hpLabel" onMouseEntered="#labelClick" text="Health" />
+      <Label fx:id="hungerLabel" text="Hunger" GridPane.rowIndex="1" />
+      <Label text="Experience" GridPane.rowIndex="2" fx:id="xpLabel" />
+   </children>
+</GridPane>
