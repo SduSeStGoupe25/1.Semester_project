@@ -66,6 +66,7 @@ public class Combat {
         } else {
             
             game.moveAllNPC(); //At the end of combat we call moveAllNPC, to make all our moveableNPC's move around
+            game.getPlayer().addHunger(-8); //At the end of combat the player's hungervalue decreases
         }
         return cr;
     }
