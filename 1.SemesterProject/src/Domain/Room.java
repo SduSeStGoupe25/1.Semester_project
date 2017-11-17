@@ -22,21 +22,21 @@ import Domain.Inventory.Item;
 public class Room {
 
     private String description; //The room description, printed upon entering
-    private HashMap<String, Exit> exits;
+    //private HashMap<String, Exit> exits;
     private List<CharacterEntity> charactersInRoom = new ArrayList<>(); //ArrayList containing the NPC's in the room
     private List<Item> items = new ArrayList<>(); //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
     private HashSet<String> allowedMonsters;
-    private Game game;
+    //private Game game;
 
-    public Room(String description, Game game) {
+    public Room(String description) {
         this.description = description;
-        exits = new HashMap<>();
+        //exits = new HashMap<>();
         charactersInRoom = new ArrayList<>();
         items = new ArrayList<>();
         allowedMonsters = new HashSet<>();
         charactersInRoom = new ArrayList<>();
         items = new ArrayList<>();
-        this.game = game;
+        //this.game = game;
     }
 
     public void addItemToRoom(Item i) {
@@ -48,7 +48,7 @@ public class Room {
     }
 
     public void setExit(String direction, Exit neighbor) {
-        exits.put(direction, neighbor);
+        //exits.put(direction, neighbor);
     }
 
     public String getShortDescription() {
@@ -70,15 +70,15 @@ public class Room {
 
     private String getExitString() {
         String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for (String exit : keys) {
-            returnString += " " + exit;
-        }
+//        Set<String> keys = exits.keySet();
+//        for (String exit : keys) {
+//            returnString += " " + exit;
+//        }
         return returnString;
     }
 
     public Exit getExit(String direction) {
-        return exits.get(direction);
+        return null;//exits.get(direction);
     }
 
     public List<CharacterEntity> getCharactersInRoom() { //Returns characters in the room
@@ -116,7 +116,7 @@ public class Room {
             if ((int) (Math.random() * 2) == 0) {
                 int nonMonstersInRoom = charactersInRoom.size() - monsterAmount;
                 int opponent = (int) (Math.random() * monsterAmount) + nonMonstersInRoom;
-                game.getCombat().startCombat(charactersInRoom.get(opponent), this);
+                Game.getInstance().getCombat().startCombat(charactersInRoom.get(opponent), this);
             }
         }
 

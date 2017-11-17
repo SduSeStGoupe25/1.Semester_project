@@ -32,6 +32,14 @@ public class Game {
     private Room currentRoom;       //The current room
     private Player player;
     private Combat combat;
+    
+    
+    private Database db;
+    
+    public Database getDB() {
+        return db;
+    }
+    
 
     public Map<String, Room> rooms; // creating objects of the Room-class
     private boolean finished = false;
@@ -43,14 +51,21 @@ public class Game {
      * This is the constructor, which is used when a instance of Game is made.
      */
     private Game() {
-        player = new Player("Arthur", 100, 10, 10, 1, 1000, null, 0, this);
+        player = new Player("Arthur", 100, 10, 10, 1, 1000, null, 0);
         rooms = new HashMap<>();
         createRooms();
         createNPC();
         putHandler = new PutHandler(this);
         combat = new Combat(player, this);
-        Database db = new JSONDatabase();
+        db = new JSONDatabase();
     }
+
+    @Override
+    public String toString() {
+        return "Game{" + "putHandler=" + putHandler + ", currentRoom=" + currentRoom + ", player=" + player + ", combat=" + combat + ", rooms=" + rooms + ", finished=" + finished + ", itemNames=" + itemNames + '}';
+    }
+    
+    
     
     public static Game getInstance () { 
         if (instance == null) { 
@@ -83,16 +98,16 @@ public class Game {
     private void createRooms() {
 
         //initialising new rooms, with room-description that will be output to the console
-        Room citycenter = new Room("in the center of the city", this);
-        Room shop = new Room("in the shop", this);
-        Room tavern = new Room(" in the local tavern", this);
-        Room castle = new Room("in the kings castle", this);
-        Room excalibur = new Room("in the room where excalibur is caught in the stone", this);
-        Room tower = new Room("in Merlin's chambers", this);
-        Room cave = new Room("in a dark and gloomy cave", this);
-        Room farm = new Room("at the local farm", this);
-        Room forrest = new Room("in the forrest", this);
-        Room deepwoods = new Room("deeper into the woods, more dark and gloomy", this);
+        Room citycenter = new Room("in the center of the city");
+        Room shop = new Room("in the shop");
+        Room tavern = new Room(" in the local tavern");
+        Room castle = new Room("in the kings castle");
+        Room excalibur = new Room("in the room where excalibur is caught in the stone");
+        Room tower = new Room("in Merlin's chambers");
+        Room cave = new Room("in a dark and gloomy cave");
+        Room farm = new Room("at the local farm");
+        Room forrest = new Room("in the forrest");
+        Room deepwoods = new Room("deeper into the woods, more dark and gloomy");
 
         // Defining allowed monsters for each room
         forrest.addAllowedMonsters("Imp");

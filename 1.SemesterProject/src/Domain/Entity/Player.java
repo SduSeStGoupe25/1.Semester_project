@@ -29,7 +29,7 @@ public class Player extends CharacterEntity {
     private LinkedHashMap<Integer, Quest> mainQuest;
     private HashMap<String, Quest> sideQuest;
     private int questsCompleted;
-    private Game game;
+    //private Game game;
     private int hunger;
     private int expToLevelUp;
     private int scoreValue;
@@ -37,7 +37,7 @@ public class Player extends CharacterEntity {
     /**
      * Player constructor
      */
-    public Player(String name, int health, int armor, int attack, int level, int gold, Room currentRoom, int exp, Game game) {
+    public Player(String name, int health, int armor, int attack, int level, int gold, Room currentRoom, int exp/*, Game game*/) {
         super(name, health, armor, attack, level);
         this.gold = gold;
         this.currentRoom = currentRoom;
@@ -46,7 +46,7 @@ public class Player extends CharacterEntity {
         itemInventory = new Inventory(20);
         equipableInventory = new Inventory(3);
         questsCompleted = 0;
-        this.game = game;
+        //this.game = game;
         this.hunger = 100;
         this.expToLevelUp = 10;
         this.scoreValue = 0;
@@ -213,7 +213,7 @@ public class Player extends CharacterEntity {
 
     @Override
     public void onDeath(Room currentRoom) {
-        game.setFinished(true);
+        Game.getInstance().setFinished(true);
     }
 
     public Quest getCurrentMainQuest() {
