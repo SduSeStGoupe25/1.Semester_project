@@ -1,25 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.FXMLDocumentController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      <VBox fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="150.0" prefWidth="150.0">
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
-            <fx:include source="StatsPanel.fxml" fx:id="statsPanel"/>
+            <Button mnemonicParsing="false" onAction="#setDefaultView" prefWidth="150.0" text="World view">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#openInventoryButton" prefWidth="150.0" text="Inventory">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#openQuestlogButton" prefWidth="150.0" text="Quest log">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#openMapButton" prefWidth="150.0" text="Map">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="150.0" text="Save">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#quitGame" prefWidth="150.0" text="Quit">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </Button>
+            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <fx:include source="StatsPanel.fxml" />
          </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
       </VBox>
-      <TilePane prefHeight="400.0" prefWidth="474.0" />
+      <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="500.0" GridPane.columnIndex="1">
+         <top>
+            <Button mnemonicParsing="false" text="North" BorderPane.alignment="CENTER" />
+         </top>
+         <left>
+            <Button mnemonicParsing="false" text="West" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Button mnemonicParsing="false" text="East" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <Button mnemonicParsing="false" text="South" BorderPane.alignment="CENTER" />
+         </bottom>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+         <center>
+            <AnchorPane fx:id="defaultView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
    </children>
-</HBox>
+</GridPane>
