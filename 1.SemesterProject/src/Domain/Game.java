@@ -17,6 +17,7 @@ import Domain.Inventory.Item;
 import Domain.Inventory.Key;
 import Domain.Inventory.NormalItem;
 import Domain.Inventory.Weapon;
+import java.util.ArrayList;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -27,37 +28,47 @@ import Domain.Inventory.Weapon;
  */
 public class Game {
 
-    private static Game instance = null;
-    private PutHandler putHandler;  //Class responsible for user input and print output
-    private Room currentRoom;       //The current room
+    private transient static Game instance = null;
+    private transient PutHandler putHandler;  //Class responsible for user input and print output
+    private String currentRoom;       //The current room
     private Player player;
-    private Combat combat;
+    private transient Combat combat;
     
     
-    private Database db;
+    private transient  Database db;
     
     public Database getDB() {
         return db;
     }
     
 
-    public Map<String, Room> rooms; // creating objects of the Room-class
-    private boolean finished = false;
+    private Map<String, Room> rooms; // creating objects of the Room-class
+    
+    public void setMap(Map<String, Room> m){
+        rooms.clear();
+        rooms = new HashMap<>(m);
+        System.out.println("M ::::: " + rooms);
+    }
+    
+    private transient boolean finished = false;
 
     private String[][] itemNames = {
         {"Rock", "Sword"}, {"Chainmail"}, {"Potion", "Meat"}, {"Key", "Key2"}, {"Wool"}};
-
+    
+    
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
     private Game() {
-        player = new Player("Arthur", 100, 10, 10, 1, 1000, null, 0);
+        player = new Player("Arthur", 100, 10, 10, 1, 1000, 0);
         rooms = new HashMap<>();
         createRooms();
         createNPC();
         putHandler = new PutHandler(this);
         combat = new Combat(player, this);
         db = new JSONDatabase();
+        
+        System.out.println(this.toString());
     }
 
     @Override
@@ -79,14 +90,14 @@ public class Game {
      * and gives moveableNPC's their allowed rooms
      */
     private void createNPC() {
-        rooms.get("citycenter").addCharacterToRoom(new MoveableNPC("Merlin", 100, 1, 1, 10, 10, "Hello", new HashSet(Arrays.asList(rooms.get("citycenter"), rooms.get("shop"), rooms.get("tavern"), rooms.get("tower"), rooms.get("castle")))));
+        rooms.get("citycenter").addCharacterToRoom(new MoveableNPC("Merlin", 100, 1, 1, 10, 10, "Hello", new HashSet(Arrays.asList("citycenter", "shop", "tavern", "tower", "castle"))));
 
         rooms.get("tavern").addCharacterToRoom(new NPC("Bartender", 10, 10, 10, 10, 10, "Hello"));
         rooms.get("tavern").addCharacterToRoom(new NPC("Drunk man", 10, 10, 10, 10, 10, "Hello"));
 
         rooms.get("shop").addCharacterToRoom(new Shopkeeper("Shopkeeper", 10, 10, 10, 10, 10, "Hello"));
         rooms.get("castle").addCharacterToRoom(new NPC("King", 10, 10, 10, 10, 10, "Hello"));
-        rooms.get("castle").addCharacterToRoom(new MoveableNPC("Princess", 10, 10, 10, 10, 10, "Hello", new HashSet(Arrays.asList(rooms.get("citycenter"), rooms.get("shop"), rooms.get("tavern"), rooms.get("tower"), rooms.get("castle")))));
+        rooms.get("castle").addCharacterToRoom(new MoveableNPC("Princess", 10, 10, 10, 10, 10, "Hello", new HashSet(Arrays.asList("citycenter", "shop", "tavern", "tower", "castle"))));
 
         rooms.get("farm").addCharacterToRoom(new NPC("Farmer", 10, 10, 10, 10, 10, "Hello"));
     }
@@ -98,16 +109,16 @@ public class Game {
     private void createRooms() {
 
         //initialising new rooms, with room-description that will be output to the console
-        Room citycenter = new Room("in the center of the city");
-        Room shop = new Room("in the shop");
-        Room tavern = new Room(" in the local tavern");
-        Room castle = new Room("in the kings castle");
-        Room excalibur = new Room("in the room where excalibur is caught in the stone");
-        Room tower = new Room("in Merlin's chambers");
-        Room cave = new Room("in a dark and gloomy cave");
-        Room farm = new Room("at the local farm");
-        Room forrest = new Room("in the forrest");
-        Room deepwoods = new Room("deeper into the woods, more dark and gloomy");
+        Room citycenter = new Room("citycenter", "in the center of the city");
+        Room shop = new Room("shop", "in the shop");
+        Room tavern = new Room("tavern"," in the local tavern");
+        Room castle = new Room("castle","in the kings castle");
+        Room excalibur = new Room("excalibur","in the room where excalibur is caught in the stone");
+        Room tower = new Room("tower","in Merlin's chambers");
+        Room cave = new Room("cave","in a dark and gloomy cave");
+        Room farm = new Room("farm","at the local farm");
+        Room forrest = new Room("forrest","in the forrest");
+        Room deepwoods = new Room("deepwoods","deeper into the woods, more dark and gloomy");
 
         // Defining allowed monsters for each room
         forrest.addAllowedMonsters("Imp");
@@ -117,18 +128,18 @@ public class Game {
         farm.addAllowedMonsters("Sheep");
 
         //Defining exits
-        Exit exitCitycenterTavern = new Exit(citycenter, tavern);
-        Exit exitCitycenterShop = new Exit(citycenter, shop);
-        Exit exitCitycenterFarm = new Exit(citycenter, farm);
-        Exit exitCitycenterCastle = new Exit(citycenter, castle);
+        Exit exitCitycenterTavern = new Exit("citycenter", "tavern");
+        Exit exitCitycenterShop = new Exit("citycenter", "shop");
+        Exit exitCitycenterFarm = new Exit("citycenter", "farm");
+        Exit exitCitycenterCastle = new Exit("citycenter", "castle");
 
-        Exit exitCastleTower = new Exit(castle, tower);
-        Exit exitCastleExcalibur = new Exit(castle, excalibur, true, 1);
-        Exit exitCastleCave = new Exit(castle, cave, true, 2);
+        Exit exitCastleTower = new Exit("castle", "tower");
+        Exit exitCastleExcalibur = new Exit("castle", "excalibur", true, 1);
+        Exit exitCastleCave = new Exit("castle", "cave", true, 2);
 
-        Exit exitCaveDeepwoods = new Exit(cave, deepwoods);
-        Exit exitDeepwoodsForrest = new Exit(forrest, deepwoods);
-        Exit exitFarmForrest = new Exit(farm, forrest);
+        Exit exitCaveDeepwoods = new Exit("cave", "deepwoods");
+        Exit exitDeepwoodsForrest = new Exit("forrest", "deepwoods");
+        Exit exitFarmForrest = new Exit("farm", "forrest");
 
         //defining exits from the city center 
         citycenter.setExit("east", exitCitycenterTavern);
@@ -166,12 +177,12 @@ public class Game {
         // defining exits from forrest
         forrest.setExit("east", exitFarmForrest);
         forrest.setExit("south", exitDeepwoodsForrest);
-        rooms.put("forrest", forrest);
+        //rooms.put("forrest", forrest);
         //defining exits from the deep woods
         deepwoods.setExit("north", exitDeepwoodsForrest);
         deepwoods.setExit("south", exitCaveDeepwoods);
         rooms.put("deepwoods", deepwoods);
-        currentRoom = citycenter;
+        currentRoom = citycenter.getName();
     }
 
     /**
@@ -185,7 +196,7 @@ public class Game {
                 continue;
             }
             if (player.getHealth() <= 0) {
-                player.onDeath(currentRoom);
+                player.onDeath();
                 continue;
             }
             System.out.println(player.getHealth());
@@ -208,7 +219,7 @@ public class Game {
      * @return Returns the currentRoom object
      */
     public Room getCurrentRoom() {
-        return currentRoom;
+        return getRoomMap().get(currentRoom);
     }
 
     /**
@@ -217,7 +228,7 @@ public class Game {
      * @param currentRoom Sets the currentRoom
      */
     public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
+        this.currentRoom = currentRoom.getName();
     }
 
     /**

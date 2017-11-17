@@ -5,9 +5,10 @@
  */
 package Domain.Entity;
 
+import Domain.Game;
+import Domain.Room;
 import java.util.Random;
 import java.util.Set;
-import Domain.Room;
 
 /**
  *
@@ -15,36 +16,36 @@ import Domain.Room;
  */
 public class MoveableNPC extends NPC implements Moveable {
 
-    private Set<Room> allowedRooms;
+    private Set<String> allowedRooms;
 
-    public MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Set<Room> allowedRooms) {
+    public MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Set<String> allowedRooms) {
         super(name, health, armor, attack, level, expDrop, talk);
         this.allowedRooms = allowedRooms;
     }
 
     @Override
-    public void move(Room currentRoom) {//Fix before deadline
+    public void move(String nameCurrentRoom) {//Fix before deadline
         Random random = new Random();
         if (random.nextInt(2) > 0) {
             while (true) {
                 switch (random.nextInt(4)) {
                     case 0:
-                        if (moveNPC(currentRoom, "north")) {
+                        if (moveNPC(nameCurrentRoom, "north")) {
                             return;
                         }
                         break;
                     case 1:
-                        if (moveNPC(currentRoom, "south")) {
+                        if (moveNPC(nameCurrentRoom, "south")) {
                             return;
                         }
                         break;
                     case 2:
-                        if (moveNPC(currentRoom, "east")) {
+                        if (moveNPC(nameCurrentRoom, "east")) {
                             return;
                         }
                         break;
                     case 3:
-                        if (moveNPC(currentRoom, "west")) {
+                        if (moveNPC(nameCurrentRoom, "west")) {
                             return;
                         }
                         break;
@@ -53,10 +54,11 @@ public class MoveableNPC extends NPC implements Moveable {
         }
     }
 
-    private boolean moveNPC(Room currentRoom, String direction) {
-        if (currentRoom.getExit(direction) != null && allowedRooms.contains(currentRoom.getExit(direction).nextRoom(currentRoom))) {
+    private boolean moveNPC(String nameCurrentRoom, String direction) {
+        Room currentRoom = Game.getInstance().getRoomMap().get(nameCurrentRoom);
+        if (currentRoom.getExit(direction) != null && allowedRooms.contains(currentRoom.getExit(direction).nextRoom(currentRoom.getName()))) {
             currentRoom.removeCharacterFromRoom(this);
-            currentRoom.getExit(direction).nextRoom(currentRoom).addCharacterToRoom(this);
+            Game.getInstance().getRoomMap().get(currentRoom.getExit(direction).nextRoom(currentRoom.getName())).addCharacterToRoom(this);
             return true;
         }
         return false;

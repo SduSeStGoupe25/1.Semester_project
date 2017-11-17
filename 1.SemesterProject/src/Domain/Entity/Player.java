@@ -2,15 +2,14 @@ package Domain.Entity;
 
 import Domain.Inventory.Inventory;
 import Domain.Entity.CharacterEntity;
+import Domain.Game;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import Domain.Game;
 import Domain.Inventory.Armor;
 import Domain.Inventory.Consumeable;
 import Domain.Inventory.Item;
 import Domain.Inventory.Stash;
 import Domain.Inventory.Weapon;
-import Domain.Room;
 
 /**
  *
@@ -21,32 +20,30 @@ import Domain.Room;
  */
 public class Player extends CharacterEntity {
 
-    private Inventory itemInventory;
-    private Inventory equipableInventory;
-    private int gold;
-    private Room currentRoom;
-    private int exp;
-    private LinkedHashMap<Integer, Quest> mainQuest;
-    private HashMap<String, Quest> sideQuest;
-    private int questsCompleted;
-    //private Game game;
-    private int hunger;
-    private int expToLevelUp;
-    private int scoreValue;
+    private  Inventory itemInventory;
+    private  Inventory equipableInventory;
+    private  int gold;
+
+    private  int exp;
+    private  LinkedHashMap<Integer, Quest> mainQuest;
+    private  HashMap<String, Quest> sideQuest;
+    private  int questsCompleted;
+    private  int hunger;
+    private  int expToLevelUp;
+    private  int scoreValue;
 
     /**
      * Player constructor
      */
-    public Player(String name, int health, int armor, int attack, int level, int gold, Room currentRoom, int exp/*, Game game*/) {
+    public Player(String name, int health, int armor, int attack, int level, int gold, int exp) {
         super(name, health, armor, attack, level);
         this.gold = gold;
-        this.currentRoom = currentRoom;
+
         this.exp = exp;
         mainQuest = Stash.getQuestMap();
         itemInventory = new Inventory(20);
         equipableInventory = new Inventory(3);
         questsCompleted = 0;
-        //this.game = game;
         this.hunger = 100;
         this.expToLevelUp = 10;
         this.scoreValue = 0;
@@ -90,7 +87,7 @@ public class Player extends CharacterEntity {
      * @return Returns the attackValue as an integer
      */
     public int getAttackValue() {
-        int attackValue = attack;
+        int attackValue = getAttack();
         for (Item item : equipableInventory.getInventory()) { //Goes through our equipableInventory, to see if we have a weapon equipped
             if (item instanceof Weapon) {
                 attackValue += ((Weapon) item).getAttackValue(); //If we have a weapon equipped, it gets added to our attackValue
@@ -107,7 +104,7 @@ public class Player extends CharacterEntity {
      * @return Returns the armorValue as an integer
      */
     public int getArmorValue() {
-        int armorValue = armor;
+        int armorValue = getAttack();
         for (Item item : equipableInventory.getInventory()) { //Goes through our equipableInventory and checks if we have any armor equipped
             if (item instanceof Armor) {
                 armorValue += ((Armor) item).getArmorValue(); //If we have any armor equipped, it gets added to our armorValue
@@ -115,14 +112,6 @@ public class Player extends CharacterEntity {
             }
         }
         return armorValue;
-    }
-
-    public void setCurrentRoom(Room nextRoom) {
-        currentRoom = nextRoom;
-    }
-
-    public Room getCurrentRoom() {
-        return currentRoom;
     }
 
     public Inventory getItemInventory() {
@@ -192,16 +181,16 @@ public class Player extends CharacterEntity {
      * returns false
      */
     public boolean restoreHp(Item item) {
-        if (!(this.health >= this.maxHealth) || !(this.hunger >= 100)) { //If player is already at max health, returns false
+        if (!(getHealth() >= getMaxHealth()) || !(this.hunger >= 100)) { //If player is already at max health, returns false
             if (item instanceof Consumeable) { //Checks if the item is a consumeable (only type of item that can restore health)
                 if (this.itemInventory.removeItem(item, 1)) { //Removes the item from our inventory
-                    if (this.health + ((Consumeable) item).getUseValue() >= this.maxHealth) { //If the health restored + our current health is greater than our max health, 
+                    if (getHealth() + ((Consumeable) item).getUseValue() >= getMaxHealth()) { //If the health restored + our current health is greater than our max health, 
                         // sets our health = max health. This is to prevent gaining more health.
-                        this.health = this.maxHealth;
+                        setHealth(getMaxHealth());
                         addHunger(((Consumeable) item).getHungerValue());
                         return true;
                     } else {
-                        this.health += ((Consumeable) item).getUseValue(); //Adds the health to the player
+                        setHealth(((Consumeable) item).getUseValue()); //Adds the health to the player
                         addHunger(((Consumeable) item).getHungerValue());
                         return true;
                     }
@@ -212,8 +201,8 @@ public class Player extends CharacterEntity {
     }
 
     @Override
-    public void onDeath(Room currentRoom) {
-        Game.getInstance().setFinished(true);
+    public void onDeath() {
+        //Game.getInstance().setFinished(true);
     }
 
     public Quest getCurrentMainQuest() {
@@ -231,9 +220,9 @@ public class Player extends CharacterEntity {
      * giver is in the room
      * @return Returns true if quest is complete, otherwise returns false
      */
-    public boolean checkQuest(Room room) {
+    public boolean checkQuest(String room) {
         int itemCount = 0;
-        for (CharacterEntity ce : room.getCharactersInRoom()) { //Searches through all the CharacterEntities in the room
+        for (CharacterEntity ce : Game.getInstance().getRoomMap().get(room).getCharactersInRoom()) { //Searches through all the CharacterEntities in the room
             if (ce.getName().equals(getCurrentMainQuest().getGiver())) {    //If a CharacterEntity equals the quest giver
                 for (Item item : getCurrentMainQuest().getItems()) {        //then we look through the items required to complete the quest,
                     for (Item i : getItemInventory().getInventory()) {      //and then we look through our itemInventory
@@ -260,7 +249,7 @@ public class Player extends CharacterEntity {
 
     
     public void levelUp() { //Function called to chech wether the player has enough experience to level up, and the fuctionality for leveling up
-        level++;
+        setLevel(getLevel() + 1);
         super.setStats();
         scoreValue += exp;
         exp = 0;

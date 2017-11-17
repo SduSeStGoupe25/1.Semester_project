@@ -5,16 +5,15 @@
  */
 package Domain.Entity;
 
-import Domain.Game;
-import Domain.Room;
+//import Domain.Game;
 
 /**
  *
  * @author Victor Gram
  */
 public class NPC extends CharacterEntity {
-    private String talk; 
-    private int expDrop;
+    private  String talk; 
+    private  int expDrop;
     
     public NPC(String name, int health, int armor, int attack, int level, int expDrop, String talk) {
         super(name, health, armor, attack, level);
@@ -27,8 +26,8 @@ public class NPC extends CharacterEntity {
     }
 
     @Override
-    public void onDeath(Room currentRoom) {
-        Game.getInstance().getPlayer().addExp(expDrop);
+    public void onDeath() {
+        //Game.getInstance().getPlayer().addExp(expDrop);
         
     }
 }
