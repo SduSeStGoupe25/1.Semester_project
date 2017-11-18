@@ -285,16 +285,6 @@ public class PutHandler {
      */
     private void goRoom(Command command) {
         
-        Game game = Game.getInstance();
-        
-        System.out.println("IN GO ROOM_______________________");
-        System.out.println(game);
-        
-                
-        System.out.println("READY TO SAVE ::::::::::::::::::::::::::::::::::::::::::::");
-        game.getDB().saveProgress(null, game.getPlayer());
-        
-        
         if (!command.hasSecondWord()) { //Checks if the user has specifie a direction to go
             System.out.println("Go where?");
             return; //If there are on direction don't go anywhere
