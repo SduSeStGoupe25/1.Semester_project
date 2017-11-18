@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Data;
 
 import Domain.Database;
@@ -42,12 +37,12 @@ import java.util.logging.Logger;
  */
 public class JSONDatabase implements Database {
 
-    File fileHigh = new File("highScore.json");
-    File fileSave = new File("save.json");
+    File fileConfigData = new File("SaveFiles/ConfigData.json");
+    File fileHigh = new File("SaveFiles/highScore.json");
+    File fileSave = new File("SaveFiles/save.json");
 
     public JSONDatabase() {
         loadDatabase();
-
     }
 
     @Override
@@ -67,9 +62,16 @@ public class JSONDatabase implements Database {
         return highscoreTable;
     }
 
-    public Game loadGame() {
-
-        try (FileReader reader = new FileReader(fileSave)) {
+    @Override
+    public Game loadGame(boolean newGame) {
+        File file;
+        if(newGame) {
+            file = fileConfigData;
+        } else {
+            file = fileSave;
+        }
+        
+        try (FileReader reader = new FileReader(file)) {
 
             JsonReader jsonReader = new JsonReader(reader);
             Gson gson = new GsonBuilder()
@@ -77,7 +79,6 @@ public class JSONDatabase implements Database {
                     .registerTypeHierarchyAdapter(Item.class, new ItemCreator())
                     .create();
 
-            //Gson gson = gsonBuilder.create();
             Game game = gson.fromJson(jsonReader, Game.class);
 
             System.out.println("Done loading");
@@ -119,13 +120,13 @@ public class JSONDatabase implements Database {
     }
 
     private class ItemCreator implements JsonDeserializer<Item> {
-        
-        private class tmpItem extends Item{
-            
+
+        private class tmpItem extends Item {
+
             public tmpItem(String name, int sellValue, int count, int MAX_COUNT, int id) {
                 super(name, sellValue, count, MAX_COUNT, id);
             }
-            
+
         }
 
         @Override
@@ -133,7 +134,6 @@ public class JSONDatabase implements Database {
             System.out.println("Item type " + je);
             Gson g = new Gson();
             tmpItem n = g.fromJson(je, tmpItem.class);
-            
 
             switch (n.getId()) {
                 case 0:
@@ -154,24 +154,32 @@ public class JSONDatabase implements Database {
 
     @Override
     public void saveProgress(List<HighscoreWrapper> scoreTable, Player player) {
-        ArrayList<HighscoreWrapper> list = new ArrayList<>();
-        list.add(new HighscoreWrapper(23, "Bob"));
-        list.add(new HighscoreWrapper(2, "Lars"));
+       saveData(scoreTable, fileHigh);
+//
+//  TEST TEST TEST TEST TEST TEST TEST
 
-        System.out.println("HighScore List");
-        System.out.println(list);
+//        ArrayList<HighscoreWrapper> list = new ArrayList<>();
+//        list.add(new HighscoreWrapper(23, "Bob"));
+//        list.add(new HighscoreWrapper(2, "Lars"));
+//
+//        System.out.println("HighScore List");
+//        System.out.println(list);
+//
+//        saveData(list, fileHigh);
+//
+//        System.out.println("HighScore ");
+//
+//        saveData(Game.getInstance(), fileSave);
+//
+//        System.out.println("HighScores");
+//        System.out.println(getHighscore());
+//
+//        System.out.print("LOAD GAME__________________");
+//        System.out.println(loadGame().toString());
+//        System.out.println(" DONE");
 
-        saveData(list, fileHigh);
-
-        System.out.println("HighScore ");
-
-        saveData(Game.getInstance(), fileSave);
-
-        System.out.println("HighScores");
-        System.out.println(getHighscore());
-
-        System.out.println("LOAD GAME__________________");
-        System.out.println(loadGame().toString());
+//  TEST TEST TEST TEST TEST TEST TEST
+//
     }
 
     private <E> void saveData(E o, File file) {
@@ -189,21 +197,6 @@ public class JSONDatabase implements Database {
         }
     }
 
-//    private <E> E loadData(E c, File file) {
-//        E o = null;
-//        try (FileReader reader = new FileReader(file)) {
-//
-//            JsonReader jsonReader = new JsonReader(reader);
-//            Gson gson = new Gson();
-//            o = gson.fromJson(jsonReader, c.getClass());
-//            //System.out.println(json);
-//
-//            System.out.println("Done loading");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return o;
-//    }
     private void loadDatabase() {
         if (!fileHigh.exists()) {
             try {
@@ -219,6 +212,5 @@ public class JSONDatabase implements Database {
                 Logger.getLogger(JSONDatabase.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
 }

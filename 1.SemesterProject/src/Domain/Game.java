@@ -17,7 +17,6 @@ import Domain.Inventory.Item;
 import Domain.Inventory.Key;
 import Domain.Inventory.NormalItem;
 import Domain.Inventory.Weapon;
-import java.util.ArrayList;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -75,9 +74,7 @@ public class Game {
     public String toString() {
         return "Game{" + "putHandler=" + putHandler + ", currentRoom=" + currentRoom + ", player=" + player + ", combat=" + combat + ", rooms=" + rooms + ", finished=" + finished + ", itemNames=" + itemNames + '}';
     }
-    
-    
-    
+
     public static Game getInstance () { 
         if (instance == null) { 
             instance = new Game(); 
