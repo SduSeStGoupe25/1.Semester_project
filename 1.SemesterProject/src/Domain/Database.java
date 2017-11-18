@@ -5,8 +5,8 @@
  */
 package Domain;
 
+import Domain.Entity.Player;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -14,9 +14,6 @@ import java.util.Map;
  */
 public interface Database {
     List<HighscoreWrapper> getHighscore(); 
-    void saveProgress(); 
-    
-    
-    
-    
+    void saveProgress(List<HighscoreWrapper> scoreTable, Player player); 
+    Game loadGame(boolean newGame);
 }

@@ -11,6 +11,6 @@ package Domain.Inventory;
 public class NormalItem extends Item{
 
     public NormalItem(String name, int sellValue, int count) {
-        super(name, sellValue, count, 10);
+        super(name, sellValue, count, 10, 3);
     }
 }

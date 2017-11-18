@@ -21,14 +21,15 @@ import Domain.Inventory.Item;
  */
 public class Room {
 
+    private String name;
     private String description; //The room description, printed upon entering
     private HashMap<String, Exit> exits;
     private List<CharacterEntity> charactersInRoom = new ArrayList<>(); //ArrayList containing the NPC's in the room
     private List<Item> items = new ArrayList<>(); //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
     private HashSet<String> allowedMonsters;
-    private Game game;
 
-    public Room(String description, Game game) {
+    public Room(String name, String description) {
+        this.name = name;
         this.description = description;
         exits = new HashMap<>();
         charactersInRoom = new ArrayList<>();
@@ -36,7 +37,19 @@ public class Room {
         allowedMonsters = new HashSet<>();
         charactersInRoom = new ArrayList<>();
         items = new ArrayList<>();
-        this.game = game;
+    }
+
+    public HashSet<String> getA() {
+        return allowedMonsters;
+    }
+
+    public List<Item> getI() {
+        return items;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" + "name=" + name + ", description=" + description + ", charactersInRoom=" + charactersInRoom + ", items=" + items + ", allowedMonsters=" + allowedMonsters + '}';
     }
 
     public void addItemToRoom(Item i) {
@@ -59,11 +72,11 @@ public class Room {
         return "You are " + description + ".\n" + getExitString();
 
     }
-    
-    public String getItems(){
-        String s ="";
+
+    public String getItems() {
+        String s = "";
         for (Item i : items) {
-            s += i.getName() +"\n";
+            s += i.getName() + "\n";
         }
         return s;
     }
@@ -77,6 +90,10 @@ public class Room {
         return returnString;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Exit getExit(String direction) {
         return exits.get(direction);
     }
@@ -88,9 +105,17 @@ public class Room {
     public void addCharacterToRoom(CharacterEntity ce) { //Adds characters to the room
         charactersInRoom.add(ce);
     }
+    
+        public void addCharacterToRoom(List<CharacterEntity> ce) { //Adds characters to the room
+        charactersInRoom.addAll(ce);
+    }
 
     public void addAllowedMonsters(String name) {
         allowedMonsters.add(name);
+    }
+
+    public void addAllowedMonsters(HashSet<String> d) {
+        allowedMonsters.addAll(d);
     }
 
     public void spawnEnemies() { //Spawns a randomly generated amount of enemies for the room
@@ -116,7 +141,7 @@ public class Room {
             if ((int) (Math.random() * 2) == 0) {
                 int nonMonstersInRoom = charactersInRoom.size() - monsterAmount;
                 int opponent = (int) (Math.random() * monsterAmount) + nonMonstersInRoom;
-                game.getCombat().startCombat(charactersInRoom.get(opponent), this);
+                Game.getInstance().getCombat().startCombat(charactersInRoom.get(opponent), this);
             }
         }
 
@@ -130,10 +155,11 @@ public class Room {
         for (int i = charactersInRoom.size() - 1; i >= 0; i--) {
             CharacterEntity characterEntity = charactersInRoom.get(i);
             if (characterEntity instanceof Moveable) {
-                ((Moveable) characterEntity).move(this);
+                ((Moveable) characterEntity).move(name);
             }
 
         }
 
     }
+
 }

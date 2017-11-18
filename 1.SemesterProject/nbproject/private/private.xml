@@ -4,6 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Data/JSONDatabase.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Game.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Room.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Entity/Player.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Inventory/NormalItem.java</file>
+=======
+<<<<<<< HEAD
             <file>file:/D:/Programmering/1.Semester_project/1.SemesterProject/src/UI/GUI/SemesterProjekt.java</file>
             <file>file:/D:/Programmering/1.Semester_project/1.SemesterProject/src/UI/GUI/CombatScreenController.java</file>
 =======
@@ -19,6 +26,7 @@
             <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Play.java</file>
             <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/Command/PutHandler.java</file>
 >>>>>>> 60084def59d60d9f23c4fea32c0ec32acea49255
+>>>>>>> master
         </group>
     </open-files>
 </project-private>

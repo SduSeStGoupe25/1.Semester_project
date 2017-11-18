@@ -5,12 +5,11 @@
  */
 package Domain.Entity;
 
-import Domain.Room;
 
 /**
  *
  * @author Victor Gram
  */
 public interface Moveable {
-    public abstract void move (Room currentRoom); 
+    public abstract void move (String nameCurrentRoom); 
 }

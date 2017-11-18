@@ -15,7 +15,7 @@ public class Armor extends Item{
     private int itemLevel;
     
     public Armor(String name, int sellValue, int count, int baseArmor, int itemLevel) {
-        super(name, sellValue, count, 1);
+        super(name, sellValue, count, 1, 0);
         this.baseArmor = baseArmor;
         this.itemLevel = itemLevel;
         armorValue = baseArmor + itemLevel;
