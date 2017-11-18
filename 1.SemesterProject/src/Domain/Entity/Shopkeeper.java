@@ -16,7 +16,7 @@ public class Shopkeeper extends NPC {
     private Map<String, Item> itemstoSell = new HashMap<>();
 
     public Shopkeeper(String name, int health, int armor, int attack, int level, int expDrop, String talk) {
-        super(name, health, armor, attack, level, expDrop, talk);
+        super(name, health, armor, attack, level, expDrop, 3, talk);
 
     }
 

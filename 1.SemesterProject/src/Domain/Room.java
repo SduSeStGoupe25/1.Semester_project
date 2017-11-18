@@ -24,7 +24,7 @@ public class Room {
     private String name;
     private String description; //The room description, printed upon entering
     private HashMap<String, Exit> exits;
-    private  List<CharacterEntity> charactersInRoom = new ArrayList<>(); //ArrayList containing the NPC's in the room
+    private List<CharacterEntity> charactersInRoom = new ArrayList<>(); //ArrayList containing the NPC's in the room
     private List<Item> items = new ArrayList<>(); //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
     private HashSet<String> allowedMonsters;
 

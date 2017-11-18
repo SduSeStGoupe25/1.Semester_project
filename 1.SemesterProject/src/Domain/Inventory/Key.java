@@ -12,7 +12,7 @@ public class Key extends Item{
     private int keyID;
     
     public Key(String name, int sellValue, int count, int keyID) {
-        super(name, sellValue, count, 1);
+        super(name, sellValue, count, 1, 2);
         this.keyID = keyID;
     }
 

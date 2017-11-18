@@ -15,7 +15,7 @@ public class Weapon extends Item{
     private int itemLevel;
     
     public Weapon(String name, int sellValue, int count, int baseAttack, int itemLevel) {
-        super(name, sellValue, count, 1);
+        super(name, sellValue, count, 1, 4);
         this.baseAttack = baseAttack;
         this.itemLevel = itemLevel;
         attackValue = baseAttack + itemLevel;

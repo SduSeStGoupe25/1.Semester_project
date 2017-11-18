@@ -36,7 +36,7 @@ public class Player extends CharacterEntity {
      * Player constructor
      */
     public Player(String name, int health, int armor, int attack, int level, int gold, int exp) {
-        super(name, health, armor, attack, level);
+        super(name, health, armor, attack, level, 2);
         this.gold = gold;
 
         this.exp = exp;

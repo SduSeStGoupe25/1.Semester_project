@@ -17,9 +17,9 @@ import java.util.Set;
 public class MoveableNPC extends NPC implements Moveable {
 
     private Set<String> allowedRooms;
-
+    
     public MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Set<String> allowedRooms) {
-        super(name, health, armor, attack, level, expDrop, talk);
+        super(name, health, armor, attack, level, expDrop, 4, talk);
         this.allowedRooms = allowedRooms;
     }
 

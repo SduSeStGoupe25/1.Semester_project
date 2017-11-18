@@ -14,7 +14,7 @@ public class Consumeable extends Item{
     private int hungerValue;
 
     public Consumeable(String name, int sellValue, int count, int useValue, int hungerValue) {
-        super(name, sellValue, count, 20);
+        super(name, sellValue, count, 20, 1);
         this.useValue = useValue;
         this.hungerValue = hungerValue;
     }

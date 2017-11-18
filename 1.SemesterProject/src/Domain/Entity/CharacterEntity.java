@@ -17,9 +17,15 @@ public abstract class CharacterEntity {
     private  int baseHealth;
     private  int baseAttack;
     private  int attack;
+    private int id; // 0 = CharacterEntity, 1 = NPC, 2 = Player, 3 = Shopkeeper, 4 = MovableNPC
 
+    public CharacterEntity() {
+    }
+
+    
+    
     //Constructor
-    public CharacterEntity(String name, int health, int armor, int attack, int level) {
+    public CharacterEntity(String name, int health, int armor, int attack, int level, int id) {
         this.name = name;
         this.health = health;
         this.armor = armor;
@@ -27,6 +33,7 @@ public abstract class CharacterEntity {
         maxHealth = health;
         baseHealth = health;
         baseAttack = attack;
+        this.id = id;
         setStats();
     }
 
@@ -91,6 +98,10 @@ public abstract class CharacterEntity {
 
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
+    }
+
+    public int getId() {
+        return id;
     }
 
 

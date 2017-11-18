@@ -14,12 +14,14 @@ public abstract class Item {
     private int sellValue;
     private int count;
     private final int MAX_COUNT;
+    private int id; // 0 = armor, 1 = comsum, 2 = key, 3 = normal, 4 = weapon
 
-    public Item(String name, int sellValue, int count, int MAX_COUNT) {
+    public Item(String name, int sellValue, int count, int MAX_COUNT, int id) {
         this.name = name;
         this.sellValue = sellValue;
         this.count = count;
         this.MAX_COUNT = MAX_COUNT;
+        this.id = id;
     }
 
     public int getMAX_COUNT() {
@@ -44,5 +46,9 @@ public abstract class Item {
     
     public void setCount(int count){
         this.count = count;
+    }
+
+    public int getId() {
+        return id;
     }
 }
