@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package Arq;
+
+import java.util.Map;
 
 /**
  *
  * @author madsd
  */
-public class Play {
-    public static void main(String[] args) {
-        DomainGame.getInstance().play(); 
-    }
+public interface IShopkeeper extends ICharacterEntity{
+    Map<String, IItem> getItemsToSell();
 }

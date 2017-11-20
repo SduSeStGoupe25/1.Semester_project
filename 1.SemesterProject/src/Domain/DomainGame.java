@@ -1,5 +1,6 @@
 package Domain;
 
+import Arq.IDomainGame;
 import Data.JSONDatabase;
 import Domain.Combat.Combat;
 import java.util.Arrays;
@@ -26,9 +27,9 @@ import java.util.List;
  * This is the main class, that lets the user play the game. The game is played
  * by write in the console
  */
-public class Game implements DomainFacade {
+public class DomainGame implements IDomainGame {
     
-    private transient static Game instance = null;
+    private transient static DomainGame instance = null;
     private transient PutHandler putHandler;  //Class responsible for user input and print output
     private String currentRoom;       //The current room
     private Player player;
@@ -56,7 +57,7 @@ public class Game implements DomainFacade {
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
-    private Game() {
+    private DomainGame() {
         player = new Player("Arthur", 100, 10, 10, 1, 1000, 0);
         player.getItemInventory().addItem(createItem(itemNames[4][0],0), 1);
         rooms = new HashMap<>();
@@ -64,7 +65,6 @@ public class Game implements DomainFacade {
         createNPC();
         putHandler = new PutHandler(this);
         combat = new Combat(player, this);
-        db = new JSONDatabase();
         
         System.out.println(this.toString());
     }
@@ -74,9 +74,9 @@ public class Game implements DomainFacade {
         return "Game{" + "putHandler=" + putHandler + ", currentRoom=" + currentRoom + ", player=" + player + ", combat=" + combat + ", rooms=" + rooms + ", finished=" + finished + ", itemNames=" + itemNames + '}';
     }
     
-    public static Game getInstance() {
+    public static DomainGame getInstance() {
         if (instance == null) {
-            instance = new Game();
+            instance = new DomainGame();
         }
         return instance;
     }

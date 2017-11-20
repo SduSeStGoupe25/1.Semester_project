@@ -5,7 +5,7 @@
  */
 package Domain.Entity;
 
-import Domain.Game;
+import Domain.DomainGame;
 import Domain.Room;
 import java.util.Random;
 import java.util.Set;
@@ -55,10 +55,10 @@ public class MoveableNPC extends NPC implements Moveable {
     }
 
     private boolean moveNPC(String nameCurrentRoom, String direction) {
-        Room currentRoom = Game.getInstance().getRoomMap().get(nameCurrentRoom);
+        Room currentRoom = DomainGame.getInstance().getRoomMap().get(nameCurrentRoom);
         if (currentRoom.getExit(direction) != null && allowedRooms.contains(currentRoom.getExit(direction).nextRoom(currentRoom.getName()))) {
             currentRoom.removeCharacterFromRoom(this);
-            Game.getInstance().getRoomMap().get(currentRoom.getExit(direction).nextRoom(currentRoom.getName())).addCharacterToRoom(this);
+            DomainGame.getInstance().getRoomMap().get(currentRoom.getExit(direction).nextRoom(currentRoom.getName())).addCharacterToRoom(this);
             return true;
         }
         return false;

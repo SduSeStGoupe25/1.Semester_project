@@ -2,7 +2,7 @@ package Domain.Combat;
 
 import Domain.Entity.CharacterEntity;
 import Domain.Entity.Player;
-import Domain.Game;
+import Domain.DomainGame;
 import Domain.Room;
 
 /**
@@ -15,9 +15,9 @@ public class Combat {
     private Room currentRoom; //The current room
     private Player player; //The player
     private boolean running; //Indicating if the combat is running
-    private Game game;
+    private DomainGame game;
 
-    public Combat(Player player, Game game) {
+    public Combat(Player player, DomainGame game) {
         this.player = player;
         this.game = game;
     }

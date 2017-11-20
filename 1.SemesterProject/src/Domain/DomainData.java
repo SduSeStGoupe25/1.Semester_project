@@ -3,57 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.GUI;
 
+package Domain;
+
+import Arq.IData;
 import Arq.IDomainData;
 import Arq.IDomainGame;
-import Arq.IUI;
-import Domain.Combat.Combat;
-import Domain.DomainFacade;
-import Domain.Entity.Player;
-import Domain.DomainGame;
-import Domain.HighscoreWrapper;
-import Domain.Room;
+import Arq.IHighscoreWrapper;
 import java.util.List;
-import java.util.Map;
 
 /**
- *
- * @author rasmusstamm
+ * 
+ * @author madsd
  */
-public class UI implements IUI{
-
-    static UI ui = null;
-
-    private DomainFacade DF = DomainGame.getInstance();
-
-    public UI() {
-
-    }
-
-    public static UI getInstance() {
-        if (ui == null) {
-            ui = new UI();
-        }
-        return ui;
-    }
-    
-    public DomainFacade getGame(){
-        return DF;
-    }
+public class DomainData implements IDomainData{
 
     @Override
-    public void startApplication(String[] args) {
+    public void addNewScore(String name, int score) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void injectDomainData(IDomainData domainData) {
+    public void saveGame() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void injectDomainGame(IDomainGame domainGame) {
+    public IDomainGame loadGame(boolean newGame) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<IHighscoreWrapper> getHighScoreTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void injectData(IData data) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

@@ -1,19 +1,19 @@
 package Data;
 
-import Domain.Database;
-import Domain.Entity.CharacterEntity;
-import Domain.Entity.MoveableNPC;
-import Domain.Entity.NPC;
-import Domain.Entity.Player;
-import Domain.Entity.Shopkeeper;
-import Domain.Game;
-import Domain.HighscoreWrapper;
-import Domain.Inventory.Armor;
-import Domain.Inventory.Consumeable;
-import Domain.Inventory.Item;
-import Domain.Inventory.Key;
-import Domain.Inventory.NormalItem;
-import Domain.Inventory.Weapon;
+import Arq.IArmor;
+import Arq.ICharacterEntity;
+import Arq.IConsumeable;
+import Arq.IData;
+import Arq.IDomainGame;
+import Arq.IHighscoreWrapper;
+import Arq.IItem;
+import Arq.IKey;
+import Arq.IMoveableNPC;
+import Arq.INPC;
+import Arq.INormalItem;
+import Arq.IPlayer;
+import Arq.IShopkeeper;
+import Arq.IWeapon;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -36,7 +36,7 @@ import java.util.logging.Logger;
  * The library used is google.gson.
  *
  */
-public class JSONDatabase implements Database {
+public class JSONDatabase implements IData {
 
     /**
      * The file the config file are saved in. This file is used to start a new
@@ -63,9 +63,9 @@ public class JSONDatabase implements Database {
     }
 
     @Override
-    public List<HighscoreWrapper> getHighscore() {
+    public List<IHighscoreWrapper> getHighscore() {
         //Instanciates a list to return
-        List<HighscoreWrapper> highscoreTable = new ArrayList<>();
+        List<IHighscoreWrapper> highscoreTable = new ArrayList<>();
 
         //Try to read file
         try (FileReader reader = new FileReader(fileHigh)) {
@@ -87,7 +87,7 @@ public class JSONDatabase implements Database {
     }
 
     @Override
-    public Game loadGame(boolean newGame) {
+    public IDomainGame loadGame(boolean newGame) {
         //Determines what file to load from
         File file;
         if (newGame) { // If newGame
@@ -103,12 +103,12 @@ public class JSONDatabase implements Database {
 
             //Creates a Gson instance with to custom typeAdapters.
             Gson gson = new GsonBuilder()
-                    .registerTypeHierarchyAdapter(CharacterEntity.class, new CharacterEntityDeserializer()) // use read CharacterEntity correct
-                    .registerTypeHierarchyAdapter(Item.class, new ItemDeserializer()) // use read item correct
+                    .registerTypeHierarchyAdapter(ICharacterEntity.class, new CharacterEntityDeserializer()) // use read CharacterEntity correct
+                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
                     .create();
 
             //Creates a game instance from the json string
-            Game game = gson.fromJson(jsonReader, Game.class);
+            IDomainGame game = gson.fromJson(jsonReader, IDomainGame.class);
 
             System.out.println("Done loading");
 
@@ -126,21 +126,21 @@ public class JSONDatabase implements Database {
      * Custom deserializer for CharacterEntity. Is used to deserialize
      * CharacterEntites correctly to right type.
      */
-    private class CharacterEntityDeserializer implements JsonDeserializer<CharacterEntity> {
+    private class CharacterEntityDeserializer implements JsonDeserializer<ICharacterEntity> {
 
         @Override
-        public CharacterEntity deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
+        public ICharacterEntity deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
 
             Gson g = new Gson();
 
             //Checks if type is player
-            if (type.equals(Player.class)) {
+            if (type.equals(IPlayer.class)) {
                 //Returns a instance of player
-                return (Player) g.fromJson(je, Player.class);
+                return (IPlayer) g.fromJson(je, IPlayer.class);
             }
 
             //Creates an NPC so it is possible to access it id
-            NPC ce = (NPC) g.fromJson(je, NPC.class);
+            INPC ce = (INPC) g.fromJson(je, INPC.class);
 
             //Determines type of CharacterEntity ce is
             switch (ce.getId()) {
@@ -149,10 +149,10 @@ public class JSONDatabase implements Database {
                     return ce;
                 case 3:
                     //Returns instance of Shopkeeper
-                    return (Shopkeeper) g.fromJson(je, Shopkeeper.class);
+                    return (IShopkeeper) g.fromJson(je, IShopkeeper.class);
                 case 4:
                     //Returns instance of MoveableNPC
-                    return (MoveableNPC) g.fromJson(je, MoveableNPC.class);
+                    return (IMoveableNPC) g.fromJson(je, IMoveableNPC.class);
             }
             return null;
         }
@@ -163,42 +163,31 @@ public class JSONDatabase implements Database {
      * Custom deserializer for Item. Is used to deserialize
      * Item correctly to right type.
      */
-    private class ItemDeserializer implements JsonDeserializer<Item> {
-
-        /**
-         * Inner class used to determine item type
-         */
-        private class tmpItem extends Item {
-
-            public tmpItem(String name, int sellValue, int count, int MAX_COUNT, int id) {
-                super(name, sellValue, count, MAX_COUNT, id);
-            }
-
-        }
+    private class ItemDeserializer implements JsonDeserializer<IItem> {
 
         @Override
-        public Item deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
+        public IItem deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
             Gson g = new Gson();
-            //Creates a tmpItem
-            tmpItem n = g.fromJson(je, tmpItem.class);
+            
+            int id = ((ICharacterEntity)g.fromJson(je, ICharacterEntity.class)).getId();
 
             //Determinds what type of Item the JsonElement is
-            switch (n.getId()) {
+            switch (id) {
                 case 0:
                     //Returns instance of Armor
-                    return (Armor) g.fromJson(je, Armor.class);
+                    return (IArmor) g.fromJson(je, IArmor.class);
                 case 1:
                     //Returns instance of Consumeable
-                    return (Consumeable) g.fromJson(je, Consumeable.class);
+                    return (IConsumeable) g.fromJson(je, IConsumeable.class);
                 case 2:
                     //Returns instance of Key
-                    return (Key) g.fromJson(je, Key.class);
+                    return (IKey) g.fromJson(je, IKey.class);
                 case 3:
                     //Returns instance of NormalItem
-                    return (NormalItem) g.fromJson(je, NormalItem.class);
+                    return (INormalItem) g.fromJson(je, INormalItem.class);
                 case 4:
                     //Returns instance of Weapon
-                    return (Weapon) g.fromJson(je, Weapon.class);
+                    return (IWeapon) g.fromJson(je, IWeapon.class);
             }
             return null;
         }
@@ -206,15 +195,15 @@ public class JSONDatabase implements Database {
     }
 
     @Override
-    public void saveScoreTable(List<HighscoreWrapper> list) {
+    public void saveScoreTable(List<IHighscoreWrapper> list) {
         //Saves the highScoreTable 
         saveData(list, fileHigh);
     }
 
     @Override
-    public void saveGame() {
+    public void saveGame(IDomainGame game) {
         //Saves the game
-        saveData(Game.getInstance(), fileSave);
+        saveData(game, fileSave);
 
 //
 //  TEST TEST TEST TEST TEST TEST TEST

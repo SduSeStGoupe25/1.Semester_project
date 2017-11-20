@@ -6,7 +6,7 @@
 package UI.GUI;
 
 import Domain.DomainFacade;
-import Domain.Game;
+import Domain.DomainGame;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

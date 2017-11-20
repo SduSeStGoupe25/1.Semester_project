@@ -3,7 +3,7 @@ package UI.Command;
 import Domain.Entity.CharacterEntity;
 import Domain.Entity.NPC;
 import Domain.Entity.Shopkeeper;
-import Domain.Game;
+import Domain.DomainGame;
 import Domain.Inventory.Item;
 import Domain.Inventory.Stash;
 import Domain.Room;
@@ -20,9 +20,9 @@ import Domain.Inventory.Weapon;
 public class PutHandler {
 
     private Parser parser;      //Class responsible for parsing user input
-    private Game game;          //A reference to game
+    private DomainGame game;          //A reference to game
 
-    public PutHandler(Game game) {
+    public PutHandler(DomainGame game) {
         parser = new Parser();  //parser are initialized.
         this.game = game;       //sets the referance to game
 

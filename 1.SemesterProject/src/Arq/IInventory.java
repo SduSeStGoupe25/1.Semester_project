@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package Arq;
+
+import java.util.List;
 
 /**
  *
  * @author madsd
  */
-public class Play {
-    public static void main(String[] args) {
-        DomainGame.getInstance().play(); 
-    }
+public interface IInventory {
+    List<IItem> getInventory();
+    
 }

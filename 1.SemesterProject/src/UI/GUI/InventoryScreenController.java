@@ -7,7 +7,7 @@ package UI.GUI;
 
 import Domain.DomainFacade;
 import Domain.Entity.Player;
-import Domain.Game;
+import Domain.DomainGame;
 import Domain.Inventory.Consumeable;
 import Domain.Inventory.Inventory;
 import Domain.Inventory.Item;

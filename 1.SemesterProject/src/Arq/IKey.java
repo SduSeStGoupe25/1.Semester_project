@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package Arq;
 
 /**
  *
  * @author madsd
  */
-public class Play {
-    public static void main(String[] args) {
-        DomainGame.getInstance().play(); 
-    }
+public interface IKey extends IItem{
+    int getKeyID();
 }

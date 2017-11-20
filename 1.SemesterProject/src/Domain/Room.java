@@ -141,7 +141,7 @@ public class Room {
             if ((int) (Math.random() * 2) == 0) {
                 int nonMonstersInRoom = charactersInRoom.size() - monsterAmount;
                 int opponent = (int) (Math.random() * monsterAmount) + nonMonstersInRoom;
-                Game.getInstance().getCombat().startCombat(charactersInRoom.get(opponent), this);
+                DomainGame.getInstance().getCombat().startCombat(charactersInRoom.get(opponent), this);
             }
         }
 

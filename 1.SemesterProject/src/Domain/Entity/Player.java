@@ -2,7 +2,7 @@ package Domain.Entity;
 
 import Domain.Inventory.Inventory;
 import Domain.Entity.CharacterEntity;
-import Domain.Game;
+import Domain.DomainGame;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import Domain.Inventory.Armor;
@@ -232,7 +232,7 @@ public class Player extends CharacterEntity {
      */
     public boolean checkQuest(String room) {
         int itemCount = 0;
-        for (CharacterEntity ce : Game.getInstance().getRoomMap().get(room).getCharactersInRoom()) { //Searches through all the CharacterEntities in the room
+        for (CharacterEntity ce : DomainGame.getInstance().getRoomMap().get(room).getCharactersInRoom()) { //Searches through all the CharacterEntities in the room
             if (ce.getName().equals(getCurrentMainQuest().getGiver())) {    //If a CharacterEntity equals the quest giver
                 for (Item item : getCurrentMainQuest().getItems()) {        //then we look through the items required to complete the quest,
                     for (Item i : getItemInventory().getInventory()) {      //and then we look through our itemInventory
