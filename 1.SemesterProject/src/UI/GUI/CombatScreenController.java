@@ -9,6 +9,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 /**
@@ -20,6 +22,20 @@ public class CombatScreenController implements Initializable {
 
     @FXML
     private ImageView imageForest;
+    @FXML
+    private Button lightAttackButton;
+    @FXML
+    private Button heavyAttackButton;
+    @FXML
+    private Button usePotionButton;
+    @FXML
+    private Button fleeButton;
+    @FXML
+    private Label opponentHP;
+    @FXML
+    private Label opponentLevel;
+    @FXML
+    private Label opponentName;
 
     /**
      * Initializes the controller class.
