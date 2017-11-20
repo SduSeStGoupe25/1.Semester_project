@@ -17,6 +17,7 @@ import Domain.Inventory.Item;
 import Domain.Inventory.Key;
 import Domain.Inventory.NormalItem;
 import Domain.Inventory.Weapon;
+import java.util.List;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -25,36 +26,33 @@ import Domain.Inventory.Weapon;
  * This is the main class, that lets the user play the game. The game is played
  * by write in the console
  */
-public class Game implements DomainFacade{
-
+public class Game implements DomainFacade {
+    
     private transient static Game instance = null;
     private transient PutHandler putHandler;  //Class responsible for user input and print output
     private String currentRoom;       //The current room
     private Player player;
     private transient Combat combat;
     
-    
-    private transient  Database db;
+    private transient Database db;
     
     public Database getDB() {
         return db;
     }
     
-
     private Map<String, Room> rooms; // creating objects of the Room-class
-    
-    public void setMap(Map<String, Room> m){
+
+    public void setMap(Map<String, Room> m) {
         rooms.clear();
         rooms = new HashMap<>(m);
         System.out.println("M ::::: " + rooms);
     }
     
     private transient boolean finished = false;
-
+    
     private String[][] itemNames = {
         {"Rock", "Sword"}, {"Chainmail"}, {"Potion", "Meat"}, {"Key", "Key2"}, {"Wool"}};
-    
-    
+
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
@@ -69,15 +67,15 @@ public class Game implements DomainFacade{
         
         System.out.println(this.toString());
     }
-
+    
     @Override
     public String toString() {
         return "Game{" + "putHandler=" + putHandler + ", currentRoom=" + currentRoom + ", player=" + player + ", combat=" + combat + ", rooms=" + rooms + ", finished=" + finished + ", itemNames=" + itemNames + '}';
     }
-
-    public static Game getInstance () { 
-        if (instance == null) { 
-            instance = new Game(); 
+    
+    public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
         }
         return instance;
     }
@@ -88,14 +86,14 @@ public class Game implements DomainFacade{
      */
     private void createNPC() {
         rooms.get("citycenter").addCharacterToRoom(new MoveableNPC("Merlin", 100, 1, 1, 10, 10, "Hello", new HashSet(Arrays.asList("citycenter", "shop", "tavern", "tower", "castle"))));
-
+        
         rooms.get("tavern").addCharacterToRoom(new NPC("Bartender", 10, 10, 10, 10, 10, "Hello"));
         rooms.get("tavern").addCharacterToRoom(new NPC("Drunk man", 10, 10, 10, 10, 10, "Hello"));
-
+        
         rooms.get("shop").addCharacterToRoom(new Shopkeeper("Shopkeeper", 10, 10, 10, 10, 10, "Hello"));
         rooms.get("castle").addCharacterToRoom(new NPC("King", 10, 10, 10, 10, 10, "Hello"));
         rooms.get("castle").addCharacterToRoom(new MoveableNPC("Princess", 10, 10, 10, 10, 10, "Hello", new HashSet(Arrays.asList("citycenter", "shop", "tavern", "tower", "castle"))));
-
+        
         rooms.get("farm").addCharacterToRoom(new NPC("Farmer", 10, 10, 10, 10, 10, "Hello"));
     }
 
@@ -108,20 +106,20 @@ public class Game implements DomainFacade{
         //initialising new rooms, with room-description that will be output to the console
         Room citycenter = new Room("citycenter", "in the center of the city");
         Room shop = new Room("shop", "in the shop");
-        Room tavern = new Room("tavern"," in the local tavern");
-        Room castle = new Room("castle","in the kings castle");
-        Room excalibur = new Room("excalibur","in the room where excalibur is caught in the stone");
-        Room tower = new Room("tower","in Merlin's chambers");
-        Room cave = new Room("cave","in a dark and gloomy cave");
-        Room farm = new Room("farm","at the local farm");
-        Room forrest = new Room("forrest","in the forrest");
-        Room deepwoods = new Room("deepwoods","deeper into the woods, more dark and gloomy");
+        Room tavern = new Room("tavern", " in the local tavern");
+        Room castle = new Room("castle", "in the kings castle");
+        Room excalibur = new Room("excalibur", "in the room where excalibur is caught in the stone");
+        Room tower = new Room("tower", "in Merlin's chambers");
+        Room cave = new Room("cave", "in a dark and gloomy cave");
+        Room farm = new Room("farm", "at the local farm");
+        Room forrest = new Room("forrest", "in the forrest");
+        Room deepwoods = new Room("deepwoods", "deeper into the woods, more dark and gloomy");
 
         // Defining allowed monsters for each room
         forrest.addAllowedMonsters("Imp");
         forrest.addAllowedMonsters("Bear");
         forrest.addAllowedMonsters("Ogre");
-
+        
         farm.addAllowedMonsters("Sheep");
 
         //Defining exits
@@ -129,11 +127,11 @@ public class Game implements DomainFacade{
         Exit exitCitycenterShop = new Exit("citycenter", "shop");
         Exit exitCitycenterFarm = new Exit("citycenter", "farm");
         Exit exitCitycenterCastle = new Exit("citycenter", "castle");
-
+        
         Exit exitCastleTower = new Exit("castle", "tower");
         Exit exitCastleExcalibur = new Exit("castle", "excalibur", true, 1);
         Exit exitCastleCave = new Exit("castle", "cave", true, 2);
-
+        
         Exit exitCaveDeepwoods = new Exit("cave", "deepwoods");
         Exit exitDeepwoodsForrest = new Exit("forrest", "deepwoods");
         Exit exitFarmForrest = new Exit("farm", "forrest");
@@ -186,7 +184,7 @@ public class Game implements DomainFacade{
      * The method lets the user play the game
      */
     public void play() {
-
+        
         while (!finished) {
             if (combat.isRunning()) {
                 putHandler.processCommandCombat();
@@ -244,10 +242,10 @@ public class Game implements DomainFacade{
     public void moveAllNPC() {
         for (String room : rooms.keySet()) {
             rooms.get(room).move();
-
+            
         }
     }
-
+    
     public int checkItemName(String itemName) {
         int count = 0;
         for (String[] itemName1 : itemNames) {
@@ -269,59 +267,72 @@ public class Game implements DomainFacade{
     public Map<String, Room> getRoomMap() {
         return rooms;
     }
-
+    
     public void setFinished(boolean finished) {
         this.finished = finished;
     }
-
+    
     public String[][] getItemNames() {
         return itemNames;
     }
-
+    
     public Item createItem(String name, int itemType) {
         switch (itemType) {
             case 0:
                 return new Weapon(name, 1, 1, 1, 1);
-
+            
             case 1:
                 return new Armor(name, 1, 1, 1, 1);
-
+            
             case 2:
                 return new Consumeable(name, 1, 1, 1, 1);
-
+            
             case 3:
                 return new Key(name, 1, 1, 1);
-
+            
             case 4:
                 return new NormalItem(name, 1, 1);
-
+            
             default:
                 return null;
         }
     }
-
+    
     @Override
     public Map<String, Room> getRooms() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public void saveGame() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        db.saveGame();
     }
-
+    
     @Override
-    public void loadGame() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void loadGame(boolean newGame) {
+        db.loadGame(newGame);
     }
-
+    
     @Override
-    public void getHighScore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<HighscoreWrapper> getHighScore() {
+        return db.getHighscore();
     }
-
+    
     @Override
-    public void addScore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addScore(HighscoreWrapper hw) {
+        List<HighscoreWrapper> highList = getHighScore();
+        
+        int count = 0;
+        for (HighscoreWrapper highscoreWrapper : highList) {
+            int compareValue = hw.compareTo(highscoreWrapper);
+            
+            if (compareValue == 0 || compareValue == 1) {
+                break;
+            }
+            count++;
+        }
+        highList.add(count, hw);
+        highList.subList(10, highList.size()).clear();
+        db.saveScoreTable(highList);
     }
 }

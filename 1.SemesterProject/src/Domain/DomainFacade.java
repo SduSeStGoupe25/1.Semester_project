@@ -7,6 +7,7 @@ package Domain;
 
 import Domain.Combat.Combat;
 import Domain.Entity.Player;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,8 +21,8 @@ public interface DomainFacade {
     Map<String, Room> getRooms();
     
     void saveGame();
-    void loadGame();
-    void getHighScore();
-    void addScore();
+    void loadGame(boolean newGame);
+    List<HighscoreWrapper> getHighScore();
+    void addScore(HighscoreWrapper hw);
     
 }
