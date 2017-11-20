@@ -21,12 +21,17 @@
    <children>
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
          <children>
-            <Button mnemonicParsing="false" text="Equip">
+            <Button fx:id="btnUse" mnemonicParsing="false" onAction="#UseItemButton" text="Use">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Drop">
+            <Button fx:id="btnEquip" mnemonicParsing="false" onAction="#EquipItemButton" text="Equip">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnDrop" mnemonicParsing="false" onAction="#DropItemButton" text="Drop">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
@@ -43,13 +48,13 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listInventory" onMouseClicked="#CheckSelectedItem" prefHeight="200.0" prefWidth="200.0" />
             <Label text="Equipped items">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listEquipedItems" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
    </children>
