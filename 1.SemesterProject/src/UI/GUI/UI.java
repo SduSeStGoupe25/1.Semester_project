@@ -18,57 +18,24 @@ import java.util.Map;
  *
  * @author rasmusstamm
  */
-public class UI implements DomainFacade{
-    
-    private transient static UI instance = null;
-    
-    @Override
-    public Room getCurrentRoom(){
-        return Game.getInstance().getCurrentRoom();
-    }
-    
-    @Override
-    public Player getPlayer(){
-        return Game.getInstance().getPlayer();
-    }
-    
-    @Override
-    public Combat getCombat(){
-        return Game.getInstance().getCombat();
-    }
-    
-    @Override
-    public Map<String, Room> getRooms(){
-        return Game.getInstance().getRooms();
+public class UI {
+
+    static UI ui = null;
+
+    private DomainFacade DF = Game.getInstance();
+
+    public UI() {
+
     }
 
-    @Override
-    public void addScore(HighscoreWrapper hw) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void loadGame(boolean newGame) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void saveGame() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<HighscoreWrapper> getHighScore() {
-        return getHighScore();
-    }
-    
-    public UI getInstance(){
-        if (instance == null) { 
-            instance = new UI(); 
+    public static UI getInstance() {
+        if (ui == null) {
+            ui = new UI();
         }
-        return instance;
+        return ui;
     }
     
-    
-    
+    public DomainFacade getGame(){
+        return DF;
+    }
 }

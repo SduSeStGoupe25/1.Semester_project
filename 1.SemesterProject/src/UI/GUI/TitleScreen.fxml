@@ -30,7 +30,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
             </Button>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" text="Load">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loadGame" text="Load">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
@@ -52,7 +52,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <ListView />
+            <ListView fx:id="listHighScores" />
          </children>
          <padding>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

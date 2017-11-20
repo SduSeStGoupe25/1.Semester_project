@@ -5,6 +5,7 @@
  */
 package UI.GUI;
 
+import Domain.DomainFacade;
 import Domain.Game;
 import java.io.IOException;
 import java.net.URL;
@@ -35,8 +36,6 @@ public class FXMLDocumentController implements Initializable {
     private GridPane gridPane;
     @FXML
     private AnchorPane defaultView;
-    
-    Game game;
     @FXML
     private Button btnNorth;
     @FXML
@@ -46,8 +45,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btnEast;
 
+    private DomainFacade game;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        gridPane.setPrefSize(800, 600);
+        game = UI.getInstance().getGame();
         borderPaneDefault = new BorderPane();
     }
 
@@ -93,51 +96,50 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void GoNorthButton(ActionEvent event) {
-        //game.setCurrentRoom(currentRoom);
-        updateButtons();
+        game.goRoom("north");
+        updateUI();
     }
 
     @FXML
     private void GoWestButton(ActionEvent event) {
-        updateButtons();
+        game.goRoom("west");
+        updateUI();
     }
 
     @FXML
     private void GoSouthButton(ActionEvent event) {
-        updateButtons();
+        game.goRoom("south");
+        updateUI();
     }
 
     @FXML
     private void GoEastButton(ActionEvent event) {
-        updateButtons();
+        game.goRoom("east");
+        updateUI();
     }
-    
-    private void updateButtons(){
-        if(game.getCurrentRoom().getExit("north") != null){
+
+    private void updateUI() {
+        if (game.getCurrentRoom().getExit("north") != null) {
             btnNorth.setDisable(false);
-        }
-        else{
+        } else {
             btnNorth.setDisable(true);
         }
-        
-        if(game.getCurrentRoom().getExit("east") != null){
+
+        if (game.getCurrentRoom().getExit("east") != null) {
             btnEast.setDisable(false);
-        }
-        else{
+        } else {
             btnEast.setDisable(true);
         }
-        
-        if(game.getCurrentRoom().getExit("south") != null){
+
+        if (game.getCurrentRoom().getExit("south") != null) {
             btnSouth.setDisable(false);
-        }
-        else{
+        } else {
             btnSouth.setDisable(true);
         }
-        
-        if(game.getCurrentRoom().getExit("west") != null){
+
+        if (game.getCurrentRoom().getExit("west") != null) {
             btnWest.setDisable(false);
-        }
-        else{
+        } else {
             btnWest.setDisable(true);
         }
     }

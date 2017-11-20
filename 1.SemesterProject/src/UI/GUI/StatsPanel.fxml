@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="150.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.StatsPanelController">
   <columnConstraints>
@@ -22,10 +23,13 @@
       <ProgressBar fx:id="hpBar" maxWidth="1.7976931348623157E308" onMouseEntered="#labelClick" prefWidth="200.0" progress="0.45" GridPane.columnIndex="1" />
       <ProgressBar fx:id="hungerBar" maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.45" style="color: green;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <ProgressBar maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.45" style="color: green;" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="xpBar" />
-      <Label fx:id="armourLabel" text="Defence" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label fx:id="armourLabel" text="Defence" GridPane.rowIndex="4" />
       <Label fx:id="attackLabel" text="Attack" GridPane.rowIndex="3" />
       <Label fx:id="hpLabel" onMouseEntered="#labelClick" text="Health" />
       <Label fx:id="hungerLabel" text="Hunger" GridPane.rowIndex="1" />
       <Label text="Experience" GridPane.rowIndex="2" fx:id="xpLabel" />
+      <Text fx:id="currentHealth" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Text fx:id="currentHunger" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Text fx:id="currentExp" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
    </children>
 </GridPane>

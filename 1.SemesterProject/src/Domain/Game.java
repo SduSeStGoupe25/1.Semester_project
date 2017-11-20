@@ -58,6 +58,7 @@ public class Game implements DomainFacade {
      */
     private Game() {
         player = new Player("Arthur", 100, 10, 10, 1, 1000, 0);
+        player.getItemInventory().addItem(createItem(itemNames[4][0],0), 1);
         rooms = new HashMap<>();
         createRooms();
         createNPC();
@@ -334,5 +335,24 @@ public class Game implements DomainFacade {
         highList.add(count, hw);
         highList.subList(10, highList.size()).clear();
         db.saveScoreTable(highList);
+    }
+
+    @Override
+    public void goRoom(String direction) {
+
+        Exit exit = getCurrentRoom().getExit(direction); //Instantiats a room next to the current room
+
+        if (exit == null) { //Chechs if the current room has a exit in this direction
+            System.out.println("There is no path here!");
+        }else if(exit.isLocked(getPlayer().getItemInventory())){
+            System.out.println("The door is locked");
+        }
+            else {  //If it has
+            Room nextRoom = getRoomMap().get(exit.nextRoom(getCurrentRoom().getName()));
+            setCurrentRoom(nextRoom); //Current room is now the nextRoom
+            getPlayer().addHunger(-3);
+            getCurrentRoom().spawnEnemies();
+            System.out.println(getCurrentRoom().getLongDescription()); //Prints a description of the room
+        }    
     }
 }

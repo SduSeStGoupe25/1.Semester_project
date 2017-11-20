@@ -5,6 +5,8 @@
  */
 package UI.GUI;
 
+import Domain.DomainFacade;
+import Domain.Game;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,12 +28,17 @@ public class TitleScreenController implements Initializable {
 
     @FXML
     private TextField nameBox;
+    @FXML
+    private ListView<?> listHighScores;
+    
+    private DomainFacade game;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        game = UI.getInstance().getGame();
         // TODO
     }    
 
@@ -43,6 +51,10 @@ public class TitleScreenController implements Initializable {
     @FXML
     private void exitGame(ActionEvent event) {
         System.exit(0);
+    }
+
+    @FXML
+    private void loadGame(ActionEvent event) {
     }
     
 }

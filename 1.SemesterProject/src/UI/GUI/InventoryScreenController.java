@@ -5,11 +5,13 @@
  */
 package UI.GUI;
 
+import Domain.DomainFacade;
 import Domain.Entity.Player;
 import Domain.Game;
 import Domain.Inventory.Consumeable;
 import Domain.Inventory.Inventory;
 import Domain.Inventory.Item;
+import Domain.Inventory.Weapon;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -45,28 +47,33 @@ public class InventoryScreenController implements Initializable {
     Item selectedItem;
 
     Player player;
+    
+    DomainFacade game;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        game = UI.getInstance().getGame();
+        player = game.getPlayer();
+        
         btnUse.setDisable(true);
         btnEquip.setDisable(true);
         btnDrop.setDisable(true);
-        items = FXCollections.observableArrayList(player.getItemInventory().getInventory());
-        equipableItems = FXCollections.observableArrayList(player.getItemInventory().getInventory());
         updateLists();
     }
 
     @FXML
     private void UseItemButton(ActionEvent event) {
-        //player.restoreHp(selectedItem.)   
+        Consumeable c = (Consumeable)(selectedItem);
+        player.restoreHp(c);
     }
 
     @FXML
     private void EquipItemButton(ActionEvent event) {
         player.equip(selectedItem);
+        updateLists();
     }
 
     @FXML
@@ -75,6 +82,8 @@ public class InventoryScreenController implements Initializable {
     }
 
     private void updateLists() {
+        items = FXCollections.observableArrayList(player.getItemInventory().getInventory());
+        equipableItems = FXCollections.observableArrayList(player.getEquipableInventory().getInventory());
         listInventory.setItems(items);
         listEquipedItems.setItems(equipableItems);
     }
@@ -87,6 +96,12 @@ public class InventoryScreenController implements Initializable {
             if (selectedItem instanceof Consumeable) {
                 btnUse.setDisable(false);
                 btnEquip.setDisable(true);
+                btnDrop.setDisable(false);
+            }
+            
+            if(selectedItem instanceof Weapon){
+                btnUse.setDisable(true);
+                btnEquip.setDisable(false);
                 btnDrop.setDisable(false);
             }
             

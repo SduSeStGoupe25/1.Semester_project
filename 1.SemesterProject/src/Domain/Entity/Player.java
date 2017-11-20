@@ -20,17 +20,18 @@ import Domain.Inventory.Weapon;
  */
 public class Player extends CharacterEntity {
 
-    private  Inventory itemInventory;
-    private  Inventory equipableInventory;
-    private  int gold;
+    private Inventory itemInventory;
+    private Inventory equipableInventory;
+    private int gold;
 
-    private  int exp;
-    private  LinkedHashMap<Integer, Quest> mainQuest;
-    private  HashMap<String, Quest> sideQuest;
-    private  int questsCompleted;
-    private  int hunger;
-    private  int expToLevelUp;
-    private  int scoreValue;
+    private int exp;
+    private LinkedHashMap<Integer, Quest> mainQuest;
+    private HashMap<String, Quest> sideQuest;
+    private int questsCompleted;
+    private int hunger;
+    private int maxHunger;
+    private int expToLevelUp;
+    private int scoreValue;
 
     /**
      * Player constructor
@@ -45,6 +46,7 @@ public class Player extends CharacterEntity {
         equipableInventory = new Inventory(3);
         questsCompleted = 0;
         this.hunger = 100;
+        maxHunger = hunger;
         this.expToLevelUp = 10;
         this.scoreValue = 0;
     }
@@ -67,6 +69,14 @@ public class Player extends CharacterEntity {
 
     public int getHunger() {
         return hunger;
+    }
+    
+    public int getMaxHunger(){
+        return maxHunger;
+    }
+
+    public double getHungerPercent() {
+        return maxHunger / hunger;
     }
 
     public void addHunger(int hunger) {
@@ -247,7 +257,6 @@ public class Player extends CharacterEntity {
         return false;
     }
 
-    
     public void levelUp() { //Function called to chech wether the player has enough experience to level up, and the fuctionality for leveling up
         setLevel(getLevel() + 1);
         super.setStats();
@@ -256,12 +265,23 @@ public class Player extends CharacterEntity {
         expToLevelUp += 5;
     }
 
-    void addExp(int exp) {
+    public void addExp(int exp) {
         this.exp += exp;
         if (exp >= expToLevelUp) {
             levelUp();
-            
 
+        }
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public double getExpPercent() {
+        if (exp != 0) {
+            return expToLevelUp / exp;
+        } else {
+            return 0;
         }
     }
 }

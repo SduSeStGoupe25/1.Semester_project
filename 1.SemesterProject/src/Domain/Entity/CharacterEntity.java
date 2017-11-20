@@ -1,6 +1,5 @@
 package Domain.Entity;
 
-
 /**
  *
  * @author Victor Gram
@@ -9,21 +8,20 @@ package Domain.Entity;
  *This is an abstract class that all characters in the game extends from.
  */
 public abstract class CharacterEntity {
-    private  String name;
-    private  int health;
-    private  int armor;
-    private  int level;
-    private  int maxHealth;
-    private  int baseHealth;
-    private  int baseAttack;
-    private  int attack;
+
+    private String name;
+    private int health;
+    private int armor;
+    private int level;
+    private int maxHealth;
+    private int baseHealth;
+    private int baseAttack;
+    private int attack;
     private int id; // 0 = CharacterEntity, 1 = NPC, 2 = Player, 3 = Shopkeeper, 4 = MovableNPC
 
     public CharacterEntity() {
     }
 
-    
-    
     //Constructor
     public CharacterEntity(String name, int health, int armor, int attack, int level, int id) {
         this.name = name;
@@ -38,17 +36,18 @@ public abstract class CharacterEntity {
     }
 
     /**
-     * Method used for calculating attributes if CharacterEntity is above level 1
+     * Method used for calculating attributes if CharacterEntity is above level
+     * 1
      */
-    protected void setStats(){
+    protected void setStats() {
         health = ((level - 1) * 10) + baseHealth - (maxHealth - health);
         attack = level * baseAttack;
         maxHealth = ((level - 1) * 10) + baseHealth;
     }
-    
+
     public abstract void onDeath();
 
-    public void changeHealth(int amount){
+    public void changeHealth(int amount) {
         health += amount;
     }
 
@@ -62,6 +61,10 @@ public abstract class CharacterEntity {
 
     public int getHealth() {
         return health;
+    }
+
+    public int getHealthPercent() {
+        return maxHealth / health;
     }
 
     public void setHealth(int health) {
@@ -91,7 +94,7 @@ public abstract class CharacterEntity {
     public void setLevel(int level) {
         this.level = level;
     }
-    
+
     public int getMaxHealth() {
         return maxHealth;
     }
@@ -103,8 +106,5 @@ public abstract class CharacterEntity {
     public int getId() {
         return id;
     }
-
-
-
 
 }

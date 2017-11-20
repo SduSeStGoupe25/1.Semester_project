@@ -25,4 +25,6 @@ public interface DomainFacade {
     void loadGame(boolean newGame);
     void addScore(HighscoreWrapper hw);
     
+    void goRoom(String direction);
+    
 }
