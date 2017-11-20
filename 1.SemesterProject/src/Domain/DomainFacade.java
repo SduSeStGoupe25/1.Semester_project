@@ -22,13 +22,7 @@ public interface DomainFacade {
     List<HighscoreWrapper> getHighScore();
     
     void saveGame();
-<<<<<<< HEAD
-    void loadGame();
-    void addScore();
-=======
     void loadGame(boolean newGame);
-    List<HighscoreWrapper> getHighScore();
     void addScore(HighscoreWrapper hw);
->>>>>>> origin/master
     
 }

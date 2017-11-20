@@ -315,11 +315,7 @@ public class Game implements DomainFacade {
     
     @Override
     public List<HighscoreWrapper> getHighScore() {
-<<<<<<< HEAD
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-=======
         return db.getHighscore();
->>>>>>> origin/master
     }
     
     @Override

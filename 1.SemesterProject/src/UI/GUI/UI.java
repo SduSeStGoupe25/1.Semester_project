@@ -43,12 +43,12 @@ public class UI implements DomainFacade{
     }
 
     @Override
-    public void addScore() {
+    public void addScore(HighscoreWrapper hw) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void loadGame() {
+    public void loadGame(boolean newGame) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
