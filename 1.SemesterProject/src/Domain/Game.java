@@ -25,7 +25,7 @@ import Domain.Inventory.Weapon;
  * This is the main class, that lets the user play the game. The game is played
  * by write in the console
  */
-public class Game {
+public class Game implements DomainFacade{
 
     private transient static Game instance = null;
     private transient PutHandler putHandler;  //Class responsible for user input and print output
@@ -298,5 +298,30 @@ public class Game {
             default:
                 return null;
         }
+    }
+
+    @Override
+    public Map<String, Room> getRooms() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveGame() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void loadGame() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void getHighScore() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addScore() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
