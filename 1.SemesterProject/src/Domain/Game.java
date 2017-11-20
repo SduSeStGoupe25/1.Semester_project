@@ -17,6 +17,7 @@ import Domain.Inventory.Item;
 import Domain.Inventory.Key;
 import Domain.Inventory.NormalItem;
 import Domain.Inventory.Weapon;
+import java.util.List;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -316,7 +317,7 @@ public class Game implements DomainFacade{
     }
 
     @Override
-    public void getHighScore() {
+    public List<HighscoreWrapper> getHighScore() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
