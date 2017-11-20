@@ -54,7 +54,7 @@
             <Image url="@environment_forestbackground1-1.png" />
          </image>
       </ImageView>
-      <GridPane GridPane.rowIndex="1">
+      <GridPane fx:id="playerstatGridPane" GridPane.rowIndex="1">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -67,9 +67,10 @@
          <children>
             <Label text="Attack" />
             <Label text="Defence" GridPane.rowIndex="1" />
+            <Label text="Equipped" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <GridPane fx:id="oppponentstatGridPane" GridPane.columnIndex="2" GridPane.rowIndex="1">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
