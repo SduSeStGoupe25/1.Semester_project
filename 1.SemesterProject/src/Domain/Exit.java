@@ -6,11 +6,12 @@
 package Domain;
 
 //@author Mikkel Pedersen
+import Arq.IExit;
 import Domain.Inventory.Inventory;
 import Domain.Inventory.Item;
 import Domain.Inventory.Key;
 
-public class Exit {
+public class Exit implements IExit{
 
     private String name1;
     private String name2;

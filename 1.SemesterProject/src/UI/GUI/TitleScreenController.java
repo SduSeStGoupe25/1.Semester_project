@@ -5,6 +5,7 @@
  */
 package UI.GUI;
 
+import Arq.IDomainData;
 import Domain.DomainFacade;
 import Domain.DomainGame;
 import java.io.IOException;
@@ -31,19 +32,19 @@ public class TitleScreenController implements Initializable {
     @FXML
     private ListView<?> listHighScores;
     
-    private DomainFacade game;
+    private UI ui;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        game = UI.getInstance().getGame();
-        // TODO
+        ui = UI.getInstance();
     }    
 
     @FXML
     private void startGame(ActionEvent event) throws IOException {
+        ui.injectDomainGame(ui.getDomainData().loadGame(false));
         Stage stage = (Stage)nameBox.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"))));
     }
@@ -55,6 +56,7 @@ public class TitleScreenController implements Initializable {
 
     @FXML
     private void loadGame(ActionEvent event) {
+        ui.injectDomainGame(ui.getDomainData().loadGame(true));
     }
     
 }

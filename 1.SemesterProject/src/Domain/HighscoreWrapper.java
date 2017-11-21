@@ -5,11 +5,13 @@
  */
 package Domain;
 
+import Arq.IHighscoreWrapper;
+
 /**
  *
  * @author Victor Gram
  */
-public class HighscoreWrapper implements Comparable<HighscoreWrapper> {
+public class HighscoreWrapper implements Comparable<HighscoreWrapper>, IHighscoreWrapper {
 
     private int score;
     private String name;

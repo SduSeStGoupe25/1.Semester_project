@@ -1,5 +1,10 @@
 package Domain.Combat;
 
+import Arq.ICharacterEntity;
+import Arq.ICombat;
+import Arq.IDomainGame;
+import Arq.IPlayer;
+import Arq.IRoom;
 import Domain.Entity.CharacterEntity;
 import Domain.Entity.Player;
 import Domain.DomainGame;
@@ -9,7 +14,7 @@ import Domain.Room;
  *
  * This class is responsible for the combat between the player and a opponent
  */
-public class Combat {
+public class Combat implements ICombat{
 
     private CharacterEntity opponent; //The characterEntity to fight against 
     private Room currentRoom; //The current room
@@ -39,7 +44,7 @@ public class Combat {
      * This method is our combat loop, where all combat mechanics take place.
      */
     public CombatResponse combatLoop(int action) {
-        CombatResponse cr = new CombatResponse(0, 0, player, opponent);
+        CombatResponse cr = new CombatResponse(0, 0, running, player, opponent);
         switch (action) {
             case 0:
                 cr.setPlayerAttack(lightAttack());
@@ -66,7 +71,7 @@ public class Combat {
         } else {
             
             game.moveAllNPC(); //At the end of combat we call moveAllNPC, to make all our moveableNPC's move around
-            game.getPlayer().addHunger(-8); //At the end of combat the player's hungervalue decreases
+            player.addHunger(-8); //At the end of combat the player's hungervalue decreases
         }
         return cr;
     }

@@ -5,6 +5,9 @@
  */
 package UI.GUI;
 
+import Arq.IDomainGame;
+import Arq.IItem;
+import Arq.IPlayer;
 import Domain.DomainFacade;
 import Domain.Entity.Player;
 import Domain.DomainGame;
@@ -44,18 +47,18 @@ public class InventoryScreenController implements Initializable {
     ObservableList<Item> items;
     ObservableList<Item> equipableItems;
     
-    Item selectedItem;
+    IItem selectedItem;
 
-    Player player;
+    IPlayer player;
     
-    DomainFacade game;
+    IDomainGame game;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        game = UI.getInstance().getGame();
+        game = UI.getInstance().getDomainGame();
         player = game.getPlayer();
         
         btnUse.setDisable(true);
@@ -67,45 +70,45 @@ public class InventoryScreenController implements Initializable {
     @FXML
     private void UseItemButton(ActionEvent event) {
         Consumeable c = (Consumeable)(selectedItem);
-        player.restoreHp(c);
+        //player.restoreHp(c);
     }
 
     @FXML
     private void EquipItemButton(ActionEvent event) {
-        player.equip(selectedItem);
-        updateLists();
+        //player.equip(selectedItem);
+        //updateLists();
     }
 
     @FXML
     private void DropItemButton(ActionEvent event) {
-        player.getItemInventory().removeItem(listInventory.getSelectionModel().getSelectedItem(), 1);
+        //player.getItemInventory().removeItem(listInventory.getSelectionModel().getSelectedItem(), 1);
     }
 
     private void updateLists() {
-        items = FXCollections.observableArrayList(player.getItemInventory().getInventory());
-        equipableItems = FXCollections.observableArrayList(player.getEquipableInventory().getInventory());
-        listInventory.setItems(items);
-        listEquipedItems.setItems(equipableItems);
+//        items = FXCollections.observableArrayList(player.getItemInventory().getInventory());
+//        equipableItems = FXCollections.observableArrayList(player.getEquipableInventory().getInventory());
+//        listInventory.setItems(items);
+//        listEquipedItems.setItems(equipableItems);
     }
 
     @FXML
     private void CheckSelectedItem(MouseEvent event) {
-        selectedItem = listInventory.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            
-            if (selectedItem instanceof Consumeable) {
-                btnUse.setDisable(false);
-                btnEquip.setDisable(true);
-                btnDrop.setDisable(false);
-            }
-            
-            if(selectedItem instanceof Weapon){
-                btnUse.setDisable(true);
-                btnEquip.setDisable(false);
-                btnDrop.setDisable(false);
-            }
-            
-        }
+//        selectedItem = listInventory.getSelectionModel().getSelectedItem();
+//        if (selectedItem != null) {
+//            
+//            if (selectedItem instanceof Consumeable) {
+//                btnUse.setDisable(false);
+//                btnEquip.setDisable(true);
+//                btnDrop.setDisable(false);
+//            }
+//            
+//            if(selectedItem instanceof Weapon){
+//                btnUse.setDisable(true);
+//                btnEquip.setDisable(false);
+//                btnDrop.setDisable(false);
+//            }
+//            
+//        }
     }
 
 }

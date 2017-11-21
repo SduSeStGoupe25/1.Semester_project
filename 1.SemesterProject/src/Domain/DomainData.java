@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Domain;
 
 import Arq.IData;
@@ -13,34 +12,51 @@ import Arq.IHighscoreWrapper;
 import java.util.List;
 
 /**
- * 
+ *
  * @author madsd
  */
-public class DomainData implements IDomainData{
+public class DomainData implements IDomainData {
+
+    private IData data;
 
     @Override
     public void addNewScore(String name, int score) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HighscoreWrapper hw = new HighscoreWrapper(score, name);
+        List<IHighscoreWrapper> highList = getHighScoreTable();
+
+        int count = 0;
+        for (IHighscoreWrapper highscoreWrapper : highList) {
+            int compareValue = hw.compareTo((HighscoreWrapper)highscoreWrapper);
+
+            if (compareValue == 0 || compareValue == 1) {
+                break;
+            }
+            count++;
+        }
+        highList.add(count, (IHighscoreWrapper)hw);
+        highList.subList(10, highList.size()).clear();
+        data.saveScoreTable(highList);
     }
 
     @Override
     public void saveGame() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //data.saveGame(DomainGame.getInstance());
+        data.saveGame((IDomainGame)DomainGame.getInstance());
     }
 
     @Override
     public IDomainGame loadGame(boolean newGame) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return DomainGame.getInstance().initialize(data.loadGame(newGame));
     }
 
     @Override
     public List<IHighscoreWrapper> getHighScoreTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return data.getHighscore();
     }
 
     @Override
     public void injectData(IData data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.data = data;
     }
 
 }

@@ -5,10 +5,17 @@
  */
 package Arq;
 
+import java.util.Map;
+
 /**
  *
  * @author madsd
  */
 public interface IDomainGame {
+    IPlayer getPlayer();
+    IRoom getCurrentRoom();
+    //ICombat getCombat();
+    
+    Map<String, IRoom> getRoomMap();
     
 }

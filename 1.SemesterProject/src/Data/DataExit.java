@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Arq;
+package Data;
+
+import Arq.IExit;
 
 /**
  *
  * @author madsd
  */
-public interface ICombatResponse {
-    int getPlayerAttack();
-    int getOpponentAttack();
-    boolean getIsRunning();
-    ICharacterEntity getOpponent();
+public class DataExit implements IExit{
+
+    private String name1;
+    private String name2;
+    private boolean locked;
+    private int lockID;
 }

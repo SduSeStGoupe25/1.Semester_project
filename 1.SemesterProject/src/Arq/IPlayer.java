@@ -38,4 +38,6 @@ public interface IPlayer extends ICharacterEntity{
     IQuest getCurrentMainQuest();
 
     int getExp();
+    
+    double getExpPercent();
 }

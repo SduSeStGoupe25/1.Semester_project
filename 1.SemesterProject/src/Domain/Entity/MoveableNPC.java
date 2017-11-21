@@ -55,10 +55,10 @@ public class MoveableNPC extends NPC implements Moveable {
     }
 
     private boolean moveNPC(String nameCurrentRoom, String direction) {
-        Room currentRoom = DomainGame.getInstance().getRoomMap().get(nameCurrentRoom);
+        Room currentRoom = (Room)DomainGame.getInstance().getRoomMap().get(nameCurrentRoom);
         if (currentRoom.getExit(direction) != null && allowedRooms.contains(currentRoom.getExit(direction).nextRoom(currentRoom.getName()))) {
             currentRoom.removeCharacterFromRoom(this);
-            DomainGame.getInstance().getRoomMap().get(currentRoom.getExit(direction).nextRoom(currentRoom.getName())).addCharacterToRoom(this);
+            ((Room)DomainGame.getInstance().getRoomMap().get(currentRoom.getExit(direction).nextRoom(currentRoom.getName()))).addCharacterToRoom(this);
             return true;
         }
         return false;

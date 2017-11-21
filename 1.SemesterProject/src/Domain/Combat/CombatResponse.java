@@ -15,12 +15,14 @@ import Domain.Entity.Player;
 public class CombatResponse {
     private int playerAttack;
     private int opponentAttack;
+    private boolean isRunning;
     private Player player;
     private CharacterEntity opponent;
 
-    public CombatResponse(int playerAttack, int opponentAttack, Player player, CharacterEntity ce) {
+    public CombatResponse(int playerAttack, int opponentAttack, boolean isRunning, Player player, CharacterEntity ce) {
         this.playerAttack = playerAttack;
         this.opponentAttack = opponentAttack;
+        this.isRunning = isRunning;
         this.player = player;
         opponent = ce;
     }
@@ -47,6 +49,14 @@ public class CombatResponse {
 
     public CharacterEntity getOpponent() {
         return opponent;
+    }
+
+    public boolean isIsRunning() {
+        return isRunning;
+    }
+
+    public void setIsRunning(boolean isRunning) {
+        this.isRunning = isRunning;
     }
     
     

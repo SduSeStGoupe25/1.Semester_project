@@ -1,5 +1,10 @@
 package Domain;
 
+import Arq.ICharacterEntity;
+import Arq.IExit;
+import Arq.IItem;
+import Arq.INPC;
+import Arq.IRoom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -19,13 +24,13 @@ import Domain.Inventory.Item;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-public class Room {
+public class Room implements IRoom{
 
     private String name;
     private String description; //The room description, printed upon entering
     private HashMap<String, Exit> exits;
-    private List<CharacterEntity> charactersInRoom = new ArrayList<>(); //ArrayList containing the NPC's in the room
-    private List<Item> items = new ArrayList<>(); //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
+    private List<CharacterEntity> charactersInRoom; //ArrayList containing the NPC's in the room
+    private List<Item> items; //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
     private HashSet<String> allowedMonsters;
 
     public Room(String name, String description) {
@@ -98,8 +103,10 @@ public class Room {
         return exits.get(direction);
     }
 
-    public List<CharacterEntity> getCharactersInRoom() { //Returns characters in the room
-        return charactersInRoom;
+    @Override
+    public List<ICharacterEntity> getCharactersInRoom() { //Returns characters in the room
+        throw new UnsupportedOperationException("Not supportet");
+        //return charactersInRoom;
     }
 
     public void addCharacterToRoom(CharacterEntity ce) { //Adds characters to the room
@@ -135,7 +142,7 @@ public class Room {
                     count++;
 
                 }
-                this.charactersInRoom.add(new NPC(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 20, "Nonono"));
+                this.charactersInRoom.add((new NPC(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 20, "Nonono")));
 
             }
             if ((int) (Math.random() * 2) == 0) {
@@ -160,6 +167,16 @@ public class Room {
 
         }
 
+    }
+
+    @Override
+    public Set<String> getAllowesMonsters() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<IItem> getItemList() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

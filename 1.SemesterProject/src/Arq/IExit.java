@@ -9,9 +9,6 @@ package Arq;
  *
  * @author madsd
  */
-public interface ICombatResponse {
-    int getPlayerAttack();
-    int getOpponentAttack();
-    boolean getIsRunning();
-    ICharacterEntity getOpponent();
+public interface IExit {
+    
 }

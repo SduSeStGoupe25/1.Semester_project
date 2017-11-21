@@ -5,13 +5,17 @@ import Arq.ICharacterEntity;
 import Arq.IConsumeable;
 import Arq.IData;
 import Arq.IDomainGame;
+import Arq.IExit;
 import Arq.IHighscoreWrapper;
+import Arq.IInventory;
 import Arq.IItem;
 import Arq.IKey;
 import Arq.IMoveableNPC;
 import Arq.INPC;
 import Arq.INormalItem;
 import Arq.IPlayer;
+import Arq.IQuest;
+import Arq.IRoom;
 import Arq.IShopkeeper;
 import Arq.IWeapon;
 import com.google.gson.Gson;
@@ -105,21 +109,80 @@ public class JSONDatabase implements IData {
             Gson gson = new GsonBuilder()
                     .registerTypeHierarchyAdapter(ICharacterEntity.class, new CharacterEntityDeserializer()) // use read CharacterEntity correct
                     .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
+//                    .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer())
+//                    .registerTypeHierarchyAdapter(IRoom.class, new RoomDeserializer())
                     .create();
-
+            
             //Creates a game instance from the json string
-            IDomainGame game = gson.fromJson(jsonReader, IDomainGame.class);
-
+            DataGame game = gson.fromJson(jsonReader, DataGame.class);
+            System.out.println("GAME IN LOAD");
+            System.out.println(game.toString());
+            System.out.println(game == null);
+            
             System.out.println("Done loading");
 
             //Returns game
+            System.out.println("GAME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!GAME");
+            System.out.println(game);
             return game;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         //Returns null if game not was instantiated
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NULL");
         return null;
+    }
+
+    private class RoomDeserializer implements JsonDeserializer<IRoom> {
+
+        @Override
+        public IRoom deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
+            Gson g = new GsonBuilder()
+                    .registerTypeHierarchyAdapter(ICharacterEntity.class, new CharacterEntityDeserializer()) // use read CharacterEntity correct
+                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
+                    .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer())
+                    .registerTypeHierarchyAdapter(IExit.class, new ExitDeserializer())
+                    .create();
+            return (DataRoom) g.fromJson(je, DataRoom.class);
+        }
+
+    }
+
+    private class InventoryDeserializer implements JsonDeserializer<IInventory> {
+
+        @Override
+        public IInventory deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
+            Gson g = new GsonBuilder()
+                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
+                    .create();
+            return (DataInventory) g.fromJson(je, DataInventory.class);
+        }
+
+    }
+
+    private class QuestDeserializer implements JsonDeserializer<IQuest> {
+
+        @Override
+        public IQuest deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
+            Gson g = new GsonBuilder()
+                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
+                    .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer())
+                    .create();
+            return (DataQuest) g.fromJson(je, DataQuest.class);
+        }
+
+    }
+
+    private class ExitDeserializer implements JsonDeserializer<IExit> {
+
+        @Override
+        public IExit deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
+            Gson g = new GsonBuilder()
+                    .create();
+            return (DataExit) g.fromJson(je, DataExit.class);
+        }
+
     }
 
     /**
@@ -130,17 +193,21 @@ public class JSONDatabase implements IData {
 
         @Override
         public ICharacterEntity deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
-
-            Gson g = new Gson();
-
+            Gson g = new GsonBuilder()
+//                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
+//                    .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer())
+//                    .registerTypeHierarchyAdapter(IQuest.class, new QuestDeserializer())
+                    .create();
             //Checks if type is player
-            if (type.equals(IPlayer.class)) {
+            if (type.equals(DataPlayer.class)) {
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 //Returns a instance of player
-                return (IPlayer) g.fromJson(je, IPlayer.class);
+                System.out.println( g.fromJson(je, DataPlayer.class));
+                return (IPlayer) g.fromJson(je, DataPlayer.class);
             }
 
             //Creates an NPC so it is possible to access it id
-            INPC ce = (INPC) g.fromJson(je, INPC.class);
+            DataNPC ce = (DataNPC) g.fromJson(je, DataNPC.class);
 
             //Determines type of CharacterEntity ce is
             switch (ce.getId()) {
@@ -149,10 +216,10 @@ public class JSONDatabase implements IData {
                     return ce;
                 case 3:
                     //Returns instance of Shopkeeper
-                    return (IShopkeeper) g.fromJson(je, IShopkeeper.class);
+                    return (DataShopkeeper) g.fromJson(je, DataShopkeeper.class);
                 case 4:
                     //Returns instance of MoveableNPC
-                    return (IMoveableNPC) g.fromJson(je, IMoveableNPC.class);
+                    return (DataMoveableNPC) g.fromJson(je, DataMoveableNPC.class);
             }
             return null;
         }
@@ -160,34 +227,42 @@ public class JSONDatabase implements IData {
     }
 
     /**
-     * Custom deserializer for Item. Is used to deserialize
-     * Item correctly to right type.
+     * Custom deserializer for Item. Is used to deserialize Item correctly to
+     * right type.
      */
     private class ItemDeserializer implements JsonDeserializer<IItem> {
+
+        private class tmpItem extends DataItem {
+
+            public tmpItem(String name, int sellValue, int count, int MAX_COUNT, int id) {
+                super(name, sellValue, count, MAX_COUNT, id);
+            }
+
+        }
 
         @Override
         public IItem deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
             Gson g = new Gson();
-            
-            int id = ((ICharacterEntity)g.fromJson(je, ICharacterEntity.class)).getId();
+
+            int id = g.fromJson(je, tmpItem.class).getId();
 
             //Determinds what type of Item the JsonElement is
             switch (id) {
                 case 0:
                     //Returns instance of Armor
-                    return (IArmor) g.fromJson(je, IArmor.class);
+                    return (DataArmor) g.fromJson(je, DataArmor.class);
                 case 1:
                     //Returns instance of Consumeable
-                    return (IConsumeable) g.fromJson(je, IConsumeable.class);
+                    return (DataConsumeable) g.fromJson(je, DataConsumeable.class);
                 case 2:
                     //Returns instance of Key
-                    return (IKey) g.fromJson(je, IKey.class);
+                    return (DataKey) g.fromJson(je, DataKey.class);
                 case 3:
                     //Returns instance of NormalItem
-                    return (INormalItem) g.fromJson(je, INormalItem.class);
+                    return (DataNormalItem) g.fromJson(je, DataNormalItem.class);
                 case 4:
                     //Returns instance of Weapon
-                    return (IWeapon) g.fromJson(je, IWeapon.class);
+                    return (DataWeapon) g.fromJson(je, DataWeapon.class);
             }
             return null;
         }
@@ -231,8 +306,8 @@ public class JSONDatabase implements IData {
     }
 
     /**
-     *  Called to save an generic type to a given file
-     * 
+     * Called to save an generic type to a given file
+     *
      * @param <E> the type
      * @param o the object to be saved
      * @param file the file o has to be saved in
@@ -255,7 +330,8 @@ public class JSONDatabase implements IData {
     }
 
     /**
-     * Called to check if the files that are needed exists, otherwise creates them
+     * Called to check if the files that are needed exists, otherwise creates
+     * them
      */
     private void loadDatabase() {
         if (!fileHigh.exists()) {
