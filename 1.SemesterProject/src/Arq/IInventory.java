@@ -5,13 +5,13 @@
  */
 package Arq;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author madsd
  */
 public interface IInventory {
-    List<IItem> getInventory();
+    ArrayList<IItem> getInventory();
     int getMaxSlots();
 }

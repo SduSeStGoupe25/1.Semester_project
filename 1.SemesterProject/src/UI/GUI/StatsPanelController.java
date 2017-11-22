@@ -54,7 +54,7 @@ public class StatsPanelController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("UI");
         System.out.println(UI.getInstance());
-        player = UI.getInstance().getDomainGame().getPlayer();
+//        player = UI.getInstance().getDomainGame().getPlayer();
         System.out.println(player);
         hpBar.setStyle("-fx-accent: green");
         

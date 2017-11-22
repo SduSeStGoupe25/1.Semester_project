@@ -8,7 +8,6 @@ package Data;
 import Arq.IInventory;
 import Arq.IItem;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -20,7 +19,7 @@ class DataInventory implements IInventory {
     private int maxSlots;
 
     @Override
-    public List<IItem> getInventory() {
+    public ArrayList<IItem> getInventory() {
         return inventory;
     }
 

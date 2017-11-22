@@ -109,8 +109,8 @@ public class JSONDatabase implements IData {
             Gson gson = new GsonBuilder()
                     .registerTypeHierarchyAdapter(ICharacterEntity.class, new CharacterEntityDeserializer()) // use read CharacterEntity correct
                     .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
-//                    .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer())
-//                    .registerTypeHierarchyAdapter(IRoom.class, new RoomDeserializer())
+                    .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer())
+                    .registerTypeHierarchyAdapter(IRoom.class, new RoomDeserializer())
                     .create();
             
             //Creates a game instance from the json string
@@ -194,16 +194,16 @@ public class JSONDatabase implements IData {
         @Override
         public ICharacterEntity deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
             Gson g = new GsonBuilder()
-//                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
-//                    .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer())
-//                    .registerTypeHierarchyAdapter(IQuest.class, new QuestDeserializer())
+                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
+                    .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer())
+                    .registerTypeHierarchyAdapter(IQuest.class, new QuestDeserializer())
                     .create();
             //Checks if type is player
             if (type.equals(DataPlayer.class)) {
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 //Returns a instance of player
                 System.out.println( g.fromJson(je, DataPlayer.class));
-                return (IPlayer) g.fromJson(je, DataPlayer.class);
+                return (DataPlayer) g.fromJson(je, DataPlayer.class);
             }
 
             //Creates an NPC so it is possible to access it id

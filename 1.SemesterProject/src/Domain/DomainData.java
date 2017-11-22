@@ -46,7 +46,11 @@ public class DomainData implements IDomainData {
 
     @Override
     public IDomainGame loadGame(boolean newGame) {
-        return DomainGame.getInstance().initialize(data.loadGame(newGame));
+        GameMapper g = new GameMapper();
+        System.out.println(g.map(data.loadGame(newGame)).toString());
+        System.out.println("TEST MAP OVER");
+    return null;
+        //return DomainGame.getInstance().initialize(data.loadGame(newGame));
     }
 
     @Override

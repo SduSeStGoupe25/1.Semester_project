@@ -279,7 +279,7 @@ class Player extends CharacterEntity implements IPlayer{
     }
 
     @Override
-    public Map<Integer, IQuest> getMainQuest() {
+    public LinkedHashMap<Integer, IQuest> getMainQuest() {
         return mainQuest;
     }
 

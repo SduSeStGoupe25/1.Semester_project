@@ -5,6 +5,7 @@
  */
 package Arq;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +18,7 @@ public interface IRoom {
 
     Set<String> getAllowesMonsters();
 
-    List<IItem> getItemList();
+    ArrayList<IItem> getItemList();
 
     String getShortDescription();
 

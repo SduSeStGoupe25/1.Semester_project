@@ -67,12 +67,12 @@ public class DataPlayer extends DataCharactorEntity implements IPlayer {
     }
 
     @Override
-    public Map<Integer, IQuest> getMainQuest() {
+    public LinkedHashMap<Integer, IQuest> getMainQuest() {
         return mainQuest;
     }
 
     @Override
-    public Map<String, IQuest> getSideQuest() {
+    public HashMap<String, IQuest> getSideQuest() {
         return sideQuest;
     }
 

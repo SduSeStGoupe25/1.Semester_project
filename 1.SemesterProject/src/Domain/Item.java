@@ -31,6 +31,13 @@ abstract class Item implements IItem{
     }
 
     @Override
+    public String toString() {
+        return "Item{" + "name=" + name + ", sellValue=" + sellValue + ", count=" + count + ", MAX_COUNT=" + MAX_COUNT + ", id=" + id + '}';
+    }
+    
+    
+
+    @Override
     public String getName() {
         return name;
     }

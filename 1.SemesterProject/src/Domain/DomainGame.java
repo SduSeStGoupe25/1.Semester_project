@@ -23,6 +23,13 @@ import java.util.logging.Logger;
  */
 public class DomainGame implements IDomainGame {
 
+    @Override
+    public String toString() {
+        return "DomainGame{" + "currentRoom=" + currentRoom + ", player=" + player + ", combat=" + combat + ", rooms=" + rooms + ", finished=" + finished + ", itemNames=" + itemNames + '}';
+    }
+
+    
+    
     private transient static DomainGame instance = null;
     // private transient PutHandler putHandler;  //Class responsible for user input and print output
     private String currentRoom;       //The current room

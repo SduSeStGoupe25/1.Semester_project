@@ -69,7 +69,7 @@ class Quest implements IQuest{
     }
 
     @Override
-    public List<IItem> getItems() {
+    public ArrayList<IItem> getItems() {
         return items;
     }
 

@@ -5,7 +5,7 @@
  */
 package Arq;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,7 +21,7 @@ public interface IQuest {
 
     int getExp();
 
-    List<IItem> getItems();
+    ArrayList<IItem> getItems();
 
     String getGiver();
 }

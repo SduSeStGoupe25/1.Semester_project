@@ -26,7 +26,7 @@ class Room implements IRoom {
     private String description; //The room description, printed upon entering
     private HashMap<String, IExit> exits;
     private List<ICharacterEntity> charactersInRoom; //ArrayList containing the NPC's in the room
-    private List<IItem> items; //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
+    private ArrayList<IItem> items; //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
     private HashSet<String> allowedMonsters;
 
     Room(String name, String description) {
@@ -149,11 +149,11 @@ class Room implements IRoom {
     }
 
     @Override
-    public List<IItem> getItemList() {
+    public ArrayList<IItem> getItemList() {
         return items;
     }
 
-    void setItemList(List<IItem> items) {
+    void setItemList(ArrayList<IItem> items) {
         this.items = items;
     }
 

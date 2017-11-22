@@ -5,7 +5,8 @@
  */
 package Arq;
 
-import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  *
@@ -21,9 +22,9 @@ public interface IPlayer extends ICharacterEntity {
 
     int getExp();
 
-    Map<Integer, IQuest> getMainQuest();
+    LinkedHashMap<Integer, IQuest> getMainQuest();
 
-    Map<String, IQuest> getSideQuest();
+    HashMap<String, IQuest> getSideQuest();
 
     int getQuestsCompleted();
 

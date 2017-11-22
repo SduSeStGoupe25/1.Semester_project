@@ -2,6 +2,31 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/GameMapper.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/StatsPanelController.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/MoveableNPC.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Key.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Data/JSONDatabase.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Shopkeeper.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/NPC.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Consumeable.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/NormalItem.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/CharacterEntity.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Exit.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/IShopkeeper.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Room.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Data/DataShopkeeper.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/DomainData.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/IRoom.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/IDomainGame.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Data/DataPlayer.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Data/DataGame.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/DomainGame.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/InventoryScreenController.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/IQuest.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Weapon.java</file>
+            <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Player.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -9,6 +9,7 @@ import Arq.ICharacterEntity;
 import Arq.IExit;
 import Arq.IItem;
 import Arq.IRoom;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -24,7 +25,7 @@ class DataRoom implements IRoom {
     private String description;
     private HashMap<String, IExit> exits;
     private List<ICharacterEntity> charactersInRoom;
-    private List<IItem> items;
+    private ArrayList<IItem> items;
     private HashSet<String> allowedMonsters;
 
     @Override
@@ -33,7 +34,7 @@ class DataRoom implements IRoom {
     }
 
     @Override
-    public List<IItem> getItemList() {
+    public ArrayList<IItem> getItemList() {
         return items;
     }
 

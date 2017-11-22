@@ -11,6 +11,6 @@ import java.util.Map;
  *
  * @author madsd
  */
-public interface IShopkeeper extends ICharacterEntity{
+public interface IShopkeeper extends INPC{
     Map<String, IItem> getItemsToSell();
 }
