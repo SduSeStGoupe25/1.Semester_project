@@ -1,16 +1,15 @@
-package Domain.Entity;
+package Domain;
 
 import Arq.ICharacterEntity;
-import Domain.Inventory.Inventory;
-import Domain.Entity.CharacterEntity;
+import Arq.IInventory;
+import Arq.IItem;
+import Arq.IPlayer;
+import Arq.IQuest;
+import Domain.CharacterEntity;
 import Domain.DomainGame;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import Domain.Inventory.Armor;
-import Domain.Inventory.Consumeable;
-import Domain.Inventory.Item;
-import Domain.Inventory.Stash;
-import Domain.Inventory.Weapon;
+import java.util.Map;
 
 /**
  *
@@ -19,15 +18,15 @@ import Domain.Inventory.Weapon;
 /**
  * This class defines a Player
  */
-public class Player extends CharacterEntity {
+class Player extends CharacterEntity implements IPlayer{
 
     private Inventory itemInventory;
     private Inventory equipableInventory;
     private int gold;
 
     private int exp;
-    private LinkedHashMap<Integer, Quest> mainQuest;
-    private HashMap<String, Quest> sideQuest;
+    private LinkedHashMap<Integer, IQuest> mainQuest;
+    private HashMap<String, IQuest> sideQuest;
     private int questsCompleted;
     private int hunger;
     private int maxHunger;
@@ -37,12 +36,12 @@ public class Player extends CharacterEntity {
     /**
      * Player constructor
      */
-    public Player(String name, int health, int armor, int attack, int level, int gold, int exp) {
+    Player(String name, int health, int armor, int attack, int level, int gold, int exp) {
         super(name, health, armor, attack, level, 2);
         this.gold = gold;
 
         this.exp = exp;
-        mainQuest = Stash.getQuestMap();
+        mainQuest = null;//Stash.getQuestMap();
         itemInventory = new Inventory(20);
         equipableInventory = new Inventory(3);
         questsCompleted = 0;
@@ -52,35 +51,11 @@ public class Player extends CharacterEntity {
         this.scoreValue = 0;
     }
 
-    public int getScoreValue() {
-        return scoreValue;
-    }
-
-    public void setScoreValue(int scoreValue) {
-        this.scoreValue = scoreValue;
-    }
-
-    public int getExpToLevelUp() {
-        return expToLevelUp;
-    }
-
-    public void setExpToLevelUp(int expToLevelup) {
-        this.expToLevelUp = expToLevelup;
-    }
-
-    public int getHunger() {
-        return hunger;
-    }
-    
-    public int getMaxHunger(){
-        return maxHunger;
-    }
-
-    public double getHungerPercent() {
+    double getHungerPercent() {
         return maxHunger / hunger;
     }
 
-    public void addHunger(int hunger) {
+    void addHunger(int hunger) {
         if (this.hunger + hunger >= 100) {
             this.hunger = 100;
         } else if (this.hunger + hunger < 0) {
@@ -97,9 +72,9 @@ public class Player extends CharacterEntity {
      *
      * @return Returns the attackValue as an integer
      */
-    public int getAttackValue() {
+    int getAttackValue() {
         int attackValue = getAttack();
-        for (Item item : equipableInventory.getInventory()) { //Goes through our equipableInventory, to see if we have a weapon equipped
+        for (IItem item : equipableInventory.getInventory()) { //Goes through our equipableInventory, to see if we have a weapon equipped
             if (item instanceof Weapon) {
                 attackValue += ((Weapon) item).getAttackValue(); //If we have a weapon equipped, it gets added to our attackValue
                 break;
@@ -114,9 +89,9 @@ public class Player extends CharacterEntity {
      *
      * @return Returns the armorValue as an integer
      */
-    public int getArmorValue() {
+    int getArmorValue() {
         int armorValue = getAttack();
-        for (Item item : equipableInventory.getInventory()) { //Goes through our equipableInventory and checks if we have any armor equipped
+        for (IItem item : equipableInventory.getInventory()) { //Goes through our equipableInventory and checks if we have any armor equipped
             if (item instanceof Armor) {
                 armorValue += ((Armor) item).getArmorValue(); //If we have any armor equipped, it gets added to our armorValue
                 break;
@@ -125,23 +100,11 @@ public class Player extends CharacterEntity {
         return armorValue;
     }
 
-    public Inventory getItemInventory() {
-        return itemInventory;
-    }
-
-    public Inventory getEquipableInventory() {
-        return equipableInventory;
-    }
-
-    public int getGold() {
-        return gold;
-    }
-
-    public void addGold(int amount) {
+    void addGold(int amount) {
         gold += amount;
     }
 
-    public void removeGold(int amount) {
+    void removeGold(int amount) {
         gold -= amount;
     }
 
@@ -154,13 +117,13 @@ public class Player extends CharacterEntity {
      * @return If the item was a weapon or a piece of armor, and it was
      * equipped, it returns true. If item did not get equipped, returns false
      */
-    public boolean equip(Item item) {
-        if (itemInventory.removeItem(item, 1)) { //Removes the item that we want to equip from our inventory
+    boolean equip(Item item) {
+        if (itemInventory.removeItem(((Item) item), 1)) { //Removes the item that we want to equip from our inventory
             if (item instanceof Weapon) { //Checks if the item is a weapon
-                for (Item i : equipableInventory.getInventory()) { //Searches through our equipableInventory
+                for (IItem i : equipableInventory.getInventory()) { //Searches through our equipableInventory
                     if (i instanceof Weapon) {  //If we find a weapon that is currently equipped, it does:
-                        itemInventory.addItem(i, 1);                //Adds the equipped item to our itemInventory
-                        equipableInventory.removeItem(i, 1);        //Removes the equipped item from our equipableInventory
+                        itemInventory.addItem((Item)i, 1);                //Adds the equipped item to our itemInventory
+                        equipableInventory.removeItem((Item)i, 1);        //Removes the equipped item from our equipableInventory
                         equipableInventory.addItem(item, 1);        //Adds the new item to our equipableInventory
                         return true;
                     }
@@ -168,10 +131,10 @@ public class Player extends CharacterEntity {
                 equipableInventory.addItem(item, 1); //If we didn't have a weapon equipped beforehand, it adds the new item to our equipableInventory
                 return true;
             } else if (item instanceof Armor) { //Checks if the item is a piece of armor
-                for (Item i : equipableInventory.getInventory()) { //Searches through our equipableInventory
+                for (IItem i : equipableInventory.getInventory()) { //Searches through our equipableInventory
                     if (i instanceof Armor) {   //If we find a piece of armor that is currently equipped, then do:
-                        itemInventory.addItem(i, 1);                //Adds the already equipped armor to our itemInventory
-                        equipableInventory.removeItem(i, 1);        //Removes the equipped item from our equipableInventory
+                        ((Inventory) itemInventory).addItem((Item)i, 1);                //Adds the already equipped armor to our itemInventory
+                        equipableInventory.removeItem((Item)i, 1);        //Removes the equipped item from our equipableInventory
                         equipableInventory.addItem(item, 1);        //Adds the new item to our equipableInventory
                         return true;
                     }
@@ -191,7 +154,7 @@ public class Player extends CharacterEntity {
      * @return Returns true if health restoring was successful, otherwise
      * returns false
      */
-    public boolean restoreHp(Item item) {
+    boolean restoreHp(Item item) {
         if (!(getHealth() >= getMaxHealth()) || !(this.hunger >= 100)) { //If player is already at max health, returns false
             if (item instanceof Consumeable) { //Checks if the item is a consumeable (only type of item that can restore health)
                 if (this.itemInventory.removeItem(item, 1)) { //Removes the item from our inventory
@@ -216,13 +179,10 @@ public class Player extends CharacterEntity {
         //Game.getInstance().setFinished(true);
     }
 
-    public Quest getCurrentMainQuest() {
+    IQuest getCurrentMainQuest() {
         return mainQuest.get(questsCompleted);
     }
 
-    public void setQuestsCompleted() {
-        questsCompleted++;
-    }
 
     /**
      * This method checks whether or not we can complete a quest
@@ -231,12 +191,12 @@ public class Player extends CharacterEntity {
      * giver is in the room
      * @return Returns true if quest is complete, otherwise returns false
      */
-    public boolean checkQuest(String room) {
+    boolean checkQuest(String room) {
         int itemCount = 0;
         for (ICharacterEntity ce : DomainGame.getInstance().getRoomMap().get(room).getCharactersInRoom()) { //Searches through all the CharacterEntities in the room
             if (ce.getName().equals(getCurrentMainQuest().getGiver())) {    //If a CharacterEntity equals the quest giver
-                for (Item item : getCurrentMainQuest().getItems()) {        //then we look through the items required to complete the quest,
-                    for (Item i : getItemInventory().getInventory()) {      //and then we look through our itemInventory
+                for (IItem item : getCurrentMainQuest().getItems()) {        //then we look through the items required to complete the quest,
+                    for (IItem i : getItemInventory().getInventory()) {      //and then we look through our itemInventory
                         if (i.getName().equals(item.getName()) && i.getCount() >= item.getCount()) { //If the required quest item is in our inventory, and we have the correct amount (or more),
                             itemCount++; //then it adds to itemCount
                             break;
@@ -245,10 +205,10 @@ public class Player extends CharacterEntity {
                 }
                 if (itemCount == getCurrentMainQuest().getItems().size()) { //If itemCount is equal to the required amount to complete the quest,
                     addGold(getCurrentMainQuest().getGold());               //then we add Gold to the player (reward for completing quest)
-                    for (Item item : getCurrentMainQuest().getItems()) {    //We then look through the quest items, and remove them from players itemInventory
-                        getItemInventory().removeItem(item, item.getCount());
+                    for (IItem item : getCurrentMainQuest().getItems()) {    //We then look through the quest items, and remove them from players itemInventory
+                        ((Inventory) getItemInventory()).removeItem(item, item.getCount());
                     }
-                    setQuestsCompleted();
+                    setQuestsCompleted(questsCompleted + 1);
                     return true;
                 } else {
                     return false;
@@ -258,7 +218,7 @@ public class Player extends CharacterEntity {
         return false;
     }
 
-    public void levelUp() { //Function called to chech wether the player has enough experience to level up, and the fuctionality for leveling up
+    void levelUp() { //Function called to chech wether the player has enough experience to level up, and the fuctionality for leveling up
         setLevel(getLevel() + 1);
         super.setStats();
         scoreValue += exp;
@@ -266,7 +226,7 @@ public class Player extends CharacterEntity {
         expToLevelUp += 5;
     }
 
-    public void addExp(int exp) {
+    void addExp(int exp) {
         this.exp += exp;
         if (exp >= expToLevelUp) {
             levelUp();
@@ -274,15 +234,112 @@ public class Player extends CharacterEntity {
         }
     }
 
-    public int getExp() {
-        return exp;
-    }
-
-    public double getExpPercent() {
+    double getExpPercent() {
         if (exp != 0) {
             return expToLevelUp / exp;
         } else {
             return 0;
         }
     }
+
+    @Override
+    public IInventory getItemInventory() {
+        return itemInventory;
+    }
+
+    void setItemInventory(IInventory itemInventory) {
+        this.itemInventory = (Inventory) itemInventory;
+    }
+
+    @Override
+    public IInventory getEquipableInventory() {
+        return equipableInventory;
+    }
+
+    void setEquipableInventory(IInventory equipableInventory) {
+        this.equipableInventory = (Inventory) equipableInventory;
+    }
+
+    @Override
+    public int getGold() {
+        return gold;
+    }
+
+    void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    @Override
+    public int getExp() {
+        return exp;
+    }
+
+    void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    @Override
+    public Map<Integer, IQuest> getMainQuest() {
+        return mainQuest;
+    }
+
+    void setMainQuest(LinkedHashMap<Integer, IQuest> mainQuest) {
+        this.mainQuest = mainQuest;
+    }
+
+    @Override
+    public HashMap<String, IQuest> getSideQuest() {
+        return sideQuest;
+    }
+
+    void setSideQuest(HashMap<String, IQuest> sideQuest) {
+        this.sideQuest = sideQuest;
+    }
+
+    @Override
+    public int getQuestsCompleted() {
+        return questsCompleted;
+    }
+
+    void setQuestsCompleted(int questsCompleted) {
+        this.questsCompleted = questsCompleted;
+    }
+
+    @Override
+    public int getHunger() {
+        return hunger;
+    }
+
+    void setHunger(int hunger) {
+        this.hunger = hunger;
+    }
+
+    @Override
+    public int getMaxHunger() {
+        return maxHunger;
+    }
+
+    void setMaxHunger(int maxHunger) {
+        this.maxHunger = maxHunger;
+    }
+
+    @Override
+    public int getExpToLevelUp() {
+        return expToLevelUp;
+    }
+
+    void setExpToLevelUp(int expToLevelUp) {
+        this.expToLevelUp = expToLevelUp;
+    }
+
+    @Override
+    public int getScoreValue() {
+        return scoreValue;
+    }
+
+    void setScoreValue(int scoreValue) {
+        this.scoreValue = scoreValue;
+    }
+    
+    
 }

@@ -2,25 +2,17 @@ package Domain;
 
 import Arq.ICombat;
 import Arq.IDomainGame;
+import Arq.IExit;
 import Arq.IPlayer;
 import Arq.IRoom;
-import Domain.Combat.Combat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import UI.Command.PutHandler;
-import Domain.Entity.MoveableNPC;
-import Domain.Entity.NPC;
-import Domain.Entity.Player;
-import Domain.Entity.Shopkeeper;
-import Domain.Inventory.Armor;
-import Domain.Inventory.Consumeable;
-import Domain.Inventory.Item;
-import Domain.Inventory.Key;
-import Domain.Inventory.NormalItem;
-import Domain.Inventory.Weapon;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -30,23 +22,23 @@ import java.util.List;
  * by write in the console
  */
 public class DomainGame implements IDomainGame {
-    
-    private transient static IDomainGame instance = null;
-   // private transient PutHandler putHandler;  //Class responsible for user input and print output
+
+    private transient static DomainGame instance = null;
+    // private transient PutHandler putHandler;  //Class responsible for user input and print output
     private String currentRoom;       //The current room
     private Player player;
     private transient ICombat combat;
-    
+
     private Map<String, IRoom> rooms; // creating objects of the Room-class
 
-    public void setMap(Map<String, Room> m) {
+    void setMap(Map<String, Room> m) {
         rooms.clear();
         rooms = new HashMap<>(m);
         System.out.println("M ::::: " + rooms);
     }
-    
+
     private transient boolean finished = false;
-    
+
     private String[][] itemNames = {
         {"Rock", "Sword"}, {"Chainmail"}, {"Potion", "Meat"}, {"Key", "Key2"}, {"Wool"}};
 
@@ -61,31 +53,34 @@ public class DomainGame implements IDomainGame {
 ////        createNPC();
 ////        //putHandler = new PutHandler(this);
         combat = new Combat(player, this);
-        
+
         //System.out.println(this.toString());
     }
-    
-    public IDomainGame initialize(IDomainGame game) {
+
+    IDomainGame initialize(IDomainGame game) {
         System.out.println("INGAME");
-        System.out.println(this);
-        System.out.println(currentRoom);
-        System.out.println(game);
-        System.out.println(game.getCurrentRoom().getName());
-        currentRoom = game.getCurrentRoom().getName();
-        player = (Player) game.getPlayer();
-        if(game.getRoomMap() != null) {
-        for (String itemName : game.getRoomMap().keySet()) {
-            rooms.put(itemName, (Room) game.getRoomMap().get(itemName));
-        }
-        }
-        return this;
+//        System.out.println(this);
+//        System.out.println(currentRoom);
+//        System.out.println(game);
+        instance = (DomainGame)game;
+
+        System.out.println(instance);
+//        System.out.println(game.getCurrentRoom().getName());
+//        currentRoom = game.getCurrentRoom().getName();
+//        player = (Player) game.getPlayer();
+//        if(game.getRoomMap() != null) {
+//        for (String itemName : game.getRoomMap().keySet()) {
+//            rooms.put(itemName, (Room) game.getRoomMap().get(itemName));
+//        }
+//        }
+        return instance;
     }
-    
+
     public static DomainGame getInstance() {
         if (instance == null) {
             instance = new DomainGame();
         }
-        return (DomainGame)instance;
+        return (DomainGame) instance;
     }
 
     /**
@@ -191,8 +186,8 @@ public class DomainGame implements IDomainGame {
     /**
      * The method lets the user play the game
      */
-    public void play() {
-        
+    void play() {
+
 ////        while (!finished) {
 ////            if (combat.isRunning()) {
 ////                putHandler.processCommandCombat();
@@ -217,13 +212,16 @@ public class DomainGame implements IDomainGame {
         return (IPlayer) player;
     }
 
+    void setPlayer(IPlayer player) {
+        this.player = (Player) player;
+    }
+
     /**
      * Gets the current room
      *
      * @return Returns the currentRoom object
      */
-    @Override
-    public IRoom getCurrentRoom() {
+    public IRoom getCurrentIRoom() {
         return (IRoom) getRoomMap().get(currentRoom);
     }
 
@@ -232,7 +230,7 @@ public class DomainGame implements IDomainGame {
      *
      * @param currentRoom Sets the currentRoom
      */
-    void setCurrentRoom(Room currentRoom) {
+    void setCurrentIRoom(Room currentRoom) {
         this.currentRoom = currentRoom.getName();
     }
 
@@ -242,7 +240,7 @@ public class DomainGame implements IDomainGame {
      * @return Returns the combat object
      */
     public Combat getCombat() {
-        return (Combat)combat;
+        return (Combat) combat;
     }
 
     /**
@@ -251,11 +249,11 @@ public class DomainGame implements IDomainGame {
      */
     public void moveAllNPC() {
         for (String room : rooms.keySet()) {
-            ((Room)rooms.get(room)).move();
-            
+            ((Room) rooms.get(room)).move();
+
         }
     }
-    
+
     public int checkItemName(String itemName) {
         int count = 0;
         for (String[] itemName1 : itemNames) {
@@ -269,50 +267,32 @@ public class DomainGame implements IDomainGame {
         return -1;
     }
 
-    /**
-     * Gets the map of rooms
-     *
-     * @return Returns the map rooms
-     */
-    public Map<String, IRoom> getRoomMap() {
-        return rooms;
-    }
-    
-    public void setFinished(boolean finished) {
+    void setFinished(boolean finished) {
         this.finished = finished;
     }
-    
-    public String[][] getItemNames() {
-        return itemNames;
-    }
-    
+
     public Item createItem(String name, int itemType) {
         switch (itemType) {
             case 0:
                 return new Weapon(name, 1, 1, 1, 1);
-            
+
             case 1:
                 return new Armor(name, 1, 1, 1, 1);
-            
+
             case 2:
                 return new Consumeable(name, 1, 1, 1, 1);
-            
+
             case 3:
                 return new Key(name, 1, 1, 1);
-            
+
             case 4:
                 return new NormalItem(name, 1, 1);
-            
+
             default:
                 return null;
         }
     }
-    
-    //@Override
-    public Map<String, Room> getRooms() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+
 ////    @Override
 ////    public void saveGame() {
 ////        db.saveGame();
@@ -345,23 +325,53 @@ public class DomainGame implements IDomainGame {
 ////        highList.subList(10, highList.size()).clear();
 ////        db.saveScoreTable(highList);
 ////    }
-
-   // @Override
+    // @Override
     public void goRoom(String direction) {
 
-        Exit exit = ((Room)getCurrentRoom()).getExit(direction); //Instantiats a room next to the current room
+        IExit exit = ((Room) getCurrentIRoom()).getExit(direction); //Instantiats a room next to the current room
 
         if (exit == null) { //Chechs if the current room has a exit in this direction
             System.out.println("There is no path here!");
-        }else if(exit.isLocked(player.getItemInventory())){
+        } else if (((Exit) exit).isLocked(player.getItemInventory())) {
             System.out.println("The door is locked");
-        }
-            else {  //If it has
-            Room nextRoom = (Room)getRoomMap().get(exit.nextRoom(getCurrentRoom().getName()));
-            setCurrentRoom(nextRoom); //Current room is now the nextRoom
+        } else {  //If it has
+            Room nextRoom = (Room) getRoomMap().get(((Exit) exit).nextRoom(getCurrentIRoom().getName()));
+            setCurrentIRoom(nextRoom); //Current room is now the nextRoom
             player.addHunger(-3);
-            ((Room)getCurrentRoom()).spawnEnemies();
-            System.out.println(getCurrentRoom().getLongDescription()); //Prints a description of the room
-        }    
+            ((Room) getCurrentIRoom()).spawnEnemies();
+            System.out.println(((Room) getCurrentIRoom()).getLongDescription()); //Prints a description of the room
+        }
+    }
+
+    @Override
+    public String getCurrentRoom() {
+        return currentRoom;
+    }
+
+    void setCurrentRoom(String currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    /**
+     * Gets the map of rooms
+     *
+     * @return Returns the map rooms
+     */
+    @Override
+    public Map<String, IRoom> getRoomMap() {
+        return rooms;
+    }
+
+    void setRoomMap(Map<String, IRoom> rooms) {
+        this.rooms = rooms;
+    }
+
+    @Override
+    public String[][] getItemNames() {
+        return itemNames;
+    }
+
+    void setItemNames(String[][] itemNames) {
+        this.itemNames = itemNames;
     }
 }

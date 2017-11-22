@@ -14,4 +14,6 @@ public interface IWeapon extends IItem{
     int getAttackValue();
 
     int getItemLevel();
+    
+    int getBaseAttack();
 }

@@ -14,13 +14,18 @@ import java.util.List;
  *
  * @author madsd
  */
-public class DataInventory implements IInventory {
+class DataInventory implements IInventory {
 
-    private ArrayList<DataItem> inventory;
+    private ArrayList<IItem> inventory;
     private int maxSlots;
 
     @Override
     public List<IItem> getInventory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return inventory;
+    }
+
+    @Override
+    public int getMaxSlots() {
+        return maxSlots;
     }
 }

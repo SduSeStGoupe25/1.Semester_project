@@ -1,4 +1,6 @@
-package Domain.Entity;
+package Domain;
+
+import Arq.ICharacterEntity;
 
 /**
  *
@@ -7,7 +9,7 @@ package Domain.Entity;
 /*
  *This is an abstract class that all characters in the game extends from.
  */
-public abstract class CharacterEntity {
+abstract class CharacterEntity implements ICharacterEntity {
 
     private String name;
     private int health;
@@ -19,11 +21,8 @@ public abstract class CharacterEntity {
     private int attack;
     private int id; // 0 = CharacterEntity, 1 = NPC, 2 = Player, 3 = Shopkeeper, 4 = MovableNPC
 
-    public CharacterEntity() {
-    }
-
     //Constructor
-    public CharacterEntity(String name, int health, int armor, int attack, int level, int id) {
+    CharacterEntity(String name, int health, int armor, int attack, int level, int id) {
         this.name = name;
         this.health = health;
         this.armor = armor;
@@ -45,66 +44,76 @@ public abstract class CharacterEntity {
         maxHealth = ((level - 1) * 10) + baseHealth;
     }
 
-    public abstract void onDeath();
+    abstract void onDeath();
 
-    public void changeHealth(int amount) {
+    void changeHealth(int amount) {
         health += amount;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getHealth() {
-        return health;
     }
 
     public int getHealthPercent() {
         return maxHealth / health;
     }
 
-    public void setHealth(int health) {
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public int getHealth() {
+        return health;
+    }
+
+    void setHealth(int health) {
         this.health = health;
     }
 
+    @Override
     public int getArmor() {
         return armor;
     }
 
-    public void setArmor(int armor) {
+    void setArmor(int armor) {
         this.armor = armor;
     }
 
+    @Override
     public int getAttack() {
         return attack;
     }
 
-    public void setAttack(int attack) {
+    void setAttack(int attack) {
         this.attack = attack;
     }
 
+    @Override
     public int getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    void setLevel(int level) {
         this.level = level;
     }
 
+    @Override
     public int getMaxHealth() {
         return maxHealth;
     }
 
-    public void setMaxHealth(int maxHealth) {
+    void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
     }
 
+    @Override
     public int getId() {
         return id;
     }
-
+    
+    void setId(int id) {
+        this.id = id;
+    }
 }

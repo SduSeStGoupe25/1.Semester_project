@@ -5,19 +5,12 @@
  */
 package UI.GUI;
 
+import Arq.IConsumeable;
 import Arq.IDomainGame;
 import Arq.IItem;
 import Arq.IPlayer;
-import Domain.DomainFacade;
-import Domain.Entity.Player;
-import Domain.DomainGame;
-import Domain.Inventory.Consumeable;
-import Domain.Inventory.Inventory;
-import Domain.Inventory.Item;
-import Domain.Inventory.Weapon;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,12 +33,12 @@ public class InventoryScreenController implements Initializable {
     @FXML
     private Button btnDrop;
     @FXML
-    private ListView<Item> listInventory;
+    private ListView<IItem> listInventory;
     @FXML
-    private ListView<Item> listEquipedItems;
+    private ListView<IItem> listEquipedItems;
 
-    ObservableList<Item> items;
-    ObservableList<Item> equipableItems;
+    ObservableList<IItem> items;
+    ObservableList<IItem> equipableItems;
     
     IItem selectedItem;
 
@@ -69,7 +62,7 @@ public class InventoryScreenController implements Initializable {
 
     @FXML
     private void UseItemButton(ActionEvent event) {
-        Consumeable c = (Consumeable)(selectedItem);
+        IConsumeable c = (IConsumeable)(selectedItem);
         //player.restoreHp(c);
     }
 

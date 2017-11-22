@@ -10,5 +10,8 @@ package Arq;
  * @author madsd
  */
 public interface IExit {
-    
+    String getName1();
+    String getName2();
+    boolean getLocked();
+    int getlockID();
 }

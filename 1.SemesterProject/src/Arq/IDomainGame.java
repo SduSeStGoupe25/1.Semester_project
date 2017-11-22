@@ -12,10 +12,10 @@ import java.util.Map;
  * @author madsd
  */
 public interface IDomainGame {
+    String getCurrentRoom();
     IPlayer getPlayer();
-    IRoom getCurrentRoom();
     //ICombat getCombat();
     
     Map<String, IRoom> getRoomMap();
-    
+    String[][] getItemNames();
 }

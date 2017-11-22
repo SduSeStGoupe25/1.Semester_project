@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain.Entity;
+package Domain;
 
+import Arq.IMoveableNPC;
 import Domain.DomainGame;
 import Domain.Room;
 import java.util.Random;
@@ -14,11 +15,11 @@ import java.util.Set;
  *
  * @author Victor Gram
  */
-public class MoveableNPC extends NPC implements Moveable {
+class MoveableNPC extends NPC implements Moveable, IMoveableNPC {
 
     private Set<String> allowedRooms;
     
-    public MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Set<String> allowedRooms) {
+    MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Set<String> allowedRooms) {
         super(name, health, armor, attack, level, expDrop, 4, talk);
         this.allowedRooms = allowedRooms;
     }
@@ -56,12 +57,21 @@ public class MoveableNPC extends NPC implements Moveable {
 
     private boolean moveNPC(String nameCurrentRoom, String direction) {
         Room currentRoom = (Room)DomainGame.getInstance().getRoomMap().get(nameCurrentRoom);
-        if (currentRoom.getExit(direction) != null && allowedRooms.contains(currentRoom.getExit(direction).nextRoom(currentRoom.getName()))) {
+        if (currentRoom.getExit(direction) != null && allowedRooms.contains(((Exit) currentRoom.getExit(direction)).nextRoom(currentRoom.getName()))) {
             currentRoom.removeCharacterFromRoom(this);
-            ((Room)DomainGame.getInstance().getRoomMap().get(currentRoom.getExit(direction).nextRoom(currentRoom.getName()))).addCharacterToRoom(this);
+            ((Room)DomainGame.getInstance().getRoomMap().get(((Exit) currentRoom.getExit(direction)).nextRoom(currentRoom.getName()))).addCharacterToRoom(this);
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Set<String> getAllowedRooms() {
+        return allowedRooms;
+    }
+
+    void setAllowedRooms(Set<String> allowedRooms) {
+        this.allowedRooms = allowedRooms;
     }
 
 }

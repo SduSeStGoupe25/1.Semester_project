@@ -11,13 +11,13 @@ import Arq.IArmor;
  *
  * @author madsd
  */
-public class DataArmor extends DataItem implements IArmor {
+class DataArmor extends DataItem implements IArmor {
 
     private int baseArmor;
     private int armorValue;
     private int itemLevel;
 
-    public DataArmor(String name, int sellValue, int count, int MAX_COUNT, int id, int baseArmor, int armorValue) {
+    DataArmor(String name, int sellValue, int count, int MAX_COUNT, int id, int baseArmor, int armorValue) {
         super(name, sellValue, count, MAX_COUNT, id);
         this.baseArmor = baseArmor;
         this.armorValue = armorValue;
@@ -25,12 +25,16 @@ public class DataArmor extends DataItem implements IArmor {
 
     @Override
     public int getArmorValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return armorValue;
     }
 
     @Override
     public int getItemLevel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return itemLevel;
     }
 
+    @Override
+    public int getBaseArmor() {
+        return baseArmor;
+    }
 }

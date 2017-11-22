@@ -5,6 +5,7 @@
  */
 package Arq;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -20,11 +21,9 @@ public interface IRoom {
 
     String getShortDescription();
 
-    String getLongDescription();
-
-    String getItems();
-
     String getName();
     
     List<ICharacterEntity> getCharactersInRoom();
+    
+    HashMap<String, IExit> getExits();
 }

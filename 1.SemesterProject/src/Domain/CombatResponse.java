@@ -3,10 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain.Combat;
-
-import Domain.Entity.CharacterEntity;
-import Domain.Entity.Player;
+package Domain;
 
 /**
  *

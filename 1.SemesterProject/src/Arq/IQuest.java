@@ -13,15 +13,15 @@ import java.util.List;
  */
 public interface IQuest {
 
-    public String getName();
+    String getName();
 
-    public String getDescription();
+    String getDescription();
 
-    public int getGold();
+    int getGold();
 
-    public int getExp();
+    int getExp();
 
-    public List<IItem> getItems();
+    List<IItem> getItems();
 
-    public String getGiver();
+    String getGiver();
 }

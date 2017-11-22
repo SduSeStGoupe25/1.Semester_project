@@ -15,40 +15,39 @@ import java.util.Map;
  *
  * @author madsd
  */
-public class DataGame implements IDomainGame{
+public class DataGame implements IDomainGame {
 
     //private static IDomainGame instance;
     private String currentRoom;
     private DataPlayer player;
     //private DataCombat combat;
-    
-    private Map<String, DataRoom> rooms;
-    
+
+    private Map<String, IRoom> rooms;
+
     private String[][] itemNames;
-    
+
     public DataGame() {
-    
     }
+
+    @Override
+    public String getCurrentRoom() {
+        return currentRoom;
+    }
+
     @Override
     public IPlayer getPlayer() {
-        System.out.println("DATA " + player);
         return player;
     }
 
     @Override
-    public IRoom getCurrentRoom() {
-        return rooms.get(currentRoom);
-    }
-
-    @Override
-    public String toString() {
-        return "DataGame{" + "currentRoom=" + currentRoom + ", player=" + player + ", combat=" + ", rooms=" + rooms + ", itemNames=" + itemNames + '}';
-    }
-
-    @Override
     public Map<String, IRoom> getRoomMap() {
-        return null;//rooms;
+        return rooms;
     }
- 
-    
+
+    @Override
+    public String[][] getItemNames() {
+        return itemNames;
+    }
+
+
 }

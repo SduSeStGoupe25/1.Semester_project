@@ -11,12 +11,12 @@ import Arq.INPC;
  *
  * @author madsd
  */
-public class DataNPC extends DataCharactorEntity implements INPC {
+class DataNPC extends DataCharactorEntity implements INPC {
 
     private String talk;
     private int expDrop;
 
-    public DataNPC(String talk, int expDrop, String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
+    DataNPC(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id, String talk, int expDrop) {
         super(name, health, armor, level, maxHealth, baseHealth, baseAttack, attack, id);
         this.talk = talk;
         this.expDrop = expDrop;
@@ -24,7 +24,12 @@ public class DataNPC extends DataCharactorEntity implements INPC {
 
     @Override
     public String getTalk() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return talk;
+    }
+
+    @Override
+    public int getExpDrop() {
+        return expDrop;
     }
 
 }

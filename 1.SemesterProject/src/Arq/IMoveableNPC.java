@@ -5,10 +5,12 @@
  */
 package Arq;
 
+import java.util.Set;
+
 /**
  *
  * @author madsd
  */
 public interface IMoveableNPC extends INPC{
-    
+    Set<String> getAllowedRooms();
 }

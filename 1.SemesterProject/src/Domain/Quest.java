@@ -1,26 +1,28 @@
 /**
  * Class creating and controlling quests in the game.
  */
-package Domain.Entity;
+package Domain;
 
+import Arq.IItem;
+import Arq.IQuest;
 import java.util.ArrayList;
-import Domain.Inventory.Item;
+import java.util.List;
 
 /**
  *
  * @author Victor Gram
  */
-public class Quest {
+class Quest implements IQuest{
 
     private String name;
     private String description; 
     private int gold; //how much gold does the player reieve upon completion
     private int exp; //how much experience the player recieves upon completion
-    private ArrayList<Item> items = new ArrayList<>(); //ArrayList to store questitems
+    private ArrayList<IItem> items; //ArrayList to store questitems
     private String giver; //The NPC from whom the quest is recieved
 //    private boolean isMainQuest; //boolean to seperate the main quests and side quests
 
-    public Quest(String name, String description, int gold, int exp, ArrayList<Item> items, String giver) { 
+    Quest(String name, String description, int gold, int exp, ArrayList<IItem> items, String giver) { 
         this.name = name;
         this.description = description;
         this.gold = gold;
@@ -30,48 +32,58 @@ public class Quest {
 //        this.isMainQuest = isMainQuest;   
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description = description;
     }
 
+    @Override
     public int getGold() {
         return gold;
     }
 
-    public void setGold(int gold) {
+    void setGold(int gold) {
         this.gold = gold;
     }
 
+    @Override
     public int getExp() {
         return exp;
     }
 
-    public void setExp(int exp) {
+    void setExp(int exp) {
         this.exp = exp;
     }
 
-    public ArrayList<Item> getItems() {
+    @Override
+    public List<IItem> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<Item> items) {
+    void setItems(ArrayList<IItem> items) {
         this.items = items;
     }
 
+    @Override
     public String getGiver() {
         return giver;
+    }
+    
+    void setGiver(String giver){
+        this.giver = giver;
     }
     
     
@@ -87,7 +99,7 @@ public class Quest {
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder("Quest: " + name + " \n" + description + " \n" + giver + " needs these items: " );
-        for(Item i : items){
+        for(IItem i : items){
             output.append(i.getName());
             output.append(" x");
             output.append(i.getCount());

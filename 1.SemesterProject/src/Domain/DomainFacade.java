@@ -5,8 +5,6 @@
  */
 package Domain;
 
-import Domain.Combat.Combat;
-import Domain.Entity.Player;
 import java.util.List;
 import java.util.Map;
 

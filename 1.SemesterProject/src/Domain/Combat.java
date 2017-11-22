@@ -1,12 +1,10 @@
-package Domain.Combat;
+package Domain;
 
 import Arq.ICharacterEntity;
 import Arq.ICombat;
 import Arq.IDomainGame;
 import Arq.IPlayer;
 import Arq.IRoom;
-import Domain.Entity.CharacterEntity;
-import Domain.Entity.Player;
 import Domain.DomainGame;
 import Domain.Room;
 
@@ -33,9 +31,9 @@ public class Combat implements ICombat{
      * @param opponent the CharacterEntity to fight
      * @param currentRoom the current room the fight takes place in
      */
-    public void startCombat(CharacterEntity opponent, Room currentRoom) {
-        this.opponent = opponent;
-        this.currentRoom = currentRoom;
+    public void startCombat(ICharacterEntity opponent, IRoom currentRoom) {
+        this.opponent = (CharacterEntity)opponent;
+        this.currentRoom = (Room)currentRoom;
         running = true;
         
     }

@@ -11,9 +11,9 @@ import Arq.INormalItem;
  *
  * @author madsd
  */
-public class DataNormalItem extends  DataItem implements INormalItem{
+class DataNormalItem extends  DataItem implements INormalItem{
 
-    public DataNormalItem(String name, int sellValue, int count, int MAX_COUNT, int id) {
+    DataNormalItem(String name, int sellValue, int count, int MAX_COUNT, int id) {
         super(name, sellValue, count, MAX_COUNT, id);
     }
 

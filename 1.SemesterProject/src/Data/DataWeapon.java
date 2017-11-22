@@ -11,44 +11,31 @@ import Arq.IWeapon;
  *
  * @author madsd
  */
-public class DataWeapon implements IWeapon{
+class DataWeapon extends DataItem implements IWeapon {
 
     private int baseAttack;
     private int attackValue;
     private int itemLevel;
 
+    DataWeapon(String name, int sellValue, int count, int MAX_COUNT, int id, int baseAttack, int itemLevel) {
+        super(name, sellValue, count, MAX_COUNT, id);
+        this.baseAttack = baseAttack;
+        this.itemLevel = itemLevel;
+        attackValue = baseAttack + itemLevel;
+    }
+
     @Override
     public int getAttackValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return attackValue;
     }
 
     @Override
     public int getItemLevel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return itemLevel;
     }
 
     @Override
-    public int getMAX_COUNT() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getSellValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getBaseAttack() {
+        return baseAttack;
     }
 }

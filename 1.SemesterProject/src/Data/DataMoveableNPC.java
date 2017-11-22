@@ -12,18 +12,18 @@ import java.util.Set;
  *
  * @author madsd
  */
-public class DataMoveableNPC extends DataCharactorEntity implements IMoveableNPC {
+class DataMoveableNPC extends DataNPC implements IMoveableNPC {
 
     private Set<String> allowedRooms;
 
-    public DataMoveableNPC(Set<String> allowedRooms, String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
-        super(name, health, armor, level, maxHealth, baseHealth, baseAttack, attack, id);
+    DataMoveableNPC(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id, String talk, int expDrop, Set<String> allowedRooms) {
+        super(name, health, armor, level, maxHealth, baseHealth, baseAttack, attack, id, talk, expDrop);
         this.allowedRooms = allowedRooms;
     }
-
+    
     @Override
-    public String getTalk() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Set<String> getAllowedRooms() {
+        return allowedRooms;
     }
 
 }

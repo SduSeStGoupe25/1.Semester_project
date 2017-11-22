@@ -7,41 +7,31 @@ package Domain;
 
 //@author Mikkel Pedersen
 import Arq.IExit;
-import Domain.Inventory.Inventory;
-import Domain.Inventory.Item;
-import Domain.Inventory.Key;
+import Arq.IInventory;
+import Arq.IItem;
 
-public class Exit implements IExit{
+class Exit implements IExit {
 
     private String name1;
     private String name2;
-
-//    private Room room1;
-//    private Room room2;
     private boolean locked;
     private int lockID;
 
-//    public Exit(Room room1, Room room2) {
-//        this.room1 = room1;
-//        this.room2 = room2;
-//        locked = false;
-//        lockID = 0;
-//    }
-    public Exit(String room1, String room2) {
+    Exit(String room1, String room2) {
         this.name1 = room1;
         this.name2 = room2;
         locked = false;
         lockID = 0;
     }
 
-    public Exit(String room1, String room2, boolean lock, int lockID) {
+    Exit(String room1, String room2, boolean lock, int lockID) {
         this.name1 = room1;
         this.name2 = room2;
         this.locked = lock;
         this.lockID = lockID;
     }
 
-    public String nextRoom(String currentRoom) {
+    String nextRoom(String currentRoom) {
         if (currentRoom.equals(name1)) {
             return name2;
         } else {
@@ -49,11 +39,11 @@ public class Exit implements IExit{
         }
     }
 
-    public boolean isLocked(Inventory inventory) {
+    boolean isLocked(IInventory inventory) {
         if (!locked) {
             return false;
         } else {
-            for (Item item : inventory.getInventory()) {
+            for (IItem item : inventory.getInventory()) {
                 if (item instanceof Key) {
                     if (((Key) item).getKeyID() == lockID) {
                         locked = false;
@@ -63,5 +53,25 @@ public class Exit implements IExit{
             }
         }
         return true;
+    }
+
+    @Override
+    public String getName1() {
+        return name1;
+    }
+
+    @Override
+    public String getName2() {
+        return name2;
+    }
+
+    @Override
+    public boolean getLocked() {
+        return locked;
+    }
+
+    @Override
+    public int getlockID() {
+        return lockID;
     }
 }

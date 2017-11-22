@@ -18,38 +18,28 @@ import java.util.Set;
  *
  * @author madsd
  */
-public class DataRoom implements IRoom {
+class DataRoom implements IRoom {
 
     private String name;
     private String description;
-    private HashMap<String, DataExit> exits;
-    private List<DataCharactorEntity> charactersInRoom;
-    private List<DataItem> items;
+    private HashMap<String, IExit> exits;
+    private List<ICharacterEntity> charactersInRoom;
+    private List<IItem> items;
     private HashSet<String> allowedMonsters;
 
     @Override
     public Set<String> getAllowesMonsters() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return allowedMonsters;
     }
 
     @Override
     public List<IItem> getItemList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return items;
     }
 
     @Override
     public String getShortDescription() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getLongDescription() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getItems() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return description;
     }
 
     @Override
@@ -59,6 +49,11 @@ public class DataRoom implements IRoom {
 
     @Override
     public List<ICharacterEntity> getCharactersInRoom() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return charactersInRoom;
+    }
+
+    @Override
+    public HashMap<String, IExit> getExits() {
+        return exits;
     }
 }

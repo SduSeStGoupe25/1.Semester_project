@@ -5,25 +5,13 @@
  */
 package Arq;
 
+import java.util.Map;
+
 /**
  *
  * @author madsd
  */
-public interface IPlayer extends ICharacterEntity{
-
-    int getScoreValue();
-
-    int getExpToLevelUp();
-
-    int getHunger();
-
-    int getMaxHunger();
-
-    double getHungerPercent();
-
-    int getAttackValue();
-
-    int getArmorValue();
+public interface IPlayer extends ICharacterEntity {
 
     IInventory getItemInventory();
 
@@ -31,13 +19,19 @@ public interface IPlayer extends ICharacterEntity{
 
     int getGold();
 
-    void addGold(int amount);
-
-    void removeGold(int amount);
-
-    IQuest getCurrentMainQuest();
-
     int getExp();
-    
-    double getExpPercent();
+
+    Map<Integer, IQuest> getMainQuest();
+
+    Map<String, IQuest> getSideQuest();
+
+    int getQuestsCompleted();
+
+    int getHunger();
+
+    int getMaxHunger();
+
+    int getExpToLevelUp();
+
+    int getScoreValue();
 }

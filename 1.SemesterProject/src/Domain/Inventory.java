@@ -3,34 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain.Inventory;
+package Domain;
 
+import Arq.IInventory;
+import Arq.IItem;
 import java.util.ArrayList;
 
 /**
  *
  * @author rasmusstamm
  */
-public class Inventory {
+class Inventory implements IInventory{
 
-    private ArrayList<Item> inventory;
+    private ArrayList<IItem> inventory;
     private int maxSlots;
 
-    public Inventory(int maxSlots) {
+    Inventory(int maxSlots) {
         inventory = new ArrayList<>();
         this.maxSlots = maxSlots;
     }
 
-    public ArrayList<Item> getInventory() {
-        return inventory;
-    }
-
-    public boolean addItem(Item item, int amount) {
+    boolean addItem(Item item, int amount) {
         if (inventory.size() != 0) {
-            for (Item i : inventory) {
+            for (IItem i : inventory) {
                 if (i.getName().equals(item.getName())) {
                     if (i.getCount() + amount <= i.getMAX_COUNT()) {
-                        i.addCount(amount);
+                        ((Item) i).addCount(amount);
                         return true;
                     } else {
                         return addInv(amount, item);
@@ -44,11 +42,11 @@ public class Inventory {
     private boolean addInv(int amount, Item item) {
         if (amount / item.getMAX_COUNT() + inventory.size() <= maxSlots) {
             int amountBack = amount;
-            for (Item j : inventory) {
+            for (IItem j : inventory) {
                 if (j.getName().equals(item.getName())) {
                     if (j.getCount() < j.getMAX_COUNT()) {
                         int add = j.getMAX_COUNT() - j.getCount();
-                        j.addCount(add);
+                        ((Item) j).addCount(add);
                         amountBack -= add;
                         break;
                     }
@@ -72,9 +70,9 @@ public class Inventory {
         }
     }
 
-    public boolean removeItem(Item item, int amount) {
+    boolean removeItem(IItem item, int amount) {
         int totalAmount = 0;
-        for (Item i : inventory) {
+        for (IItem i : inventory) {
             if (i.getName().equals(item.getName())) {
                 totalAmount += i.getCount();
             }
@@ -83,14 +81,14 @@ public class Inventory {
         if (totalAmount >= amount) {
             int amountBack = amount;
             for (int i = inventory.size() - 1; i >= 0; i--) {
-                Item j = inventory.get(i);
+                IItem j = inventory.get(i);
                 if (j.getName().equals(item.getName())) {
                     if (amountBack >= j.getCount()) {
                         amountBack -= j.getCount();
                         inventory.remove(i);
                         return true;
                     } else {
-                        j.setCount(j.getCount() - amountBack);
+                        ((Item) j).setCount(j.getCount() - amountBack);
                         return true;
                     }
                 }
@@ -100,4 +98,21 @@ public class Inventory {
         return false;
     }
 
+    @Override
+    public ArrayList<IItem> getInventory() {
+        return inventory;
+    }
+
+    void setInventory(ArrayList<IItem> inventory) {
+        this.inventory = inventory;
+    }
+
+    @Override
+    public int getMaxSlots() {
+        return maxSlots;
+    }
+
+    void setMaxSlots(int maxSlots) {
+        this.maxSlots = maxSlots;
+    }
 }

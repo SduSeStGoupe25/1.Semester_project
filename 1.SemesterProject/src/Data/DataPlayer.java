@@ -10,6 +10,7 @@ import Arq.IPlayer;
 import Arq.IQuest;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
@@ -17,20 +18,20 @@ import java.util.LinkedHashMap;
  */
 public class DataPlayer extends DataCharactorEntity implements IPlayer {
 
-    private DataInventory itemInventory;
-    private DataInventory equipableInventory;
+    private IInventory itemInventory;
+    private IInventory equipableInventory;
     private int gold;
 
     private int exp;
-    private LinkedHashMap<Integer, DataQuest> mainQuest;
-    private HashMap<String, DataQuest> sideQuest;
+    private LinkedHashMap<Integer, IQuest> mainQuest;
+    private HashMap<String, IQuest> sideQuest;
     private int questsCompleted;
     private int hunger;
     private int maxHunger;
     private int expToLevelUp;
     private int scoreValue;
 
-    public DataPlayer(DataInventory itemInventory, DataInventory equipableInventory, int gold, int exp, LinkedHashMap<Integer, DataQuest> mainQuest, HashMap<String, DataQuest> sideQuest, int questsCompleted, int hunger, int maxHunger, int expToLevelUp, int scoreValue, String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
+    public DataPlayer(DataInventory itemInventory, DataInventory equipableInventory, int gold, int exp, LinkedHashMap<Integer, IQuest> mainQuest, HashMap<String, IQuest> sideQuest, int questsCompleted, int hunger, int maxHunger, int expToLevelUp, int scoreValue, String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
         super(name, health, armor, level, maxHealth, baseHealth, baseAttack, attack, id);
         this.itemInventory = itemInventory;
         this.equipableInventory = equipableInventory;
@@ -45,82 +46,58 @@ public class DataPlayer extends DataCharactorEntity implements IPlayer {
         this.scoreValue = scoreValue;
     }
 
-
-    @Override
-    public int getScoreValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getExpToLevelUp() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getHunger() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getMaxHunger() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double getHungerPercent() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getAttackValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getArmorValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public IInventory getItemInventory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return itemInventory;
     }
 
     @Override
     public IInventory getEquipableInventory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return equipableInventory;
     }
 
     @Override
     public int getGold() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void addGold(int amount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void removeGold(int amount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IQuest getCurrentMainQuest() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return gold;
     }
 
     @Override
     public int getExp() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return exp;
     }
 
     @Override
-    public double getExpPercent() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Map<Integer, IQuest> getMainQuest() {
+        return mainQuest;
     }
 
+    @Override
+    public Map<String, IQuest> getSideQuest() {
+        return sideQuest;
+    }
 
+    @Override
+    public int getQuestsCompleted() {
+        return questsCompleted;
+    }
 
+    @Override
+    public int getHunger() {
+        return hunger;
+    }
+
+    @Override
+    public int getMaxHunger() {
+        return maxHunger;
+    }
+
+    @Override
+    public int getExpToLevelUp() {
+        return expToLevelUp;
+    }
+
+    @Override
+    public int getScoreValue() {
+        return scoreValue;
+    }
 }

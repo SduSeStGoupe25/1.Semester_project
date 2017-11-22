@@ -11,18 +11,18 @@ import Arq.IHighscoreWrapper;
  *
  * @author madsd
  */
-public class DataHighScoreWrapper implements IHighscoreWrapper {
+class DataHighScoreWrapper implements IHighscoreWrapper {
 
     private int score;
     private String name;
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return name;
     }
 
     @Override
     public int getScore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return score;
     }
 }

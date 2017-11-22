@@ -71,16 +71,16 @@ public class StatsPanelController implements Initializable {
     }
     
     private void updateBars() {
-        System.out.println("PLAYER");
-        System.out.println(player);
-        hpBar.setProgress(player.getHealthPercent());
-        currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
-        
-        hungerBar.setProgress(player.getHungerPercent());
-        currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
-        
-        xpBar.setProgress(player.getExpPercent());
-        currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
+////        System.out.println("PLAYER");
+////        System.out.println(player);
+////        hpBar.setProgress(player.getHealthPercent());
+////        currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
+////        
+////        hungerBar.setProgress(player.getHungerPercent());
+////        currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
+////        
+////        xpBar.setProgress(player.getExpPercent());
+////        currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
     }
     
 }

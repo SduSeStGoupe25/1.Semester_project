@@ -12,4 +12,5 @@ package Arq;
 public interface IArmor extends IItem{
     int getArmorValue();
     int getItemLevel();
+    int getBaseArmor();
 }

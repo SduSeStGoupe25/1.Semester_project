@@ -15,8 +15,6 @@ public interface ICharacterEntity {
 
     int getHealth();
 
-    int getHealthPercent();
-
     int getArmor();
 
     int getAttack();

@@ -10,11 +10,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
-import Domain.Entity.CharacterEntity;
-import Domain.Entity.Moveable;
-import Domain.Entity.NPC;
 
-import Domain.Inventory.Item;
 
 /**
  * Class that creates and controls the game Rooms/areas. This includes both
@@ -24,16 +20,16 @@ import Domain.Inventory.Item;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-public class Room implements IRoom{
+class Room implements IRoom {
 
     private String name;
     private String description; //The room description, printed upon entering
-    private HashMap<String, Exit> exits;
-    private List<CharacterEntity> charactersInRoom; //ArrayList containing the NPC's in the room
-    private List<Item> items; //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
+    private HashMap<String, IExit> exits;
+    private List<ICharacterEntity> charactersInRoom; //ArrayList containing the NPC's in the room
+    private List<IItem> items; //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
     private HashSet<String> allowedMonsters;
 
-    public Room(String name, String description) {
+    Room(String name, String description) {
         this.name = name;
         this.description = description;
         exits = new HashMap<>();
@@ -44,43 +40,27 @@ public class Room implements IRoom{
         items = new ArrayList<>();
     }
 
-    public HashSet<String> getA() {
-        return allowedMonsters;
-    }
-
-    public List<Item> getI() {
-        return items;
-    }
-
     @Override
     public String toString() {
         return "Room{" + "name=" + name + ", description=" + description + ", charactersInRoom=" + charactersInRoom + ", items=" + items + ", allowedMonsters=" + allowedMonsters + '}';
     }
 
-    public void addItemToRoom(Item i) {
-        items.add(i);
-    }
-
-    public void removeCharacterFromRoom(CharacterEntity ce) {
+    void removeCharacterFromRoom(CharacterEntity ce) {
         charactersInRoom.remove(ce);
     }
 
-    public void setExit(String direction, Exit neighbor) {
+    void setExit(String direction, Exit neighbor) {
         exits.put(direction, neighbor);
     }
 
-    public String getShortDescription() {
-        return description;
-    }
-
-    public String getLongDescription() {
+    String getLongDescription() {
         return "You are " + description + ".\n" + getExitString();
 
     }
 
-    public String getItems() {
+    String getItems() {
         String s = "";
-        for (Item i : items) {
+        for (IItem i : items) {
             s += i.getName() + "\n";
         }
         return s;
@@ -95,37 +75,27 @@ public class Room implements IRoom{
         return returnString;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Exit getExit(String direction) {
+    IExit getExit(String direction) {
         return exits.get(direction);
     }
 
-    @Override
-    public List<ICharacterEntity> getCharactersInRoom() { //Returns characters in the room
-        throw new UnsupportedOperationException("Not supportet");
-        //return charactersInRoom;
-    }
-
-    public void addCharacterToRoom(CharacterEntity ce) { //Adds characters to the room
+    void addCharacterToRoom(CharacterEntity ce) { //Adds characters to the room
         charactersInRoom.add(ce);
     }
-    
-        public void addCharacterToRoom(List<CharacterEntity> ce) { //Adds characters to the room
+
+    void addCharacterToRoom(List<CharacterEntity> ce) { //Adds characters to the room
         charactersInRoom.addAll(ce);
     }
 
-    public void addAllowedMonsters(String name) {
+    void addAllowedMonsters(String name) {
         allowedMonsters.add(name);
     }
 
-    public void addAllowedMonsters(HashSet<String> d) {
+    void addAllowedMonsters(HashSet<String> d) {
         allowedMonsters.addAll(d);
     }
 
-    public void spawnEnemies() { //Spawns a randomly generated amount of enemies for the room
+    void spawnEnemies() { //Spawns a randomly generated amount of enemies for the room
 
         if (!allowedMonsters.isEmpty()) {
 
@@ -154,13 +124,13 @@ public class Room implements IRoom{
 
     }
 
-    public CharacterEntity getCharacterEntity(int index) {
+    ICharacterEntity getCharacterEntity(int index) {
         return charactersInRoom.get(index);
     }
 
-    public void move() {
+    void move() {
         for (int i = charactersInRoom.size() - 1; i >= 0; i--) {
-            CharacterEntity characterEntity = charactersInRoom.get(i);
+            ICharacterEntity characterEntity = charactersInRoom.get(i);
             if (characterEntity instanceof Moveable) {
                 ((Moveable) characterEntity).move(name);
             }
@@ -171,12 +141,55 @@ public class Room implements IRoom{
 
     @Override
     public Set<String> getAllowesMonsters() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return allowedMonsters;
+    }
+
+    void setAllowesMonsters(HashSet<String> allowedMonsters) {
+        this.allowedMonsters = allowedMonsters;
     }
 
     @Override
     public List<IItem> getItemList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return items;
     }
 
+    void setItemList(List<IItem> items) {
+        this.items = items;
+    }
+
+    @Override
+    public String getShortDescription() {
+        return description;
+    }
+
+    void setShortDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public List<ICharacterEntity> getCharactersInRoom() {
+        return charactersInRoom;
+    }
+
+    void setCharactersInRoom(List<ICharacterEntity> charactersInRoom) {
+        this.charactersInRoom = charactersInRoom;
+    }
+
+    @Override
+    public HashMap<String, IExit> getExits() {
+        return exits;
+    }
+
+    void setExits(HashMap<String, IExit> exits) {
+        this.exits = exits;
+    }
 }

@@ -11,7 +11,7 @@ package Arq;
  */
 public interface IConsumeable extends IItem{
 
-    public int getUseValue();
+    int getUseValue();
 
-    public int getHungerValue();
+    int getHungerValue();
 }

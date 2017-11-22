@@ -11,7 +11,7 @@ import Arq.ICharacterEntity;
  *
  * @author madsd
  */
-public abstract class DataCharactorEntity implements ICharacterEntity {
+abstract class DataCharactorEntity implements ICharacterEntity {
 
     private String name;
     private int health;
@@ -23,7 +23,7 @@ public abstract class DataCharactorEntity implements ICharacterEntity {
     private int attack;
     private int id; // 0 = CharacterEntity, 1 = NPC, 2 = Player, 3 = Shopkeeper, 4 = MovableNPC
 
-    public DataCharactorEntity(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
+    DataCharactorEntity(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
         this.name = name;
         this.health = health;
         this.armor = armor;
@@ -35,41 +35,34 @@ public abstract class DataCharactorEntity implements ICharacterEntity {
         this.id = id;
     }
     
-    
-
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return name;
     }
 
     @Override
     public int getHealth() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getHealthPercent() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return health;
     }
 
     @Override
     public int getArmor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return armor;
     }
 
     @Override
     public int getAttack() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return attack;
     }
 
     @Override
     public int getLevel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return level;
     }
 
     @Override
     public int getMaxHealth() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return maxHealth;
     }
 
     @Override

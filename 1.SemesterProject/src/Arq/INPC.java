@@ -11,4 +11,5 @@ package Arq;
  */
 public interface INPC extends ICharacterEntity{
     String getTalk();
+    int getExpDrop();
 }
