@@ -31,6 +31,14 @@
                   <Insets bottom="8.0" />
                </VBox.margin>
             </TextArea>
+            <Label text="Quest Rewards">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="8.0" />
+               </VBox.margin>
+            </Label>
             <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" />

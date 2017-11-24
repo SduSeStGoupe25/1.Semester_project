@@ -114,17 +114,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void GoNorthButton(ActionEvent event) {
-<<<<<<< HEAD
         game.movePlayer("north");
         System.out.println("n");
          bobLarsen.updateBars();
 //        game.goRoom("north");
 //        updateUI();
-=======
         if (game.movePlayer("north")) {
             updateUI();
         }
->>>>>>> 5a57aa608db859c8a5a64591b39cd075988404cc
     }
 
     @FXML
