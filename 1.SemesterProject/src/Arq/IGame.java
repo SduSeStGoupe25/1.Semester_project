@@ -18,6 +18,7 @@ public interface IGame extends IDomainGame {
 
     LinkedHashMap getQuestList();
     String getQuestDescription();
+    
     IExit getExitCurrentRoom(String direction);
     
     boolean isInCombat();
