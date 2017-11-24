@@ -25,6 +25,7 @@ public class SemesterProjekt extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setTitle("World of Arthur: Game of The Year Edition");
         stage.show();
     }
 
