@@ -6,7 +6,6 @@
 package UI.GUI;
 
 import Arq.IDomainData;
-import Domain.DomainFacade;
 import Domain.DomainGame;
 import java.io.IOException;
 import java.net.URL;
