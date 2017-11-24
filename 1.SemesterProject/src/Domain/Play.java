@@ -11,6 +11,6 @@ package Domain;
  */
 public class Play {
     public static void main(String[] args) {
-        Game.getInstance().play(); 
+        DomainGame.getInstance().play(); 
     }
 }

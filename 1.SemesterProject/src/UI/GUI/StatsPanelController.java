@@ -5,8 +5,7 @@
  */
 package UI.GUI;
 
-import Domain.DomainFacade;
-import Domain.Entity.Player;
+import Arq.IPlayer;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -40,8 +39,7 @@ public class StatsPanelController implements Initializable {
     @FXML
     private Label xpLabel;
     
-    DomainFacade game;
-    Player player;
+    IPlayer player;
     @FXML
     private Text currentHealth;
     @FXML
@@ -54,8 +52,10 @@ public class StatsPanelController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        game = UI.getInstance().getGame();
-        player = game.getPlayer();
+        System.out.println("UI");
+        System.out.println(UI.getInstance());
+//        player = UI.getInstance().getDomainGame().getPlayer();
+        System.out.println(player);
         hpBar.setStyle("-fx-accent: green");
         
         hungerBar.setStyle("-fx-accent: orange");
@@ -71,14 +71,16 @@ public class StatsPanelController implements Initializable {
     }
     
     private void updateBars() {
-        hpBar.setProgress(player.getHealthPercent());
-        currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
-        
-        hungerBar.setProgress(player.getHungerPercent());
-        currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
-        
-        xpBar.setProgress(player.getExpPercent());
-        currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
+////        System.out.println("PLAYER");
+////        System.out.println(player);
+////        hpBar.setProgress(player.getHealthPercent());
+////        currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
+////        
+////        hungerBar.setProgress(player.getHungerPercent());
+////        currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
+////        
+////        xpBar.setProgress(player.getExpPercent());
+////        currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
     }
     
 }
