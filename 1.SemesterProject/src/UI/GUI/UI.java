@@ -63,6 +63,9 @@ public class UI extends Application implements IUI {
 
     @Override
     public void injectDomainGame(IDomainGame domainGame) {
+        System.out.println("DOMAIN GAME #################################");
+        System.out.println(domainGame);
+        System.out.println("------------------");
         this.domainGame = domainGame;
     }
 

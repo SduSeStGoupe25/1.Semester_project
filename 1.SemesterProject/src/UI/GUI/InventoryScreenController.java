@@ -51,6 +51,9 @@ public class InventoryScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!_____________________");
+        System.out.println(UI.getInstance().getDomainGame());
+        System.out.println("----------------------");
         game = UI.getInstance().getDomainGame();
         player = game.getPlayer();
         

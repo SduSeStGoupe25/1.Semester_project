@@ -6,8 +6,7 @@
 package UI.GUI;
 
 import Arq.IDomainData;
-import Domain.DomainFacade;
-import Domain.DomainGame;
+import Arq.IDomainGame;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,6 +43,11 @@ public class TitleScreenController implements Initializable {
 
     @FXML
     private void startGame(ActionEvent event) throws IOException {
+        System.out.println("STARTGAME...........................");
+        IDomainGame g = ui.getDomainData().loadGame(true);
+        System.out.println("..................");
+        System.out.println(g);
+        System.out.println("....................");
         ui.injectDomainGame(ui.getDomainData().loadGame(false));
         Stage stage = (Stage)nameBox.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"))));
