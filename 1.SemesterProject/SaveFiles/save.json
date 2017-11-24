@@ -396,6 +396,33 @@
 
          ]
       },
+      "forrest":{  
+         "name":"forrest",
+         "description":"in the forrest",
+         "exits":{  
+            "south":{  
+               "name1":"forrest",
+               "name2":"deepwoods",
+               "locked":false,
+               "lockID":0
+            },
+            "east":{  
+               "name1":"forrest",
+               "name2":"farm",
+               "locked":false,
+               "lockID":0
+            }
+         },
+         "charactersInRoom":[  
+
+         ],
+         "items":[  
+
+         ],
+         "allowedMonsters":[  
+
+         ]
+      },
       "tower":{  
          "name":"tower",
          "description":"in Merlin\u0027s chambers",

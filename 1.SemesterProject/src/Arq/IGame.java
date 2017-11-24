@@ -13,5 +13,8 @@ public interface IGame extends IDomainGame {
     
     boolean movePlayer(String direction);
     
+    IExit getExitCurrentRoom(String direction);
+    
+    boolean isInCombat();
     
 }
