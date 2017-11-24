@@ -38,6 +38,7 @@ class Player extends CharacterEntity implements IPlayer{
      */
     Player(String name, int health, int armor, int attack, int level, int gold, int exp) {
         super(name, health, armor, attack, level, 2);
+        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
         this.gold = gold;
 
         this.exp = exp;
@@ -46,7 +47,8 @@ class Player extends CharacterEntity implements IPlayer{
         equipableInventory = new Inventory(3);
         questsCompleted = 0;
         this.hunger = 100;
-        maxHunger = hunger;
+        maxHunger = 100;
+        System.out.println("max " + maxHunger);
         this.expToLevelUp = 10;
         this.scoreValue = 0;
     }
@@ -316,6 +318,7 @@ class Player extends CharacterEntity implements IPlayer{
 
     @Override
     public int getMaxHunger() {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!" + maxHunger);
         return maxHunger;
     }
 

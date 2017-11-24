@@ -12,4 +12,5 @@ package Arq;
 public interface IHighscoreWrapper {
     String getName();
     int getScore();
+    String toString();
 }

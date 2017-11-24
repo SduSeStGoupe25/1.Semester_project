@@ -130,6 +130,10 @@ final class GameMapper {
         p.setSideQuest(map(((IPlayer) toBeMapped).getSideQuest()));
         p.setMaxHunger(((IPlayer) toBeMapped).getMaxHunger());
         p.setQuestsCompleted(((IPlayer) toBeMapped).getQuestsCompleted());
+        
+        p.setMaxHunger(100);
+        
+        System.out.println("MAx" + p.getMaxHunger() + "  ---------------------------------");
         return p;
     }
 

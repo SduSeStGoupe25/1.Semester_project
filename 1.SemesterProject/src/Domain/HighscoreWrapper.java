@@ -35,4 +35,9 @@ class HighscoreWrapper implements Comparable<HighscoreWrapper>, IHighscoreWrappe
     public int compareTo(HighscoreWrapper h) {
         return Integer.compare(score, h.getScore()); 
     }
+    
+    @Override 
+    public String toString () { 
+        return this.name + "\t" + this.score + "\n";
+    }
 }

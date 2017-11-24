@@ -9,11 +9,15 @@ import Arq.IDomainData;
 
 import Arq.IDomainGame;
 import Arq.IGame;
-
+import Arq.IHighscoreWrapper;
 import Domain.DomainGame;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +37,7 @@ public class TitleScreenController implements Initializable {
     @FXML
     private TextField nameBox;
     @FXML
-    private ListView<?> listHighScores;
+    private ListView<IHighscoreWrapper> listHighScores;
     
     private UI ui;
 
@@ -43,6 +47,9 @@ public class TitleScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ui = UI.getInstance();
+        ArrayList<IHighscoreWrapper> dataHighScore = (ArrayList) ui.getDomainData().getHighScoreTable(); 
+        ObservableList<IHighscoreWrapper> highscoreList = FXCollections.observableArrayList(dataHighScore);
+        listHighScores.setItems(highscoreList); 
     }    
 
     @FXML
@@ -66,5 +73,6 @@ public class TitleScreenController implements Initializable {
     private void loadGame(ActionEvent event) {
         ui.injectDomainGame(ui.getDomainData().loadGame(true));
     }
+    
     
 }

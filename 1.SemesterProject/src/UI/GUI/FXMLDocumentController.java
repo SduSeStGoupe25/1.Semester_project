@@ -35,6 +35,8 @@ public class FXMLDocumentController implements Initializable {
     private BorderPane borderPane;
 
     private BorderPane borderPaneDefault;
+    
+    StatsPanelController bobLarsen = new StatsPanelController();
     @FXML
     private GridPane gridPane;
     @FXML
@@ -101,6 +103,7 @@ public class FXMLDocumentController implements Initializable {
     private void GoNorthButton(ActionEvent event) {
         game.movePlayer("north");
         System.out.println("n");
+         bobLarsen.updateBars();
 //        game.goRoom("north");
 //        updateUI();
     }

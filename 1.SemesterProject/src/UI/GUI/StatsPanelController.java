@@ -40,6 +40,7 @@ public class StatsPanelController implements Initializable {
     private Label xpLabel;
     
     IPlayer player;
+    
     @FXML
     private Text currentHealth;
     @FXML
@@ -54,7 +55,7 @@ public class StatsPanelController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("UI");
         System.out.println(UI.getInstance());
-//        player = UI.getInstance().getDomainGame().getPlayer();
+        player = UI.getInstance().getDomainGame().getPlayer();
         System.out.println(player);
         hpBar.setStyle("-fx-accent: green");
         
@@ -62,25 +63,52 @@ public class StatsPanelController implements Initializable {
         
         xpBar.setStyle("-fx-accent: #5194ff");
         
+        
         updateBars();
-        // TODO
+        
     }
     
     @FXML
     private void labelClick(MouseEvent event) {
     }
     
-    private void updateBars() {
-////        System.out.println("PLAYER");
-////        System.out.println(player);
-////        hpBar.setProgress(player.getHealthPercent());
-////        currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
-////        
-////        hungerBar.setProgress(player.getHungerPercent());
-////        currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
-////        
-////        xpBar.setProgress(player.getExpPercent());
-////        currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
+     void updateBars() {
+       
+        if(player.getHealth() == 0) { 
+            hpBar.setProgress(0);
+            currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
+            
+        }
+            
+        else { 
+            
+        double healthPercent =  ((player.getHealth() / player.getMaxHealth()) * 100);
+        hpBar.setProgress(healthPercent);
+        currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
+        }
+        
+        if (player.getHunger() == 0) { 
+            hungerBar.setProgress(0);
+            currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
+        }
+        
+        else {
+           
+        double hungerPercent = ((player.getHunger() / player.getMaxHunger()) * 100);
+        hungerBar.setProgress(hungerPercent);
+        currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
+        
+        }
+        
+        if (player.getExp() == 0) { 
+            xpBar.setProgress(0);
+            currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
+        }
+        else {      
+        double expPercent = ((player.getExp() / player.getExpToLevelUp()) * 100);
+        xpBar.setProgress(expPercent);
+        currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
+        }
     }
     
 }
