@@ -19,7 +19,7 @@
          "0":{  
             "name":"Start 1",
             "description":"To survive in this kingdom you must be able to fight. Practice by killing some sheeps, they are found on the farm.You may find a weapon, for example, a rock.",
-            "gold":10,
+            "gold":5,
             "exp":10,
             "items":[  
                
@@ -30,7 +30,7 @@
             "name":"Start 2",
             "description":"The start part 2",
             "gold":10,
-            "exp":10,
+            "exp":20,
             "items":[  
                
             ],
@@ -47,7 +47,7 @@
             "giver":"No one yet"
          }
       },
-      "questsCompleted":0,
+      "questsCompleted":2,
       "hunger":100,
       "expToLevelUp":10,
       "scoreValue":0,
@@ -384,6 +384,33 @@
                "name2":"excalibur",
                "locked":true,
                "lockID":1
+            }
+         },
+         "charactersInRoom":[  
+
+         ],
+         "items":[  
+
+         ],
+         "allowedMonsters":[  
+
+         ]
+      },
+      "forrest":{  
+         "name":"forrest",
+         "description":"in the forrest",
+         "exits":{  
+            "south":{  
+               "name1":"forrest",
+               "name2":"deepwoods",
+               "locked":false,
+               "lockID":0
+            },
+            "east":{  
+               "name1":"forrest",
+               "name2":"farm",
+               "locked":false,
+               "lockID":0
             }
          },
          "charactersInRoom":[  

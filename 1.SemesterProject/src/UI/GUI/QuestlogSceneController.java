@@ -5,9 +5,19 @@
  */
 package UI.GUI;
 
+import Arq.IGame;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -16,12 +26,39 @@ import javafx.fxml.Initializable;
  */
 public class QuestlogSceneController implements Initializable {
 
+    @FXML
+    private ListView<String> QuestListView;
+    @FXML
+    private TextArea QuestTextArea;
+    private IGame game;
+    @FXML
+    private TextField expField;
+    @FXML
+    private TextField goldField;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        game = UI.getInstance().getDomainGame();
+        QuestListView.setItems(FXCollections.observableList(completedQuests()));
+    }
+    private List completedQuests(){
+        int completedQuests = 0;
+        List<String> completedQuestNames = new ArrayList<>();
+        while (completedQuests < game.getPlayer().getQuestsCompleted()) {
+            completedQuestNames.add(game.getPlayer().getMainQuest().get(completedQuests).getName() + " (Completed)");
+            completedQuests++;
+        }
+        completedQuestNames.add(game.getPlayer().getMainQuest().get(game.getPlayer().getQuestsCompleted()).getName());
+        return completedQuestNames;
+    }
+
+    @FXML
+    private void setQuestText(MouseEvent event) {
+        QuestTextArea.setText(game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getDescription());
+        expField.setText("" + game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getExp());
+        goldField.setText("" + game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getGold());
+    }
 }

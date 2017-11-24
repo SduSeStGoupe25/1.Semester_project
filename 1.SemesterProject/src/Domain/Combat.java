@@ -164,7 +164,7 @@ public class Combat implements ICombat{
      *
      * @param running Sets the running boolean to true or false
      */
-    public void setRunning(boolean running) {
+    void setRunning(boolean running) {
         this.running = running;
     }
 

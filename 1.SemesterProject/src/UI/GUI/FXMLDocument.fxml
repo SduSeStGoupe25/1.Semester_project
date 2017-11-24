@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.FXMLDocumentController">
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.FXMLDocumentController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -21,32 +21,32 @@
    <children>
       <VBox fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="150.0" prefWidth="150.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#setDefaultView" prefWidth="150.0" text="World view">
+            <Button fx:id="worldViewButton" mnemonicParsing="false" onAction="#setDefaultView" prefWidth="150.0" text="World view">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#openInventoryButton" prefWidth="150.0" text="Inventory">
+            <Button fx:id="inventoryButton" mnemonicParsing="false" onAction="#openInventoryButton" prefWidth="150.0" text="Inventory">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#openQuestlogButton" prefWidth="150.0" text="Quest log">
+            <Button fx:id="questButton" mnemonicParsing="false" onAction="#openQuestlogButton" prefWidth="150.0" text="Quest log">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#openMapButton" prefWidth="150.0" text="Map">
+            <Button fx:id="mapButton" mnemonicParsing="false" onAction="#openMapButton" prefWidth="150.0" text="Map">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="150.0" text="Save">
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButtonCLicked" prefWidth="150.0" text="Save">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#quitGame" prefWidth="150.0" text="Quit">
+            <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitGame" prefWidth="150.0" text="Quit">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
