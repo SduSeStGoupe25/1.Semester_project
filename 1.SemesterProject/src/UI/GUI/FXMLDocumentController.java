@@ -8,11 +8,12 @@ package UI.GUI;
 import Arq.IDomainGame;
 import Arq.IGame;
 
-
 import Domain.DomainGame;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +52,18 @@ public class FXMLDocumentController implements Initializable {
     private Button btnEast;
 
     private IGame game;
+    @FXML
+    private Button worldViewButton;
+    @FXML
+    private Button inventoryButton;
+    @FXML
+    private Button questButton;
+    @FXML
+    private Button mapButton;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private Button quitButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,54 +114,93 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void GoNorthButton(ActionEvent event) {
+<<<<<<< HEAD
         game.movePlayer("north");
         System.out.println("n");
          bobLarsen.updateBars();
 //        game.goRoom("north");
 //        updateUI();
+=======
+        if (game.movePlayer("north")) {
+            updateUI();
+        }
+>>>>>>> 5a57aa608db859c8a5a64591b39cd075988404cc
     }
 
     @FXML
     private void GoWestButton(ActionEvent event) {
-//        game.goRoom("west");
-//        updateUI();
+        if (game.movePlayer("west")) {
+            updateUI();
+        }
     }
 
     @FXML
     private void GoSouthButton(ActionEvent event) {
-//        game.goRoom("south");
-//        updateUI();
+        if (game.movePlayer("south")) {
+            updateUI();
+        }
     }
 
     @FXML
     private void GoEastButton(ActionEvent event) {
-//        game.goRoom("east");
-//        updateUI();
+        if (game.movePlayer("east")) {
+            updateUI();
+        }
     }
 
     private void updateUI() {
-//        if (game.getCurrentRoom().getExit("north") != null) {
-//            btnNorth.setDisable(false);
-//        } else {
-//            btnNorth.setDisable(true);
-//        }
-//
-//        if (game.getCurrentRoom().getExit("east") != null) {
-//            btnEast.setDisable(false);
-//        } else {
-//            btnEast.setDisable(true);
-//        }
-//
-//        if (game.getCurrentRoom().getExit("south") != null) {
-//            btnSouth.setDisable(false);
-//        } else {
-//            btnSouth.setDisable(true);
-//        }
-//
-//        if (game.getCurrentRoom().getExit("west") != null) {
-//            btnWest.setDisable(false);
-//        } else {
-//            btnWest.setDisable(true);
-//        }
+        if (!game.isInCombat()) {
+            if (game.getExitCurrentRoom("north") != null) {
+                btnNorth.setDisable(false);
+            } else {
+                btnNorth.setDisable(true);
+            }
+
+            if (game.getExitCurrentRoom("east") != null) {
+                btnEast.setDisable(false);
+            } else {
+                btnEast.setDisable(true);
+            }
+
+            if (game.getExitCurrentRoom("south") != null) {
+                btnSouth.setDisable(false);
+            } else {
+                btnSouth.setDisable(true);
+            }
+
+            if (game.getExitCurrentRoom("west") != null) {
+                btnWest.setDisable(false);
+            } else {
+                btnWest.setDisable(true);
+            }
+        } else {
+            System.out.println("##################################IN COMBAT #¤#¤#¤#¤#¤#¤#¤#¤#¤#¤");
+            buttonUpdate(true);
+            try {
+                System.out.println("hare------------------------------------");
+                if (gridPane.getChildren().contains(borderPane)) {
+                    gridPane.getChildren().remove(borderPane);
+                    gridPane.add(borderPaneDefault, 1, 0);
+                }
+                borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
+                System.out.println("hare------------------------------------");
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
+
+    @FXML
+    private void saveButtonCLicked(ActionEvent event) {
+    }
+
+    private void buttonUpdate(boolean disable) {
+        worldViewButton.setDisable(disable);
+        inventoryButton.setDisable(disable);
+        questButton.setDisable(disable);
+        mapButton.setDisable(disable);
+        saveButton.setDisable(disable);
+        quitButton.setDisable(disable);
     }
 }

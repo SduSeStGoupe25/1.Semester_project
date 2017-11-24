@@ -38,8 +38,6 @@ public class UI extends Application implements IUI {
     }
 
     IGame getDomainGame() {
-        System.out.println("GAMEDOMAIN");
-        System.out.println(domainGame);
         return domainGame;
     }
 
@@ -56,17 +54,12 @@ public class UI extends Application implements IUI {
 
     @Override
     public void injectDomainData(IDomainData domainData) {
-        System.out.println("IN UI");
-        System.out.println(domainData);
         this.domainData = domainData;
         System.out.println(this.domainData);
     }
 
     @Override
     public void injectDomainGame(IGame domainGame) {
-        System.out.println("DOMAIN GAME #################################");
-        System.out.println(domainGame);
-        System.out.println("------------------");
         this.domainGame = domainGame;
     }
 

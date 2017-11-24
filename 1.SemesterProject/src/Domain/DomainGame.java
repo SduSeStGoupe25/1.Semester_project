@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import UI.Command.PutHandler;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -183,7 +184,7 @@ public class DomainGame implements IGame {
 ////        // defining exits from forrest
 ////        forrest.setExit("east", exitFarmForrest);
 ////        forrest.setExit("south", exitDeepwoodsForrest);
-////        //rooms.put("forrest", forrest);
+////        rooms.put("forrest", forrest);
 ////        //defining exits from the deep woods
 ////        deepwoods.setExit("north", exitDeepwoodsForrest);
 ////        deepwoods.setExit("south", exitCaveDeepwoods);
@@ -334,20 +335,23 @@ public class DomainGame implements IGame {
 ////        db.saveScoreTable(highList);
 ////    }
     // @Override
-    public void goRoom(String direction) {
+    public boolean goRoom(String direction) {
 
         IExit exit = ((Room) getCurrentIRoom()).getExit(direction); //Instantiats a room next to the current room
 
         if (exit == null) { //Chechs if the current room has a exit in this direction
-            System.out.println("There is no path here!");
+            return false;
+            
         } else if (((Exit) exit).isLocked(player.getItemInventory())) {
-            System.out.println("The door is locked");
+            return false;
         } else {  //If it has
             Room nextRoom = (Room) getRoomMap().get(((Exit) exit).nextRoom(getCurrentIRoom().getName()));
+            System.out.println("nextRoom " + nextRoom + " -------------------------------");
             setCurrentIRoom(nextRoom); //Current room is now the nextRoom
             player.addHunger(-3);
             ((Room) getCurrentIRoom()).spawnEnemies();
             System.out.println(((Room) getCurrentIRoom()).getLongDescription()); //Prints a description of the room
+            return true;
         }
     }
 
@@ -385,6 +389,31 @@ public class DomainGame implements IGame {
 
     @Override
     public boolean movePlayer(String direction) {
-         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return goRoom(direction);
+    }
+
+    @Override
+    public IExit getExitCurrentRoom(String direction) {
+        if(rooms.get(currentRoom).getExits().containsKey(direction)){
+            return rooms.get(currentRoom).getExits().get(direction);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public boolean isInCombat() {
+        return ((Combat) combat).isRunning();
+    }
+
+    @Override
+    public LinkedHashMap getQuestList() {
+        return player.getMainQuest();
+    }
+
+    @Override
+    public String getQuestDescription() {
+        String questDescription = player.getMainQuest().get(player.getQuestsCompleted()).getDescription();
+        return questDescription;
     }
 }

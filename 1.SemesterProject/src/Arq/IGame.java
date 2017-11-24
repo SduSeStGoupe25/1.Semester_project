@@ -5,6 +5,8 @@
  */
 package Arq;
 
+import java.util.LinkedHashMap;
+
 /**
  *
  * @author Victor Gram
@@ -13,5 +15,12 @@ public interface IGame extends IDomainGame {
     
     boolean movePlayer(String direction);
     
+
+    LinkedHashMap getQuestList();
+    String getQuestDescription();
+    
+    IExit getExitCurrentRoom(String direction);
+    
+    boolean isInCombat();
     
 }
