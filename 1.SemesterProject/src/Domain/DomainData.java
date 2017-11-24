@@ -8,6 +8,7 @@ package Domain;
 import Arq.IData;
 import Arq.IDomainData;
 import Arq.IDomainGame;
+import Arq.IGame;
 import Arq.IHighscoreWrapper;
 import java.util.List;
 
@@ -45,11 +46,11 @@ public class DomainData implements IDomainData {
     }
 
     @Override
-    public IDomainGame loadGame(boolean newGame) {
+    public IGame loadGame(boolean newGame) {
         GameMapper g = new GameMapper();
         
         System.out.println("LOAD GAME!!!!!!!!!!!!!!!!!!!!!!!!!!!!11111");
-        IDomainGame f = g.map(data.loadGame(newGame));
+        IGame f = g.map(data.loadGame(newGame));
         System.out.println("--------------------------");
         System.out.println(f);
         System.out.println("TEST MAP OVER-----------------------");

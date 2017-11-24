@@ -7,10 +7,11 @@ package Arq;
 
 /**
  *
- * @author madsd
+ * @author Victor Gram
  */
-public interface IUI {
-    void startApplication(String[] args);
-    void injectDomainData(IDomainData domainData);
-    void injectDomainGame(IGame domainGame);
+public interface IGame extends IDomainGame {
+    
+    boolean movePlayer(String direction);
+    
+    
 }

@@ -3,6 +3,7 @@ package Domain;
 import Arq.ICombat;
 import Arq.IDomainGame;
 import Arq.IExit;
+import Arq.IGame;
 import Arq.IPlayer;
 import Arq.IRoom;
 import java.util.Arrays;
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
  * This is the main class, that lets the user play the game. The game is played
  * by write in the console
  */
-public class DomainGame implements IDomainGame {
+public class DomainGame implements IGame {
 
     @Override
     public String toString() {
@@ -380,5 +381,10 @@ public class DomainGame implements IDomainGame {
 
     void setItemNames(String[][] itemNames) {
         this.itemNames = itemNames;
+    }
+
+    @Override
+    public boolean movePlayer(String direction) {
+         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

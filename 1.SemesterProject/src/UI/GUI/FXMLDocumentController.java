@@ -6,6 +6,7 @@
 package UI.GUI;
 
 import Arq.IDomainGame;
+import Arq.IGame;
 
 
 import Domain.DomainGame;
@@ -47,7 +48,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btnEast;
 
-    private IDomainGame game;
+    private IGame game;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,6 +99,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void GoNorthButton(ActionEvent event) {
+        game.movePlayer("north");
+        System.out.println("n");
 //        game.goRoom("north");
 //        updateUI();
     }

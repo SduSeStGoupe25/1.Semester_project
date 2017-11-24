@@ -8,6 +8,7 @@ package UI.GUI;
 import Arq.IDomainData;
 
 import Arq.IDomainGame;
+import Arq.IGame;
 
 import Domain.DomainGame;
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class TitleScreenController implements Initializable {
     @FXML
     private void startGame(ActionEvent event) throws IOException {
         System.out.println("STARTGAME...........................");
-        IDomainGame g = ui.getDomainData().loadGame(true);
+        IGame g = ui.getDomainData().loadGame(true);
         System.out.println("..................");
         System.out.println(g);
         System.out.println("....................");

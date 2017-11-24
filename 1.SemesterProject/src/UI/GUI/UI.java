@@ -7,6 +7,7 @@ package UI.GUI;
 
 import Arq.IDomainData;
 import Arq.IDomainGame;
+import Arq.IGame;
 import Arq.IUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,7 @@ public class UI extends Application implements IUI {
     static UI ui = null;
 
     private IDomainData domainData;
-    private IDomainGame domainGame;
+    private IGame domainGame;
 
     public UI() {
 
@@ -36,7 +37,7 @@ public class UI extends Application implements IUI {
         return ui;
     }
 
-    IDomainGame getDomainGame() {
+    IGame getDomainGame() {
         System.out.println("GAMEDOMAIN");
         System.out.println(domainGame);
         return domainGame;
@@ -62,7 +63,7 @@ public class UI extends Application implements IUI {
     }
 
     @Override
-    public void injectDomainGame(IDomainGame domainGame) {
+    public void injectDomainGame(IGame domainGame) {
         System.out.println("DOMAIN GAME #################################");
         System.out.println(domainGame);
         System.out.println("------------------");

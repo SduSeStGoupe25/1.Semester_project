@@ -14,7 +14,7 @@ import java.util.List;
 public interface IDomainData {
     void addNewScore(String name, int score);
     void saveGame();
-    IDomainGame loadGame(boolean newGame);
+    IGame loadGame(boolean newGame);
     List<IHighscoreWrapper> getHighScoreTable();
     void injectData(IData data);
 }
