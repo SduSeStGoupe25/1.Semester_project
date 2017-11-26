@@ -403,6 +403,7 @@ public class DomainGame implements IGame {
 
     @Override
     public boolean isInCombat() {
+        System.out.println("COMBAT&&&&&&&&&&&&&&&&&&&&&&&&&&&& + " + ((Combat) combat).isRunning());
         return ((Combat) combat).isRunning();
     }
 

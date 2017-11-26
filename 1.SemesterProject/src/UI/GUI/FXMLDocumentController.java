@@ -25,6 +25,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 
 /**
  *
@@ -32,26 +33,15 @@ import javafx.scene.layout.GridPane;
  */
 public class FXMLDocumentController implements Initializable {
 
-    @FXML
-    private BorderPane borderPane;
-
-    private BorderPane borderPaneDefault;
-    
     StatsPanelController bobLarsen = new StatsPanelController();
+    
+    WorldSceneController wc = new WorldSceneController();
+
     @FXML
     private GridPane gridPane;
-    @FXML
-    private AnchorPane defaultView;
-    @FXML
-    private Button btnNorth;
-    @FXML
-    private Button btnWest;
-    @FXML
-    private Button btnSouth;
-    @FXML
-    private Button btnEast;
 
     private IGame game;
+
     @FXML
     private Button worldViewButton;
     @FXML
@@ -64,38 +54,28 @@ public class FXMLDocumentController implements Initializable {
     private Button saveButton;
     @FXML
     private Button quitButton;
+    @FXML
+    private BorderPane scenePane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         gridPane.setPrefSize(800, 600);
         game = UI.getInstance().getDomainGame();
-        borderPaneDefault = new BorderPane();
     }
 
     @FXML
     public void openInventoryButton(ActionEvent e) throws IOException {
-        if (gridPane.getChildren().contains(borderPane)) {
-            gridPane.getChildren().remove(borderPane);
-            gridPane.add(borderPaneDefault, 1, 0);
-        }
-        borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("InventoryScreen.fxml")));
+        scenePane.setCenter(FXMLLoader.load(getClass().getResource("InventoryScreen.fxml")));
     }
 
     @FXML
-    private void setDefaultView(ActionEvent event) {
-        if (gridPane.getChildren().contains(borderPaneDefault)) {
-            gridPane.getChildren().remove(borderPaneDefault);
-            gridPane.add(borderPane, 1, 0);
-        }
+    private void setDefaultView(ActionEvent event) throws IOException {
+        scenePane.setCenter(FXMLLoader.load(getClass().getResource("WorldScene.fxml")));
     }
 
     @FXML
     private void openQuestlogButton(ActionEvent event) throws IOException {
-        if (gridPane.getChildren().contains(borderPane)) {
-            gridPane.getChildren().remove(borderPane);
-            gridPane.add(borderPaneDefault, 1, 0);
-        }
-        borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("QuestlogScene.fxml")));
+        scenePane.setCenter(FXMLLoader.load(getClass().getResource("QuestlogScene.fxml")));
     }
 
     @FXML
@@ -105,89 +85,51 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void openMapButton(ActionEvent event) throws IOException {
-        if (gridPane.getChildren().contains(borderPane)) {
-            gridPane.getChildren().remove(borderPane);
-            gridPane.add(borderPaneDefault, 1, 0);
-        }
-        borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("MapScene.fxml")));
+        scenePane.setCenter(FXMLLoader.load(getClass().getResource("MapScene.fxml")));
     }
 
-    @FXML
-    private void GoNorthButton(ActionEvent event) {
-        game.movePlayer("north");
-        System.out.println("n");
-         bobLarsen.updateBars();
-//        game.goRoom("north");
-//        updateUI();
-        if (game.movePlayer("north")) {
-            updateUI();
-        }
-    }
-
-    @FXML
-    private void GoWestButton(ActionEvent event) {
-        if (game.movePlayer("west")) {
-            updateUI();
-        }
-    }
-
-    @FXML
-    private void GoSouthButton(ActionEvent event) {
-        if (game.movePlayer("south")) {
-            updateUI();
-        }
-    }
-
-    @FXML
-    private void GoEastButton(ActionEvent event) {
-        if (game.movePlayer("east")) {
-            updateUI();
-        }
-    }
-
-    private void updateUI() {
-        if (!game.isInCombat()) {
-            if (game.getExitCurrentRoom("north") != null) {
-                btnNorth.setDisable(false);
-            } else {
-                btnNorth.setDisable(true);
-            }
-
-            if (game.getExitCurrentRoom("east") != null) {
-                btnEast.setDisable(false);
-            } else {
-                btnEast.setDisable(true);
-            }
-
-            if (game.getExitCurrentRoom("south") != null) {
-                btnSouth.setDisable(false);
-            } else {
-                btnSouth.setDisable(true);
-            }
-
-            if (game.getExitCurrentRoom("west") != null) {
-                btnWest.setDisable(false);
-            } else {
-                btnWest.setDisable(true);
-            }
-        } else {
-            System.out.println("##################################IN COMBAT #¤#¤#¤#¤#¤#¤#¤#¤#¤#¤");
-            buttonUpdate(true);
-            try {
-                System.out.println("hare------------------------------------");
-                if (gridPane.getChildren().contains(borderPane)) {
-                    gridPane.getChildren().remove(borderPane);
-                    gridPane.add(borderPaneDefault, 1, 0);
-                }
-                borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
-                System.out.println("hare------------------------------------");
-            } catch (IOException ex) {
-                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }
-
+//    private void updateUI() {
+//        if (!game.isInCombat()) {
+//            if (game.getExitCurrentRoom("north") != null) {
+//                btnNorth.setDisable(false);
+//            } else {
+//                btnNorth.setDisable(true);
+//            }
+//
+//            if (game.getExitCurrentRoom("east") != null) {
+//                btnEast.setDisable(false);
+//            } else {
+//                btnEast.setDisable(true);
+//            }
+//
+//            if (game.getExitCurrentRoom("south") != null) {
+//                btnSouth.setDisable(false);
+//            } else {
+//                btnSouth.setDisable(true);
+//            }
+//
+//            if (game.getExitCurrentRoom("west") != null) {
+//                btnWest.setDisable(false);
+//            } else {
+//                btnWest.setDisable(true);
+//            }
+//        } else {
+//            System.out.println("##################################IN COMBAT #¤#¤#¤#¤#¤#¤#¤#¤#¤#¤");
+//            buttonUpdate(true);
+//            try {
+//                System.out.println("hare------------------------------------");
+//                if (gridPane.getChildren().contains(borderPane)) {
+//                    gridPane.getChildren().remove(borderPane);
+//                    gridPane.add(borderPaneDefault, 1, 0);
+//                }
+//                borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
+//                System.out.println("hare------------------------------------");
+//            } catch (IOException ex) {
+//                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//        }
+//    }
     @FXML
     private void saveButtonCLicked(ActionEvent event) {
     }
@@ -199,5 +141,18 @@ public class FXMLDocumentController implements Initializable {
         mapButton.setDisable(disable);
         saveButton.setDisable(disable);
         quitButton.setDisable(disable);
+    }
+
+    public void update(String toDo) {
+        System.out.println("IS HERE ###############################################");
+        if (toDo.equals("combat")) {
+            System.out.println("combat");
+            try {
+                scenePane.setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
+                buttonUpdate(true);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

@@ -26,6 +26,8 @@ public class UI extends Application implements IUI {
     private IDomainData domainData;
     private IGame domainGame;
 
+    private FXMLDocumentController mainController;
+
     public UI() {
 
     }
@@ -38,6 +40,11 @@ public class UI extends Application implements IUI {
     }
 
     IGame getDomainGame() {
+        System.out.println("MAINCONLLLOER &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& = " + mainController);
+        if(mainController != null && domainGame.isInCombat()){
+            System.out.println("COMABT%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+            mainController.update("combat");
+        }
         return domainGame;
     }
 
@@ -72,4 +79,13 @@ public class UI extends Application implements IUI {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+    public FXMLDocumentController getMainController() {
+        return mainController;
+    }
+
+    public void setMainController(FXMLDocumentController mainController) {
+        this.mainController = mainController;
+    }
+
 }

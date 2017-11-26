@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -38,7 +39,7 @@ public class TitleScreenController implements Initializable {
     private TextField nameBox;
     @FXML
     private ListView<IHighscoreWrapper> listHighScores;
-    
+
     private UI ui;
 
     /**
@@ -47,17 +48,27 @@ public class TitleScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ui = UI.getInstance();
-        ArrayList<IHighscoreWrapper> dataHighScore = (ArrayList) ui.getDomainData().getHighScoreTable(); 
+        ArrayList<IHighscoreWrapper> dataHighScore = (ArrayList) ui.getDomainData().getHighScoreTable();
         ObservableList<IHighscoreWrapper> highscoreList = FXCollections.observableArrayList(dataHighScore);
-        listHighScores.setItems(highscoreList); 
-    }    
+        listHighScores.setItems(highscoreList);
+    }
 
     @FXML
     private void startGame(ActionEvent event) throws IOException {
         IGame g = ui.getDomainData().loadGame(true);
         ui.injectDomainGame(ui.getDomainData().loadGame(false));
-        Stage stage = (Stage)nameBox.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"))));
+        Stage stage = (Stage) nameBox.getScene().getWindow();
+        FXMLLoader fl = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+        System.out.println("....................................");
+        System.out.println("FXMLLOADER " + fl);
+        System.out.println("FXMLLOADER " + fl.getController());
+        Parent l = fl.load();
+        stage.setScene(new Scene(l));
+
+        System.out.println("....................................");
+        System.out.println("FXMLLOADER " + fl);
+        System.out.println("FXMLLOADER " + fl.getController());
+        ui.setMainController(fl.getController());
     }
 
     @FXML
@@ -69,6 +80,5 @@ public class TitleScreenController implements Initializable {
     private void loadGame(ActionEvent event) {
         ui.injectDomainGame(ui.getDomainData().loadGame(true));
     }
-    
-    
+
 }
