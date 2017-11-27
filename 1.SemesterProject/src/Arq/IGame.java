@@ -24,7 +24,7 @@ public interface IGame extends IDomainGame {
     
     boolean isInCombat();
     
-    void usePotion(); 
+    boolean usePotion(); 
     
 
     boolean restoreHpPlayer(IItem item);

@@ -421,29 +421,28 @@ public class DomainGame implements IGame {
         String questDescription = player.getMainQuest().get(player.getQuestsCompleted()).getDescription();
         return questDescription;
     }
-    
+
     @Override
-    public boolean restoreHpPlayer(IItem item){
-        return player.restoreHp((Item)item);
+    public boolean restoreHpPlayer(IItem item) {
+        return player.restoreHp((Item) item);
     }
 
     @Override
     public boolean equipItemPlayer(IItem item) {
-        return player.equip((Item)item);
+        return player.equip((Item) item);
     }
 
     @Override
     public boolean removeItemPlayer(IItem item, int amount) {
-        Inventory inventory = (Inventory)player.getItemInventory();
-        return inventory.removeItem((Item)item, amount);
+        Inventory inventory = (Inventory) player.getItemInventory();
+        return inventory.removeItem((Item) item, amount);
     }
-    
+
     @Override
-    public boolean addItemPlayer(IItem item, int amount){
-        Inventory inventory = (Inventory)player.getItemInventory();
-        return inventory.addItem((Item)item, amount);
+    public boolean addItemPlayer(IItem item, int amount) {
+        Inventory inventory = (Inventory) player.getItemInventory();
+        return inventory.addItem((Item) item, amount);
     }
-    
 
     @Override
     public ICombatResponse getCombatResponse(int action) {
@@ -451,17 +450,20 @@ public class DomainGame implements IGame {
     }
 
     @Override
-    public void usePotion() {
+    public boolean usePotion() {
         for (IItem consumeable : player.getItemInventory().getInventory()) {
             if (consumeable instanceof IConsumeable) {
                 if (consumeable.getName().equals("Potion")) {
                     player.restoreHp(consumeable);
+                    return true;
 
                 }
+            } else {
+                return false;
             }
 
         }
-        
 
+        return false;
     }
 }

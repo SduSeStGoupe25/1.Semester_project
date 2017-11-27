@@ -134,7 +134,12 @@ public class CombatScreenController implements Initializable {
     }
 
     public void usePotionButtonPressed(ActionEvent event) {
-        
+        if (UI.getInstance().getDomainGame().usePotion() == true) { 
+            // update bars
+        }
+        else { 
+            // errormessage
+        }
 
     }
 
