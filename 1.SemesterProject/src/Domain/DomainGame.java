@@ -1,6 +1,7 @@
 package Domain;
 
 import Arq.ICombat;
+import Arq.ICombatResponse;
 import Arq.IDomainGame;
 import Arq.IExit;
 import Arq.IGame;
@@ -415,5 +416,10 @@ public class DomainGame implements IGame {
     public String getQuestDescription() {
         String questDescription = player.getMainQuest().get(player.getQuestsCompleted()).getDescription();
         return questDescription;
+    }
+
+    @Override
+    public ICombatResponse getCombatResponse(int action) {
+        return combat.combatLoop(action);
     }
 }

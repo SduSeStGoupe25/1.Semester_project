@@ -2,6 +2,7 @@ package Domain;
 
 import Arq.ICharacterEntity;
 import Arq.ICombat;
+import Arq.ICombatResponse;
 import Arq.IDomainGame;
 import Arq.IPlayer;
 import Arq.IRoom;
@@ -41,7 +42,7 @@ public class Combat implements ICombat{
     /**
      * This method is our combat loop, where all combat mechanics take place.
      */
-    public CombatResponse combatLoop(int action) {
+    public ICombatResponse combatLoop(int action) {
         CombatResponse cr = new CombatResponse(0, 0, running, player, opponent);
         switch (action) {
             case 0:
@@ -71,7 +72,7 @@ public class Combat implements ICombat{
             game.moveAllNPC(); //At the end of combat we call moveAllNPC, to make all our moveableNPC's move around
             player.addHunger(-8); //At the end of combat the player's hungervalue decreases
         }
-        return cr;
+        return (ICombatResponse) cr;
     }
 
     /**
