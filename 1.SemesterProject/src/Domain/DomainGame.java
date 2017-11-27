@@ -2,9 +2,11 @@ package Domain;
 
 import Arq.ICombat;
 import Arq.ICombatResponse;
+import Arq.IConsumeable;
 import Arq.IDomainGame;
 import Arq.IExit;
 import Arq.IGame;
+import Arq.IItem;
 import Arq.IPlayer;
 import Arq.IRoom;
 import java.util.Arrays;
@@ -31,8 +33,6 @@ public class DomainGame implements IGame {
         return "DomainGame{" + "currentRoom=" + currentRoom + ", player=" + player + ", combat=" + combat + ", rooms=" + rooms + ", finished=" + finished + ", itemNames=" + itemNames + '}';
     }
 
-    
-    
     private transient static DomainGame instance = null;
     // private transient PutHandler putHandler;  //Class responsible for user input and print output
     private String currentRoom;       //The current room
@@ -62,9 +62,12 @@ public class DomainGame implements IGame {
 ////        createRooms();
 ////        createNPC();
 ////        //putHandler = new PutHandler(this);
-        combat = new Combat(player, this);
 
         //System.out.println(this.toString());
+    }
+
+    void makeCombat() {
+        combat = new Combat(player, this);
     }
 
     IDomainGame initialize(IDomainGame game) {
@@ -72,7 +75,7 @@ public class DomainGame implements IGame {
 //        System.out.println(this);
 //        System.out.println(currentRoom);
 //        System.out.println(game);
-        instance = (DomainGame)game;
+        instance = (DomainGame) game;
 
         System.out.println(instance);
 //        System.out.println(game.getCurrentRoom().getName());
@@ -342,7 +345,7 @@ public class DomainGame implements IGame {
 
         if (exit == null) { //Chechs if the current room has a exit in this direction
             return false;
-            
+
         } else if (((Exit) exit).isLocked(player.getItemInventory())) {
             return false;
         } else {  //If it has
@@ -390,12 +393,12 @@ public class DomainGame implements IGame {
 
     @Override
     public boolean movePlayer(String direction) {
-         return goRoom(direction);
+        return goRoom(direction);
     }
 
     @Override
     public IExit getExitCurrentRoom(String direction) {
-        if(rooms.get(currentRoom).getExits().containsKey(direction)){
+        if (rooms.get(currentRoom).getExits().containsKey(direction)) {
             return rooms.get(currentRoom).getExits().get(direction);
         } else {
             return null;
@@ -421,5 +424,20 @@ public class DomainGame implements IGame {
     @Override
     public ICombatResponse getCombatResponse(int action) {
         return combat.combatLoop(action);
+    }
+
+    @Override
+    public void usePotion() {
+        for (IItem consumeable : player.getItemInventory().getInventory()) {
+            if (consumeable instanceof IConsumeable) {
+                if (consumeable.getName().equals("Potion")) {
+                    player.restoreHp(consumeable);
+
+                }
+            }
+
+        }
+        
+
     }
 }

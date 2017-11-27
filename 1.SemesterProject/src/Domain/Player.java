@@ -1,6 +1,7 @@
 package Domain;
 
 import Arq.ICharacterEntity;
+import Arq.IConsumeable;
 import Arq.IInventory;
 import Arq.IItem;
 import Arq.IPlayer;
@@ -154,7 +155,7 @@ class Player extends CharacterEntity implements IPlayer{
      * @return Returns true if health restoring was successful, otherwise
      * returns false
      */
-    boolean restoreHp(Item item) {
+    boolean restoreHp(IItem item) {
         if (!(getHealth() >= getMaxHealth()) || !(this.hunger >= 100)) { //If player is already at max health, returns false
             if (item instanceof Consumeable) { //Checks if the item is a consumeable (only type of item that can restore health)
                 if (this.itemInventory.removeItem(item, 1)) { //Removes the item from our inventory

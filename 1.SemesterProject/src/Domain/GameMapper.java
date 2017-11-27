@@ -43,6 +43,7 @@ final class GameMapper {
         g.setRoomMap(mapR(toBeMapped.getRoomMap()));
         g.setItemNames(toBeMapped.getItemNames());
         g.setPlayer(map(toBeMapped.getPlayer()));
+        g.makeCombat();
 
         return g;
     }

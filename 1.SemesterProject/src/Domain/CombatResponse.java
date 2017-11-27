@@ -5,11 +5,13 @@
  */
 package Domain;
 
+import Arq.ICombatResponse;
+
 /**
  *
  * @author irus
  */
-public class CombatResponse {
+public class CombatResponse implements ICombatResponse{
     private int playerAttack;
     private int opponentAttack;
     private boolean isRunning;
@@ -24,14 +26,16 @@ public class CombatResponse {
         opponent = ce;
     }
 
+    @Override
     public int getPlayerAttack() {
         return playerAttack;
     }
 
-    public void setPlayerAttack(int playerAttack) {
+    void setPlayerAttack(int playerAttack) {
         this.playerAttack = playerAttack;
     }
 
+    @Override
     public int getOpponentAttack() {
         return opponentAttack;
     }
@@ -44,16 +48,18 @@ public class CombatResponse {
         return player;
     }
 
+    @Override
     public CharacterEntity getOpponent() {
         return opponent;
     }
 
-    public boolean isIsRunning() {
-        return isRunning;
-    }
-
     public void setIsRunning(boolean isRunning) {
         this.isRunning = isRunning;
+    }
+
+    @Override
+    public boolean getIsRunning() {
+        return isRunning;
     }
     
     

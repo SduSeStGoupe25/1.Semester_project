@@ -78,8 +78,8 @@
       </GridPane>
       <GridPane fx:id="oppponentstatGridPane" GridPane.columnIndex="2" GridPane.rowIndex="1">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="46.0" minWidth="10.0" prefWidth="46.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="10.0" prefWidth="54.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -87,13 +87,15 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="opponentHP" text="HP" GridPane.rowIndex="2" />
-            <Label fx:id="opponentLevel" text="Level" GridPane.rowIndex="1" />
-            <Label fx:id="opponentName" text="Name" />
+            <Label fx:id="opponentHP" text="HP:" GridPane.rowIndex="2" />
+            <Label fx:id="opponentLevel" text="Level:" GridPane.rowIndex="1" />
             <ProgressBar fx:id="opponentHealthBar" prefWidth="200.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Text fx:id="opponentHealthText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Text fx:id="opponentHealthText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="3.0" />
+               </GridPane.margin></Text>
             <Text fx:id="opponentLevelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Text fx:id="opponentNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+            <Text fx:id="opponentNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </children>
       </GridPane>
    </children>

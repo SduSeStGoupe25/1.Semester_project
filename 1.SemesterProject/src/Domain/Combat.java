@@ -54,6 +54,9 @@ public class Combat implements ICombat{
             case 2:
                 running = false;
                 break;
+            case 3: 
+                return (ICombatResponse) cr;
+               
 
         }
         if (opponent.getHealth() < 1) { //If the opponents health is below 1 ( = dead), the opponent gets removed from the room / game.

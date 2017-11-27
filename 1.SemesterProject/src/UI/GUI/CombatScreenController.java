@@ -10,6 +10,7 @@ import Arq.ICombatResponse;
 import Arq.IItem;
 import Arq.IPlayer;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -57,9 +58,9 @@ public class CombatScreenController implements Initializable {
     @FXML
     private ListView equippedListView;
 
-    IPlayer p = UI.getInstance().getDomainGame().getPlayer();
+    private IPlayer p = UI.getInstance().getDomainGame().getPlayer();
 
-    List<IItem> equippedList;
+    private List<IItem> equippedList;
     @FXML
     private ProgressBar opponentHealthBar;
 
@@ -80,10 +81,13 @@ public class CombatScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        equippedList = new ArrayList<>();
+        c = UI.getInstance().getDomainGame().getCombatResponse(3);
         updatePlayerStats();
         updateOpponentStats();
         updatEquippedInventory();
 //        imageForest.fitWidthProperty().bind(stage);
+
     }
 
     public void updatEquippedInventory() {
@@ -100,7 +104,7 @@ public class CombatScreenController implements Initializable {
 
     }
 
-    public void updateOpponentStats() { //updates opponent entitys combat-screen stats
+    public void updateOpponentStats() { //updates opponent entity's combat-screen stats
         ICharacterEntity o = c.getOpponent();
         opponentNameText.setText(o.getName());
         opponentLevelText.setText(Integer.toString(o.getLevel()));
@@ -128,9 +132,10 @@ public class CombatScreenController implements Initializable {
         updateOpponentStats();
         updatePlayerStats();
     }
-    
-    public void usePotionButtonPressed (ActionEvent event) {
+
+    public void usePotionButtonPressed(ActionEvent event) {
         
+
     }
 
 }

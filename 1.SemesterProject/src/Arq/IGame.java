@@ -24,4 +24,6 @@ public interface IGame extends IDomainGame {
     
     boolean isInCombat();
     
+    void usePotion(); 
+    
 }

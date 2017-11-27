@@ -72,7 +72,7 @@ public class FXMLDocumentController implements Initializable {
         borderPaneDefault = new BorderPane();
 
         /**
-         * Inspireret from
+         * Inspired by
          * https://stackoverflow.com/questions/30814258/javafx-pass-parameters-while-instantiating-controller-class
          */
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StatsPanel.fxml"));
