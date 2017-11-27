@@ -26,4 +26,13 @@ public interface IGame extends IDomainGame {
     
     void usePotion(); 
     
+
+    boolean restoreHpPlayer(IItem item);
+    
+    boolean equipItemPlayer(IItem item);
+    
+    boolean removeItemPlayer(IItem item, int amount);
+    
+    boolean addItemPlayer(IItem item, int amount);
+
 }
