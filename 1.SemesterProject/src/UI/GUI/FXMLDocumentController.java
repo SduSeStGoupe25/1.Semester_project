@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -71,7 +72,8 @@ public class FXMLDocumentController implements Initializable {
         borderPaneDefault = new BorderPane();
 
         /**
-         * Inspireret from https://stackoverflow.com/questions/30814258/javafx-pass-parameters-while-instantiating-controller-class
+         * Inspireret from
+         * https://stackoverflow.com/questions/30814258/javafx-pass-parameters-while-instantiating-controller-class
          */
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StatsPanel.fxml"));
         try {
@@ -83,6 +85,32 @@ public class FXMLDocumentController implements Initializable {
         // Create a controller instance
         statController = loader.getController();
 
+        gridPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            switch (event.getCode()) {
+                case W:
+                    if (game.movePlayer("north")) {
+                        updateUI();
+                    }
+                    break;
+                case A:
+                    if (game.movePlayer("west")) {
+                        updateUI();
+                    }
+                    break;
+                case S:
+                    if (game.movePlayer("south")) {
+                        updateUI();
+                    }
+                    break;
+                case D:
+                    if (game.movePlayer("east")) {
+                        updateUI();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 
     @FXML
