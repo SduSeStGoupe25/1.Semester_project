@@ -23,4 +23,11 @@ public interface IGame extends IDomainGame {
     
     boolean isInCombat();
     
+    boolean restoreHpPlayer(IItem item);
+    
+    boolean equipItemPlayer(IItem item);
+    
+    boolean removeItemPlayer(IItem item, int amount);
+    
+    boolean addItemPlayer(IItem item, int amount);
 }

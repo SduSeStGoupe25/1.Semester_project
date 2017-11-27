@@ -2,8 +2,15 @@
    "currentRoom":"citycenter",
    "player":{  
       "itemInventory":{  
-         "inventory":[  
-
+         "inventory":[  {
+                 "name":"Stone",
+                 "id":4,
+                 "sellValue":10,
+                 "count":1,
+                 "MAX_COUNT":1,
+                 "baseAttack":10,
+                 "itemLevel":1
+                 }
          ],
          "maxSlots":20
       },

@@ -31,15 +31,15 @@ class Inventory implements IInventory{
                         ((Item) i).addCount(amount);
                         return true;
                     } else {
-                        return addInv(amount, item);
+                        return addInv(item, amount);
                     }
                 }
             }
         } 
-            return addInv(amount, item);
+            return addInv(item, amount);
     }
 
-    private boolean addInv(int amount, Item item) {
+    private boolean addInv(Item item, int amount) {
         if (amount / item.getMAX_COUNT() + inventory.size() <= maxSlots) {
             int amountBack = amount;
             for (IItem j : inventory) {

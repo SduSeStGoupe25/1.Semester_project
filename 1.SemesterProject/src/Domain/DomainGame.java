@@ -1,9 +1,11 @@
 package Domain;
 
 import Arq.ICombat;
+import Arq.IConsumeable;
 import Arq.IDomainGame;
 import Arq.IExit;
 import Arq.IGame;
+import Arq.IItem;
 import Arq.IPlayer;
 import Arq.IRoom;
 import java.util.Arrays;
@@ -416,4 +418,27 @@ public class DomainGame implements IGame {
         String questDescription = player.getMainQuest().get(player.getQuestsCompleted()).getDescription();
         return questDescription;
     }
+    
+    @Override
+    public boolean restoreHpPlayer(IItem item){
+        return player.restoreHp((Item)item);
+    }
+
+    @Override
+    public boolean equipItemPlayer(IItem item) {
+        return player.equip((Item)item);
+    }
+
+    @Override
+    public boolean removeItemPlayer(IItem item, int amount) {
+        Inventory inventory = (Inventory)player.getItemInventory();
+        return inventory.removeItem((Item)item, amount);
+    }
+    
+    @Override
+    public boolean addItemPlayer(IItem item, int amount){
+        Inventory inventory = (Inventory)player.getItemInventory();
+        return inventory.addItem((Item)item, amount);
+    }
+    
 }
