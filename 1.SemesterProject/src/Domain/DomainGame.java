@@ -2,6 +2,7 @@ package Domain;
 
 import Arq.ICombat;
 import Arq.IConsumeable;
+import Arq.ICombatResponse;
 import Arq.IDomainGame;
 import Arq.IExit;
 import Arq.IGame;
@@ -441,4 +442,9 @@ public class DomainGame implements IGame {
         return inventory.addItem((Item)item, amount);
     }
     
+
+    @Override
+    public ICombatResponse getCombatResponse(int action) {
+        return combat.combatLoop(action);
+    }
 }

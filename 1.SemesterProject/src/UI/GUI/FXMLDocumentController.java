@@ -5,7 +5,6 @@
  */
 package UI.GUI;
 
-import Arq.IDomainGame;
 import Arq.IGame;
 import Arq.IItem;
 import Domain.DomainGame;
@@ -24,8 +23,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -34,6 +32,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -45,8 +44,9 @@ public class FXMLDocumentController implements Initializable {
     private BorderPane borderPane;
     
     private BorderPane borderPaneDefault;
-    
-    StatsPanelController bobLarsen = new StatsPanelController();
+
+    private StatsPanelController statController;
+
     @FXML
     private GridPane gridPane;
     @FXML
@@ -73,6 +73,8 @@ public class FXMLDocumentController implements Initializable {
     private Button saveButton;
     @FXML
     private Button quitButton;
+    @FXML
+    private VBox vbox;
 
     private HBoxCell selectedItem;
 
@@ -89,6 +91,47 @@ public class FXMLDocumentController implements Initializable {
         gridPane.setPrefSize(800, 600);
         game = UI.getInstance().getDomainGame();
         borderPaneDefault = new BorderPane();
+
+        /**
+         * Inspireret from
+         * https://stackoverflow.com/questions/30814258/javafx-pass-parameters-while-instantiating-controller-class
+         */
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StatsPanel.fxml"));
+        try {
+            GridPane statPane = loader.load();
+            vbox.getChildren().add(statPane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // Create a controller instance
+        statController = loader.getController();
+
+        gridPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            switch (event.getCode()) {
+                case W:
+                    if (game.movePlayer("north")) {
+                        updateUI();
+                    }
+                    break;
+                case A:
+                    if (game.movePlayer("west")) {
+                        updateUI();
+                    }
+                    break;
+                case S:
+                    if (game.movePlayer("south")) {
+                        updateUI();
+                    }
+                    break;
+                case D:
+                    if (game.movePlayer("east")) {
+                        updateUI();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 
     @FXML
@@ -133,11 +176,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void GoNorthButton(ActionEvent event) {
-        game.movePlayer("north");
-        System.out.println("n");
-         bobLarsen.updateBars();
-//        game.goRoom("north");
-//        updateUI();
         if (game.movePlayer("north")) {
             updateUI();
         }
@@ -165,6 +203,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void updateUI() {
+        statController.updateBars();
         if (!game.isInCombat()) {
             if (game.getExitCurrentRoom("north") != null) {
                 btnNorth.setDisable(false);
@@ -190,16 +229,13 @@ public class FXMLDocumentController implements Initializable {
                 btnWest.setDisable(true);
             }
         } else {
-            System.out.println("##################################IN COMBAT #¤#¤#¤#¤#¤#¤#¤#¤#¤#¤");
             buttonUpdate(true);
             try {
-                System.out.println("hare------------------------------------");
                 if (gridPane.getChildren().contains(borderPane)) {
                     gridPane.getChildren().remove(borderPane);
                     gridPane.add(borderPaneDefault, 1, 0);
                 }
                 borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
-                System.out.println("hare------------------------------------");
             } catch (IOException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }

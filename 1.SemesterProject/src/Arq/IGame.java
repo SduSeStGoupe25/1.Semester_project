@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 public interface IGame extends IDomainGame {
     
     boolean movePlayer(String direction);
+    ICombatResponse getCombatResponse(int action);
     
 
     LinkedHashMap getQuestList();

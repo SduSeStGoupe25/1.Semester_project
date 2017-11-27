@@ -19,7 +19,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="150.0" prefWidth="150.0">
+      <VBox fx:id="vbox" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="150.0" prefWidth="150.0">
          <children>
             <Button mnemonicParsing="false" onAction="#setDefaultView" prefWidth="150.0" text="World view">
                <VBox.margin>
@@ -57,7 +57,6 @@
                </VBox.margin>
             </Button>
             <ListView prefHeight="200.0" prefWidth="200.0" />
-            <fx:include source="StatsPanel.fxml" />
          </children>
          <padding>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

@@ -21,7 +21,7 @@ import javafx.scene.text.Text;
  * @author rasmusstamm
  */
 public class StatsPanelController implements Initializable {
-    
+
     @FXML
     private ProgressBar hpBar;
     @FXML
@@ -38,9 +38,9 @@ public class StatsPanelController implements Initializable {
     private Label hungerLabel;
     @FXML
     private Label xpLabel;
-    
+
     IPlayer player;
-    
+
     @FXML
     private Text currentHealth;
     @FXML
@@ -58,57 +58,56 @@ public class StatsPanelController implements Initializable {
         player = UI.getInstance().getDomainGame().getPlayer();
         System.out.println(player);
         hpBar.setStyle("-fx-accent: green");
-        
+
         hungerBar.setStyle("-fx-accent: orange");
-        
+
         xpBar.setStyle("-fx-accent: #5194ff");
-        
-        
+
         updateBars();
-        
+
     }
-    
+
     @FXML
     private void labelClick(MouseEvent event) {
     }
-    
-     void updateBars() {
-       
-        if(player.getHealth() == 0) { 
+
+    void updateBars() {
+        System.out.println("PLAYER ");
+        System.out.println(player);
+        if (player.getHealth() == 0) {
             hpBar.setProgress(0);
             currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
-            
+
+        } else {
+
+            double healthPercent = ((double) player.getHealth() / (double) player.getMaxHealth());
+
+            hpBar.setProgress(healthPercent);
+            currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
         }
-            
-        else { 
-            
-        double healthPercent =  ((player.getHealth() / player.getMaxHealth()) * 100);
-        hpBar.setProgress(healthPercent);
-        currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
-        }
-        
-        if (player.getHunger() == 0) { 
+
+        if (player.getHunger() == 0) {
             hungerBar.setProgress(0);
             currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
+        } else {
+
+            double hungerPercent = ((double) player.getHunger() / (double) player.getMaxHunger());
+
+            hungerBar.setProgress(hungerPercent);
+            currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
+
         }
-        
-        else {
-           
-        double hungerPercent = ((player.getHunger() / player.getMaxHunger()) * 100);
-        hungerBar.setProgress(hungerPercent);
-        currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
-        
-        }
-        
-        if (player.getExp() == 0) { 
+
+        if (player.getExp() == 0) {
             xpBar.setProgress(0);
             currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
-        }
-        else {      
-        double expPercent = ((player.getExp() / player.getExpToLevelUp()) * 100);
-        xpBar.setProgress(expPercent);
-        currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
+        } else {
+
+            double expPercent = ((double) player.getExp() / (double) player.getExpToLevelUp());
+
+            xpBar.setProgress(expPercent);
+            currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
         }
     }
-    
+
 }
