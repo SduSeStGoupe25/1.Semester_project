@@ -5,10 +5,8 @@
  */
 package UI.GUI;
 
-import Arq.IDomainGame;
 import Arq.IGame;
 
-import Domain.DomainGame;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,13 +16,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -36,8 +32,9 @@ public class FXMLDocumentController implements Initializable {
     private BorderPane borderPane;
 
     private BorderPane borderPaneDefault;
-    
-    StatsPanelController bobLarsen = new StatsPanelController();
+
+    private StatsPanelController statController;
+
     @FXML
     private GridPane gridPane;
     @FXML
@@ -64,12 +61,28 @@ public class FXMLDocumentController implements Initializable {
     private Button saveButton;
     @FXML
     private Button quitButton;
+    @FXML
+    private VBox vbox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         gridPane.setPrefSize(800, 600);
         game = UI.getInstance().getDomainGame();
         borderPaneDefault = new BorderPane();
+
+        /**
+         * Inspireret from https://stackoverflow.com/questions/30814258/javafx-pass-parameters-while-instantiating-controller-class
+         */
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StatsPanel.fxml"));
+        try {
+            GridPane statPane = loader.load();
+            vbox.getChildren().add(statPane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // Create a controller instance
+        statController = loader.getController();
+
     }
 
     @FXML
@@ -114,11 +127,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void GoNorthButton(ActionEvent event) {
-        game.movePlayer("north");
-        System.out.println("n");
-         bobLarsen.updateBars();
-//        game.goRoom("north");
-//        updateUI();
         if (game.movePlayer("north")) {
             updateUI();
         }
@@ -146,6 +154,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void updateUI() {
+        statController.updateBars();
         if (!game.isInCombat()) {
             if (game.getExitCurrentRoom("north") != null) {
                 btnNorth.setDisable(false);

@@ -23,7 +23,6 @@ class Player extends CharacterEntity implements IPlayer{
     private Inventory itemInventory;
     private Inventory equipableInventory;
     private int gold;
-
     private int exp;
     private LinkedHashMap<Integer, IQuest> mainQuest;
     private HashMap<String, IQuest> sideQuest;
@@ -32,7 +31,9 @@ class Player extends CharacterEntity implements IPlayer{
     private int maxHunger;
     private int expToLevelUp;
     private int scoreValue;
-
+    
+    private boolean completedGame = false;
+    
     /**
      * Player constructor
      */
@@ -208,6 +209,7 @@ class Player extends CharacterEntity implements IPlayer{
                         ((Inventory) getItemInventory()).removeItem(item, item.getCount());
                     }
                     setQuestsCompleted(questsCompleted + 1);
+                    completedGame();
                     return true;
                 } else {
                     return false;
@@ -215,6 +217,13 @@ class Player extends CharacterEntity implements IPlayer{
             }
         }
         return false;
+    }
+    
+    public void completedGame(){
+        if (questsCompleted > 2) { //Currently 3 quests, change this later
+            completedGame = true;
+            System.out.println("GAME COMPLETED");
+        }
     }
 
     void levelUp() { //Function called to chech wether the player has enough experience to level up, and the fuctionality for leveling up
@@ -279,6 +288,7 @@ class Player extends CharacterEntity implements IPlayer{
 
     @Override
     public LinkedHashMap<Integer, IQuest> getMainQuest() {
+        //completedGame(); //Used to test Win Condition
         return mainQuest;
     }
 

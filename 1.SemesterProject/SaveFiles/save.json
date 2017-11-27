@@ -17,37 +17,56 @@
       "exp":0,
       "mainQuest":{  
          "0":{  
-            "name":"Start 1",
-            "description":"To survive in this kingdom you must be able to fight. Practice by killing some sheeps, they are found on the farm.You may find a weapon, for example, a rock.",
-            "gold":5,
-            "exp":10,
+            "name":"Arriving to town",
+            "description":"Hello there, my name is Merlin. You've come to try and draw the mighty Excalibur I assume? Very well. You can start by proving yourself worthy by killing some sheep. You might be able to find a weapon around here somewhere... Or possibly a rock.",
+            "gold":10,
+            "exp":5,
             "items":[  
                
             ],
             "giver":"Merlin"
          },
          "1":{  
-            "name":"Start 2",
-            "description":"The start part 2",
-            "gold":10,
-            "exp":20,
+            "name":"Getting the hang of things",
+            "description":"Good job on killing those sheep! I've heard the shopkeeper in town is in dire need of some supplies, maybe you could help him out?",
+            "gold":15,
+            "exp":10,
             "items":[  
                
             ],
-            "giver":"Shopkeeper"
+            "giver":"Merlin"
          },
-         "2":{  
-            "name":"Comming soon!",
-            "description":"More comming soon",
+         "2":{
+            "name":"The final encounter",
+            "description":"You've made it! We're only a small step away from pulling the mighty Excalibur! All we need to do is slay that big dragon... You can do that, right?\n\nRequired item: Excalibur, the Mighty Greatsword",
+            "gold":0,
+            "exp":0,
+            "items":[
+            {  
+               "baseAttack":25,
+               "attackValue":2,
+               "itemLevel":99,
+               "name":"Excalibur, the Mighty Greatsword",
+               "sellValue":1000,
+               "count":1,
+               "MAX_COUNT":1,
+               "id":4
+            }
+            ],
+            "giver":"Merlin"
+         },
+         "3":{  
+            "name":"Coming soon!",
+            "description":"More coming soon",
             "gold":0,
             "exp":0,
             "items":[  
 
             ],
-            "giver":"No one yet"
+            "giver":" "
          }
       },
-      "questsCompleted":2,
+      "questsCompleted":1,
       "hunger":100,
       "expToLevelUp":10,
       "scoreValue":0,
