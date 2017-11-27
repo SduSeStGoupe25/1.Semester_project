@@ -83,7 +83,11 @@ public class StatsPanelController implements Initializable {
             
         else { 
             
+<<<<<<< HEAD
+        double healthPercent =  ((double)player.getHealth() / (double) player.getMaxHealth());
+=======
         double healthPercent =  (((double)player.getHealth() / player.getMaxHealth()));
+>>>>>>> e7129ec636c897468d944e43f0c2d9919c920f44
         hpBar.setProgress(healthPercent);
         currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());
         }
@@ -95,8 +99,12 @@ public class StatsPanelController implements Initializable {
         
         else {
            
+<<<<<<< HEAD
+        double hungerPercent = ((double) player.getHunger() / (double) player.getMaxHunger());
+=======
         double hungerPercent = (((double)player.getHunger() / player.getMaxHunger()));
             
+>>>>>>> e7129ec636c897468d944e43f0c2d9919c920f44
         hungerBar.setProgress(hungerPercent);
         currentHunger.setText(player.getHunger() + "/" + player.getMaxHunger());
         
@@ -107,7 +115,11 @@ public class StatsPanelController implements Initializable {
             currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
         }
         else {      
+<<<<<<< HEAD
+        double expPercent = ((double) player.getExp() / (double) player.getExpToLevelUp());
+=======
         double expPercent = (((double)player.getExp() / player.getExpToLevelUp()));
+>>>>>>> e7129ec636c897468d944e43f0c2d9919c920f44
         xpBar.setProgress(expPercent);
         currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
         }

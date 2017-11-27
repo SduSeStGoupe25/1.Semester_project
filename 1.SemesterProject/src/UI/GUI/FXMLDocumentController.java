@@ -208,16 +208,13 @@ public class FXMLDocumentController implements Initializable {
                 btnWest.setDisable(true);
             }
         } else {
-            System.out.println("##################################IN COMBAT #¤#¤#¤#¤#¤#¤#¤#¤#¤#¤");
             buttonUpdate(true);
             try {
-                System.out.println("hare------------------------------------");
                 if (gridPane.getChildren().contains(borderPane)) {
                     gridPane.getChildren().remove(borderPane);
                     gridPane.add(borderPaneDefault, 1, 0);
                 }
                 borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
-                System.out.println("hare------------------------------------");
             } catch (IOException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }

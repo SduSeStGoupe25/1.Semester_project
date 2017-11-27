@@ -10,5 +10,5 @@ package Arq;
  * @author madsd
  */
 public interface ICombat {
-    
+    ICombatResponse combatLoop(int action); 
 }
