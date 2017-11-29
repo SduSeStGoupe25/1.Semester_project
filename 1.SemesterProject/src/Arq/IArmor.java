@@ -1,16 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Arq;
 
 /**
+ * Interface for a item of the type armor
  *
- * @author madsd
  */
-public interface IArmor extends IItem{
+public interface IArmor extends IItem {
+
+    /**
+     * Called to get the armorValue of the item
+     *
+     * @return Returns the armorValue as a integer
+     */
     int getArmorValue();
+
+    /**
+     * Called to get the level of the item
+     *
+     * @return Returns the level as a integer
+     */
     int getItemLevel();
+
+    /**
+     * Called to get the baseArmor (armor at level one) of the item
+     *
+     * @return Returns the basearmor as a integer
+     */
     int getBaseArmor();
 }

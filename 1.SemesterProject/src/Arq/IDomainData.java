@@ -1,20 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Arq;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
+ * Interface for the domaindata. It interface are implemented be a class that
+ * has contact to the data layer
  *
- * @author madsd
  */
 public interface IDomainData {
+
+    /**
+     * Called to add a new score to the scoretable in the data layer
+     *
+     * @param name of the player
+     * @param score the game score
+     */
     void addNewScore(String name, int score);
+
+    /**
+     * Called to save the current game state
+     */
     void saveGame();
+
+    /**
+     * Called load the game, either a new game
+     *
+     * @param newGame a boolean, if true loads a new game if false continues on
+     * a previous game
+     * @return a new game
+     */
     IGame loadGame(boolean newGame);
-    List<IHighscoreWrapper> getHighScoreTable();
+
+    /**
+     * Called to get the highScoreTable
+     * @return a collection with IHighscoreWrapper
+     */
+    Collection<IHighscoreWrapper> getHighScoreTable();
+
+    /**
+     * Called to inject data to instance that implements this interface
+     * @param data a instance of IData
+     */
     void injectData(IData data);
 }
