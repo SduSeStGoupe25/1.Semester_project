@@ -5,8 +5,13 @@
  */
 package UI.GUI;
 
+import Arq.IItem;
+import Arq.IPlayer;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,7 +34,11 @@ public class ShopkeeperScreenController implements Initializable {
     @FXML
     private ListView<?> shopSelectionList;
     @FXML
-    private ListView<?> playerInventoryList;
+    private ListView<IItem> playerInventoryList;
+    
+    private IPlayer p = UI.getInstance().getDomainGame().getPlayer();
+    
+    private List<IItem> playerInventory;
 
     /**
      * Initializes the controller class.
@@ -38,5 +47,15 @@ public class ShopkeeperScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    void loadPlayerInventory () { 
+        for (IItem item : p.getEquipableInventory().getInventory()) { //loads players  inventory
+            playerInventory.add(item);
+        }
+        ObservableList<IItem> observableInventoryList = FXCollections.observableArrayList(playerInventory); //makes observablelist of the arraylist, due to listviews restrictions
+        playerInventoryList.setItems(observableInventoryList);
+    }
+    
+    //instans af Shoopekeper fra domæne? 
     
 }

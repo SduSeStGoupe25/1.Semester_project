@@ -10,6 +10,7 @@ import Arq.IGame;
 import Arq.IItem;
 import Arq.IPlayer;
 import Arq.IRoom;
+import Arq.IShopkeeper;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -39,7 +40,7 @@ public class DomainGame implements IGame {
     private String currentRoom;       //The current room
     private Player player;
     private transient ICombat combat;
-
+    
     private Map<String, IRoom> rooms; // creating objects of the Room-class
 
     void setMap(Map<String, Room> m) {
