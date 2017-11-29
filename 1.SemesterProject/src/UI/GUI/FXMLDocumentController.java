@@ -207,25 +207,25 @@ public class FXMLDocumentController implements Initializable {
     private void updateUI() {
         statController.updateBars();
         if (!game.isInCombat()) {
-            if (game.getExitCurrentRoom("north") != null) {
+            if (game.pullExitCurrentRoom("north") != null) {
                 btnNorth.setDisable(false);
             } else {
                 btnNorth.setDisable(true);
             }
 
-            if (game.getExitCurrentRoom("east") != null) {
+            if (game.pullExitCurrentRoom("east") != null) {
                 btnEast.setDisable(false);
             } else {
                 btnEast.setDisable(true);
             }
 
-            if (game.getExitCurrentRoom("south") != null) {
+            if (game.pullExitCurrentRoom("south") != null) {
                 btnSouth.setDisable(false);
             } else {
                 btnSouth.setDisable(true);
             }
 
-            if (game.getExitCurrentRoom("west") != null) {
+            if (game.pullExitCurrentRoom("west") != null) {
                 btnWest.setDisable(false);
             } else {
                 btnWest.setDisable(true);

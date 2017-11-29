@@ -22,12 +22,12 @@ public class DomainData implements IDomainData {
 
     @Override
     public void addNewScore(String name, int score) {
-        HighscoreWrapper hw = new HighscoreWrapper(score, name);
+        DomainHighscoreWrapper hw = new DomainHighscoreWrapper(score, name);
         List<IHighscoreWrapper> highList = getHighScoreTable();
 
         int count = 0;
         for (IHighscoreWrapper highscoreWrapper : highList) {
-            int compareValue = hw.compareTo((HighscoreWrapper)highscoreWrapper);
+            int compareValue = hw.compareTo((DomainHighscoreWrapper)highscoreWrapper);
 
             if (compareValue == 0 || compareValue == 1) {
                 break;
@@ -47,13 +47,14 @@ public class DomainData implements IDomainData {
 
     @Override
     public IGame loadGame(boolean newGame) {
-        GameMapper g = new GameMapper();
+        DomainGameMapper g = new DomainGameMapper();
         
         System.out.println("LOAD GAME!!!!!!!!!!!!!!!!!!!!!!!!!!!!11111");
-        IGame f = g.map(data.loadGame(newGame));
+        IGame f = (DomainGame) g.map(data.loadGame(newGame));
         System.out.println("--------------------------");
         System.out.println(f);
         System.out.println("TEST MAP OVER-----------------------");
+        ((DomainGame) f).makeCombat();
     return f;
         //return DomainGame.getInstance().initialize(data.loadGame(newGame));
     }

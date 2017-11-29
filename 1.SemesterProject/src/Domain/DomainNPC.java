@@ -13,18 +13,19 @@ import Arq.INPC;
  *
  * @author Victor Gram
  */
-class NPC extends CharacterEntity implements INPC{
+class DomainNPC extends DomainCharacterEntity implements INPC{
 
     private String talk;
     private int expDrop;
 
-    NPC(String name, int health, int armor, int attack, int level, int expDrop, String talk) {
+    public DomainNPC(){}
+    public DomainNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk) {
         super(name, health, armor, attack, level, 1);
         this.talk = talk;
         this.expDrop = expDrop;
     }
 
-    NPC(String name, int health, int armor, int attack, int level, int expDrop, int id, String talk) {
+    public DomainNPC(String name, int health, int armor, int attack, int level, int expDrop, int id, String talk) {
         super(name, health, armor, attack, level, id);
         this.talk = talk;
         this.expDrop = expDrop;
@@ -35,7 +36,7 @@ class NPC extends CharacterEntity implements INPC{
         return talk;
     }
 
-    void setTalk(String talk) {
+    public void setTalk(String talk) {
         this.talk = talk;
     }
 
@@ -44,7 +45,7 @@ class NPC extends CharacterEntity implements INPC{
         return expDrop;
     }
 
-    void setExpDrop(int expDrop) {
+    public void setExpDrop(int expDrop) {
         this.expDrop = expDrop;
     }
 

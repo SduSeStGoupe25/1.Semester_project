@@ -6,7 +6,7 @@ import Arq.IInventory;
 import Arq.IItem;
 import Arq.IPlayer;
 import Arq.IQuest;
-import Domain.CharacterEntity;
+import Domain.DomainCharacterEntity;
 import Domain.DomainGame;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -17,12 +17,12 @@ import java.util.Map;
  * @author Victor Gram
  */
 /**
- * This class defines a Player
+ * This class defines a DomainPlayer
  */
-class Player extends CharacterEntity implements IPlayer{
+class DomainPlayer extends DomainCharacterEntity implements IPlayer{
 
-    private Inventory itemInventory;
-    private Inventory equipableInventory;
+    private DomainInventory itemInventory;
+    private DomainInventory equipableInventory;
     private int gold;
     private int exp;
     private LinkedHashMap<Integer, IQuest> mainQuest;
@@ -38,13 +38,17 @@ class Player extends CharacterEntity implements IPlayer{
     /**
      * Player constructor
      */
-    Player(String name, int health, int armor, int attack, int level, int gold, int exp) {
+    public DomainPlayer() {
+        mainQuest = new LinkedHashMap<>();
+        sideQuest = new HashMap<>();
+    }
+    public DomainPlayer(String name, int health, int armor, int attack, int level, int gold, int exp) {
         super(name, health, armor, attack, level, 2);
         this.gold = gold;
         this.exp = exp;
         mainQuest = null;//Stash.getQuestMap();
-        itemInventory = new Inventory(20);
-        equipableInventory = new Inventory(3);
+        itemInventory = new DomainInventory(20);
+        equipableInventory = new DomainInventory(3);
         questsCompleted = 0;
         this.hunger = 100;
         maxHunger = 100;
@@ -76,8 +80,8 @@ class Player extends CharacterEntity implements IPlayer{
     int getAttackValue() {
         int attackValue = getAttack();
         for (IItem item : equipableInventory.getInventory()) { //Goes through our equipableInventory, to see if we have a weapon equipped
-            if (item instanceof Weapon) {
-                attackValue += ((Weapon) item).getAttackValue(); //If we have a weapon equipped, it gets added to our attackValue
+            if (item instanceof DomainWeapon) {
+                attackValue += ((DomainWeapon) item).getAttackValue(); //If we have a weapon equipped, it gets added to our attackValue
                 break;
             }
         }
@@ -93,8 +97,8 @@ class Player extends CharacterEntity implements IPlayer{
     int getArmorValue() {
         int armorValue = getAttack();
         for (IItem item : equipableInventory.getInventory()) { //Goes through our equipableInventory and checks if we have any armor equipped
-            if (item instanceof Armor) {
-                armorValue += ((Armor) item).getArmorValue(); //If we have any armor equipped, it gets added to our armorValue
+            if (item instanceof DomainArmor) {
+                armorValue += ((DomainArmor) item).getArmorValue(); //If we have any armor equipped, it gets added to our armorValue
                 break;
             }
         }
@@ -118,24 +122,24 @@ class Player extends CharacterEntity implements IPlayer{
      * @return If the item was a weapon or a piece of armor, and it was
      * equipped, it returns true. If item did not get equipped, returns false
      */
-    boolean equip(Item item) {
-        if (itemInventory.removeItem(((Item) item), 1)) { //Removes the item that we want to equip from our inventory
-            if (item instanceof Weapon) { //Checks if the item is a weapon
+    boolean equip(DomainItem item) {
+        if (itemInventory.removeItem(((DomainItem) item), 1)) { //Removes the item that we want to equip from our inventory
+            if (item instanceof DomainWeapon) { //Checks if the item is a weapon
                 for (IItem i : equipableInventory.getInventory()) { //Searches through our equipableInventory
-                    if (i instanceof Weapon) {  //If we find a weapon that is currently equipped, it does:
-                        itemInventory.addItem((Item)i, 1);                //Adds the equipped item to our itemInventory
-                        equipableInventory.removeItem((Item)i, 1);        //Removes the equipped item from our equipableInventory
+                    if (i instanceof DomainWeapon) {  //If we find a weapon that is currently equipped, it does:
+                        itemInventory.addItem((DomainItem)i, 1);                //Adds the equipped item to our itemInventory
+                        equipableInventory.removeItem((DomainItem)i, 1);        //Removes the equipped item from our equipableInventory
                         equipableInventory.addItem(item, 1);        //Adds the new item to our equipableInventory
                         return true;
                     }
                 }
                 equipableInventory.addItem(item, 1); //If we didn't have a weapon equipped beforehand, it adds the new item to our equipableInventory
                 return true;
-            } else if (item instanceof Armor) { //Checks if the item is a piece of armor
+            } else if (item instanceof DomainArmor) { //Checks if the item is a piece of armor
                 for (IItem i : equipableInventory.getInventory()) { //Searches through our equipableInventory
-                    if (i instanceof Armor) {   //If we find a piece of armor that is currently equipped, then do:
-                        ((Inventory) itemInventory).addItem((Item)i, 1);                //Adds the already equipped armor to our itemInventory
-                        equipableInventory.removeItem((Item)i, 1);        //Removes the equipped item from our equipableInventory
+                    if (i instanceof DomainArmor) {   //If we find a piece of armor that is currently equipped, then do:
+                        ((DomainInventory) itemInventory).addItem((DomainItem)i, 1);                //Adds the already equipped armor to our itemInventory
+                        equipableInventory.removeItem((DomainItem)i, 1);        //Removes the equipped item from our equipableInventory
                         equipableInventory.addItem(item, 1);        //Adds the new item to our equipableInventory
                         return true;
                     }
@@ -149,7 +153,7 @@ class Player extends CharacterEntity implements IPlayer{
     }
 
     /**
-     * This method is used to restore Player health points
+     * This method is used to restore DomainPlayer health points
      *
      * @param item The item used to restore Health
      * @return Returns true if health restoring was successful, otherwise
@@ -157,16 +161,16 @@ class Player extends CharacterEntity implements IPlayer{
      */
     boolean restoreHp(IItem item) {
         if (!(getHealth() >= getMaxHealth()) || !(this.hunger >= 100)) { //If player is already at max health, returns false
-            if (item instanceof Consumeable) { //Checks if the item is a consumeable (only type of item that can restore health)
+            if (item instanceof DomainConsumeable) { //Checks if the item is a consumeable (only type of item that can restore health)
                 if (this.itemInventory.removeItem(item, 1)) { //Removes the item from our inventory
-                    if (getHealth() + ((Consumeable) item).getUseValue() >= getMaxHealth()) { //If the health restored + our current health is greater than our max health, 
+                    if (getHealth() + ((DomainConsumeable) item).getUseValue() >= getMaxHealth()) { //If the health restored + our current health is greater than our max health, 
                         // sets our health = max health. This is to prevent gaining more health.
                         setHealth(getMaxHealth());
-                        addHunger(((Consumeable) item).getHungerValue());
+                        addHunger(((DomainConsumeable) item).getHungerValue());
                         return true;
                     } else {
-                        setHealth(((Consumeable) item).getUseValue()); //Adds the health to the player
-                        addHunger(((Consumeable) item).getHungerValue());
+                        setHealth(((DomainConsumeable) item).getUseValue()); //Adds the health to the player
+                        addHunger(((DomainConsumeable) item).getHungerValue());
                         return true;
                     }
                 }
@@ -195,7 +199,7 @@ class Player extends CharacterEntity implements IPlayer{
     boolean checkQuest(String room) {
         int itemCount = 0;
         for (ICharacterEntity ce : DomainGame.getInstance().getRoomMap().get(room).getCharactersInRoom()) { //Searches through all the CharacterEntities in the room
-            if (ce.getName().equals(getCurrentMainQuest().getGiver())) {    //If a CharacterEntity equals the quest giver
+            if (ce.getName().equals(getCurrentMainQuest().getGiver())) {    //If a DomainCharacterEntity equals the quest giver
                 for (IItem item : getCurrentMainQuest().getItems()) {        //then we look through the items required to complete the quest,
                     for (IItem i : getItemInventory().getInventory()) {      //and then we look through our itemInventory
                         if (i.getName().equals(item.getName()) && i.getCount() >= item.getCount()) { //If the required quest item is in our inventory, and we have the correct amount (or more),
@@ -207,7 +211,7 @@ class Player extends CharacterEntity implements IPlayer{
                 if (itemCount == getCurrentMainQuest().getItems().size()) { //If itemCount is equal to the required amount to complete the quest,
                     addGold(getCurrentMainQuest().getGold());               //then we add Gold to the player (reward for completing quest)
                     for (IItem item : getCurrentMainQuest().getItems()) {    //We then look through the quest items, and remove them from players itemInventory
-                        ((Inventory) getItemInventory()).removeItem(item, item.getCount());
+                        ((DomainInventory) getItemInventory()).removeItem(item, item.getCount());
                     }
                     setQuestsCompleted(questsCompleted + 1);
                     completedGame();
@@ -256,8 +260,8 @@ class Player extends CharacterEntity implements IPlayer{
         return itemInventory;
     }
 
-    void setItemInventory(IInventory itemInventory) {
-        this.itemInventory = (Inventory) itemInventory;
+    public void setItemInventory(IInventory itemInventory) {
+        this.itemInventory = (DomainInventory) itemInventory;
     }
 
     @Override
@@ -265,8 +269,8 @@ class Player extends CharacterEntity implements IPlayer{
         return equipableInventory;
     }
 
-    void setEquipableInventory(IInventory equipableInventory) {
-        this.equipableInventory = (Inventory) equipableInventory;
+    public void setEquipableInventory(IInventory equipableInventory) {
+        this.equipableInventory = (DomainInventory) equipableInventory;
     }
 
     @Override
@@ -274,7 +278,7 @@ class Player extends CharacterEntity implements IPlayer{
         return gold;
     }
 
-    void setGold(int gold) {
+    public void setGold(int gold) {
         this.gold = gold;
     }
 
@@ -283,7 +287,7 @@ class Player extends CharacterEntity implements IPlayer{
         return exp;
     }
 
-    void setExp(int exp) {
+    public void setExp(int exp) {
         this.exp = exp;
     }
 
@@ -293,7 +297,7 @@ class Player extends CharacterEntity implements IPlayer{
         return mainQuest;
     }
 
-    void setMainQuest(LinkedHashMap<Integer, IQuest> mainQuest) {
+    public void setMainQuest(LinkedHashMap<Integer, IQuest> mainQuest) {
         this.mainQuest = mainQuest;
     }
 
@@ -302,7 +306,7 @@ class Player extends CharacterEntity implements IPlayer{
         return sideQuest;
     }
 
-    void setSideQuest(HashMap<String, IQuest> sideQuest) {
+    public void setSideQuest(HashMap<String, IQuest> sideQuest) {
         this.sideQuest = sideQuest;
     }
 
@@ -311,7 +315,7 @@ class Player extends CharacterEntity implements IPlayer{
         return questsCompleted;
     }
 
-    void setQuestsCompleted(int questsCompleted) {
+    public void setQuestsCompleted(int questsCompleted) {
         this.questsCompleted = questsCompleted;
     }
 
@@ -320,7 +324,7 @@ class Player extends CharacterEntity implements IPlayer{
         return hunger;
     }
 
-    void setHunger(int hunger) {
+    public void setHunger(int hunger) {
         this.hunger = hunger;
     }
 
@@ -330,7 +334,7 @@ class Player extends CharacterEntity implements IPlayer{
         return maxHunger;
     }
 
-    void setMaxHunger(int maxHunger) {
+    public void setMaxHunger(int maxHunger) {
         this.maxHunger = maxHunger;
     }
 
@@ -339,7 +343,7 @@ class Player extends CharacterEntity implements IPlayer{
         return expToLevelUp;
     }
 
-    void setExpToLevelUp(int expToLevelUp) {
+    public void setExpToLevelUp(int expToLevelUp) {
         this.expToLevelUp = expToLevelUp;
     }
 
@@ -348,7 +352,7 @@ class Player extends CharacterEntity implements IPlayer{
         return scoreValue;
     }
 
-    void setScoreValue(int scoreValue) {
+    public void setScoreValue(int scoreValue) {
         this.scoreValue = scoreValue;
     }
     

@@ -17,5 +17,5 @@ public interface IDomainGame {
     //ICombat getCombat();
     
     Map<String, IRoom> getRoomMap();
-    String[][] getItemNames();
+    //String[][] getItemNames();
 }

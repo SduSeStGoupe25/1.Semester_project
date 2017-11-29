@@ -8,9 +8,10 @@ package Domain;
 //@author Mikkel Pedersen
 
 
-class NormalItem extends Item{
+class DomainNormalItem extends DomainItem{
 
-    NormalItem(String name, int sellValue, int count) {
+    public DomainNormalItem(){}
+    public DomainNormalItem(String name, int sellValue, int count) {
         super(name, sellValue, count, 10, 3);
     }
 }

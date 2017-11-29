@@ -20,16 +20,22 @@ import java.util.HashSet;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-class Room implements IRoom {
+class DomainRoom implements IRoom {
 
     private String name;
     private String description; //The room description, printed upon entering
     private HashMap<String, IExit> exits;
-    private List<ICharacterEntity> charactersInRoom; //ArrayList containing the NPC's in the room
+    private List<ICharacterEntity> charactersInRoom; //ArrayList containing the DomainNPC's in the room
     private ArrayList<IItem> items; //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
-    private HashSet<String> allowedMonsters;
+    private Set<String> allowedMonsters;
 
-    Room(String name, String description) {
+    public DomainRoom() {
+        exits = new HashMap<>();
+        charactersInRoom = new ArrayList<>();
+        items = new ArrayList<>();
+        allowedMonsters = new HashSet<>();
+    }
+    public DomainRoom(String name, String description) {
         this.name = name;
         this.description = description;
         exits = new HashMap<>();
@@ -45,11 +51,11 @@ class Room implements IRoom {
         return "Room{" + "name=" + name + ", description=" + description + ", charactersInRoom=" + charactersInRoom + ", items=" + items + ", allowedMonsters=" + allowedMonsters + '}';
     }
 
-    void removeCharacterFromRoom(CharacterEntity ce) {
+    void removeCharacterFromRoom(DomainCharacterEntity ce) {
         charactersInRoom.remove(ce);
     }
 
-    void setExit(String direction, Exit neighbor) {
+    void setExit(String direction, DomainExit neighbor) {
         exits.put(direction, neighbor);
     }
 
@@ -79,11 +85,11 @@ class Room implements IRoom {
         return exits.get(direction);
     }
 
-    void addCharacterToRoom(CharacterEntity ce) { //Adds characters to the room
+    void addCharacterToRoom(DomainCharacterEntity ce) { //Adds characters to the room
         charactersInRoom.add(ce);
     }
 
-    void addCharacterToRoom(List<CharacterEntity> ce) { //Adds characters to the room
+    void addCharacterToRoom(List<DomainCharacterEntity> ce) { //Adds characters to the room
         charactersInRoom.addAll(ce);
     }
 
@@ -112,12 +118,17 @@ class Room implements IRoom {
                     count++;
 
                 }
-                this.charactersInRoom.add((new NPC(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 20, "Nonono")));
+                this.charactersInRoom.add((new DomainNPC(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 20, "Nonono")));
 
             }
             if ((int) (Math.random() * 2) == 0) {
                 int nonMonstersInRoom = charactersInRoom.size() - monsterAmount;
                 int opponent = (int) (Math.random() * monsterAmount) + nonMonstersInRoom;
+                System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUULLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+                System.out.println(DomainGame.getInstance());
+                System.out.println(DomainGame.getInstance().getCombat());
+                System.out.println();
+                System.out.println();
                 DomainGame.getInstance().getCombat().startCombat(charactersInRoom.get(opponent), this);
             }
         }
@@ -144,7 +155,7 @@ class Room implements IRoom {
         return allowedMonsters;
     }
 
-    void setAllowesMonsters(HashSet<String> allowedMonsters) {
+    public void setAllowesMonsters(Set<String> allowedMonsters) {
         this.allowedMonsters = allowedMonsters;
     }
 
@@ -153,7 +164,7 @@ class Room implements IRoom {
         return items;
     }
 
-    void setItemList(ArrayList<IItem> items) {
+    public void setItemList(ArrayList<IItem> items) {
         this.items = items;
     }
 
@@ -162,7 +173,7 @@ class Room implements IRoom {
         return description;
     }
 
-    void setShortDescription(String description) {
+    public void setShortDescription(String description) {
         this.description = description;
     }
 
@@ -171,7 +182,7 @@ class Room implements IRoom {
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -180,7 +191,7 @@ class Room implements IRoom {
         return charactersInRoom;
     }
 
-    void setCharactersInRoom(List<ICharacterEntity> charactersInRoom) {
+    public void setCharactersInRoom(List<ICharacterEntity> charactersInRoom) {
         this.charactersInRoom = charactersInRoom;
     }
 
@@ -189,7 +200,7 @@ class Room implements IRoom {
         return exits;
     }
 
-    void setExits(HashMap<String, IExit> exits) {
+    public void setExits(HashMap<String, IExit> exits) {
         this.exits = exits;
     }
 }

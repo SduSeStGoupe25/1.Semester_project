@@ -8,13 +8,15 @@ package Domain;
 //@author Mikkel Pedersen
 import Arq.IArmor;
 
-class Armor extends Item implements IArmor {
+class DomainArmor extends DomainItem implements IArmor {
 
     private int baseArmor;
     private int armorValue;
     private int itemLevel;
 
-    Armor(String name, int sellValue, int count, int baseArmor, int itemLevel) {
+    public DomainArmor(){};
+    
+    DomainArmor(String name, int sellValue, int count, int baseArmor, int itemLevel) {
         super(name, sellValue, count, 1, 0);
         this.baseArmor = baseArmor;
         this.itemLevel = itemLevel;

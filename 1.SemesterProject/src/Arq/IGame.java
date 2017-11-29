@@ -14,13 +14,13 @@ import java.util.LinkedHashMap;
 public interface IGame extends IDomainGame {
     
     boolean movePlayer(String direction);
-    ICombatResponse getCombatResponse(int action);
+    ICombatResponse pullCombatResponse(int action);
     
 
-    LinkedHashMap getQuestList();
-    String getQuestDescription();
+    LinkedHashMap pullQuestList();
+    String pullQuestDescription();
     
-    IExit getExitCurrentRoom(String direction);
+    IExit pullExitCurrentRoom(String direction);
     
     boolean isInCombat();
     

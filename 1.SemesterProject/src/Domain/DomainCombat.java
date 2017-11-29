@@ -7,21 +7,21 @@ import Arq.IDomainGame;
 import Arq.IPlayer;
 import Arq.IRoom;
 import Domain.DomainGame;
-import Domain.Room;
+import Domain.DomainRoom;
 
 /**
  *
  * This class is responsible for the combat between the player and a opponent
  */
-public class Combat implements ICombat{
+public class DomainCombat implements ICombat{
 
-    private CharacterEntity opponent; //The characterEntity to fight against 
-    private Room currentRoom; //The current room
-    private Player player; //The player
+    private DomainCharacterEntity opponent; //The characterEntity to fight against 
+    private DomainRoom currentRoom; //The current room
+    private DomainPlayer player; //The player
     private boolean running; //Indicating if the combat is running
     private DomainGame game;
 
-    public Combat(Player player, DomainGame game) {
+    public DomainCombat(DomainPlayer player, DomainGame game) {
         this.player = player;
         this.game = game;
     }
@@ -29,12 +29,12 @@ public class Combat implements ICombat{
     /**
      * This method starts the combat against a chosen opponent
      *
-     * @param opponent the CharacterEntity to fight
+     * @param opponent the DomainCharacterEntity to fight
      * @param currentRoom the current room the fight takes place in
      */
     public void startCombat(ICharacterEntity opponent, IRoom currentRoom) {
-        this.opponent = (CharacterEntity)opponent;
-        this.currentRoom = (Room)currentRoom;
+        this.opponent = (DomainCharacterEntity)opponent;
+        this.currentRoom = (DomainRoom)currentRoom;
         running = true;
         
     }
@@ -43,7 +43,7 @@ public class Combat implements ICombat{
      * This method is our combat loop, where all combat mechanics take place.
      */
     public ICombatResponse combatLoop(int action) {
-        CombatResponse cr = new CombatResponse(0, 0, running, player, opponent);
+        DomainCombatResponse cr = new DomainCombatResponse(0, 0, running, player, opponent);
         switch (action) {
             case 0:
                 cr.setPlayerAttack(lightAttack());
@@ -173,11 +173,11 @@ public class Combat implements ICombat{
     }
 
     /**
-     * This method is used to get the opponent CharacterEntity object.
+     * This method is used to get the opponent DomainCharacterEntity object.
      *
      * @return Returns the opponent object.
      */
-    public CharacterEntity getOpponent() {
+    public DomainCharacterEntity getOpponent() {
         return opponent;
     }
 

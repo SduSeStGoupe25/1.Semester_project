@@ -11,14 +11,14 @@ import Arq.ICombatResponse;
  *
  * @author irus
  */
-public class CombatResponse implements ICombatResponse{
+public class DomainCombatResponse implements ICombatResponse{
     private int playerAttack;
     private int opponentAttack;
     private boolean isRunning;
-    private Player player;
-    private CharacterEntity opponent;
+    private DomainPlayer player;
+    private DomainCharacterEntity opponent;
 
-    public CombatResponse(int playerAttack, int opponentAttack, boolean isRunning, Player player, CharacterEntity ce) {
+    public DomainCombatResponse(int playerAttack, int opponentAttack, boolean isRunning, DomainPlayer player, DomainCharacterEntity ce) {
         this.playerAttack = playerAttack;
         this.opponentAttack = opponentAttack;
         this.isRunning = isRunning;
@@ -31,7 +31,7 @@ public class CombatResponse implements ICombatResponse{
         return playerAttack;
     }
 
-    void setPlayerAttack(int playerAttack) {
+    public void setPlayerAttack(int playerAttack) {
         this.playerAttack = playerAttack;
     }
 
@@ -44,12 +44,12 @@ public class CombatResponse implements ICombatResponse{
         this.opponentAttack = opponentAttack;
     }
 
-    public Player getPlayer() {
+    public DomainPlayer getPlayer() {
         return player;
     }
 
     @Override
-    public CharacterEntity getOpponent() {
+    public DomainCharacterEntity getOpponent() {
         return opponent;
     }
 

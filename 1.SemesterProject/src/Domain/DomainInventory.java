@@ -13,22 +13,25 @@ import java.util.ArrayList;
  *
  * @author rasmusstamm
  */
-class Inventory implements IInventory{
+class DomainInventory implements IInventory{
 
     private ArrayList<IItem> inventory;
     private int maxSlots;
 
-    Inventory(int maxSlots) {
+    public DomainInventory(){
+        inventory = new ArrayList();
+    }
+    public DomainInventory(int maxSlots) {
         inventory = new ArrayList<>();
         this.maxSlots = maxSlots;
     }
 
-    boolean addItem(Item item, int amount) {
+    boolean addItem(DomainItem item, int amount) {
         if (inventory.size() != 0) {
             for (IItem i : inventory) {
                 if (i.getName().equals(item.getName())) {
                     if (i.getCount() + amount <= i.getMAX_COUNT()) {
-                        ((Item) i).addCount(amount);
+                        ((DomainItem) i).addCount(amount);
                         return true;
                     } else {
                         return addInv(item, amount);
@@ -39,21 +42,21 @@ class Inventory implements IInventory{
             return addInv(item, amount);
     }
 
-    private boolean addInv(Item item, int amount) {
+    private boolean addInv(DomainItem item, int amount) {
         if (amount / item.getMAX_COUNT() + inventory.size() <= maxSlots) {
             int amountBack = amount;
             for (IItem j : inventory) {
                 if (j.getName().equals(item.getName())) {
                     if (j.getCount() < j.getMAX_COUNT()) {
                         int add = j.getMAX_COUNT() - j.getCount();
-                        ((Item) j).addCount(add);
+                        ((DomainItem) j).addCount(add);
                         amountBack -= add;
                         break;
                     }
                 }
             }
             while (amountBack > 0) {
-                Item itemToAdd = item;
+                DomainItem itemToAdd = item;
                 if (amountBack > item.getMAX_COUNT()) {
                     itemToAdd.setCount(item.getMAX_COUNT());
                     inventory.add(itemToAdd);
@@ -88,7 +91,7 @@ class Inventory implements IInventory{
                         inventory.remove(i);
                         return true;
                     } else {
-                        ((Item) j).setCount(j.getCount() - amountBack);
+                        ((DomainItem) j).setCount(j.getCount() - amountBack);
                         return true;
                     }
                 }
@@ -103,7 +106,7 @@ class Inventory implements IInventory{
         return inventory;
     }
 
-    void setInventory(ArrayList<IItem> inventory) {
+    public void setInventory(ArrayList<IItem> inventory) {
         this.inventory = inventory;
     }
 
@@ -112,7 +115,7 @@ class Inventory implements IInventory{
         return maxSlots;
     }
 
-    void setMaxSlots(int maxSlots) {
+    public void setMaxSlots(int maxSlots) {
         this.maxSlots = maxSlots;
     }
 }

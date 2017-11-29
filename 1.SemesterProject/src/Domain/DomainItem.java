@@ -11,14 +11,15 @@ import Arq.IItem;
  *
  * @author rasmusstamm
  */
-abstract class Item implements IItem{
+abstract class DomainItem implements IItem{
     private String name;
     private int sellValue;
     private int count;
-    private final int MAX_COUNT;
+    private int MAX_COUNT;
     private int id; // 0 = armor, 1 = comsum, 2 = key, 3 = normal, 4 = weapon
 
-    Item(String name, int sellValue, int count, int MAX_COUNT, int id) {
+    public DomainItem(){};
+    public DomainItem(String name, int sellValue, int count, int MAX_COUNT, int id) {
         this.name = name;
         this.sellValue = sellValue;
         this.count = count;
@@ -42,7 +43,7 @@ abstract class Item implements IItem{
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -51,7 +52,7 @@ abstract class Item implements IItem{
         return sellValue;
     }
 
-    void setSellValue(int sellValue) {
+    public void setSellValue(int sellValue) {
         this.sellValue = sellValue;
     }
 
@@ -60,7 +61,7 @@ abstract class Item implements IItem{
         return count;
     }
 
-    void setCount(int count) {
+    public void setCount(int count) {
         this.count = count;
     }
 
@@ -69,12 +70,16 @@ abstract class Item implements IItem{
         return id;
     }
 
-    void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }  
 
     @Override
     public int getMAX_COUNT(){
         return MAX_COUNT;
+    }
+    
+    public void setMAX_COUNT(int max) {
+        MAX_COUNT = max;
     }
 }

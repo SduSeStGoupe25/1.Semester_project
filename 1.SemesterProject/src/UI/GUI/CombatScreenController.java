@@ -88,7 +88,7 @@ public class CombatScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         equippedList = new ArrayList<>();
-        c = UI.getInstance().getDomainGame().getCombatResponse(3);
+        c = UI.getInstance().getDomainGame().pullCombatResponse(3);
         updatePlayerStats();
         updateOpponentStats();
         updatEquippedInventory();
@@ -132,13 +132,13 @@ public class CombatScreenController implements Initializable {
     }
 
     public void fleeButtonPressed(ActionEvent event) {
-        c = UI.getInstance().getDomainGame().getCombatResponse(2);
+        c = UI.getInstance().getDomainGame().pullCombatResponse(2);
         exitCombat();
 
     }
 
     public void lightAttackButtonPressed(ActionEvent event) {
-        c = UI.getInstance().getDomainGame().getCombatResponse(0);
+        c = UI.getInstance().getDomainGame().pullCombatResponse(0);
         updateOpponentStats();
         updatePlayerStats();
     }
@@ -148,7 +148,7 @@ public class CombatScreenController implements Initializable {
     }
        
     public void heavyAttackButtonPressed(ActionEvent event) {
-        c = UI.getInstance().getDomainGame().getCombatResponse(1);
+        c = UI.getInstance().getDomainGame().pullCombatResponse(1);
         updateOpponentStats();
         updatePlayerStats();
         

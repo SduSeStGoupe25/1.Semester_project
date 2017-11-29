@@ -10,12 +10,13 @@ package Domain;
 import Arq.IConsumeable;
 
 
-class Consumeable extends Item implements IConsumeable{
+class DomainConsumeable extends DomainItem implements IConsumeable{
     
     private int useValue;
     private int hungerValue;
 
-    Consumeable(String name, int sellValue, int count, int useValue, int hungerValue) {
+    public DomainConsumeable(){};
+    DomainConsumeable(String name, int sellValue, int count, int useValue, int hungerValue) {
         super(name, sellValue, count, 20, 1);
         this.useValue = useValue;
         this.hungerValue = hungerValue;
@@ -26,7 +27,7 @@ class Consumeable extends Item implements IConsumeable{
         return useValue;
     }
 
-    void setUseValue(int useValue) {
+    public void setUseValue(int useValue) {
         this.useValue = useValue;
     }
 
@@ -35,7 +36,7 @@ class Consumeable extends Item implements IConsumeable{
         return hungerValue;
     }
 
-    void setHungerValue(int hungerValue) {
+    public void setHungerValue(int hungerValue) {
         this.hungerValue = hungerValue;
     }
 }

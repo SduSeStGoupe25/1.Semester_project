@@ -11,13 +11,17 @@ import Arq.IWeapon;
 
 
 
-class Weapon extends Item implements IWeapon{
+class DomainWeapon extends DomainItem implements IWeapon{
     
     private int baseAttack;
     private int attackValue;
     private int itemLevel;
+
+    public DomainWeapon() {
+    }
     
-    Weapon(String name, int sellValue, int count, int baseAttack, int itemLevel) {
+    
+    public DomainWeapon(String name, int sellValue, int count, int baseAttack, int itemLevel) {
         super(name, sellValue, count, 1, 4);
         this.baseAttack = baseAttack;
         this.itemLevel = itemLevel;
@@ -34,7 +38,7 @@ class Weapon extends Item implements IWeapon{
         return baseAttack;
     }
 
-    void setBaseAttack(int baseAttack) {
+    public void setBaseAttack(int baseAttack) {
         this.baseAttack = baseAttack;
     }
 
@@ -43,7 +47,7 @@ class Weapon extends Item implements IWeapon{
         return attackValue;
     }
 
-    void setAttackValue(int attackValue) {
+    public void setAttackValue(int attackValue) {
         this.attackValue = attackValue;
     }
 
@@ -52,7 +56,7 @@ class Weapon extends Item implements IWeapon{
         return itemLevel;
     }
 
-    void setItemLevel(int itemLevel) {
+    public void setItemLevel(int itemLevel) {
         this.itemLevel = itemLevel;
     }
     

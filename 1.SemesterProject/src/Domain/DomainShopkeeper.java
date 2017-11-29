@@ -12,21 +12,26 @@ import java.util.Map;
  *
  * @author Victor Gram
  */
-class Shopkeeper extends NPC implements IShopkeeper {
+class DomainShopkeeper extends DomainNPC implements IShopkeeper {
 
     private Map<String, IItem> itemstoSell = new HashMap<>();
 
-    Shopkeeper(String name, int health, int armor, int attack, int level, int expDrop, String talk) {
+    public DomainShopkeeper() {
+        
+    }
+
+    
+    public DomainShopkeeper(String name, int health, int armor, int attack, int level, int expDrop, String talk) {
         super(name, health, armor, attack, level, expDrop, 3, talk);
 
     }
 
-    public boolean buy(Item item, int amount, Player player) {
+    public boolean buy(DomainItem item, int amount, DomainPlayer player) {
         System.out.println("gold " + player.getGold());
         if ((item.getSellValue() * amount) * 2 > player.getGold()) { //Checks if the player has enough gold to purchase the item
             return false;
         }
-        if (((Inventory) player.getItemInventory()).addItem(item, amount)) { //Adds the item(s) to the players inventory
+        if (((DomainInventory) player.getItemInventory()).addItem(item, amount)) { //Adds the item(s) to the players inventory
             player.removeGold(item.getSellValue() * amount * 2); //Removes gold from player
             return true;
 
@@ -35,8 +40,8 @@ class Shopkeeper extends NPC implements IShopkeeper {
 
     }
 
-    public boolean sell(Item item, int amount, Player player) {
-        if (((Inventory) player.getItemInventory()).removeItem(item, amount)) {
+    public boolean sell(DomainItem item, int amount, DomainPlayer player) {
+        if (((DomainInventory) player.getItemInventory()).removeItem(item, amount)) {
             player.addGold(item.getSellValue() * amount);
             System.out.println("gold " + player.getGold());
             return true;
@@ -49,7 +54,7 @@ class Shopkeeper extends NPC implements IShopkeeper {
         return itemstoSell;
     }
 
-    void setItemsToSell(Map<String, IItem> itemstoSell) {
+    public void setItemsToSell(Map<String, IItem> itemstoSell) {
         this.itemstoSell = itemstoSell;
     }
 

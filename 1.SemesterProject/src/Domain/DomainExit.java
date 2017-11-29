@@ -10,21 +10,22 @@ import Arq.IExit;
 import Arq.IInventory;
 import Arq.IItem;
 
-class Exit implements IExit {
+class DomainExit implements IExit {
 
     private String name1;
     private String name2;
     private boolean locked;
     private int lockID;
 
-    Exit(String room1, String room2) {
+    public DomainExit(){};
+    public DomainExit(String room1, String room2) {
         this.name1 = room1;
         this.name2 = room2;
         locked = false;
         lockID = 0;
     }
 
-    Exit(String room1, String room2, boolean lock, int lockID) {
+    public DomainExit(String room1, String room2, boolean lock, int lockID) {
         this.name1 = room1;
         this.name2 = room2;
         this.locked = lock;
@@ -44,8 +45,8 @@ class Exit implements IExit {
             return false;
         } else {
             for (IItem item : inventory.getInventory()) {
-                if (item instanceof Key) {
-                    if (((Key) item).getKeyID() == lockID) {
+                if (item instanceof DomainKey) {
+                    if (((DomainKey) item).getKeyID() == lockID) {
                         locked = false;
                         return false;
                     }
@@ -59,19 +60,35 @@ class Exit implements IExit {
     public String getName1() {
         return name1;
     }
+    
+    public void setName1(String name) {
+        name1 = name;
+    }
 
     @Override
     public String getName2() {
         return name2;
+    }
+    
+    public void setName2(String name) {
+        name2 = name;
     }
 
     @Override
     public boolean getLocked() {
         return locked;
     }
+    
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
 
     @Override
     public int getlockID() {
         return lockID;
+    }
+    
+    public void setlockID(int lockID) {
+        this.lockID = lockID;
     }
 }

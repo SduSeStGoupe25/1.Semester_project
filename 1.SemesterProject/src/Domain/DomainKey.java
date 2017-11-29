@@ -11,11 +11,11 @@ import Arq.IKey;
 
 
 
-class Key extends Item implements IKey{
+class DomainKey extends DomainItem implements IKey{
     
     private int keyID;
-    
-    Key(String name, int sellValue, int count, int keyID) {
+    public DomainKey(){}
+    public DomainKey(String name, int sellValue, int count, int keyID) {
         super(name, sellValue, count, 1, 2);
         this.keyID = keyID;
     }
@@ -25,7 +25,7 @@ class Key extends Item implements IKey{
         return keyID;
     }
     
-    void setKeyID(int keyID) {
+    public void setKeyID(int keyID) {
         this.keyID = keyID;
     }
 

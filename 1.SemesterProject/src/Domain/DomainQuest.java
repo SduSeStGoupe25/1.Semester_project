@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Victor Gram
  */
-class Quest implements IQuest{
+class DomainQuest implements IQuest{
 
     private String name;
     private String description; 
@@ -22,7 +22,10 @@ class Quest implements IQuest{
     private String giver; //The NPC from whom the quest is recieved
 //    private boolean isMainQuest; //boolean to seperate the main quests and side quests
 
-    Quest(String name, String description, int gold, int exp, ArrayList<IItem> items, String giver) { 
+    public DomainQuest(){
+        items = new ArrayList();
+    }
+    public DomainQuest(String name, String description, int gold, int exp, ArrayList<IItem> items, String giver) { 
         this.name = name;
         this.description = description;
         this.gold = gold;
@@ -37,7 +40,7 @@ class Quest implements IQuest{
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -46,7 +49,7 @@ class Quest implements IQuest{
         return description;
     }
 
-    void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -55,7 +58,7 @@ class Quest implements IQuest{
         return gold;
     }
 
-    void setGold(int gold) {
+    public void setGold(int gold) {
         this.gold = gold;
     }
 
@@ -64,7 +67,7 @@ class Quest implements IQuest{
         return exp;
     }
 
-    void setExp(int exp) {
+    public void setExp(int exp) {
         this.exp = exp;
     }
 
@@ -73,7 +76,7 @@ class Quest implements IQuest{
         return items;
     }
 
-    void setItems(ArrayList<IItem> items) {
+    public void setItems(ArrayList<IItem> items) {
         this.items = items;
     }
 
@@ -82,7 +85,7 @@ class Quest implements IQuest{
         return giver;
     }
     
-    void setGiver(String giver){
+    public void setGiver(String giver){
         this.giver = giver;
     }
     

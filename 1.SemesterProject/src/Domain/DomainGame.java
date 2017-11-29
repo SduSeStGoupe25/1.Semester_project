@@ -37,12 +37,12 @@ public class DomainGame implements IGame {
     private transient static DomainGame instance = null;
     // private transient PutHandler putHandler;  //Class responsible for user input and print output
     private String currentRoom;       //The current room
-    private Player player;
+    private DomainPlayer player;
     private transient ICombat combat;
 
-    private Map<String, IRoom> rooms; // creating objects of the Room-class
+    private Map<String, IRoom> rooms; // creating objects of the DomainRoom-class
 
-    void setMap(Map<String, Room> m) {
+    void setMap(Map<String, DomainRoom> m) {
         rooms.clear();
         rooms = new HashMap<>(m);
         System.out.println("M ::::: " + rooms);
@@ -56,10 +56,13 @@ public class DomainGame implements IGame {
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
-    private DomainGame() {
-////        player = new Player("Arthur", 100, 10, 10, 1, 1000, 0);
+    public DomainGame() {
+        //System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+////        player = new DomainPlayer("Arthur", 100, 10, 10, 1, 1000, 0);
 ////        player.getItemInventory().addItem(createItem(itemNames[4][0],0), 1);
         rooms = new HashMap<>();
+        instance = this;
+        
 ////        createRooms();
 ////        createNPC();
 ////        //putHandler = new PutHandler(this);
@@ -68,7 +71,9 @@ public class DomainGame implements IGame {
     }
 
     void makeCombat() {
-        combat = new Combat(player, this);
+        combat = new DomainCombat(player, this);
+        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOMMMMMMMMMMMMMMMMMMMMMMMMMMAAAAAAAT");
+        System.out.println(combat);
     }
 
     IDomainGame initialize(IDomainGame game) {
@@ -81,10 +86,10 @@ public class DomainGame implements IGame {
         System.out.println(instance);
 //        System.out.println(game.getCurrentRoom().getName());
 //        currentRoom = game.getCurrentRoom().getName();
-//        player = (Player) game.getPlayer();
+//        player = (DomainPlayer) game.getPlayer();
 //        if(game.getRoomMap() != null) {
 //        for (String itemName : game.getRoomMap().keySet()) {
-//            rooms.put(itemName, (Room) game.getRoomMap().get(itemName));
+//            rooms.put(itemName, (DomainRoom) game.getRoomMap().get(itemName));
 //        }
 //        }
         return instance;
@@ -121,16 +126,16 @@ public class DomainGame implements IGame {
     private void createRooms() {
 ////
 ////        //initialising new rooms, with room-description that will be output to the console
-////        Room citycenter = new Room("citycenter", "in the center of the city");
-////        Room shop = new Room("shop", "in the shop");
-////        Room tavern = new Room("tavern", " in the local tavern");
-////        Room castle = new Room("castle", "in the kings castle");
-////        Room excalibur = new Room("excalibur", "in the room where excalibur is caught in the stone");
-////        Room tower = new Room("tower", "in Merlin's chambers");
-////        Room cave = new Room("cave", "in a dark and gloomy cave");
-////        Room farm = new Room("farm", "at the local farm");
-////        Room forrest = new Room("forrest", "in the forrest");
-////        Room deepwoods = new Room("deepwoods", "deeper into the woods, more dark and gloomy");
+////        DomainRoom citycenter = new DomainRoom("citycenter", "in the center of the city");
+////        DomainRoom shop = new DomainRoom("shop", "in the shop");
+////        DomainRoom tavern = new DomainRoom("tavern", " in the local tavern");
+////        DomainRoom castle = new DomainRoom("castle", "in the kings castle");
+////        DomainRoom excalibur = new DomainRoom("excalibur", "in the room where excalibur is caught in the stone");
+////        DomainRoom tower = new DomainRoom("tower", "in Merlin's chambers");
+////        DomainRoom cave = new DomainRoom("cave", "in a dark and gloomy cave");
+////        DomainRoom farm = new DomainRoom("farm", "at the local farm");
+////        DomainRoom forrest = new DomainRoom("forrest", "in the forrest");
+////        DomainRoom deepwoods = new DomainRoom("deepwoods", "deeper into the woods, more dark and gloomy");
 ////
 ////        // Defining allowed monsters for each room
 ////        forrest.addAllowedMonsters("Imp");
@@ -140,18 +145,18 @@ public class DomainGame implements IGame {
 ////        farm.addAllowedMonsters("Sheep");
 ////
 ////        //Defining exits
-////        Exit exitCitycenterTavern = new Exit("citycenter", "tavern");
-////        Exit exitCitycenterShop = new Exit("citycenter", "shop");
-////        Exit exitCitycenterFarm = new Exit("citycenter", "farm");
-////        Exit exitCitycenterCastle = new Exit("citycenter", "castle");
+////        DomainExit exitCitycenterTavern = new DomainExit("citycenter", "tavern");
+////        DomainExit exitCitycenterShop = new DomainExit("citycenter", "shop");
+////        DomainExit exitCitycenterFarm = new DomainExit("citycenter", "farm");
+////        DomainExit exitCitycenterCastle = new DomainExit("citycenter", "castle");
 ////        
-////        Exit exitCastleTower = new Exit("castle", "tower");
-////        Exit exitCastleExcalibur = new Exit("castle", "excalibur", true, 1);
-////        Exit exitCastleCave = new Exit("castle", "cave", true, 2);
+////        DomainExit exitCastleTower = new DomainExit("castle", "tower");
+////        DomainExit exitCastleExcalibur = new DomainExit("castle", "excalibur", true, 1);
+////        DomainExit exitCastleCave = new DomainExit("castle", "cave", true, 2);
 ////        
-////        Exit exitCaveDeepwoods = new Exit("cave", "deepwoods");
-////        Exit exitDeepwoodsForrest = new Exit("forrest", "deepwoods");
-////        Exit exitFarmForrest = new Exit("farm", "forrest");
+////        DomainExit exitCaveDeepwoods = new DomainExit("cave", "deepwoods");
+////        DomainExit exitDeepwoodsForrest = new DomainExit("forrest", "deepwoods");
+////        DomainExit exitFarmForrest = new DomainExit("farm", "forrest");
 ////
 ////        //defining exits from the city center 
 ////        citycenter.setExit("east", exitCitycenterTavern);
@@ -226,8 +231,8 @@ public class DomainGame implements IGame {
         return (IPlayer) player;
     }
 
-    void setPlayer(IPlayer player) {
-        this.player = (Player) player;
+    public void setPlayer(IPlayer player) {
+        this.player = (DomainPlayer) player;
     }
 
     /**
@@ -244,7 +249,7 @@ public class DomainGame implements IGame {
      *
      * @param currentRoom Sets the currentRoom
      */
-    void setCurrentIRoom(Room currentRoom) {
+    public void setCurrentIRoom(DomainRoom currentRoom) {
         this.currentRoom = currentRoom.getName();
     }
 
@@ -253,8 +258,8 @@ public class DomainGame implements IGame {
      *
      * @return Returns the combat object
      */
-    public Combat getCombat() {
-        return (Combat) combat;
+    public DomainCombat getCombat() {
+        return (DomainCombat) combat;
     }
 
     /**
@@ -263,7 +268,7 @@ public class DomainGame implements IGame {
      */
     public void moveAllNPC() {
         for (String room : rooms.keySet()) {
-            ((Room) rooms.get(room)).move();
+            ((DomainRoom) rooms.get(room)).move();
 
         }
     }
@@ -285,22 +290,22 @@ public class DomainGame implements IGame {
         this.finished = finished;
     }
 
-    public Item createItem(String name, int itemType) {
+    public DomainItem createItem(String name, int itemType) {
         switch (itemType) {
             case 0:
-                return new Weapon(name, 1, 1, 1, 1);
+                return new DomainWeapon(name, 1, 1, 1, 1);
 
             case 1:
-                return new Armor(name, 1, 1, 1, 1);
+                return new DomainArmor(name, 1, 1, 1, 1);
 
             case 2:
-                return new Consumeable(name, 1, 1, 1, 1);
+                return new DomainConsumeable(name, 1, 1, 1, 1);
 
             case 3:
-                return new Key(name, 1, 1, 1);
+                return new DomainKey(name, 1, 1, 1);
 
             case 4:
-                return new NormalItem(name, 1, 1);
+                return new DomainNormalItem(name, 1, 1);
 
             default:
                 return null;
@@ -342,20 +347,20 @@ public class DomainGame implements IGame {
     // @Override
     public boolean goRoom(String direction) {
 
-        IExit exit = ((Room) getCurrentIRoom()).getExit(direction); //Instantiats a room next to the current room
+        IExit exit = ((DomainRoom) getCurrentIRoom()).getExit(direction); //Instantiats a room next to the current room
 
         if (exit == null) { //Chechs if the current room has a exit in this direction
             return false;
 
-        } else if (((Exit) exit).isLocked(player.getItemInventory())) {
+        } else if (((DomainExit) exit).isLocked(player.getItemInventory())) {
             return false;
         } else {  //If it has
-            Room nextRoom = (Room) getRoomMap().get(((Exit) exit).nextRoom(getCurrentIRoom().getName()));
+            DomainRoom nextRoom = (DomainRoom) getRoomMap().get(((DomainExit) exit).nextRoom(getCurrentIRoom().getName()));
             System.out.println("nextRoom " + nextRoom + " -------------------------------");
             setCurrentIRoom(nextRoom); //Current room is now the nextRoom
             player.addHunger(-3);
-            ((Room) getCurrentIRoom()).spawnEnemies();
-            System.out.println(((Room) getCurrentIRoom()).getLongDescription()); //Prints a description of the room
+            ((DomainRoom) getCurrentIRoom()).spawnEnemies();
+            System.out.println(((DomainRoom) getCurrentIRoom()).getLongDescription()); //Prints a description of the room
             return true;
         }
     }
@@ -365,7 +370,7 @@ public class DomainGame implements IGame {
         return currentRoom;
     }
 
-    void setCurrentRoom(String currentRoom) {
+    public void setCurrentRoom(String currentRoom) {
         this.currentRoom = currentRoom;
     }
 
@@ -379,16 +384,16 @@ public class DomainGame implements IGame {
         return rooms;
     }
 
-    void setRoomMap(Map<String, IRoom> rooms) {
+    public void setRoomMap(Map<String, IRoom> rooms) {
         this.rooms = rooms;
     }
 
-    @Override
+    //@Override
     public String[][] getItemNames() {
         return itemNames;
     }
 
-    void setItemNames(String[][] itemNames) {
+    public void setItemNames(String[][] itemNames) {
         this.itemNames = itemNames;
     }
 
@@ -398,7 +403,7 @@ public class DomainGame implements IGame {
     }
 
     @Override
-    public IExit getExitCurrentRoom(String direction) {
+    public IExit pullExitCurrentRoom(String direction) {
         if (rooms.get(currentRoom).getExits().containsKey(direction)) {
             return rooms.get(currentRoom).getExits().get(direction);
         } else {
@@ -408,44 +413,44 @@ public class DomainGame implements IGame {
 
     @Override
     public boolean isInCombat() {
-        return ((Combat) combat).isRunning();
+        return ((DomainCombat) combat).isRunning();
     }
 
     @Override
-    public LinkedHashMap getQuestList() {
+    public LinkedHashMap pullQuestList() {
         return player.getMainQuest();
     }
 
     @Override
-    public String getQuestDescription() {
+    public String pullQuestDescription() {
         String questDescription = player.getMainQuest().get(player.getQuestsCompleted()).getDescription();
         return questDescription;
     }
 
     @Override
     public boolean restoreHpPlayer(IItem item) {
-        return player.restoreHp((Item) item);
+        return player.restoreHp((DomainItem) item);
     }
 
     @Override
     public boolean equipItemPlayer(IItem item) {
-        return player.equip((Item) item);
+        return player.equip((DomainItem) item);
     }
 
     @Override
     public boolean removeItemPlayer(IItem item, int amount) {
-        Inventory inventory = (Inventory) player.getItemInventory();
-        return inventory.removeItem((Item) item, amount);
+        DomainInventory inventory = (DomainInventory) player.getItemInventory();
+        return inventory.removeItem((DomainItem) item, amount);
     }
 
     @Override
     public boolean addItemPlayer(IItem item, int amount) {
-        Inventory inventory = (Inventory) player.getItemInventory();
-        return inventory.addItem((Item) item, amount);
+        DomainInventory inventory = (DomainInventory) player.getItemInventory();
+        return inventory.addItem((DomainItem) item, amount);
     }
 
     @Override
-    public ICombatResponse getCombatResponse(int action) {
+    public ICombatResponse pullCombatResponse(int action) {
         return combat.combatLoop(action);
     }
 
