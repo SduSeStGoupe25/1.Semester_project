@@ -17,7 +17,13 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author madsd
+ * @author madsd 
+ * https://stackoverflow.com/questions/13582985/check-if-a-type-is-an-interface
+ * https://stackoverflow.com/questions/6148798/get-generic-type-for-java-util-map-parameter
+ * https://stackoverflow.com/questions/10945993/using-java-reflections-to-find-collections-element-type
+ * https://stackoverflow.com/questions/1942644/get-generic-type-of-java-util-list
+ * https://stackoverflow.com/questions/7495785/java-how-to-instantiate-a-class-from-string
+ * https://docs.oracle.com/javase/7/docs/api/java/lang/reflect/Method.html
  */
 class DomainGameMapper {
 
