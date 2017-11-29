@@ -85,6 +85,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private AnchorPane searchRoomWindow;
+    @FXML
+    private Button searchButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -243,13 +245,11 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    @FXML
-    private void saveButtonCLicked(ActionEvent event) {
-    }
 
     private void buttonUpdate(boolean disable) {
         worldViewButton.setDisable(disable);
         inventoryButton.setDisable(disable);
+        searchButton.setDisable(disable);
         questButton.setDisable(disable);
         mapButton.setDisable(disable);
         saveButton.setDisable(disable);

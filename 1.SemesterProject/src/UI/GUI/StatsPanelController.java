@@ -72,8 +72,7 @@ public class StatsPanelController implements Initializable {
     }
 
     void updateBars() {
-        System.out.println("PLAYER ");
-        System.out.println(player);
+        
         if (player.getHealth() == 0) {
             hpBar.setProgress(0);
             currentHealth.setText(player.getHealth() + "/" + player.getMaxHealth());

@@ -9,6 +9,7 @@ import Arq.ICharacterEntity;
 import Arq.ICombatResponse;
 import Arq.IItem;
 import Arq.IPlayer;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +18,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -61,6 +64,9 @@ public class CombatScreenController implements Initializable {
     private IPlayer p = UI.getInstance().getDomainGame().getPlayer();
 
     private List<IItem> equippedList;
+    
+    private StatsPanelController spc;
+
     @FXML
     private ProgressBar opponentHealthBar;
 
@@ -86,6 +92,7 @@ public class CombatScreenController implements Initializable {
         updatePlayerStats();
         updateOpponentStats();
         updatEquippedInventory();
+        // spc.updateBars(); initialiseres så spc forbindes til aktiv instans 
 //        imageForest.fitWidthProperty().bind(stage);
 
     }
@@ -99,13 +106,21 @@ public class CombatScreenController implements Initializable {
     }
 
     public void updatePlayerStats() { //Method for updating the players combat-screen stats
+        if (p.getHealth() < 1) { 
+            exitCombat();
+        }
+        else {
         attackText.setText(Integer.toString(p.getAttack()));
         defenceText.setText(Integer.toString(p.getArmor()));
+        }
 
     }
 
     public void updateOpponentStats() { //updates opponent entity's combat-screen stats
         ICharacterEntity o = c.getOpponent();
+        if (o.getHealth() < 1) { 
+            exitCombat();
+        }
         opponentNameText.setText(o.getName());
         opponentLevelText.setText(Integer.toString(o.getLevel()));
 
@@ -118,6 +133,7 @@ public class CombatScreenController implements Initializable {
 
     public void fleeButtonPressed(ActionEvent event) {
         c = UI.getInstance().getDomainGame().getCombatResponse(2);
+        exitCombat();
 
     }
 
@@ -126,21 +142,34 @@ public class CombatScreenController implements Initializable {
         updateOpponentStats();
         updatePlayerStats();
     }
-
+    
+    public void exitCombat()  { 
+        // load til samme instans af FXMLDocuent som blev forladt
+    }
+       
     public void heavyAttackButtonPressed(ActionEvent event) {
         c = UI.getInstance().getDomainGame().getCombatResponse(1);
         updateOpponentStats();
         updatePlayerStats();
+        
     }
 
-    public void usePotionButtonPressed(ActionEvent event) {
-        if (UI.getInstance().getDomainGame().usePotion() == true) { 
-            // update bars
+    public void usePotionButtonPressed(ActionEvent event) throws IOException {
+        if (UI.getInstance().getDomainGame().usePotion() == true) {
+           // spc.updateBars(); - initialiseres så SPC forbindes til aktive instans
+        } else {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CombatPotionErrorWindow.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        else { 
-            // errormessage
-        }
-
     }
 
 }
+
+

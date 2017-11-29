@@ -23,8 +23,6 @@ public class Starter {
         IDomainData domain = new DomainData();
         domain.injectData(data);
         IUI ui = new UI();
-        System.out.println("DOMAIN");
-        System.out.println(domain);
         ui.injectDomainData(domain);
 
         //domain.saveGame();
