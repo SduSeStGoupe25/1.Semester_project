@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 /**
@@ -25,6 +26,10 @@ public class ShopkeeperScreenController implements Initializable {
     private TextField amountField;
     @FXML
     private Button sellButton;
+    @FXML
+    private ListView<?> shopSelectionList;
+    @FXML
+    private ListView<?> playerInventoryList;
 
     /**
      * Initializes the controller class.

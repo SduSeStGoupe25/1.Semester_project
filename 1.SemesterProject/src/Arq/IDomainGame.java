@@ -18,4 +18,5 @@ public interface IDomainGame {
     
     Map<String, IRoom> getRoomMap();
     String[][] getItemNames();
+    IShopkeeper getShopkeeper();
 }

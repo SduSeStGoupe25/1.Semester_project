@@ -21,12 +21,12 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="shopSelectionList" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
          <children>
-            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="playerInventoryList" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
