@@ -7,6 +7,7 @@ package UI.GUI;
 
 import Arq.IGame;
 import Arq.IItem;
+import Arq.IPlayer;
 import Domain.DomainGame;
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +31,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -93,6 +95,7 @@ public class FXMLDocumentController implements Initializable {
         gridPane.setPrefSize(800, 600);
         game = UI.getInstance().getDomainGame();
         borderPaneDefault = new BorderPane();
+       
 
         /**
          * Inspired by
@@ -294,4 +297,6 @@ public class FXMLDocumentController implements Initializable {
         itemsToPickUp = FXCollections.observableList(list);
         listItemsInRoom.setItems(itemsToPickUp);
     }
+    
+    
 }

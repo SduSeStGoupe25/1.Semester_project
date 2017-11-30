@@ -47,6 +47,8 @@ public class StatsPanelController implements Initializable {
     private Text currentHunger;
     @FXML
     private Text currentExp;
+    @FXML
+    private Label goldText;
 
     /**
      * Initializes the controller class.
@@ -64,6 +66,8 @@ public class StatsPanelController implements Initializable {
         xpBar.setStyle("-fx-accent: #5194ff");
 
         updateBars();
+        updateTextElements();
+        
 
     }
 
@@ -107,6 +111,12 @@ public class StatsPanelController implements Initializable {
             xpBar.setProgress(expPercent);
             currentExp.setText(player.getExp() + "/" + player.getExpToLevelUp());
         }
+    }
+    
+    void updateTextElements() { 
+        armourLabel.setText(Integer.toString(player.getArmor()));
+        attackLabel.setText(Integer.toString(player.getAttack()));
+        goldText.setText(Integer.toString(player.getGold()));
     }
 
 }
