@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -39,6 +40,8 @@ public class ShopkeeperScreenController implements Initializable {
     private IPlayer p = UI.getInstance().getDomainGame().getPlayer();
     
     private List<IItem> playerInventory;
+    @FXML
+    private ImageView shopkeeperImage;
 
     /**
      * Initializes the controller class.
