@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/ShopkeeperScreenController.java</file>
             <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/ICharacterEntity.java</file>
             <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/CombatScreenController.java</file>
@@ -18,6 +19,38 @@
             <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Data/DataGame.java</file>
             <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/ICombatResponse.java</file>
             <file>file:/C:/Users/madsd/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/DomainGame.java</file>
+=======
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Item.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/IShopkeeper.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Inventory.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/ShopkeeperScreenController.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/GameMapper.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/HighscoreWrapper.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Data/JSONDatabase.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/DomainGame.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/StatsPanelController.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Data/DataGame.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/IDomainGame.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Consumeable.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/CombatScreenController.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/DomainData.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Player.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Data/DataHighScoreWrapper.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/CombatPotionErrorWindow.fxml</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/IConsumeable.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Starter/Starter.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/GameOverWindowController.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/IRoom.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Data/DataShopkeeper.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/IPlayer.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/SaveFiles/save.json</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/GameOverWindow.fxml</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/TitleScreenController.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/UI/GUI/CombatPotionErrorWindowController.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Arq/IGame.java</file>
+            <file>file:/C:/Users/Victor%20Gram/Documents/GitHub/1.Semester_project/1.SemesterProject/src/Domain/Shopkeeper.java</file>
+>>>>>>> 82b6d0ec06c4a4d76f556d9201b990d86121fb46
         </group>
     </open-files>
 </project-private>
