@@ -467,4 +467,35 @@ public class DomainGame implements IGame {
 
         return false;
     }
+
+    @Override
+    public IShopkeeper getShopkeeper() {
+        if ( rooms.get("shop").getCharactersInRoom().get(0) instanceof IShopkeeper ) { 
+            return (IShopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean buy(IItem item, int amount, IPlayer player) {
+       Shopkeeper s = (Shopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
+       if (s.buy((Item) item, amount, (Player) player) == true) { 
+           return true;
+       }
+       else { 
+           return false;
+       }
+   
+    }
+
+    @Override
+    public boolean sell(IItem item, int amount, IPlayer player) {
+        Shopkeeper s = (Shopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
+        if (s.sell((Item) item, amount,(Player) player) == true) { 
+            return true;
+        }
+        else { 
+            return false;
+        }
+    }
 }
