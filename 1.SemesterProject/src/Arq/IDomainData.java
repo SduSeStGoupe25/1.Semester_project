@@ -1,6 +1,6 @@
 package Arq;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Interface for the domaindata. It interface are implemented be a class that
@@ -33,9 +33,9 @@ public interface IDomainData {
 
     /**
      * Called to get the highScoreTable
-     * @return a collection with IHighscoreWrapper
+     * @return a List with IHighscoreWrapper
      */
-    Collection<IHighscoreWrapper> getHighScoreTable();
+    List<IHighscoreWrapper> getHighScoreTable();
 
     /**
      * Called to inject data to instance that implements this interface

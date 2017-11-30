@@ -1,15 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Arq;
 
 /**
  *
- * @author madsd
+ * Interface NPC
  */
-public interface INPC extends ICharacterEntity{
+public interface INPC extends ICharacterEntity {
+
+    /**
+     * Called to get the talk of the NPC
+     *
+     * @return the talk as a String
+     */
     String getTalk();
+
+    /**
+     * Called to get the exp the NPC drops when it dies
+     *
+     * @return the exp drop as a integer
+     */
     int getExpDrop();
 }

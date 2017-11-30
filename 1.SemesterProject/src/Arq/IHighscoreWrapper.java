@@ -1,16 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Arq;
 
 /**
  *
- * @author madsd
+ * Interface to send highscores between layers
  */
 public interface IHighscoreWrapper {
+    /**
+     * Called to get the name of the person which got the score
+     * @return the name as a String
+     */
     String getName();
+    
+    /**
+     * Called to get the score
+     * @return the score as a integer
+     */
     int getScore();
-    String toString();
 }

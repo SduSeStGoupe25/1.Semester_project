@@ -12,6 +12,7 @@ import Arq.IGame;
 import Arq.IHighscoreWrapper;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -60,7 +61,7 @@ public class DomainData implements IDomainData {
     }
 
     @Override
-    public Collection<IHighscoreWrapper> getHighScoreTable() {
+    public List<IHighscoreWrapper> getHighScoreTable() {
         return data.getHighscore();
     }
 
