@@ -9,10 +9,15 @@ import Arq.IDomainData;
 import Arq.IDomainGame;
 import Arq.IGame;
 import Arq.IUI;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -25,9 +30,12 @@ public class UI extends Application implements IUI {
 
     private IDomainData domainData;
     private IGame domainGame;
+    private UIState state;
+    private Stage stage;
+    private FXMLDocumentController mainGameController;
 
     public UI() {
-
+        state = state.TITLESCREEN;
     }
 
     public static UI getInstance() {
@@ -65,11 +73,61 @@ public class UI extends Application implements IUI {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
 
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public UIState getState() {
+        return state;
+    }
+
+    public void setState(UIState state) {
+        try {
+            switch (state) {
+                case TITLESCREEN:
+                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("TitleScreen.fxml"))));
+                    break;
+                case GAMESCREEN:
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+                    Pane pane = loader.load();
+                    mainGameController = loader.getController();
+                    stage.setScene(new Scene(pane));
+                    mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("WorldScreen.fxml")));
+                    break;
+                case COMBATSCREEN:
+                    mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
+                    break;
+                case INVENTORYSCREEN:
+                    mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("InventoryScreen.fxml")));
+                    break;
+                case MAPSCREEN:
+                    mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("MapScene.fxml")));
+                    break;
+                case QUESTSCREEN:
+                    mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("QuestlogScene.fxml")));
+                    break;
+                case SHOPSCREEN:
+                    mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("ShopkeeperScreen.fxml")));
+                    break;
+                case WORLDSCREEN:
+                    mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("WorldScreen.fxml")));
+                    break;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void setStage(Stage stage) {
+        this.stage = stage;
+    }
+    
+    public FXMLDocumentController getMainController() {
+        return mainGameController;
     }
 }

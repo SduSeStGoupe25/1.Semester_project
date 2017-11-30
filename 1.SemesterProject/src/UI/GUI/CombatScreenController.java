@@ -92,8 +92,6 @@ public class CombatScreenController implements Initializable {
         updatePlayerStats();
         updateOpponentStats();
         updatEquippedInventory();
-        // spc.updateBars(); initialiseres så spc forbindes til aktiv instans 
-//        imageForest.fitWidthProperty().bind(stage);
 
     }
 
@@ -113,6 +111,7 @@ public class CombatScreenController implements Initializable {
         attackText.setText(Integer.toString(p.getAttack()));
         defenceText.setText(Integer.toString(p.getArmor()));
         }
+        UI.getInstance().getMainController().updateStats();
 
     }
 
@@ -144,7 +143,7 @@ public class CombatScreenController implements Initializable {
     }
     
     public void exitCombat()  { 
-        // load til samme instans af FXMLDocuent som blev forladt
+        UI.getInstance().setState(UIState.WORLDSCREEN);
     }
        
     public void heavyAttackButtonPressed(ActionEvent event) {

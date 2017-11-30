@@ -42,23 +42,11 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private BorderPane borderPane;
-    
-    private BorderPane borderPaneDefault;
 
     private StatsPanelController statController;
 
     @FXML
     private GridPane gridPane;
-    @FXML
-    private AnchorPane defaultView;
-    @FXML
-    private Button btnNorth;
-    @FXML
-    private Button btnWest;
-    @FXML
-    private Button btnSouth;
-    @FXML
-    private Button btnEast;
 
     private IGame game;
     @FXML
@@ -92,7 +80,6 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         gridPane.setPrefSize(800, 600);
         game = UI.getInstance().getDomainGame();
-        borderPaneDefault = new BorderPane();
 
         /**
          * Inspired by
@@ -107,59 +94,21 @@ public class FXMLDocumentController implements Initializable {
         }
         // Create a controller instance
         statController = loader.getController();
-
-        gridPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            switch (event.getCode()) {
-                case W:
-                    if (game.movePlayer("north")) {
-                        updateUI();
-                    }
-                    break;
-                case A:
-                    if (game.movePlayer("west")) {
-                        updateUI();
-                    }
-                    break;
-                case S:
-                    if (game.movePlayer("south")) {
-                        updateUI();
-                    }
-                    break;
-                case D:
-                    if (game.movePlayer("east")) {
-                        updateUI();
-                    }
-                    break;
-                default:
-                    break;
-            }
-        });
     }
 
     @FXML
     public void openInventoryButton(ActionEvent e) throws IOException {
-        if (gridPane.getChildren().contains(borderPane)) {
-            gridPane.getChildren().remove(borderPane);
-            gridPane.add(borderPaneDefault, 1, 0);
-        }
-        borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("InventoryScreen.fxml")));
+        UI.getInstance().setState(UIState.INVENTORYSCREEN);
     }
 
     @FXML
     private void setDefaultView(ActionEvent event) {
-        if (gridPane.getChildren().contains(borderPaneDefault)) {
-            gridPane.getChildren().remove(borderPaneDefault);
-            gridPane.add(borderPane, 1, 0);
-        }
+        UI.getInstance().setState(UIState.WORLDSCREEN);
     }
 
     @FXML
     private void openQuestlogButton(ActionEvent event) throws IOException {
-        if (gridPane.getChildren().contains(borderPane)) {
-            gridPane.getChildren().remove(borderPane);
-            gridPane.add(borderPaneDefault, 1, 0);
-        }
-        borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("QuestlogScene.fxml")));
+        UI.getInstance().setState(UIState.QUESTSCREEN);
     }
 
     @FXML
@@ -169,82 +118,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void openMapButton(ActionEvent event) throws IOException {
-        if (gridPane.getChildren().contains(borderPane)) {
-            gridPane.getChildren().remove(borderPane);
-            gridPane.add(borderPaneDefault, 1, 0);
-        }
-        borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("MapScene.fxml")));
+        UI.getInstance().setState(UIState.MAPSCREEN);
     }
-
-    @FXML
-    private void GoNorthButton(ActionEvent event) {
-        if (game.movePlayer("north")) {
-            updateUI();
-        }
-    }
-
-    @FXML
-    private void GoWestButton(ActionEvent event) {
-        if (game.movePlayer("west")) {
-            updateUI();
-        }
-    }
-
-    @FXML
-    private void GoSouthButton(ActionEvent event) {
-        if (game.movePlayer("south")) {
-            updateUI();
-        }
-    }
-
-    @FXML
-    private void GoEastButton(ActionEvent event) {
-        if (game.movePlayer("east")) {
-            updateUI();
-        }
-    }
-
-    private void updateUI() {
-        statController.updateBars();
-        if (!game.isInCombat()) {
-            if (game.getExitCurrentRoom("north") != null) {
-                btnNorth.setDisable(false);
-            } else {
-                btnNorth.setDisable(true);
-            }
-
-            if (game.getExitCurrentRoom("east") != null) {
-                btnEast.setDisable(false);
-            } else {
-                btnEast.setDisable(true);
-            }
-
-            if (game.getExitCurrentRoom("south") != null) {
-                btnSouth.setDisable(false);
-            } else {
-                btnSouth.setDisable(true);
-            }
-
-            if (game.getExitCurrentRoom("west") != null) {
-                btnWest.setDisable(false);
-            } else {
-                btnWest.setDisable(true);
-            }
-        } else {
-            buttonUpdate(true);
-            try {
-                if (gridPane.getChildren().contains(borderPane)) {
-                    gridPane.getChildren().remove(borderPane);
-                    gridPane.add(borderPaneDefault, 1, 0);
-                }
-                borderPaneDefault.setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
-            } catch (IOException ex) {
-                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }
-
 
     private void buttonUpdate(boolean disable) {
         worldViewButton.setDisable(disable);
@@ -293,5 +168,13 @@ public class FXMLDocumentController implements Initializable {
         }
         itemsToPickUp = FXCollections.observableList(list);
         listItemsInRoom.setItems(itemsToPickUp);
+    }
+
+    public BorderPane getBorderPane() {
+        return borderPane;
+    }
+    
+    public void updateStats() {
+        statController.updateBars();
     }
 }

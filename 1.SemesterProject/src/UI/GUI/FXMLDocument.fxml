@@ -63,24 +63,9 @@
          </padding>
       </VBox>
       <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="500.0" GridPane.columnIndex="1">
-         <top>
-            <Button fx:id="btnNorth" mnemonicParsing="false" onAction="#GoNorthButton" text="North" BorderPane.alignment="CENTER" />
-         </top>
-         <left>
-            <Button fx:id="btnWest" mnemonicParsing="false" onAction="#GoWestButton" text="West" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <Button fx:id="btnEast" mnemonicParsing="false" onAction="#GoEastButton" text="East" BorderPane.alignment="CENTER" />
-         </right>
-         <bottom>
-            <Button fx:id="btnSouth" mnemonicParsing="false" onAction="#GoSouthButton" text="South" BorderPane.alignment="CENTER" />
-         </bottom>
          <padding>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding>
-         <center>
-            <AnchorPane fx:id="defaultView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </center>
       </BorderPane>
       <AnchorPane id="AnchorPane" fx:id="searchRoomWindow" disable="true" prefHeight="400.0" prefWidth="285.0" visible="false" GridPane.columnIndex="1">
          <children>

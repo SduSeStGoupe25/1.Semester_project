@@ -10,7 +10,8 @@ import Arq.IDomainData;
 import Arq.IDomainGame;
 import Arq.IGame;
 import Arq.IHighscoreWrapper;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -23,7 +24,7 @@ public class DomainData implements IDomainData {
     @Override
     public void addNewScore(String name, int score) {
         HighscoreWrapper hw = new HighscoreWrapper(score, name);
-        List<IHighscoreWrapper> highList = getHighScoreTable();
+        ArrayList<IHighscoreWrapper> highList = new ArrayList<>(getHighScoreTable());
 
         int count = 0;
         for (IHighscoreWrapper highscoreWrapper : highList) {
@@ -59,7 +60,7 @@ public class DomainData implements IDomainData {
     }
 
     @Override
-    public List<IHighscoreWrapper> getHighScoreTable() {
+    public Collection<IHighscoreWrapper> getHighScoreTable() {
         return data.getHighscore();
     }
 

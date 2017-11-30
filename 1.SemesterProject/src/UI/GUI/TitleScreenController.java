@@ -38,7 +38,7 @@ public class TitleScreenController implements Initializable {
     private TextField nameBox;
     @FXML
     private ListView<IHighscoreWrapper> listHighScores;
-    
+
     private UI ui;
 
     /**
@@ -47,17 +47,17 @@ public class TitleScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ui = UI.getInstance();
-        ArrayList<IHighscoreWrapper> dataHighScore = (ArrayList) ui.getDomainData().getHighScoreTable(); 
+        ArrayList<IHighscoreWrapper> dataHighScore = new ArrayList<>(ui.getDomainData().getHighScoreTable());
         ObservableList<IHighscoreWrapper> highscoreList = FXCollections.observableArrayList(dataHighScore);
-        listHighScores.setItems(highscoreList); 
-    }    
+        listHighScores.setItems(highscoreList);
+    }
 
     @FXML
     private void startGame(ActionEvent event) throws IOException {
         IGame g = ui.getDomainData().loadGame(true);
         ui.injectDomainGame(ui.getDomainData().loadGame(false));
-        Stage stage = (Stage)nameBox.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"))));
+        ui.setStage((Stage) nameBox.getScene().getWindow());
+        ui.setState(UIState.GAMESCREEN);
     }
 
     @FXML
@@ -69,6 +69,5 @@ public class TitleScreenController implements Initializable {
     private void loadGame(ActionEvent event) {
         ui.injectDomainGame(ui.getDomainData().loadGame(true));
     }
-    
-    
+
 }
