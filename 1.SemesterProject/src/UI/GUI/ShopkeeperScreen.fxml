@@ -25,7 +25,7 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <children>
-            <ListView fx:id="shopSelectionList" prefHeight="174.0" prefWidth="265.0" />
+            <ListView fx:id="shopSelectionList" onMouseClicked="#updatePriceText" prefHeight="174.0" prefWidth="265.0" />
             <Text fx:id="priceText" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
          </children>
       </VBox>

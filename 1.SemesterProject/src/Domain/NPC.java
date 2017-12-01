@@ -50,7 +50,6 @@ class NPC extends CharacterEntity implements INPC{
 
     @Override
     public void onDeath() {
-        //Game.getInstance().getPlayer().addExp(expDrop);
-
+        
     }
 }

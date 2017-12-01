@@ -110,6 +110,9 @@ public class UI extends Application implements IUI {
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
                     break;
                 case INVENTORYSCREEN:
+                    FXMLLoader InventoryLoader = new FXMLLoader(getClass().getResource("InventoryScreen.fxml"));
+                    InventoryLoader.load();
+                    ((InventoryScreenController) InventoryLoader.getController()).updateLists();
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("InventoryScreen.fxml")));
                     break;
                 case MAPSCREEN:
@@ -123,6 +126,9 @@ public class UI extends Application implements IUI {
                     break;
                 case WORLDSCREEN:
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("WorldScreen.fxml")));
+                    break;
+                case GAMEOVERSCREEN:
+                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("GameOverWindow.fxml"))));
                     break;
             }
         } catch (IOException ex) {

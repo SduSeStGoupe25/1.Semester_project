@@ -40,7 +40,7 @@ public class DomainGame implements IGame {
     private String currentRoom;       //The current room
     private Player player;
     private transient ICombat combat;
-    
+
     private Map<String, IRoom> rooms; // creating objects of the Room-class
 
     void setMap(Map<String, Room> m) {
@@ -457,20 +457,17 @@ public class DomainGame implements IGame {
                 if (consumeable.getName().equals("Potion")) {
                     player.restoreHp(consumeable);
                     return true;
-
                 }
             } else {
                 return false;
             }
-
         }
-
         return false;
     }
 
     @Override
     public IShopkeeper getShopkeeper() {
-        if ( rooms.get("shop").getCharactersInRoom().get(0) instanceof IShopkeeper ) { 
+        if (rooms.get("shop").getCharactersInRoom().get(0) instanceof IShopkeeper) {
             return (IShopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
         }
         return null;
@@ -478,23 +475,21 @@ public class DomainGame implements IGame {
 
     @Override
     public boolean buy(IItem item, int amount, IPlayer player) {
-       Shopkeeper s = (Shopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
-       if (s.buy((Item) item, amount, (Player) player) == true) { 
-           return true;
-       }
-       else { 
-           return false;
-       }
-   
+        Shopkeeper s = (Shopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
+        if (s.buy((Item) item, amount, (Player) player) == true) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     @Override
     public boolean sell(IItem item, int amount, IPlayer player) {
         Shopkeeper s = (Shopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
-        if (s.sell((Item) item, amount,(Player) player) == true) { 
+        if (s.sell((Item) item, amount, (Player) player) == true) {
             return true;
-        }
-        else { 
+        } else {
             return false;
         }
     }
