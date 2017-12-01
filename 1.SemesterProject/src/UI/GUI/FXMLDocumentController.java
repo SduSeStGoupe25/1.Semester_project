@@ -74,9 +74,11 @@ public class FXMLDocumentController implements Initializable {
     private ListView<HBoxCell> listItemsInRoom;
 
     @FXML
-    private AnchorPane searchRoomWindow;
+    public AnchorPane searchRoomWindow;
     @FXML
     private Button searchButton;
+    @FXML
+    private Button btnPickUp;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -100,17 +102,26 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     public void openInventoryButton(ActionEvent e) throws IOException {
+        if (searchRoomWindow.visibleProperty().get() == true) {
+            openSearchRoom(e);
+        }
         UI.getInstance().setState(UIState.INVENTORYSCREEN);
-        
+
     }
 
     @FXML
     private void setDefaultView(ActionEvent event) {
+        if (searchRoomWindow.visibleProperty().get() == true) {
+            openSearchRoom(event);
+        }
         UI.getInstance().setState(UIState.WORLDSCREEN);
     }
 
     @FXML
     private void openQuestlogButton(ActionEvent event) throws IOException {
+        if (searchRoomWindow.visibleProperty().get() == true) {
+            openSearchRoom(event);
+        }
         UI.getInstance().setState(UIState.QUESTSCREEN);
     }
 
@@ -121,6 +132,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void openMapButton(ActionEvent event) throws IOException {
+        if (searchRoomWindow.visibleProperty().get() == true) {
+            openSearchRoom(event);
+        }
         UI.getInstance().setState(UIState.MAPSCREEN);
     }
 
@@ -135,10 +149,15 @@ public class FXMLDocumentController implements Initializable {
     }
 
     // searchRoom stuff
+    
+// Opens the searchRoom pane which allows the player to see and pick up any items
+// that might be in the current room
     @FXML
     private void openSearchRoom(ActionEvent event) {
         if (searchRoomWindow.visibleProperty().get() != true) {
-            //buttonUpdate(true);
+            if (selectedItem == null) {
+                btnPickUp.setDisable(true);
+            }
             searchRoomWindow.setLayoutX(400);
             searchRoomWindow.setLayoutY(300);
             searchRoomWindow.toFront();
@@ -146,24 +165,29 @@ public class FXMLDocumentController implements Initializable {
             searchRoomWindow.setDisable(false);
             updateItemsInRoom();
         } else {
-            //buttonUpdate(false);
             searchRoomWindow.setVisible(false);
             searchRoomWindow.setDisable(true);
         }
     }
 
+    // Adds the highlighted item to the players inventory and removes the item from the current room
     @FXML
     private void pickUpSelectedItem(ActionEvent event) {
         game.addItemPlayer(selectedItem.getItem(), selectedItem.getItem().getCount());
         game.getRoomMap().get(game.getCurrentRoom()).getItemList().remove(0);
+        btnPickUp.setDisable(true);
         updateItemsInRoom();
     }
 
     @FXML
     private void getSelectedItem(MouseEvent event) {
         selectedItem = listItemsInRoom.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            btnPickUp.setDisable(false);
+        }
     }
-
+    
+    // Simply refreshes the list of items in the current room
     private void updateItemsInRoom() {
         List<HBoxCell> list = new ArrayList<>();
         for (IItem item : game.getRoomMap().get(game.getCurrentRoom()).getItemList()) {
@@ -173,11 +197,10 @@ public class FXMLDocumentController implements Initializable {
         listItemsInRoom.setItems(itemsToPickUp);
     }
 
-
     public BorderPane getBorderPane() {
         return borderPane;
     }
-    
+
     public void updateStats() {
         statController.updateBars();
     }

@@ -6,24 +6,42 @@
 package Domain;
 
 //@author Mikkel Pedersen
-
 import Arq.IWeapon;
 
+class Weapon extends Item implements IWeapon {
 
-
-class Weapon extends Item implements IWeapon{
-    
     private int baseAttack;
     private int attackValue;
     private int itemLevel;
-    
+
     Weapon(String name, int sellValue, int count, int baseAttack, int itemLevel) {
         super(name, sellValue, count, 1, 4);
         this.baseAttack = baseAttack;
         this.itemLevel = itemLevel;
         attackValue = baseAttack + itemLevel;
+        super.setName(name + " of the " + getExtension());
     }
-    
+
+    public String getExtension() {
+        String s = "";
+        int i = itemLevel % 4;
+        switch (i) {
+            case 0:
+                s += WeaponExtension.MONKEY;
+                break;
+            case 1:
+                s += WeaponExtension.BEAR;
+                break;
+            case 2:
+                s += WeaponExtension.KING;
+                break;
+            case 3:
+                s += WeaponExtension.DRAGON;
+                break;
+        }
+        return s;
+    }
+
     @Override
     public String toString() {
         return getName() + "Weapon{" + "attackValue=" + attackValue + ", itemLevel=" + itemLevel + '}';
@@ -34,7 +52,8 @@ class Weapon extends Item implements IWeapon{
         return baseAttack;
     }
 
-    void setBaseAttack(int baseAttack) {
+    void setBaseAttack(int baseAttack
+    ) {
         this.baseAttack = baseAttack;
     }
 
@@ -43,7 +62,8 @@ class Weapon extends Item implements IWeapon{
         return attackValue;
     }
 
-    void setAttackValue(int attackValue) {
+    void setAttackValue(int attackValue
+    ) {
         this.attackValue = attackValue;
     }
 
@@ -52,11 +72,9 @@ class Weapon extends Item implements IWeapon{
         return itemLevel;
     }
 
-    void setItemLevel(int itemLevel) {
+    void setItemLevel(int itemLevel
+    ) {
         this.itemLevel = itemLevel;
     }
-    
-    
-    
-    
+
 }
