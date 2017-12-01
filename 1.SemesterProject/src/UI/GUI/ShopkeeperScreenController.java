@@ -82,7 +82,8 @@ public class ShopkeeperScreenController implements Initializable {
     @FXML
     private void buyButtonPressed(ActionEvent event) {
         if (amountField.getText().isEmpty()) {
-            amountField.setText("Input an amount");
+            UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), 1, p);
+            loadPlayerInfo();
             return;
         }
         UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()), p);
@@ -92,13 +93,24 @@ public class ShopkeeperScreenController implements Initializable {
 
     @FXML
     private void sellButtonPressed(ActionEvent event) {
+        if (amountField.getText().isEmpty() ) { 
+             UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), 1, p);
+             loadPlayerInfo();
+             return;
+        }
         UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()), p);
         loadPlayerInfo();
     }
 
     @FXML
-    private void updatePriceText(MouseEvent event) {
-        priceText.setText(Integer.toString(shopSelectionList.getSelectionModel().getSelectedItem().getSellValue()));
+    private void updateBuyPriceText(MouseEvent event) {
+        int buyPrice = shopSelectionList.getSelectionModel().getSelectedItem().getSellValue() * 2;
+        priceText.setText("Price: " + Integer.toString(buyPrice));
+    }
+
+    @FXML
+    private void updateSellPriceText(MouseEvent event) {
+        priceText.setText("Price: " + Integer.toString(playerInventoryList.getSelectionModel().getSelectedItem().getSellValue()));
     }
 
 }
