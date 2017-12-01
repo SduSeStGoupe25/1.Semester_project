@@ -9,6 +9,7 @@ import Arq.IItem;
 import Arq.IPlayer;
 import Arq.IShopkeeper;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -46,6 +47,7 @@ public class ShopkeeperScreenController implements Initializable {
     private IShopkeeper s = UI.getInstance().getDomainGame().getShopkeeper();
 
     private List<IItem> playerInventory;
+
     @FXML
     private ImageView shopkeeperImage;
     @FXML
@@ -63,6 +65,7 @@ public class ShopkeeperScreenController implements Initializable {
     }
 
     void loadPlayerInfo() { //Loads the players current inventory to the listview, and displays players current gold balance
+        playerInventory = new ArrayList<>();
         for (IItem item : p.getItemInventory().getInventory()) { //loads players  inventory
             playerInventory.add(item);
         }
