@@ -33,7 +33,7 @@ class Player extends CharacterEntity implements IPlayer{
     private int expToLevelUp;
     private int scoreValue;
     
-    private boolean completedGame = false;
+    private int completedGame = 0;
     
     /**
      * Player constructor
@@ -177,7 +177,9 @@ class Player extends CharacterEntity implements IPlayer{
 
     @Override
     public void onDeath() {
-        //Game.getInstance().setFinished(true);
+        if (getHealth() <= 0) {
+            completedGame = 1; //Sets completedGame to 1, which is "Game lost"
+        }
     }
 
     IQuest getCurrentMainQuest() {
@@ -222,12 +224,12 @@ class Player extends CharacterEntity implements IPlayer{
     
     public void completedGame(){
         if (questsCompleted > 2) { //Currently 3 quests, change this later
-            completedGame = true;
+            completedGame = 2; //Sets state to 2, which is "game won"
             System.out.println("GAME COMPLETED");
         }
     }
 
-    void levelUp() { //Function called to chech wether the player has enough experience to level up, and the fuctionality for leveling up
+    void levelUp() { //Function called to check wether the player has enough experience to level up, and the fuctionality for leveling up
         setLevel(getLevel() + 1);
         super.setStats();
         scoreValue += exp;
@@ -237,9 +239,9 @@ class Player extends CharacterEntity implements IPlayer{
 
     void addExp(int exp) {
         this.exp += exp;
+        System.out.println(exp);
         if (exp >= expToLevelUp) {
             levelUp();
-
         }
     }
 

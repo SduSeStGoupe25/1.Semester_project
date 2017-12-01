@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -29,8 +30,8 @@ public class WorldScreenController implements Initializable {
 
     @FXML
     private BorderPane borderPane;
-    @FXML
-    private GridPane centerGrid;
+    
+    private SpawnScreenController Scon;
 
     private IGame game;
     @FXML
@@ -48,6 +49,17 @@ public class WorldScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = UI.getInstance().getDomainGame();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SpawnScreen.fxml"));
+        try {
+            Pane pane = loader.load();
+            borderPane.setCenter(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // Create a controller instance
+        Scon = loader.getController();
+        
         updateUI();
     }
 
@@ -109,6 +121,6 @@ public class WorldScreenController implements Initializable {
         } else {
             UI.getInstance().setState(UIState.COMBATSCREEN);
         }
-        UI.getInstance().getMainController().updateStats();
+        UI.getInstance().getMainController().update();
     }
 }

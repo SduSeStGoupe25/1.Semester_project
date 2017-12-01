@@ -12,6 +12,7 @@ import Arq.IGame;
 import Arq.IHighscoreWrapper;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -26,17 +27,17 @@ public class DomainData implements IDomainData {
     public void addNewScore(String name, int score) {
         HighscoreWrapper hw = new HighscoreWrapper(score, name);
         ArrayList<IHighscoreWrapper> highList = new ArrayList<>(getHighScoreTable());
-
+        
         int count = 0;
         for (IHighscoreWrapper highscoreWrapper : highList) {
-            int compareValue = hw.compareTo((HighscoreWrapper)highscoreWrapper);
+            int compareValue = hw.compareTo((HighscoreWrapper) highscoreWrapper);
 
             if (compareValue == 0 || compareValue == 1) {
                 break;
             }
             count++;
         }
-        highList.add(count, (IHighscoreWrapper)hw);
+        highList.add(count, (IHighscoreWrapper) hw);
         highList.subList(10, highList.size()).clear();
         data.saveScoreTable(highList);
     }
@@ -44,19 +45,20 @@ public class DomainData implements IDomainData {
     @Override
     public void saveGame() {
         //data.saveGame(DomainGame.getInstance());
-        data.saveGame((IDomainGame)DomainGame.getInstance());
+        data.saveGame((IDomainGame) DomainGame.getInstance());
     }
 
     @Override
     public IGame loadGame(boolean newGame) {
         GameMapper g = new GameMapper();
-        
+
         System.out.println("LOAD GAME!!!!!!!!!!!!!!!!!!!!!!!!!!!!11111");
         IGame f = g.map(data.loadGame(newGame));
         System.out.println("--------------------------");
         System.out.println(f);
         System.out.println("TEST MAP OVER-----------------------");
-    return f;
+        
+        return f;
         //return DomainGame.getInstance().initialize(data.loadGame(newGame));
     }
 

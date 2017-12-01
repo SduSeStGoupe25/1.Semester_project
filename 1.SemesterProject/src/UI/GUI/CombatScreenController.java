@@ -111,7 +111,7 @@ public class CombatScreenController implements Initializable {
         attackText.setText(Integer.toString(p.getAttack()));
         defenceText.setText(Integer.toString(p.getArmor()));
         }
-        UI.getInstance().getMainController().updateStats();
+        UI.getInstance().getMainController().update();
 
     }
 

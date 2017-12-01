@@ -74,6 +74,9 @@ public class JSONDatabase implements IData {
             highscoreTable = gson.fromJson(jsonReader, ArrayList.class);
 
             System.out.println("Done loading");
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            //System.out.println(highscoreTable.get(0));
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -104,13 +107,13 @@ public class JSONDatabase implements IData {
                     .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer())
                     .registerTypeHierarchyAdapter(IRoom.class, new RoomDeserializer())
                     .create();
-            
+
             //Creates a game instance from the json string
             DataGame game = gson.fromJson(jsonReader, DataGame.class);
             System.out.println("GAME IN LOAD");
             System.out.println(game.toString());
             System.out.println(game == null);
-            
+
             System.out.println("Done loading");
 
             //Returns game
@@ -194,7 +197,7 @@ public class JSONDatabase implements IData {
             if (type.equals(DataPlayer.class)) {
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 //Returns a instance of player
-                System.out.println( g.fromJson(je, DataPlayer.class));
+                System.out.println(g.fromJson(je, DataPlayer.class));
                 return (DataPlayer) g.fromJson(je, DataPlayer.class);
             }
 
