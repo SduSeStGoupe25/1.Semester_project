@@ -101,6 +101,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void openInventoryButton(ActionEvent e) throws IOException {
         UI.getInstance().setState(UIState.INVENTORYSCREEN);
+        
     }
 
     @FXML
@@ -153,7 +154,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void pickUpSelectedItem(ActionEvent event) {
-        //game.addItemPlayer(selectedItem, selectedItem.getCount());
+        game.addItemPlayer(selectedItem.getItem(), selectedItem.getItem().getCount());
         game.getRoomMap().get(game.getCurrentRoom()).getItemList().remove(0);
         updateItemsInRoom();
     }

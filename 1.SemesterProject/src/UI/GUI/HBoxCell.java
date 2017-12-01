@@ -26,6 +26,7 @@ public class HBoxCell extends HBox {
     private Label value = new Label();
     private Label sellValue = new Label();
     
+    private IItem item;
     private int id;
     
     private Tooltip tooltip = new Tooltip();
@@ -33,6 +34,7 @@ public class HBoxCell extends HBox {
     public HBoxCell(IItem item) {
         super(10);
         
+        this.item = item;
         id = item.getId();
         
         String typeString = "Unknown";
@@ -75,6 +77,10 @@ public class HBoxCell extends HBox {
     
     public int getItemId(){
         return id;
+    }
+    
+    public IItem getItem(){
+        return item;
     }
 
 }
