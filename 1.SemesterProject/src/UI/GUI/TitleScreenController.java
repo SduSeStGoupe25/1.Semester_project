@@ -47,7 +47,7 @@ public class TitleScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ui = UI.getInstance();
-        ArrayList<IHighscoreWrapper> dataHighScore = new ArrayList<>(ui.getDomainData().getHighScoreTable());
+        ArrayList<IHighscoreWrapper> dataHighScore = (ArrayList) ui.getDomainData().getHighScoreTable();
         ObservableList<IHighscoreWrapper> highscoreList = FXCollections.observableArrayList(dataHighScore);
         listHighScores.setItems(highscoreList);
     }

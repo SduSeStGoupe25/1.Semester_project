@@ -1,16 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Arq;
 
 import java.util.Set;
 
 /**
  *
- * @author madsd
+ * Interface for moveableNPC
  */
-public interface IMoveableNPC extends INPC{
+public interface IMoveableNPC extends INPC {
+
+    /**
+     * Called to get a Set of name one the charaterEntitys that are allowed in
+     * the room
+     *
+     * @return a Set with String
+     */
     Set<String> getAllowedRooms();
 }
