@@ -35,6 +35,8 @@ public class QuestlogSceneController implements Initializable {
     private TextField expField;
     @FXML
     private TextField goldField;
+    @FXML
+    private TextField questGiverField;
 
     /**
      * Initializes the controller class.
@@ -60,5 +62,6 @@ public class QuestlogSceneController implements Initializable {
         QuestTextArea.setText(game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getDescription());
         expField.setText("" + game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getExp());
         goldField.setText("" + game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getGold());
+        questGiverField.setText(game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getGiver());
     }
 }
