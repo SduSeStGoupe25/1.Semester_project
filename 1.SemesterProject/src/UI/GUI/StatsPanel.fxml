@@ -21,18 +21,19 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <ProgressBar fx:id="hpBar" maxWidth="1.7976931348623157E308" onMouseEntered="#labelClick" prefWidth="200.0" progress="0.45" GridPane.columnIndex="1" />
       <ProgressBar fx:id="hungerBar" maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.45" style="color: green;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <ProgressBar maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.45" style="color: green;" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="xpBar" />
-      <Label fx:id="armourLabel" text="Defence" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <Label fx:id="armourLabel" text="Defence" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <GridPane.margin>
-            <Insets left="5.0" />
+            <Insets left="8.0" />
          </GridPane.margin></Label>
-      <Label fx:id="attackLabel" text="Attack" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Label fx:id="attackLabel" text="Attack" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets left="5.0" />
+            <Insets left="8.0" />
          </GridPane.margin></Label>
       <Label fx:id="hpLabel" onMouseEntered="#labelClick" text="Health" />
       <Label fx:id="hungerLabel" text="Hunger" GridPane.rowIndex="1" />
@@ -40,24 +41,29 @@
       <Text fx:id="currentHealth" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <Text fx:id="currentHunger" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Text fx:id="currentExp" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Attack value:" wrappingWidth="73.74951171875" GridPane.rowIndex="3">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Attack value:" wrappingWidth="73.74951171875" GridPane.rowIndex="4">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Armor value:" wrappingWidth="73.74951171875" GridPane.rowIndex="4">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Armor value:" wrappingWidth="73.74951171875" GridPane.rowIndex="5">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medieval Bitcoin:" GridPane.rowIndex="5">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medieval Bitcoin:" GridPane.rowIndex="6">
          <font>
             <Font size="10.0" />
          </font>
       </Text>
-      <Label fx:id="goldText" text="Gold" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <Label fx:id="goldText" text="Gold" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <GridPane.margin>
-            <Insets left="7.0" />
+            <Insets left="10.0" />
          </GridPane.margin></Label>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Level" GridPane.rowIndex="3" />
+      <Text fx:id="levelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="8.0" />
+         </GridPane.margin></Text>
    </children>
 </GridPane>

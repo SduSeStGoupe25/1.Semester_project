@@ -49,6 +49,8 @@ public class StatsPanelController implements Initializable {
     private Text currentExp;
     @FXML
     private Label goldText;
+    @FXML
+    private Text levelText;
 
     /**
      * Initializes the controller class.
@@ -117,6 +119,7 @@ public class StatsPanelController implements Initializable {
         armourLabel.setText(Integer.toString(player.getArmor()));
         attackLabel.setText(Integer.toString(player.getAttack()));
         goldText.setText(Integer.toString(player.getGold()));
+        levelText.setText(Integer.toString(player.getLevel()));
     }
 
 }

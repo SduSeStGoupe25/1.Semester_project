@@ -1,0 +1,28 @@
+.root { 
+-fx-font-family: "Breathe Fire";
+-fx-background-color: #56585b;
+
+}
+
+.button {
+-fx-border-style: solid; 
+-fx-border-width: 2;
+-fx-padding: 10;
+-fx-text-fill: #a89c1c;
+-fx-border-color: #a89c1c;
+-fx-background-color: #281606;
+}
+
+#highscoreLabel{ 
+-fx-font-family: "Breathe Fire";
+}
+
+
+
+
+
+
+
+
+
+
