@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -73,10 +74,15 @@ public class UI extends Application implements IUI {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Font.loadFont(getClass().getResourceAsStream("Fonts/breathefire.otf"), 16);
+
         stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
 
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("CSS/medieval.css").toExternalFor‌​m());
+
+        stage.setTitle("World of Arthur: Game of The Year Edition");
 
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -98,6 +104,7 @@ public class UI extends Application implements IUI {
                     mainGameController = loader.getController();
                     stage.setScene(new Scene(pane));
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("WorldScreen.fxml")));
+                    pane.getStylesheets().add(getClass().getResource("CSS/medieval.css").toExternalFor‌​m());
                     break;
                 case COMBATSCREEN:
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
@@ -126,7 +133,7 @@ public class UI extends Application implements IUI {
     void setStage(Stage stage) {
         this.stage = stage;
     }
-    
+
     public FXMLDocumentController getMainController() {
         return mainGameController;
     }

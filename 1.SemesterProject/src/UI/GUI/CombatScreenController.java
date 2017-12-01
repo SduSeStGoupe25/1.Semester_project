@@ -155,13 +155,14 @@ public class CombatScreenController implements Initializable {
 
     public void usePotionButtonPressed(ActionEvent event) throws IOException {
         if (UI.getInstance().getDomainGame().usePotion() == true) {
-           // spc.updateBars(); - initialiseres så SPC forbindes til aktive instans
+           
         } else {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CombatPotionErrorWindow.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root1));
+                root1.getStylesheets().add(getClass().getResource("CSS/medieval.css").toExternalFor‌​m());
                 stage.show();
             } catch (Exception e) {
                 e.printStackTrace();
