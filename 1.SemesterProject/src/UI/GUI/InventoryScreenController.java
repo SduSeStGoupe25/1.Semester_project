@@ -87,7 +87,8 @@ public class InventoryScreenController implements Initializable {
         updateLists();
     }
 
-    private void updateLists() {
+    public void updateLists() {
+        System.out.println("Items in inventory: " + player.getItemInventory().getInventory().toString());
         List<HBoxCell> items = new ArrayList<>();
         
         for (IItem item : player.getItemInventory().getInventory()) {

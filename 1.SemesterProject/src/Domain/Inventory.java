@@ -24,6 +24,7 @@ class Inventory implements IInventory{
     }
 
     boolean addItem(Item item, int amount) {
+        System.out.println("fisk");
         if (inventory.size() != 0) {
             for (IItem i : inventory) {
                 if (i.getName().equals(item.getName())) {
