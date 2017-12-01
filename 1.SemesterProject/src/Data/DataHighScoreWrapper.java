@@ -11,7 +11,7 @@ import Arq.IHighscoreWrapper;
  *
  * @author madsd
  */
-class DataHighScoreWrapper implements IHighscoreWrapper {
+public class DataHighScoreWrapper implements IHighscoreWrapper {
 
     private int score;
     private String name;
