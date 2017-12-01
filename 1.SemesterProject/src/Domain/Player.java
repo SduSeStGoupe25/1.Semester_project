@@ -227,7 +227,7 @@ class Player extends CharacterEntity implements IPlayer{
         }
     }
 
-    void levelUp() { //Function called to chech wether the player has enough experience to level up, and the fuctionality for leveling up
+    void levelUp() { //Function called to check wether the player has enough experience to level up, and the fuctionality for leveling up
         setLevel(getLevel() + 1);
         super.setStats();
         scoreValue += exp;

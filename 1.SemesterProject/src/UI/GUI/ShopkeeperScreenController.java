@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -39,11 +40,11 @@ public class ShopkeeperScreenController implements Initializable {
     private ListView<IItem> shopSelectionList;
     @FXML
     private ListView<IItem> playerInventoryList;
-    
+
     private IPlayer p = UI.getInstance().getDomainGame().getPlayer();
-    
+
     private IShopkeeper s = UI.getInstance().getDomainGame().getShopkeeper();
-    
+
     private List<IItem> playerInventory;
     @FXML
     private ImageView shopkeeperImage;
@@ -57,31 +58,32 @@ public class ShopkeeperScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loadPlayerInfo(); 
+        loadPlayerInfo();
         loadShopkeeper();
-    }    
-    
-    
-    
-    void loadPlayerInfo () { //Loads the players current inventory to the listview, and displays players current gold balance
-        for (IItem item : p.getEquipableInventory().getInventory()) { //loads players  inventory
+    }
+
+    void loadPlayerInfo() { //Loads the players current inventory to the listview, and displays players current gold balance
+        for (IItem item : p.getItemInventory().getInventory()) { //loads players  inventory
             playerInventory.add(item);
         }
         ObservableList<IItem> observableInventoryList = FXCollections.observableArrayList(playerInventory); //makes observablelist of the arraylist, due to listviews restrictions
         playerInventoryList.setItems(observableInventoryList);
         playerGold.setText("Gold: " + p.getGold());
     }
-    
-    
+
     void loadShopkeeper() { //loads shopkeepers selection to listview, and adjusts the pricetext according to the selected item from the listview
         shopSelectionList.getItems().setAll(s.getItemsToSell().values()); //adds values from map to listview. 
-        priceText.setText(Integer.toString(shopSelectionList.getSelectionModel().getSelectedItem().getSellValue()));
-        
+
     }
 
     @FXML
     private void buyButtonPressed(ActionEvent event) {
+        if (amountField.getText().isEmpty()) {
+            amountField.setText("Input an amount");
+            return;
+        }
         UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()), p);
+
         loadPlayerInfo();
     }
 
@@ -90,5 +92,10 @@ public class ShopkeeperScreenController implements Initializable {
         UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()), p);
         loadPlayerInfo();
     }
-    
+
+    @FXML
+    private void updatePriceText(MouseEvent event) {
+        priceText.setText(Integer.toString(shopSelectionList.getSelectionModel().getSelectedItem().getSellValue()));
+    }
+
 }
