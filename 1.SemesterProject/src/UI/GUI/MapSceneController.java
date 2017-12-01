@@ -1,10 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * class from where the map is updated to match the current loction of the player, and the movable ncp's
  */
 package UI.GUI;
 
+import Arq.IRoom;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -15,6 +14,8 @@ import javafx.fxml.Initializable;
  * @author Mikkel Pedersen
  */
 public class MapSceneController implements Initializable {
+    private String playerRoom = UI.getInstance().getDomainGame().getCurrentRoom();
+    
 
     /**
      * Initializes the controller class.
@@ -24,4 +25,7 @@ public class MapSceneController implements Initializable {
         // TODO
     }    
     
+    public void updateMap() {
+        
+    }
 }
