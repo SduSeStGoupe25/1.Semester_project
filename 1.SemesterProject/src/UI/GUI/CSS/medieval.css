@@ -35,13 +35,12 @@
     -fx-background-color:black;
 }
 
-<<<<<<< HEAD
 #highscoreLabel{ 
     -fx-font-family: "Breathe Fire";
-=======
+}
+
 .label{ 
--fx-font-family: "Breathe Fire";
->>>>>>> origin/master
+    -fx-font-family: "Breathe Fire";
 }
 
 

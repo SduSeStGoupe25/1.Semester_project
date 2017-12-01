@@ -200,13 +200,8 @@ public class FXMLDocumentController implements Initializable {
     public BorderPane getBorderPane() {
         return borderPane;
     }
-<<<<<<< HEAD
-
-    public void updateStats() {
-=======
     
     public void update() {
->>>>>>> origin/master
         statController.updateBars();
         statController.updateTextElements();
         onPlayerDeath();
