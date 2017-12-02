@@ -39,7 +39,7 @@ abstract class CharacterEntity implements ICharacterEntity {
      * 1
      */
     protected void setStats() {
-        health = ((level - 1) * 10) + baseHealth - (maxHealth - health);
+        //health = ((level - 1) * 10) + baseHealth - (maxHealth - health);
         attack = level * baseAttack;
         maxHealth = ((level - 1) * 10) + baseHealth;
     }
