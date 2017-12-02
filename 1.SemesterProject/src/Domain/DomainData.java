@@ -10,6 +10,7 @@ import Arq.IDomainData;
 import Arq.IDomainGame;
 import Arq.IGame;
 import Arq.IHighscoreWrapper;
+import Data.DataHighScoreWrapper;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -26,9 +27,12 @@ public class DomainData implements IDomainData {
     @Override
     public void addNewScore(String name, int score) {
         HighscoreWrapper hw = new HighscoreWrapper(score, name);
-        ArrayList<IHighscoreWrapper> highList = new ArrayList<>(getHighScoreTable());
-        
+        GameMapper mapper = new GameMapper();
+        ArrayList<IHighscoreWrapper> highList = new ArrayList<>(mapper.mapScore(getHighScoreTable()));
+
         int count = 0;
+
+
         for (IHighscoreWrapper highscoreWrapper : highList) {
             int compareValue = hw.compareTo((HighscoreWrapper) highscoreWrapper);
 
@@ -38,7 +42,9 @@ public class DomainData implements IDomainData {
             count++;
         }
         highList.add(count, (IHighscoreWrapper) hw);
-        highList.subList(10, highList.size()).clear();
+        if (highList.size() > 10) {
+            highList.subList(10, highList.size()).clear();
+        }
         data.saveScoreTable(highList);
     }
 
@@ -57,7 +63,6 @@ public class DomainData implements IDomainData {
         System.out.println("--------------------------");
         System.out.println(f);
         System.out.println("TEST MAP OVER-----------------------");
-        
         return f;
         //return DomainGame.getInstance().initialize(data.loadGame(newGame));
     }

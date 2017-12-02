@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,21 +69,31 @@ public class JSONDatabase implements IData {
 
             //Reades the file as a json file
             JsonReader jsonReader = new JsonReader(reader);
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder()
+                    .registerTypeHierarchyAdapter(IHighscoreWrapper.class, new ScoreDeserializer()) // use read CharacterEntity correct
+                    .create();
 
             //Converts the string to a list
-            highscoreTable = gson.fromJson(jsonReader, ArrayList.class);
+            highScoreObject ho = gson.fromJson(jsonReader, highScoreObject.class);
+            highscoreTable = ho.list;
 
             System.out.println("Done loading");
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            //System.out.println(highscoreTable.get(0));
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         //Returns the high score table
         return highscoreTable;
+    }
+    
+        private class ScoreDeserializer implements JsonDeserializer<IHighscoreWrapper> {
+
+        @Override
+        public IHighscoreWrapper deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
+            Gson g = new Gson();
+            return (DataHighScoreWrapper) g.fromJson(je, DataHighScoreWrapper.class);
+        }
+
     }
 
     @Override
@@ -264,10 +275,21 @@ public class JSONDatabase implements IData {
 
     }
 
+    private class highScoreObject {
+
+        List<IHighscoreWrapper> list;
+
+        public highScoreObject(List<IHighscoreWrapper> list) {
+            this.list = list;
+        }
+        
+
+    }
+
     @Override
     public void saveScoreTable(List<IHighscoreWrapper> list) {
-        //Saves the highScoreTable 
-        saveData(list, fileHigh);
+        //Saves the highScoreTable
+        saveData(new highScoreObject(list), fileHigh);
     }
 
     @Override

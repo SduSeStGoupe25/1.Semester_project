@@ -10,6 +10,7 @@ import Arq.ICharacterEntity;
 import Arq.IConsumeable;
 import Arq.IDomainGame;
 import Arq.IExit;
+import Arq.IHighscoreWrapper;
 import Arq.IInventory;
 import Arq.IItem;
 import Arq.IKey;
@@ -35,9 +36,9 @@ import java.util.Set;
  *
  * @author madsd
  */
-final class GameMapper {
+class GameMapper {
 
-    final DomainGame map(IDomainGame toBeMapped) {
+    DomainGame map(IDomainGame toBeMapped) {
         DomainGame g = DomainGame.getInstance();
         g.setCurrentRoom(toBeMapped.getCurrentRoom());
         g.setRoomMap(mapR(toBeMapped.getRoomMap()));
@@ -46,6 +47,15 @@ final class GameMapper {
         g.makeCombat();
 
         return g;
+    }
+
+    ArrayList<IHighscoreWrapper> mapScore(List<IHighscoreWrapper> toBeMapped) {
+        ArrayList<IHighscoreWrapper> list = new ArrayList<>();
+        for (IHighscoreWrapper hs : toBeMapped) {
+            HighscoreWrapper h = new HighscoreWrapper(hs.getScore(), hs.getName());
+            list.add(h);
+        }
+        return list;
     }
 
     private Room map(IRoom toBeMapped) {
@@ -131,9 +141,9 @@ final class GameMapper {
         p.setSideQuest(map(((IPlayer) toBeMapped).getSideQuest()));
         p.setMaxHunger(((IPlayer) toBeMapped).getMaxHunger());
         p.setQuestsCompleted(((IPlayer) toBeMapped).getQuestsCompleted());
-        
+
         p.setMaxHunger(100);
-        
+
         System.out.println("MAx" + p.getMaxHunger() + "  ---------------------------------");
         return p;
     }
