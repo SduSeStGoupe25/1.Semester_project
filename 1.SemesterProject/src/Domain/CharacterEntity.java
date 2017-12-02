@@ -24,7 +24,7 @@ abstract class CharacterEntity implements ICharacterEntity {
     //Constructor
     CharacterEntity(String name, int health, int armor, int attack, int level, int id) {
         this.name = name;
-        this.health = health;
+        this.health = ((level - 1) * 10) + baseHealth - (maxHealth - health);;
         this.armor = armor;
         this.level = level;
         maxHealth = health;
@@ -38,8 +38,7 @@ abstract class CharacterEntity implements ICharacterEntity {
      * Method used for calculating attributes if CharacterEntity is above level
      * 1
      */
-    protected void setStats() {
-        //health = ((level - 1) * 10) + baseHealth - (maxHealth - health);
+    protected void setStats() { 
         attack = level * baseAttack;
         maxHealth = ((level - 1) * 10) + baseHealth;
     }
