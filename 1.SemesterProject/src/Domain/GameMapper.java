@@ -125,7 +125,6 @@ class GameMapper {
     }
 
     private Player map(IPlayer toBeMapped) {
-        System.out.println("PLAYER");
         Player p = new Player(
                 toBeMapped.getName(),
                 toBeMapped.getHealth(),
@@ -144,12 +143,10 @@ class GameMapper {
 
         p.setMaxHunger(100);
 
-        System.out.println("MAx" + p.getMaxHunger() + "  ---------------------------------");
         return p;
     }
 
     private CharacterEntity map(ICharacterEntity toBeMapped) {
-        System.out.print("MAP CHARA__________");
         System.out.println(toBeMapped.getName());
         switch (toBeMapped.getId()) {
             case 1:

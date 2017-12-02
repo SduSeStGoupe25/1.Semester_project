@@ -24,7 +24,6 @@ public class UICharacter extends ImageView {
 
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Tile pressed ");
                 UI.getInstance().setState(UIState.SHOPSCREEN);
             }
         });

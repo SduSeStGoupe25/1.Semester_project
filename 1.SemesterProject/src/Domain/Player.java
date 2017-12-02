@@ -239,8 +239,7 @@ class Player extends CharacterEntity implements IPlayer{
 
     void addExp(int exp) {
         this.exp += exp;
-        System.out.println(exp);
-        if (exp >= expToLevelUp) {
+        if (this.exp >= expToLevelUp) {
             levelUp();
         }
     }
@@ -328,7 +327,6 @@ class Player extends CharacterEntity implements IPlayer{
 
     @Override
     public int getMaxHunger() {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!" + maxHunger);
         return maxHunger;
     }
 

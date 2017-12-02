@@ -22,7 +22,6 @@ class Shopkeeper extends NPC implements IShopkeeper {
     }
 
     public boolean buy(Item item, int amount, Player player) {
-        System.out.println("gold " + player.getGold());
         if ((item.getSellValue() * amount) * 2 > player.getGold()) { //Checks if the player has enough gold to purchase the item
             return false;
         }
@@ -38,7 +37,6 @@ class Shopkeeper extends NPC implements IShopkeeper {
     public boolean sell(Item item, int amount, Player player) {
         if (((Inventory) player.getItemInventory()).removeItem(item, amount)) {
             player.addGold(item.getSellValue() * amount);
-            System.out.println("gold " + player.getGold());
             return true;
         }
         return false;

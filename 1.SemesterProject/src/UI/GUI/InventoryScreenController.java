@@ -56,9 +56,6 @@ public class InventoryScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!_____________________");
-        System.out.println(UI.getInstance().getDomainGame());
-        System.out.println("----------------------");
         game = UI.getInstance().getDomainGame();
         player = game.getPlayer();
 
@@ -88,7 +85,6 @@ public class InventoryScreenController implements Initializable {
     }
 
     public void updateLists() {
-        System.out.println("Items in inventory: " + player.getItemInventory().getInventory().toString());
         List<HBoxCell> items = new ArrayList<>();
         
         for (IItem item : player.getItemInventory().getInventory()) {

@@ -1,7 +1,6 @@
 package Domain;
 
 import Arq.ICombat;
-import Arq.IConsumeable;
 import Arq.ICombatResponse;
 import Arq.IConsumeable;
 import Arq.IDomainGame;
@@ -11,15 +10,9 @@ import Arq.IItem;
 import Arq.IPlayer;
 import Arq.IRoom;
 import Arq.IShopkeeper;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import UI.Command.PutHandler;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -46,7 +39,6 @@ public class DomainGame implements IGame {
     void setMap(Map<String, Room> m) {
         rooms.clear();
         rooms = new HashMap<>(m);
-        System.out.println("M ::::: " + rooms);
     }
 
     private transient boolean finished = false;
@@ -73,7 +65,6 @@ public class DomainGame implements IGame {
     }
 
     IDomainGame initialize(IDomainGame game) {
-        System.out.println("INGAME");
 //        System.out.println(this);
 //        System.out.println(currentRoom);
 //        System.out.println(game);
@@ -352,11 +343,9 @@ public class DomainGame implements IGame {
             return false;
         } else {  //If it has
             Room nextRoom = (Room) getRoomMap().get(((Exit) exit).nextRoom(getCurrentIRoom().getName()));
-            System.out.println("nextRoom " + nextRoom + " -------------------------------");
             setCurrentIRoom(nextRoom); //Current room is now the nextRoom
             player.addHunger(-3);
             ((Room) getCurrentIRoom()).spawnEnemies();
-            System.out.println(((Room) getCurrentIRoom()).getLongDescription()); //Prints a description of the room
             return true;
         }
     }

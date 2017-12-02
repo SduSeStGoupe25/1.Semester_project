@@ -51,7 +51,6 @@ public class UI extends Application implements IUI {
     }
 
     IDomainData getDomainData() {
-        System.out.println(domainData);
         return domainData;
     }
 
@@ -64,7 +63,6 @@ public class UI extends Application implements IUI {
     @Override
     public void injectDomainData(IDomainData domainData) {
         this.domainData = domainData;
-        System.out.println(this.domainData);
     }
 
     @Override

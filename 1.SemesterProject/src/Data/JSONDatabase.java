@@ -121,15 +121,10 @@ public class JSONDatabase implements IData {
 
             //Creates a game instance from the json string
             DataGame game = gson.fromJson(jsonReader, DataGame.class);
-            System.out.println("GAME IN LOAD");
-            System.out.println(game.toString());
-            System.out.println(game == null);
 
             System.out.println("Done loading");
 
             //Returns game
-            System.out.println("GAME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!GAME");
-            System.out.println(game);
             return game;
         } catch (IOException e) {
             e.printStackTrace();
@@ -206,7 +201,6 @@ public class JSONDatabase implements IData {
                     .create();
             //Checks if type is player
             if (type.equals(DataPlayer.class)) {
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 //Returns a instance of player
                 System.out.println(g.fromJson(je, DataPlayer.class));
                 return (DataPlayer) g.fromJson(je, DataPlayer.class);

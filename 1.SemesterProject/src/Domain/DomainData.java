@@ -58,11 +58,7 @@ public class DomainData implements IDomainData {
     public IGame loadGame(boolean newGame) {
         GameMapper g = new GameMapper();
 
-        System.out.println("LOAD GAME!!!!!!!!!!!!!!!!!!!!!!!!!!!!11111");
         IGame f = g.map(data.loadGame(newGame));
-        System.out.println("--------------------------");
-        System.out.println(f);
-        System.out.println("TEST MAP OVER-----------------------");
         return f;
         //return DomainGame.getInstance().initialize(data.loadGame(newGame));
     }
