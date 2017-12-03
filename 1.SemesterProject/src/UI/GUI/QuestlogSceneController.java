@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -63,5 +64,13 @@ public class QuestlogSceneController implements Initializable {
         expField.setText("" + game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getExp());
         goldField.setText("" + game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getGold());
         questGiverField.setText(game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getGiver());
+    }
+
+    @FXML
+    private void completeQuest(ActionEvent event) {
+        game.getPlayer().getCompleteQuest(game.getCurrentRoom());
+        if (game.getPlayer().getQuestsCompleted() >= 2) {
+            UI.getInstance().setState(UIState.GAMEWONSCREEN);
+        }
     }
 }

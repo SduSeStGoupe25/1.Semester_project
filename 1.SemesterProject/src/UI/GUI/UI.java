@@ -128,6 +128,8 @@ public class UI extends Application implements IUI {
                 case GAMEOVERSCREEN:
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("GameOverWindow.fxml"))));
                     break;
+                case GAMEWONSCREEN:
+                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("GameWonWindow.fxml"))));
             }
         } catch (IOException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);

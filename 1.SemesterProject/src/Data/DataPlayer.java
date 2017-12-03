@@ -30,6 +30,7 @@ public class DataPlayer extends DataCharactorEntity implements IPlayer {
     private int maxHunger;
     private int expToLevelUp;
     private int scoreValue;
+    private int completedGame = 0;
 
     public DataPlayer(DataInventory itemInventory, DataInventory equipableInventory, int gold, int exp, LinkedHashMap<Integer, IQuest> mainQuest, HashMap<String, IQuest> sideQuest, int questsCompleted, int hunger, int maxHunger, int expToLevelUp, int scoreValue, String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
         super(name, health, armor, level, maxHealth, baseHealth, baseAttack, attack, id);
@@ -99,5 +100,10 @@ public class DataPlayer extends DataCharactorEntity implements IPlayer {
     @Override
     public int getScoreValue() {
         return scoreValue;
+    }
+
+    @Override
+    public void getCompleteQuest(String room) {
+        
     }
 }

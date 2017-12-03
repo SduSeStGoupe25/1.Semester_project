@@ -32,7 +32,6 @@ class Player extends CharacterEntity implements IPlayer{
     private int maxHunger;
     private int expToLevelUp;
     private int scoreValue;
-    
     private int completedGame = 0;
     
     /**
@@ -212,7 +211,8 @@ class Player extends CharacterEntity implements IPlayer{
                         ((Inventory) getItemInventory()).removeItem(item, item.getCount());
                     }
                     setQuestsCompleted(questsCompleted + 1);
-                    completedGame();
+                    System.out.println("COMPLETED QUEST");
+                    System.out.println(questsCompleted);
                     return true;
                 } else {
                     return false;
@@ -221,12 +221,8 @@ class Player extends CharacterEntity implements IPlayer{
         }
         return false;
     }
-    
-    public void completedGame(){
-        if (questsCompleted > 2) { //Currently 3 quests, change this later
-            completedGame = 2; //Sets state to 2, which is "game won"
-            System.out.println("GAME COMPLETED");
-        }
+    public void getCompleteQuest(String room){
+        checkQuest(room);
     }
 
     void levelUp() { //Function called to check wether the player has enough experience to level up, and the fuctionality for leveling up
@@ -351,6 +347,4 @@ class Player extends CharacterEntity implements IPlayer{
     void setScoreValue(int scoreValue) {
         this.scoreValue = scoreValue;
     }
-    
-    
 }
