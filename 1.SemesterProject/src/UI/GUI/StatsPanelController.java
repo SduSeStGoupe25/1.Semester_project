@@ -115,7 +115,7 @@ public class StatsPanelController implements Initializable {
     
     void updateTextElements() { 
         armourLabel.setText(Integer.toString(player.getArmor()));
-        attackLabel.setText(Integer.toString(player.getAttack()));
+        attackLabel.setText(Integer.toString(player.getAttackValue()));
         goldText.setText(Integer.toString(player.getGold()));
         levelText.setText(Integer.toString(player.getLevel()));
     }
