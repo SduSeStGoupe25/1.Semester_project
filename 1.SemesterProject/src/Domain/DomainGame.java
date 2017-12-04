@@ -25,7 +25,7 @@ public class DomainGame implements IGame {
 
     @Override
     public String toString() {
-        return "DomainGame{" + "currentRoom=" + currentRoom + ", player=" + player + ", combat=" + combat + ", rooms=" + rooms + ", finished=" + finished + ", itemNames=" + itemNames + '}';
+        return "DomainGame{" + "currentRoom=" + currentRoom + ", player=" + player + ", combat=" + combat + ", rooms=" + rooms + ", finished=" + finished + '}';
     }
 
     private transient static DomainGame instance = null;
@@ -43,8 +43,8 @@ public class DomainGame implements IGame {
 
     private transient boolean finished = false;
 
-    private String[][] itemNames = {
-        {"Rock", "Sword"}, {"Chainmail"}, {"Potion", "Meat"}, {"Key", "Key2"}, {"Wool"}};
+//    private String[][] itemNames = {
+//        {"Rock", "Sword"}, {"Chainmail"}, {"Potion", "Meat"}, {"Key", "Key2"}, {"Wool"}};
 
     /**
      * This is the constructor, which is used when a instance of Game is made.
@@ -258,18 +258,18 @@ public class DomainGame implements IGame {
         }
     }
 
-    public int checkItemName(String itemName) {
-        int count = 0;
-        for (String[] itemName1 : itemNames) {
-            for (String string : itemName1) {
-                if (itemName.equalsIgnoreCase(string)) {
-                    return count;
-                }
-            }
-            count++;
-        }
-        return -1;
-    }
+//    public int checkItemName(String itemName) {
+//        int count = 0;
+//        for (String[] itemName1 : itemNames) {
+//            for (String string : itemName1) {
+//                if (itemName.equalsIgnoreCase(string)) {
+//                    return count;
+//                }
+//            }
+//            count++;
+//        }
+//        return -1;
+//    }
 
     void setFinished(boolean finished) {
         this.finished = finished;
@@ -376,14 +376,14 @@ public class DomainGame implements IGame {
         this.rooms = rooms;
     }
 
-    @Override
-    public String[][] getItemNames() {
-        return itemNames;
-    }
-
-    void setItemNames(String[][] itemNames) {
-        this.itemNames = itemNames;
-    }
+//    @Override
+//    public String[][] getItemNames() {
+//        return itemNames;
+//    }
+//
+//    void setItemNames(String[][] itemNames) {
+//        this.itemNames = itemNames;
+//    }
 
     @Override
     public boolean movePlayer(String direction) {
@@ -484,5 +484,10 @@ public class DomainGame implements IGame {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void setPlayerName(String name) {
+        player.setName(name);
     }
 }

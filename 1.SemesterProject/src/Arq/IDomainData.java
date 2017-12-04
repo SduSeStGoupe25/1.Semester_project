@@ -1,6 +1,7 @@
 package Arq;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Interface for the domaindata. It interface are implemented be a class that
@@ -9,6 +10,10 @@ import java.util.List;
  */
 public interface IDomainData {
 
+    IItem getItem(String name);
+    
+    Map<String, IItem> getItemMap();
+    
     /**
      * Called to add a new score to the scoretable in the data layer
      *

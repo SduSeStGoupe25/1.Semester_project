@@ -8,6 +8,8 @@ package Arq;
  */
 public interface ICharacterEntity {
 
+    int getBaseHealth();
+    int getBaseAttack();
     /**
      * Called to get the name
      *

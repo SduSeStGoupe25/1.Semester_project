@@ -37,4 +37,8 @@ public interface IPlayer extends ICharacterEntity {
     int getScoreValue();
     
     void getCompleteQuest(String room);
+    
+    int getAttackValue();
+    
+    int getArmorValue();
 }

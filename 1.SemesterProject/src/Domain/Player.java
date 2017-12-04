@@ -72,7 +72,8 @@ class Player extends CharacterEntity implements IPlayer{
      *
      * @return Returns the attackValue as an integer
      */
-    int getAttackValue() {
+    @Override
+    public int getAttackValue() {
         int attackValue = getAttack();
         for (IItem item : equipableInventory.getInventory()) { //Goes through our equipableInventory, to see if we have a weapon equipped
             if (item instanceof Weapon) {
@@ -89,7 +90,8 @@ class Player extends CharacterEntity implements IPlayer{
      *
      * @return Returns the armorValue as an integer
      */
-    int getArmorValue() {
+    @Override
+    public int getArmorValue() {
         int armorValue = getAttack();
         for (IItem item : equipableInventory.getInventory()) { //Goes through our equipableInventory and checks if we have any armor equipped
             if (item instanceof Armor) {
@@ -207,6 +209,7 @@ class Player extends CharacterEntity implements IPlayer{
                 }
                 if (itemCount == getCurrentMainQuest().getItems().size()) { //If itemCount is equal to the required amount to complete the quest,
                     addGold(getCurrentMainQuest().getGold());               //then we add Gold to the player (reward for completing quest)
+                    addExp(getCurrentMainQuest().getExp());
                     for (IItem item : getCurrentMainQuest().getItems()) {    //We then look through the quest items, and remove them from players itemInventory
                         ((Inventory) getItemInventory()).removeItem(item, item.getCount());
                     }
@@ -229,7 +232,12 @@ class Player extends CharacterEntity implements IPlayer{
         setLevel(getLevel() + 1);
         super.setStats();
         scoreValue += exp;
-        exp = 0;
+        if(expToLevelUp - exp != 0) {
+           exp -= expToLevelUp; 
+        } else {
+            exp = 0;
+        }
+        
         expToLevelUp += 5;
     }
 
@@ -286,7 +294,6 @@ class Player extends CharacterEntity implements IPlayer{
 
     @Override
     public LinkedHashMap<Integer, IQuest> getMainQuest() {
-        //completedGame(); //Used to test Win Condition
         return mainQuest;
     }
 

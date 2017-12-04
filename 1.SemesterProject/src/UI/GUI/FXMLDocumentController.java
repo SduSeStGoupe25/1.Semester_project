@@ -213,4 +213,9 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    @FXML
+    private void saveClicked(ActionEvent event) {
+        UI.getInstance().getDomainData().saveGame();
+    }
+
 }

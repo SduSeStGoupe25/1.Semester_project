@@ -34,7 +34,17 @@ abstract class DataCharactorEntity implements ICharacterEntity {
         this.attack = attack;
         this.id = id;
     }
-    
+
+    @Override
+    public int getBaseHealth() {
+        return baseHealth;
+    }
+
+    @Override
+    public int getBaseAttack() {
+        return baseHealth;
+    }
+
     @Override
     public String getName() {
         return name;

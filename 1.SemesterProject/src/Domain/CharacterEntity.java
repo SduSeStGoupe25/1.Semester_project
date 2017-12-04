@@ -22,24 +22,25 @@ abstract class CharacterEntity implements ICharacterEntity {
     private int id; // 0 = CharacterEntity, 1 = NPC, 2 = Player, 3 = Shopkeeper, 4 = MovableNPC
 
     //Constructor
-    CharacterEntity(String name, int health, int armor, int attack, int level, int id) {
+    CharacterEntity(String name, int baseHealth, int armor, int baseAttack, int level, int id) {
+        this.baseHealth = baseHealth;
+        this.baseAttack = baseAttack;
         this.name = name;
-        this.health = ((level - 1) * 10) + baseHealth - (maxHealth - health);;
-        this.armor = armor;
         this.level = level;
-        maxHealth = health;
-        baseHealth = health;
-        baseAttack = attack;
-        this.id = id;
+        
         setStats();
+        this.health = maxHealth;
+        this.armor = armor;
+        this.id = id;
+        
     }
 
     /**
      * Method used for calculating attributes if CharacterEntity is above level
      * 1
      */
-    protected void setStats() { 
-        attack = level * baseAttack;
+    protected void setStats() {
+        attack = (level * baseAttack) / 10;
         maxHealth = ((level - 1) * 10) + baseHealth;
     }
 
@@ -111,8 +112,26 @@ abstract class CharacterEntity implements ICharacterEntity {
     public int getId() {
         return id;
     }
-    
+
     void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public int getBaseHealth() {
+        return baseHealth;
+    }
+
+    void setBaseHealth(int baseHealth) {
+        this.baseHealth = baseHealth;
+    }
+
+    @Override
+    public int getBaseAttack() {
+        return baseHealth;
+    }
+
+    void setBaseAttack(int baseAttack) {
+        this.baseAttack = baseAttack;
     }
 }

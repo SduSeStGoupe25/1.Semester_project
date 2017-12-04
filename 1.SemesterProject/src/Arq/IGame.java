@@ -42,5 +42,7 @@ public interface IGame extends IDomainGame {
     boolean buy(IItem item, int amount, IPlayer player);
 
     boolean sell(IItem item, int amount, IPlayer player);
+    
+    void setPlayerName(String name);
 
 }
