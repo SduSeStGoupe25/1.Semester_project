@@ -98,6 +98,7 @@ public class InventoryScreenController implements Initializable {
             equipableItems.add(new HBoxCell(item));
         }
         listEquipedItems.setItems(FXCollections.observableList(equipableItems));
+        UI.getInstance().getMainController().update();
     }
 
     @FXML

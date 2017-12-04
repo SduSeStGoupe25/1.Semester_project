@@ -25,52 +25,73 @@
       "mainQuest":{  
          "0":{  
             "name":"Arriving to town",
-            "description":"Hello there, my name is Merlin. You've come to try and draw the mighty Excalibur I assume? Very well. You can start by proving yourself worthy by killing some sheep. You might be able to find a weapon around here somewhere... Or possibly a rock.",
+            "description":"Hello there, my name is Merlin. You've come to try and draw the mighty Excalibur I assume? Very well. You can start by proving yourself worthy by killing some pigs. You might be able to find a weapon around here somewhere... Or maybe a rock will do.",
             "gold":10,
+            "exp":5,
+            "items":[  
+
+            ],
+            "giver":"Merlin"
+         },
+         "1":{  
+            "name":"Helping out",
+            "description":"Good job on killing those pigs! I've heard the shopkeeper in town is in dire need of some supplies, maybe you could help him out?",
+            "gold":0,
+            "exp":5,
+            "items":[  
+               
+            ],
+            "giver":"Shopkeeper"
+         },
+         "2":{  
+            "name":"Fetching some wool",
+            "description":"'ello lad! Welcome to me shop! I've got all the things ya could dream of! \nAnyhow, I need ya help lad. Could ya bring me some wool? I'll make it worth the trouble.",
+            "gold":20,
+            "exp":10,
+            "items":[  
+               
+            ],
+            "giver":"Shopkeeper"
+         },
+         "3":{  
+            "name":"Finding Merlin",
+            "description":"Oh lad, that's some fine wool ya brought me alright! \nThat wizard Merlin was in here looking for ya while you were out, ya should probably go talk to him. See ya soon!",
+            "gold":0,
             "exp":5,
             "items":[  
                
             ],
             "giver":"Merlin"
          },
-         "1":{  
-            "name":"Getting the hang of things",
-            "description":"Good job on killing those sheep! I've heard the shopkeeper in town is in dire need of some supplies, maybe you could help him out?",
-            "gold":15,
-            "exp":10,
+         "4":{  
+            "name":"Gathering some materials",
+            "description":"If we're gonna attempt getting Excalibur, we need to be ready for everything. There's a few... Let's call it obstacles, in the way. \nI need you to gather some horns from the wild boars, and some skin from a bear. Good luck.",
+            "gold":10,
+            "exp":20,
             "items":[  
                
             ],
             "giver":"Merlin"
          },
-         "2":{
+         "5":{
             "name":"The final encounter",
-            "description":"You've made it! We're only a small step away from pulling the mighty Excalibur! All we need to do is slay that big dragon... You can do that, right?\n\nRequired item: Excalibur, the Mighty Greatsword",
-            "gold":0,
-            "exp":0,
+            "description":"You've made it! We're only a small step away from pulling the mighty Excalibur!\nThere's something I haven't told you yet, though. The sword is guarded by a big dragon... Let's hope we're strong enough to defeat it.",
+            "gold":50,
+            "exp":35,
             "items":[
-            {  
-               "baseAttack":25,
-               "attackValue":2,
-               "itemLevel":99,
-               "name":"Excalibur, the Mighty Greatsword",
-               "sellValue":1000,
-               "count":1,
-               "MAX_COUNT":1,
-               "id":4
-            }
+
             ],
             "giver":"Merlin"
          },
-         "3":{  
-            "name":"Coming soon!",
-            "description":"More coming soon",
-            "gold":0,
-            "exp":0,
+         "6":{  
+            "name":"The end of the Journey",
+            "description":"We have done it! You pulled the mighty Excalibur! \n\nRequired items: Excalibur, the Mighty Greatsword",
+            "gold":500,
+            "exp":50,
             "items":[  
 
             ],
-            "giver":" "
+            "giver":"Merlin"
          }
       },
       "questsCompleted":0,

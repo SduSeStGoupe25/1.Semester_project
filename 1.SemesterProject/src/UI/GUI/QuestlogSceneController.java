@@ -47,7 +47,8 @@ public class QuestlogSceneController implements Initializable {
         game = UI.getInstance().getDomainGame();
         QuestListView.setItems(FXCollections.observableList(completedQuests()));
     }
-    private List completedQuests(){
+
+    private List completedQuests() {
         int completedQuests = 0;
         List<String> completedQuestNames = new ArrayList<>();
         while (completedQuests < game.getPlayer().getQuestsCompleted()) {
@@ -68,9 +69,19 @@ public class QuestlogSceneController implements Initializable {
 
     @FXML
     private void completeQuest(ActionEvent event) {
-        game.getPlayer().getCompleteQuest(game.getCurrentRoom());
-        if (game.getPlayer().getQuestsCompleted() >= 2) {
-            UI.getInstance().setState(UIState.GAMEWONSCREEN);
+        int questIndex = QuestListView.getSelectionModel().getSelectedIndex();
+        if (questIndex == game.getPlayer().getQuestsCompleted()) {
+            game.getPlayer().getCompleteQuest(game.getCurrentRoom());
+            if (game.getPlayer().getQuestsCompleted() >= game.getPlayer().getMainQuest().size()) {
+                UI.getInstance().setState(UIState.GAMEWONSCREEN);
+            }else{
+                UI.getInstance().setState(UIState.QUESTSCREEN);
+                UI.getInstance().getMainController().update();
+            }
+            
+        } else {
+            System.out.println("Select the right quest!");
         }
+
     }
 }
