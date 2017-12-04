@@ -166,7 +166,7 @@ class Player extends CharacterEntity implements IPlayer{
                         addHunger(((Consumeable) item).getHungerValue());
                         return true;
                     } else {
-                        setHealth(((Consumeable) item).getUseValue()); //Adds the health to the player
+                        setHealth(((Consumeable) item).getUseValue() + getHealth()); //Adds the health to the player
                         addHunger(((Consumeable) item).getHungerValue());
                         return true;
                     }
