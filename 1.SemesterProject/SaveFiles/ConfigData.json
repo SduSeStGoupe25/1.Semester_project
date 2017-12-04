@@ -419,7 +419,7 @@
 
          ],
          "allowedMonsters":[  
-
+		
          ]
       },
       "excalibur":{  
@@ -467,7 +467,9 @@
 
          ],
          "allowedMonsters":[  
-
+		"Imp",
+		"Bear",
+		"Ogre"
          ]
       },
       "tower":{  
