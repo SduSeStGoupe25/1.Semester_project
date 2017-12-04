@@ -104,10 +104,8 @@ public class ShopkeeperScreenController implements Initializable {
 
     @FXML
     private void updateBuyPriceText(MouseEvent event) {
-        if(s.getItemsToSell().isEmpty()) {  //negates exception when listview is clicked when empty
-            return;
-        }
-        if (shopSelectionList.getSelectionModel().getSelectedItem() == null) {  //negates exception when listview is clicked while containing item, but item isn't clicked
+
+        if (shopSelectionList.getSelectionModel().getSelectedItem() == null) {  //prevents invocation target exception when listview is clicked without an item being selected
             return;
         }
         int buyPrice = shopSelectionList.getSelectionModel().getSelectedItem().getSellValue() * 2;
@@ -116,10 +114,8 @@ public class ShopkeeperScreenController implements Initializable {
 
     @FXML
     private void updateSellPriceText(MouseEvent event) {
-        if (p.getItemInventory().getInventory().isEmpty()) { //negates exception when listview is clicked when empty
-            return;
-        }
-        if (playerInventoryList.getSelectionModel().getSelectedItem() == null) { //negates exception when listview is clicked while containing item, but item isn't clicked
+
+        if (playerInventoryList.getSelectionModel().getSelectedItem() == null) { //prevents invocation target exception when listview is clicked without an item being selected
             return;
         }
         priceText.setText("Price: " + Integer.toString(playerInventoryList.getSelectionModel().getSelectedItem().getSellValue()));
