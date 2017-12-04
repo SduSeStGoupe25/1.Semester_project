@@ -106,4 +106,14 @@ public class DataPlayer extends DataCharactorEntity implements IPlayer {
     public void getCompleteQuest(String room) {
         
     }
+
+    @Override
+    public int getAttackValue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getArmorValue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

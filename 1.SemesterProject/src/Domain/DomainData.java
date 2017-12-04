@@ -10,11 +10,10 @@ import Arq.IDomainData;
 import Arq.IDomainGame;
 import Arq.IGame;
 import Arq.IHighscoreWrapper;
-import Data.DataHighScoreWrapper;
+import Arq.IItem;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -23,15 +22,14 @@ import java.util.List;
 public class DomainData implements IDomainData {
 
     private IData data;
+    private final GameMapper mapper = new GameMapper();
 
     @Override
     public void addNewScore(String name, int score) {
         HighscoreWrapper hw = new HighscoreWrapper(score, name);
-        GameMapper mapper = new GameMapper();
         ArrayList<IHighscoreWrapper> highList = new ArrayList<>(mapper.mapScore(getHighScoreTable()));
 
         int count = 0;
-
 
         for (IHighscoreWrapper highscoreWrapper : highList) {
             int compareValue = hw.compareTo((HighscoreWrapper) highscoreWrapper);
@@ -56,9 +54,7 @@ public class DomainData implements IDomainData {
 
     @Override
     public IGame loadGame(boolean newGame) {
-        GameMapper g = new GameMapper();
-
-        IGame f = g.map(data.loadGame(newGame));
+        IGame f = mapper.map(data.loadGame(newGame));
         return f;
         //return DomainGame.getInstance().initialize(data.loadGame(newGame));
     }
@@ -71,6 +67,17 @@ public class DomainData implements IDomainData {
     @Override
     public void injectData(IData data) {
         this.data = data;
+    }
+
+    @Override
+    public IItem getItem(String name) {
+        
+        return mapper.map(data.getItem().get(name));
+    }
+
+    @Override
+    public Map<String, IItem> getItemMap() {
+        return mapper.map(data.getItem());
     }
 
 }

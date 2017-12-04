@@ -5,7 +5,6 @@
  */
 package Data;
 
-import Arq.ICombat;
 import Arq.IDomainGame;
 import Arq.IPlayer;
 import Arq.IRoom;
@@ -44,10 +43,10 @@ public class DataGame implements IDomainGame {
         return rooms;
     }
 
-    @Override
-    public String[][] getItemNames() {
-        return itemNames;
-    }
+//    @Override
+//    public String[][] getItemNames() {
+//        return itemNames;
+//    }
 
 
 }
