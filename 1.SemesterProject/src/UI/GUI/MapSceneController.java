@@ -7,6 +7,7 @@ import Arq.ICharacterEntity;
 import Arq.IMoveableNPC;
 import Arq.INPC;
 import Arq.IRoom;
+import java.io.File;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -80,10 +81,11 @@ public class MapSceneController implements Initializable {
                 break;
             case "citycenter":
                 //3,4
-                ImageView pi = new ImageView("File:Icons/player-icon.png");
-                mapGrid.add(pi, 3, 4);
-                pi.toFront();
-                System.out.println("nfernfæenejef BILLEDE TILFØJET BAJERFEST");
+                File f = new File("src/UI/GUI/Icons/player-icon.png");
+                Image image = new Image(f.toURI().toString(), 50, 25, false, false);
+                ImageView iw = new ImageView();
+                iw.setImage(image);
+                mapGrid.add(iw, 3, 4);
 
                 break;
             case "shop":

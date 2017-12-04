@@ -2,6 +2,7 @@
     -fx-font-family: "Breathe Fire";
     -fx-background-color: #56585b;
 
+
 }
 
 .label{
@@ -15,6 +16,7 @@
     -fx-text-fill: #a89c1c;
     -fx-border-color: #a89c1c;
     -fx-background-color: #281606;
+-fx-font-size:120%;
 }
 
 .button:hover{
@@ -27,6 +29,7 @@
     -fx-border-width: 0;
     -fx-border-color:#bc0909;
     -fx-background-color:grey;
+-fx-font-size:150%;
 }
 
 .list-cell{
@@ -45,6 +48,7 @@
 
 .label{ 
     -fx-font-family: "Breathe Fire";
+-fx-font-size:150%;
 }
 
 .split-pane{
