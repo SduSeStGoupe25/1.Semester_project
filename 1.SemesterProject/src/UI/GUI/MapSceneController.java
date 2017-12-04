@@ -27,13 +27,10 @@ public class MapSceneController implements Initializable {
     private String playerRoom = UI.getInstance().getDomainGame().getCurrentRoom();
     private String merlinRoom;
     private String princessRoom;
-    private String merlinRoom;
-    private String princessRoom;
     @FXML
     private GridPane mapGrid;
     @FXML
     private ImageView mapImageView;
-    private Image playerIcon = new Image("File:Icons/player-icon.png");
     private Image playerIcon = new Image("File:Icons/player-icon.png");
 
     /**
@@ -43,75 +40,71 @@ public class MapSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         mapImageView.fitWidthProperty().bind(mapGrid.widthProperty());
         mapImageView.fitHeightProperty().bind(mapGrid.heightProperty());
-    }    
         merlinRoom = findMoveableNPC("Merlin");
         princessRoom = findMoveableNPC("Princess");
+
         updateMap();
     }
-	
+
     public void updateMap() {
-        switch (merlinRoom) { 
-            case "tower": 
+        switch (merlinRoom) {
+            case "tower":
                 break;
-            case "citycenter" : 
+            case "citycenter":
                 break;
-            case "shop" :
+            case "shop":
                 break;
-            case "tavern" : 
-                break; 
-            case "castle" : 
+            case "tavern":
                 break;
-            case "dead" : 
+            case "castle":
                 break;
-            }
-        switch (princessRoom) { 
-            case "tower": 
-                break;
-            case "citycenter" : 
-                break;
-            case "shop" :
-                break;
-            case "tavern" : 
-                break; 
-            case "castle" : 
-                break;
-            case "dead" : 
+            case "dead":
                 break;
         }
-        switch (playerRoom) { 
-            case "tower": 
+        switch (princessRoom) {
+            case "tower":
                 break;
-            case "citycenter" :
+            case "citycenter":
+                break;
+            case "shop":
+                break;
+            case "tavern":
+                break;
+            case "castle":
+                break;
+            case "dead":
+                break;
+        }
+        switch (playerRoom) {
+            case "tower":
+                break;
+            case "citycenter":
                 //3,4
                 ImageView pi = new ImageView("File:Icons/player-icon.png");
                 mapGrid.add(pi, 3, 4);
                 pi.toFront();
-                System.out.println("nfernfæenejef BILLEDE TILFØJET BAJERFEST"); 
-               
+                System.out.println("nfernfæenejef BILLEDE TILFØJET BAJERFEST");
+
                 break;
-            case "shop" :
+            case "shop":
                 break;
-            case "tavern" : 
-                break; 
-            case "castle" : 
+            case "tavern":
                 break;
-            case "forrest" : 
-                break; 
-            case "deepwoods" : 
+            case "castle":
                 break;
-            case "cave" : 
+            case "forrest":
                 break;
-            case "excalibur" : 
+            case "deepwoods":
                 break;
-            case "farm" : 
+            case "cave":
+                break;
+            case "excalibur":
+                break;
+            case "farm":
                 break;
         }
-    
-    
-    
-}
 
-    
+    }
 
     public String findMoveableNPC(String name) {
         Map<String, IRoom> roomMap = UI.getInstance().getDomainGame().getRoomMap();
@@ -119,13 +112,12 @@ public class MapSceneController implements Initializable {
             for (ICharacterEntity npc : room.getValue().getCharactersInRoom()) {
                 if (npc instanceof IMoveableNPC) {
                     if (npc.getName().equals(name)) {
-                        return  room.getKey();
-                        
-                        
+                        return room.getKey();
+
                     }
 
-                } 
-                
+                }
+
             }
         }
         return "dead";
