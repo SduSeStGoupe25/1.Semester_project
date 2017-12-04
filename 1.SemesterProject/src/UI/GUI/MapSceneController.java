@@ -12,10 +12,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-<<<<<<< HEAD
-=======
 import javafx.scene.image.Image;
->>>>>>> 0e0a7c0513c1d3397d31a9cf67facb3f8408e3e3
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
@@ -27,38 +25,30 @@ import javafx.scene.layout.GridPane;
 public class MapSceneController implements Initializable {
 
     private String playerRoom = UI.getInstance().getDomainGame().getCurrentRoom();
-<<<<<<< HEAD
-=======
     private String merlinRoom;
     private String princessRoom;
->>>>>>> 0e0a7c0513c1d3397d31a9cf67facb3f8408e3e3
+    private String merlinRoom;
+    private String princessRoom;
     @FXML
     private GridPane mapGrid;
     @FXML
     private ImageView mapImageView;
-<<<<<<< HEAD
-    
-=======
     private Image playerIcon = new Image("File:Icons/player-icon.png");
->>>>>>> 0e0a7c0513c1d3397d31a9cf67facb3f8408e3e3
+    private Image playerIcon = new Image("File:Icons/player-icon.png");
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-<<<<<<< HEAD
         mapImageView.fitWidthProperty().bind(mapGrid.widthProperty());
         mapImageView.fitHeightProperty().bind(mapGrid.heightProperty());
     }    
-    
-=======
         merlinRoom = findMoveableNPC("Merlin");
         princessRoom = findMoveableNPC("Princess");
         updateMap();
     }
-
->>>>>>> 0e0a7c0513c1d3397d31a9cf67facb3f8408e3e3
+	
     public void updateMap() {
         switch (merlinRoom) { 
             case "tower": 
