@@ -245,9 +245,7 @@ public class DomainGame implements IGame {
      *
      * @return Returns the combat object
      */
-    public Combat getCombat() {
-        return (Combat) combat;
-    }
+    
 
     /**
      * This method is called when moveableNPC's should move. It uses a for-each
@@ -350,6 +348,11 @@ public class DomainGame implements IGame {
         }
     }
 
+    @Override
+    public ICombat getCombat(){
+        return combat;
+    }
+    
     @Override
     public String getCurrentRoom() {
         return currentRoom;

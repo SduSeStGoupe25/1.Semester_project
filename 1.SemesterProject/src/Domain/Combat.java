@@ -32,6 +32,7 @@ public class Combat implements ICombat{
      * @param opponent the CharacterEntity to fight
      * @param currentRoom the current room the fight takes place in
      */
+    @Override
     public void startCombat(ICharacterEntity opponent, IRoom currentRoom) {
         this.opponent = (CharacterEntity)opponent;
         this.currentRoom = (Room)currentRoom;

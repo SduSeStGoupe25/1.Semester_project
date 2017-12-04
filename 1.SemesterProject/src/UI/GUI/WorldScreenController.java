@@ -92,6 +92,7 @@ public class WorldScreenController implements Initializable {
     }
 
     private void updateUI() {
+        Scon.update();
         game = UI.getInstance().getDomainGame();
         if (!game.isInCombat()) {
             if (game.getExitCurrentRoom("north") != null) {
