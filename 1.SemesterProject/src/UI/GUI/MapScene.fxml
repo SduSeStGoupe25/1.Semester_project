@@ -7,8 +7,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane fx:id="mapGrid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.MapSceneController">
-
-<GridPane fx:id="mapGrid" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.MapSceneController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,9 +31,6 @@
   </rowConstraints>
    <children>
       <ImageView fx:id="mapImageView" fitHeight="269.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
-      <ImageView fx:id="mapImageView" fitHeight="326.0" fitWidth="702.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
-
-      <ImageView fx:id="mapImageView" fitHeight="326.0" fitWidth="702.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
          <image>
             <Image url="@gamemap.png" />
          </image>
