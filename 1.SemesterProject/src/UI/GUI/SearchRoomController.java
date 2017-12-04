@@ -32,7 +32,7 @@ public class SearchRoomController implements Initializable {
     
     IPlayer player;
     
-    IItem selectedItem;
+    int selectedItem;
     
     ObservableList<IItem> items;
 
@@ -50,12 +50,12 @@ public class SearchRoomController implements Initializable {
 
     @FXML
     private void pickUpSelectedItem(ActionEvent event) {
-        game.addItemPlayer(selectedItem, selectedItem.getCount());
+        game.addItemPlayer(items.get(selectedItem), items.get(selectedItem).getCount());
     }
 
     @FXML
     private void getSelectedItem(MouseEvent event) {
-        selectedItem = listItemsInRoom.getSelectionModel().getSelectedItem();
+        selectedItem = listItemsInRoom.getSelectionModel().getSelectedIndex();
     }
     
 }

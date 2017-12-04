@@ -174,7 +174,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void pickUpSelectedItem(ActionEvent event) {
         game.addItemPlayer(selectedItem.getItem(), selectedItem.getItem().getCount());
-        game.getRoomMap().get(game.getCurrentRoom()).getItemList().remove(0);
+        game.getRoomMap().get(game.getCurrentRoom()).getItemList().remove(listItemsInRoom.getSelectionModel().getSelectedIndex());
         btnPickUp.setDisable(true);
         updateItemsInRoom();
     }

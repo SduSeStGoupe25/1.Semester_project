@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.InventoryScreenController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.InventoryScreenController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
@@ -19,7 +19,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
             <Button fx:id="btnUse" mnemonicParsing="false" onAction="#UseItemButton" text="Use">
                <VBox.margin>
@@ -41,21 +41,24 @@
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
-            <Label text="Inventory">
+            <Label maxHeight="1.7976931348623157E308" text="Inventory">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="listInventory" onMouseClicked="#CheckSelectedItem" prefHeight="200.0" prefWidth="200.0" />
-            <Label text="Equipped items">
+            <ListView fx:id="listInventory" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#CheckSelectedItem" VBox.vgrow="ALWAYS" />
+            <Label maxHeight="1.7976931348623157E308" text="Equipped items">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="listEquipedItems" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listEquipedItems" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </children>
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
 </GridPane>

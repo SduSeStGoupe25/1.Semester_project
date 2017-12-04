@@ -28,6 +28,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -52,8 +53,6 @@ public class CombatScreenController implements Initializable {
     private Label opponentHP;
     @FXML
     private Label opponentLevel;
-    @FXML
-    private Label opponentName;
     @FXML
     private GridPane playerstatGridPane;
     @FXML
@@ -81,6 +80,8 @@ public class CombatScreenController implements Initializable {
     private Text attackText;
     @FXML
     private Text defenceText;
+    @FXML
+    private Pane imagePane;
 
     /**
      * Initializes the controller class.
@@ -92,7 +93,10 @@ public class CombatScreenController implements Initializable {
         updatePlayerStats();
         updateOpponentStats();
         updatEquippedInventory();
-
+        
+        imageForest.setPreserveRatio(true);
+        imageForest.fitHeightProperty().bind(imagePane.heightProperty());
+        imageForest.fitWidthProperty().bind(imagePane.widthProperty());
     }
 
     public void updatEquippedInventory() {
@@ -130,12 +134,14 @@ public class CombatScreenController implements Initializable {
 
     }
 
+    @FXML
     public void fleeButtonPressed(ActionEvent event) {
         c = UI.getInstance().getDomainGame().getCombatResponse(2);
         exitCombat();
 
     }
 
+    @FXML
     public void lightAttackButtonPressed(ActionEvent event) {
         c = UI.getInstance().getDomainGame().getCombatResponse(0);
         updateOpponentStats();
@@ -146,6 +152,7 @@ public class CombatScreenController implements Initializable {
         UI.getInstance().setState(UIState.WORLDSCREEN);
     }
        
+    @FXML
     public void heavyAttackButtonPressed(ActionEvent event) {
         c = UI.getInstance().getDomainGame().getCombatResponse(1);
         updateOpponentStats();
@@ -153,6 +160,7 @@ public class CombatScreenController implements Initializable {
         
     }
 
+    @FXML
     public void usePotionButtonPressed(ActionEvent event) throws IOException {
         if (UI.getInstance().getDomainGame().usePotion() == true) {
            

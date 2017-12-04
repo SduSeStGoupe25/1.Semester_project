@@ -16,6 +16,8 @@ public interface IGame extends IDomainGame {
     boolean movePlayer(String direction);
 
     ICombatResponse getCombatResponse(int action);
+    
+    ICombat getCombat();
 
     LinkedHashMap getQuestList();
 

@@ -4,6 +4,10 @@
 
 }
 
+.label{
+    -fx-text-fill: #a89c1c;
+}
+
 .button {
     -fx-border-style: solid; 
     -fx-border-width: 2;
@@ -41,6 +45,15 @@
 
 .label{ 
     -fx-font-family: "Breathe Fire";
+}
+
+.split-pane{
+    
+}
+
+.split-pane-divider{
+    -fx-background-color: "transparent";
+    -fx-padding: 0 0 0 0;
 }
 
 

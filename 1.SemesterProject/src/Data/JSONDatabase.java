@@ -22,9 +22,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,6 +51,8 @@ public class JSONDatabase implements IData {
      */
     private File fileSave = new File("SaveFiles/save.json");
 
+    private File fileLoot = new File("SaveFiles/Loot.json");
+
     /**
      * Creates a new JSONDatabase instance. And checks files need for the
      * database.
@@ -58,6 +60,35 @@ public class JSONDatabase implements IData {
     public JSONDatabase() {
         loadDatabase();
     }
+
+    @Override
+    public Map<String, IItem> getItem() {
+        try (FileReader reader = new FileReader(fileLoot)) {
+
+            //Reades the file as a json file
+            JsonReader jsonReader = new JsonReader(reader);
+            Gson gson = new GsonBuilder()
+                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read CharacterEntity correct
+                    .create();
+
+            //Converts the string to a list
+            LootClass obj = gson.fromJson(jsonReader, LootClass.class);
+            return obj.items;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    private class LootClass {
+    
+        Map<String, IItem> items;
+        
+        public LootClass() {
+            items = new HashMap<>();
+        }
+    }
+
 
     @Override
     public List<IHighscoreWrapper> getHighscore() {
@@ -85,8 +116,8 @@ public class JSONDatabase implements IData {
         //Returns the high score table
         return highscoreTable;
     }
-    
-        private class ScoreDeserializer implements JsonDeserializer<IHighscoreWrapper> {
+
+    private class ScoreDeserializer implements JsonDeserializer<IHighscoreWrapper> {
 
         @Override
         public IHighscoreWrapper deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
@@ -277,7 +308,6 @@ public class JSONDatabase implements IData {
         public highScoreObject(List<IHighscoreWrapper> list) {
             this.list = list;
         }
-        
 
     }
 
@@ -356,14 +386,6 @@ public class JSONDatabase implements IData {
         if (!fileSave.exists()) {
             try {
                 fileSave.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(JSONDatabase.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        if (!fileConfigData.exists()) {
-            try {
-                fileConfigData.createNewFile();
             } catch (IOException ex) {
                 Logger.getLogger(JSONDatabase.class.getName()).log(Level.SEVERE, null, ex);
             }
