@@ -95,6 +95,7 @@ public class UI extends Application implements IUI {
             switch (state) {
                 case TITLESCREEN:
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("TitleScreen.fxml"))));
+                    stage.getScene().getStylesheets().add(getClass().getResource("CSS/medieval.css").toExternalForm());
                     break;
                 case GAMESCREEN:
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
@@ -127,9 +128,12 @@ public class UI extends Application implements IUI {
                     break;
                 case GAMEOVERSCREEN:
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("GameOverWindow.fxml"))));
+                    stage.getScene().getStylesheets().add(getClass().getResource("CSS/medieval.css").toExternalForm());
                     break;
                 case GAMEWONSCREEN:
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("GameWonWindow.fxml"))));
+                    stage.getScene().getStylesheets().add(getClass().getResource("CSS/medieval.css").toExternalForm());
+                    break;
             }
         } catch (IOException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
