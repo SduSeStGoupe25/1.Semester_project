@@ -229,7 +229,12 @@ class Player extends CharacterEntity implements IPlayer{
         setLevel(getLevel() + 1);
         super.setStats();
         scoreValue += exp;
-        exp = 0;
+        if(expToLevelUp - exp != 0) {
+           exp -= expToLevelUp; 
+        } else {
+            exp = 0;
+        }
+        
         expToLevelUp += 5;
     }
 

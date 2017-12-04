@@ -482,4 +482,9 @@ public class DomainGame implements IGame {
             return false;
         }
     }
+
+    @Override
+    public void setPlayerName(String name) {
+        player.setName(name);
+    }
 }

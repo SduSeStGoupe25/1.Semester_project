@@ -39,14 +39,17 @@ import java.util.Set;
 class GameMapper {
 
     DomainGame map(IDomainGame toBeMapped) {
-        DomainGame g = DomainGame.getInstance();
-        g.setCurrentRoom(toBeMapped.getCurrentRoom());
-        g.setRoomMap(mapR(toBeMapped.getRoomMap()));
-        g.setItemNames(toBeMapped.getItemNames());
-        g.setPlayer(map(toBeMapped.getPlayer()));
-        g.makeCombat();
-
-        return g;
+        if (toBeMapped != null) {
+            DomainGame g = DomainGame.getInstance();
+            g.setCurrentRoom(toBeMapped.getCurrentRoom());
+            g.setRoomMap(mapR(toBeMapped.getRoomMap()));
+            g.setItemNames(toBeMapped.getItemNames());
+            g.setPlayer(map(toBeMapped.getPlayer()));
+            g.makeCombat();
+            return g;
+        } else {
+            return null;
+        }
     }
 
     ArrayList<IHighscoreWrapper> mapScore(List<IHighscoreWrapper> toBeMapped) {
@@ -127,13 +130,18 @@ class GameMapper {
     private Player map(IPlayer toBeMapped) {
         Player p = new Player(
                 toBeMapped.getName(),
-                toBeMapped.getHealth(),
+                toBeMapped.getBaseHealth(),
                 toBeMapped.getArmor(),
-                toBeMapped.getAttack(),
+                toBeMapped.getBaseAttack(),
                 toBeMapped.getLevel(),
                 ((IPlayer) toBeMapped).getGold(),
                 ((IPlayer) toBeMapped).getExp());
 
+        p.setExpToLevelUp(((IPlayer) toBeMapped).getExpToLevelUp());
+        p.setHunger(((IPlayer) toBeMapped).getHunger());
+        p.setMaxHunger(((IPlayer) toBeMapped).getMaxHunger());
+        //p.setMaxHealth(((IPlayer) toBeMapped).getMaxHealth());
+        p.setHealth(((IPlayer) toBeMapped).getHealth());
         p.setItemInventory(map(((IPlayer) toBeMapped).getItemInventory()));
         p.setEquipableInventory(map(((IPlayer) toBeMapped).getEquipableInventory()));
         p.setMainQuest(map(((IPlayer) toBeMapped).getMainQuest()));

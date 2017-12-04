@@ -39,7 +39,7 @@ public class GameWonWindowController implements Initializable {
 
     @FXML
     private void saveHighscore(ActionEvent event) {
-        ui.getDomainData().addNewScore("NO NAME", ui.getDomainGame().getPlayer().getExp());
+        ui.getDomainData().addNewScore(ui.getDomainGame().getPlayer().getName(), ui.getDomainGame().getPlayer().getScoreValue());
     }
     
 }

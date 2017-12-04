@@ -23,8 +23,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 /**
@@ -37,7 +40,7 @@ public class TitleScreenController implements Initializable {
     @FXML
     private TextField nameBox;
     @FXML
-    private ListView<IHighscoreWrapper> listHighScores;
+    private ListView<HighscoreBox> listHighScores;
 
     private UI ui;
 
@@ -47,17 +50,27 @@ public class TitleScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ui = UI.getInstance();
-        ArrayList<IHighscoreWrapper> dataHighScore = (ArrayList) ui.getDomainData().getHighScoreTable();
-        ObservableList<IHighscoreWrapper> highscoreList = FXCollections.observableArrayList(dataHighScore);
+        ObservableList<HighscoreBox> highscoreList = FXCollections.observableArrayList();
+        for (IHighscoreWrapper h : ui.getDomainData().getHighScoreTable()){
+            highscoreList.add(new HighscoreBox(h.getName(), h.getScore()));
+        }
+        
         listHighScores.setItems(highscoreList);
     }
 
     @FXML
     private void startGame(ActionEvent event) throws IOException {
-        IGame g = ui.getDomainData().loadGame(true);
-        ui.injectDomainGame(ui.getDomainData().loadGame(false));
+        //IGame g = ui.getDomainData().loadGame(true);
+        ui.injectDomainGame(ui.getDomainData().loadGame(true));
         ui.setStage((Stage) nameBox.getScene().getWindow());
         ui.setState(UIState.GAMESCREEN);
+
+        //set the player name
+        if (nameBox.getText().isEmpty()) {
+            ui.getDomainGame().setPlayerName("Arthur");
+        } else {
+            ui.getDomainGame().setPlayerName(nameBox.getText());
+        }
     }
 
     @FXML
@@ -67,7 +80,29 @@ public class TitleScreenController implements Initializable {
 
     @FXML
     private void loadGame(ActionEvent event) {
-        ui.injectDomainGame(ui.getDomainData().loadGame(true));
+        ui.injectDomainGame(ui.getDomainData().loadGame(false));
+        ui.setStage((Stage) nameBox.getScene().getWindow());
+        ui.setState(UIState.GAMESCREEN);
+    }
+
+    private class HighscoreBox extends HBox {
+
+        Label nameLabel = new Label();
+        Label scoreLabel = new Label();
+
+        HighscoreBox(String nameText, int score) {
+            super();
+
+            nameLabel.setText(nameText);
+            nameLabel.setMaxWidth(Double.MAX_VALUE);
+            HBox.setHgrow(nameLabel, Priority.ALWAYS);
+
+            scoreLabel.setText("" + score);
+            scoreLabel.setMaxWidth(Double.MAX_VALUE);
+            HBox.setHgrow(scoreLabel, Priority.ALWAYS);
+
+            this.getChildren().addAll(nameLabel, scoreLabel);
+        }
     }
 
 }

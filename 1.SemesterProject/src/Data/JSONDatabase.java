@@ -102,6 +102,7 @@ public class JSONDatabase implements IData {
         File file;
         if (newGame) { // If newGame
             file = fileConfigData;
+            System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         } else {       // else continue game
             file = fileSave;
         }
