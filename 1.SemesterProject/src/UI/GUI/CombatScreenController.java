@@ -109,7 +109,7 @@ public class CombatScreenController implements Initializable {
 
     public void updatePlayerStats() { //Method for updating the players combat-screen stats
         if (p.getHealth() < 1) { 
-            exitCombat();
+            UI.getInstance().setState(UIState.GAMEOVERSCREEN);
         }
         else {
         attackText.setText(Integer.toString(p.getAttack()));
