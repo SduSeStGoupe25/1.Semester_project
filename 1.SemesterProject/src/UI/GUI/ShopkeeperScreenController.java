@@ -75,7 +75,8 @@ public class ShopkeeperScreenController implements Initializable {
     }
 
     void loadShopkeeper() { //loads shopkeepers selection to listview, and adjusts the pricetext according to the selected item from the listview
-        shopSelectionList.getItems().setAll(s.getItemsToSell().values()); //adds values from map to listview. 
+        shopSelectionList.getItems().setAll(UI.getInstance().getDomainData().getItemMap().values());
+//shopSelectionList.getItems().setAll(s.getItemsToSell().values()); //adds values from map to listview. 
 
     }
 

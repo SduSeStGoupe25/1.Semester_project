@@ -21,10 +21,7 @@ import Arq.IQuest;
 import Arq.IRoom;
 import Arq.IShopkeeper;
 import Arq.IWeapon;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -43,7 +40,7 @@ class GameMapper {
             DomainGame g = DomainGame.getInstance();
             g.setCurrentRoom(toBeMapped.getCurrentRoom());
             g.setRoomMap(mapR(toBeMapped.getRoomMap()));
-            g.setItemNames(toBeMapped.getItemNames());
+           // g.setItemNames(toBeMapped.getItemNames());
             g.setPlayer(map(toBeMapped.getPlayer()));
             g.makeCombat();
             return g;
@@ -86,7 +83,7 @@ class GameMapper {
         }
     }
 
-    private Item map(IItem toBeMapped) {
+    Item map(IItem toBeMapped) {
         if (toBeMapped != null) {
             switch (toBeMapped.getId()) {
                 case 0:
@@ -252,7 +249,7 @@ class GameMapper {
         return m;
     }
 
-    private HashMap<String, IItem> map(Map<String, IItem> toBeMapped) {
+    HashMap<String, IItem> map(Map<String, IItem> toBeMapped) {
         HashMap<String, IItem> m = new LinkedHashMap<>();
         if (toBeMapped != null && !toBeMapped.isEmpty()) {
             for (String s : toBeMapped.keySet()) {

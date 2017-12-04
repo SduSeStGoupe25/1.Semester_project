@@ -1,6 +1,7 @@
 package Arq;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Database interface
@@ -10,6 +11,8 @@ import java.util.List;
  */
 public interface IData {
 
+    Map<String, IItem> getItem();
+    
     /**
      * Called to get to scoreTable
      *
