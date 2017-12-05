@@ -2,10 +2,6 @@ package Domain;
 
 import Arq.ICharacterEntity;
 
-/**
- *
- * @author Victor Gram
- */
 /*
  *This is an abstract class that all characters in the game extends from.
  */

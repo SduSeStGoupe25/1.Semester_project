@@ -11,6 +11,10 @@ import java.util.Map;
  */
 public interface IData {
 
+    /**
+     * Called to get a map of all the items
+     * @return a map with IItems
+     */
     Map<String, IItem> getItem();
     
     /**

@@ -39,19 +39,22 @@ public class JSONDatabase implements IData {
      * The file the config file are saved in. This file is used to start a new
      * game from.
      */
-    private File fileConfigData = new File("SaveFiles/ConfigData.json");
+    private final File fileConfigData = new File("SaveFiles/ConfigData.json");
 
     /**
      * The file the high score table is saved in.
      */
-    private File fileHigh = new File("SaveFiles/highScore.json");
+    private final File fileHigh = new File("SaveFiles/highScore.json");
 
     /**
      * The file the game are saved in.
      */
-    private File fileSave = new File("SaveFiles/save.json");
+    private final File fileSave = new File("SaveFiles/save.json");
 
-    private File fileLoot = new File("SaveFiles/Loot.json");
+    /**
+     * The file the lootTable is in
+     */
+    private final File fileLoot = new File("SaveFiles/Loot.json");
 
     /**
      * Creates a new JSONDatabase instance. And checks files need for the
@@ -61,6 +64,9 @@ public class JSONDatabase implements IData {
         loadDatabase();
     }
 
+    //////////////////////////
+    /// LOAD ITEMS
+    //////////////////////////
     @Override
     public Map<String, IItem> getItem() {
         try (FileReader reader = new FileReader(fileLoot)) {
@@ -68,28 +74,34 @@ public class JSONDatabase implements IData {
             //Reades the file as a json file
             JsonReader jsonReader = new JsonReader(reader);
             Gson gson = new GsonBuilder()
-                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read CharacterEntity correct
+                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
                     .create();
 
-            //Converts the string to a list
+            //Converts the string to a lootClass
             LootClass obj = gson.fromJson(jsonReader, LootClass.class);
+            //Return map
             return obj.items;
         } catch (IOException e) {
-            e.printStackTrace();
         }
         return null;
     }
-    
+
+    /**
+     * Private inner class to avoid exception when saving and loading. The only
+     * use it to store the Map
+     */
     private class LootClass {
-    
+
         Map<String, IItem> items;
-        
+
         public LootClass() {
             items = new HashMap<>();
         }
     }
 
-
+    //////////////////////////
+    /// LOAD HIGHSCORE
+    //////////////////////////
     @Override
     public List<IHighscoreWrapper> getHighscore() {
         //Instanciates a list to return
@@ -110,30 +122,49 @@ public class JSONDatabase implements IData {
 
             System.out.println("Done loading");
         } catch (IOException e) {
-            e.printStackTrace();
         }
 
         //Returns the high score table
         return highscoreTable;
     }
 
+    /**
+     * Used to deserialize IHighscoreWrapper to DataHighScoreWrapper. Is
+     * necessary because IHighscireWrapper can't be instantiated.
+     */
     private class ScoreDeserializer implements JsonDeserializer<IHighscoreWrapper> {
 
         @Override
         public IHighscoreWrapper deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
             Gson g = new Gson();
+            //Cast the JsonElement to a DataHighScoreWrapper and returns it
             return (DataHighScoreWrapper) g.fromJson(je, DataHighScoreWrapper.class);
         }
 
     }
 
+    /**
+     * Private inner class to avoid exception when saving and loading. The only
+     * use it to store the List
+     */
+    private class highScoreObject {
+
+        List<IHighscoreWrapper> list;
+
+        public highScoreObject(List<IHighscoreWrapper> list) {
+            this.list = list;
+        }
+    }
+
+    //////////////////////////
+    /// LOAD GAME
+    //////////////////////////
     @Override
     public IDomainGame loadGame(boolean newGame) {
         //Determines what file to load from
         File file;
         if (newGame) { // If newGame
             file = fileConfigData;
-            System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         } else {       // else continue game
             file = fileSave;
         }
@@ -145,10 +176,10 @@ public class JSONDatabase implements IData {
 
             //Creates a Gson instance with to custom typeAdapters.
             Gson gson = new GsonBuilder()
-                    .registerTypeHierarchyAdapter(ICharacterEntity.class, new CharacterEntityDeserializer()) // use read CharacterEntity correct
-                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
-                    .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer())
-                    .registerTypeHierarchyAdapter(IRoom.class, new RoomDeserializer())
+                    .registerTypeHierarchyAdapter(ICharacterEntity.class, new CharacterEntityDeserializer()) // used to read CharacterEntity correct
+                    .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // used to read item correct
+                    .registerTypeHierarchyAdapter(IInventory.class, new InventoryDeserializer()) // used to read Inventory correct
+                    .registerTypeHierarchyAdapter(IRoom.class, new RoomDeserializer()) // used to read Room correct
                     .create();
 
             //Creates a game instance from the json string
@@ -159,14 +190,16 @@ public class JSONDatabase implements IData {
             //Returns game
             return game;
         } catch (IOException e) {
-            e.printStackTrace();
         }
 
         //Returns null if game not was instantiated
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NULL");
         return null;
     }
 
+    /**
+     * Used to deserialize IRoom to DataRoom. Is necessary because IRoom can't
+     * be instantiated.
+     */
     private class RoomDeserializer implements JsonDeserializer<IRoom> {
 
         @Override
@@ -179,9 +212,12 @@ public class JSONDatabase implements IData {
                     .create();
             return (DataRoom) g.fromJson(je, DataRoom.class);
         }
-
     }
 
+    /**
+     * Used to deserialize IInventory to DataInventory. Is necessary because
+     * IInventory can't be instantiated.
+     */
     private class InventoryDeserializer implements JsonDeserializer<IInventory> {
 
         @Override
@@ -191,9 +227,12 @@ public class JSONDatabase implements IData {
                     .create();
             return (DataInventory) g.fromJson(je, DataInventory.class);
         }
-
     }
 
+    /**
+     * Used to deserialize IInventory to DataInventory. Is necessary because
+     * IInventory can't be instantiated.
+     */
     private class QuestDeserializer implements JsonDeserializer<IQuest> {
 
         @Override
@@ -204,9 +243,12 @@ public class JSONDatabase implements IData {
                     .create();
             return (DataQuest) g.fromJson(je, DataQuest.class);
         }
-
     }
 
+    /**
+     * Used to deserialize IInventory to DataInventory. Is necessary because
+     * IInventory can't be instantiated.
+     */
     private class ExitDeserializer implements JsonDeserializer<IExit> {
 
         @Override
@@ -215,12 +257,11 @@ public class JSONDatabase implements IData {
                     .create();
             return (DataExit) g.fromJson(je, DataExit.class);
         }
-
     }
 
     /**
-     * Custom deserializer for CharacterEntity. Is used to deserialize
-     * CharacterEntites correctly to right type.
+     * Used to deserialize ICharacterEntity to DataCharacterEntity. Is necessary
+     * because ICharacterEntity can't be instantiated.
      */
     private class CharacterEntityDeserializer implements JsonDeserializer<ICharacterEntity> {
 
@@ -255,12 +296,11 @@ public class JSONDatabase implements IData {
             }
             return null;
         }
-
     }
 
     /**
-     * Custom deserializer for Item. Is used to deserialize Item correctly to
-     * right type.
+     * Used to deserialize IItem to DataItem. Is necessary because IItem can't
+     * be instantiated.
      */
     private class ItemDeserializer implements JsonDeserializer<IItem> {
 
@@ -269,7 +309,6 @@ public class JSONDatabase implements IData {
             public tmpItem(String name, int sellValue, int count, int MAX_COUNT, int id) {
                 super(name, sellValue, count, MAX_COUNT, id);
             }
-
         }
 
         @Override
@@ -298,53 +337,24 @@ public class JSONDatabase implements IData {
             }
             return null;
         }
-
     }
 
-    private class highScoreObject {
-
-        List<IHighscoreWrapper> list;
-
-        public highScoreObject(List<IHighscoreWrapper> list) {
-            this.list = list;
-        }
-
-    }
-
+    //////////////////////////
+    /// SAVE HIGHSCORETABLE
+    //////////////////////////
     @Override
     public void saveScoreTable(List<IHighscoreWrapper> list) {
         //Saves the highScoreTable
         saveData(new highScoreObject(list), fileHigh);
     }
 
+    //////////////////////////
+    /// SAVE GAME
+    //////////////////////////
     @Override
     public void saveGame(IDomainGame game) {
         //Saves the game
         saveData(game, fileSave);
-
-//
-//  TEST TEST TEST TEST TEST TEST TEST
-//        ArrayList<HighscoreWrapper> list = new ArrayList<>();
-//        list.add(new HighscoreWrapper(23, "Bob"));
-//        list.add(new HighscoreWrapper(2, "Lars"));
-//
-//        System.out.println("HighScore List");
-//        System.out.println(list);
-//
-//        saveData(list, fileHigh);
-//
-//        System.out.println("HighScore ");
-//
-//        saveData(Game.getInstance(), fileSave);
-//
-//        System.out.println("HighScores");
-//        System.out.println(getHighscore());
-//
-//        System.out.print("LOAD GAME__________________");
-//        System.out.println(loadGame().toString());
-//        System.out.println(" DONE");
-//  TEST TEST TEST TEST TEST TEST TEST
-//
     }
 
     /**
@@ -356,8 +366,6 @@ public class JSONDatabase implements IData {
      */
     private <E> void saveData(E o, File file) {
         Gson gson = new GsonBuilder().create();
-        //Creates a json String of o
-        String json = gson.toJson(o);
 
         //Try to write to file
         try (FileWriter writer = new FileWriter(file)) {
@@ -367,7 +375,6 @@ public class JSONDatabase implements IData {
 
             System.out.println("Done saving");
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
