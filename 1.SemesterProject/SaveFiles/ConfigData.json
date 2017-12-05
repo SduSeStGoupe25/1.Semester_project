@@ -414,6 +414,7 @@
          },
          "charactersInRoom":[  
 
+
          ],
          "items":[  
 
@@ -434,6 +435,19 @@
             }
          },
          "charactersInRoom":[  
+{
+			"talk":"You've made it far traveler, most impressively far. You could have been king by now. Sadly for you, your journey ends right. Now.",
+               		"expDrop":100,
+               		"name":"Dragon",
+              		 "health":1000,
+               		"armor":10,
+              		 "level":15,
+             		  "maxHealth":1000,
+             		  "baseHealth":100,
+               		"baseAttack":100,
+              		 "attack":1000,
+              		 "id":1
+}
 
          ],
          "items":[  
