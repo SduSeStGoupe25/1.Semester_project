@@ -35,9 +35,14 @@ abstract class CharacterEntity implements ICharacterEntity {
      * Method used for calculating attributes if CharacterEntity is above level
      * 1
      */
-    protected void setStats() {
+    void setStats() {
         attack = (level * baseAttack) / 10;
         maxHealth = ((level - 1) * 10) + baseHealth;
+    }
+    
+    void setStatsToMax(){
+        setStats();
+        health = maxHealth;
     }
 
     abstract void onDeath();

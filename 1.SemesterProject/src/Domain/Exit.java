@@ -12,10 +12,10 @@ import Arq.IItem;
 
 class Exit implements IExit {
 
-    private String name1;
-    private String name2;
+    private final String name1;
+    private final String name2;
     private boolean locked;
-    private int lockID;
+    private final int lockID;
 
     Exit(String room1, String room2) {
         this.name1 = room1;

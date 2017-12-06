@@ -10,6 +10,26 @@
 	               "MAX_COUNT":1,
 	               "id":4
 			},
+		"stick":{
+               	       "baseAttack":30,
+             	       "attackValue":30,
+	               "itemLevel":1,
+        	       "name":"Stick",
+	               "sellValue":45,
+        	       "count":1,
+	               "MAX_COUNT":1,
+	               "id":4
+			},
+		"club":{
+               	       "baseAttack":10,
+             	       "attackValue":10,
+	               "itemLevel":1,
+        	       "name":"Club",
+	               "sellValue":5,
+        	       "count":1,
+	               "MAX_COUNT":1,
+	               "id":4
+			},
 		"excalibur":{
 	               "baseAttack":25,
 	               "attackValue":2,
@@ -21,29 +41,58 @@
 	               "id":4
 			},
 		"chainmail":{
-			"baseArmor":1,
-			"armorValue":1,
+			"baseArmor":10,
+			"armorValue":10,
 			"itemLevel":1,
         	       "name":"Chainmal",
-	               "sellValue":1,
+	               "sellValue":10,
+        	       "count":1,
+	               "MAX_COUNT":1,
+	               "id":0
+			},
+		"king chainmail":{
+			"baseArmor":50,
+			"armorValue":50,
+			"itemLevel":1,
+        	       "name":"King chainmal",
+	               "sellValue":100,
+        	       "count":1,
+	               "MAX_COUNT":1,
+	               "id":0
+			},
+		"leather jacket":{
+			"baseArmor":5,
+			"armorValue":5,
+			"itemLevel":1,
+        	       "name":"Leather jacket",
+	               "sellValue":5,
         	       "count":1,
 	               "MAX_COUNT":1,
 	               "id":0
 			},
 		"potion":{
-			"useValue":1,
-			"hungerValue":1,
+			"useValue":25,
+			"hungerValue":5,
         	       "name":"Potion",
-	               "sellValue":1,
+	               "sellValue":50,
         	       "count":1,
 	               "MAX_COUNT":20,
 	               "id":1
 			},
 		"meat":{
-			"useValue":1,
-			"hungerValue":1,
+			"useValue":5,
+			"hungerValue":25,
         	       "name":"Meat",
-	               "sellValue":1,
+	               "sellValue":25,
+        	       "count":1,
+	               "MAX_COUNT":20,
+	               "id":1
+			},
+		"berry":{
+			"useValue":-2,
+			"hungerValue":4,
+        	       "name":"Barry",
+	               "sellValue":2,
         	       "count":1,
 	               "MAX_COUNT":20,
 	               "id":1

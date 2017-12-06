@@ -20,7 +20,7 @@ public class Starter {
 
     public static void main(String[] args) {
         IData data = new JSONDatabase();
-        IDomainData domain = new DomainData();
+        IDomainData domain = DomainData.getInstance();
         domain.injectData(data);
         IUI ui = new UI();
         ui.injectDomainData(domain);
