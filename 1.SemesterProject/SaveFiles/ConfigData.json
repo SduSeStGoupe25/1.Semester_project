@@ -169,7 +169,7 @@
 
          ],
          "allowedMonsters":[  
-
+		"troll"
          ]
       },
       "castle":{  
@@ -353,7 +353,8 @@
 
          ],
          "allowedMonsters":[  
-
+		"drunk man",
+		"waitress"
          ]
       },
       "farm":{  
@@ -392,7 +393,8 @@
 
          ],
          "allowedMonsters":[  
-            "Sheep"
+            "sheep",
+	    "pig"
          ]
       },
       "deepwoods":{  
@@ -420,7 +422,8 @@
 
          ],
          "allowedMonsters":[  
-		
+		"ogre",
+		"bear"
          ]
       },
       "excalibur":{  
@@ -481,9 +484,8 @@
 
          ],
          "allowedMonsters":[  
-		"Imp",
-		"Bear",
-		"Ogre"
+		"imp",
+		"wild boar"
          ]
       },
       "tower":{  

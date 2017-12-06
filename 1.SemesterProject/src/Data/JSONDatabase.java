@@ -7,6 +7,7 @@ import Arq.IExit;
 import Arq.IHighscoreWrapper;
 import Arq.IInventory;
 import Arq.IItem;
+import Arq.INPC;
 import Arq.IQuest;
 import Arq.IRoom;
 import com.google.gson.Gson;
@@ -57,11 +58,51 @@ public class JSONDatabase implements IData {
     private final File fileLoot = new File("SaveFiles/Loot.json");
 
     /**
+     * This file the NPC's is in
+     */
+    private final File fileNPC = new File("SaveFiles/NPC.json");
+
+    /**
      * Creates a new JSONDatabase instance. And checks files need for the
      * database.
      */
     public JSONDatabase() {
         loadDatabase();
+    }
+
+    //////////////////////////
+    /// LOAD NPC
+    //////////////////////////
+    @Override
+    public ICharacterEntity getNPC(String name) {
+        try (FileReader reader = new FileReader(fileNPC)) {
+
+            //Reades the file as a json file
+            JsonReader jsonReader = new JsonReader(reader);
+            Gson gson = new GsonBuilder()
+                    .registerTypeHierarchyAdapter(ICharacterEntity.class, new CharacterEntityDeserializer()) // use read item correct
+                    .create();
+
+            //Converts the string to a lootClass
+            NPCClass obj = gson.fromJson(jsonReader, NPCClass.class);
+            //Return npc
+            return obj.npc.get(name);
+        } catch (IOException e) {
+        }
+        return null;
+    }
+
+    /**
+     * Private inner class to avoid exception when saving and loading. The only
+     * use it to store the Map
+     */
+    private class NPCClass {
+
+        Map<String, ICharacterEntity> npc;
+
+        public NPCClass() {
+            npc = new HashMap<>();
+        }
     }
 
     //////////////////////////

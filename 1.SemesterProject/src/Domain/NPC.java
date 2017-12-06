@@ -6,28 +6,32 @@
 package Domain;
 
 //import Domain.Game;
-
 import Arq.INPC;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author Victor Gram
  */
-class NPC extends CharacterEntity implements INPC{
+class NPC extends CharacterEntity implements INPC {
 
     private String talk;
     private int expDrop;
+    private Map<String, Integer> itemMap = new HashMap<>();
 
-    NPC(String name, int health, int armor, int attack, int level, int expDrop, String talk) {
+    NPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Map<String, Integer> itemMap) {
         super(name, health, armor, attack, level, 1);
         this.talk = talk;
         this.expDrop = expDrop;
+        this.itemMap = itemMap;
     }
 
-    NPC(String name, int health, int armor, int attack, int level, int expDrop, int id, String talk) {
+    NPC(String name, int health, int armor, int attack, int level, int expDrop, int id, String talk, Map<String, Integer> itemMap) {
         super(name, health, armor, attack, level, id);
         this.talk = talk;
         this.expDrop = expDrop;
+        this.itemMap = itemMap;
     }
 
     @Override
@@ -50,6 +54,21 @@ class NPC extends CharacterEntity implements INPC{
 
     @Override
     public void onDeath() {
-        
+        if (!itemMap.isEmpty()) {
+            for (String name : itemMap.keySet()) {
+                if ((int) (Math.random() * 100) <= itemMap.get(name)) {
+                    DomainGame.getInstance().getCurrentIRoom().getItemList().add(DomainData.getInstance().getItem(name));
+                }
+            }
+        }
+    }
+
+    @Override
+    public Map<String, Integer> getItemDropMap() {
+        return itemMap;
+    }
+
+    void setItemMap(Map<String, Integer> itemMap) {
+        this.itemMap = itemMap;
     }
 }

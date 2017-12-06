@@ -1,5 +1,7 @@
 package Arq;
 
+import java.util.Map;
+
 /**
  *
  * Interface NPC
@@ -19,4 +21,11 @@ public interface INPC extends ICharacterEntity {
      * @return the exp drop as a integer
      */
     int getExpDrop();
+
+    /**
+     * Called to get a map for names of item and a drop chance
+     *
+     * @return a map with String (Item name) and Integer (drop chance)
+     */
+    Map<String, Integer> getItemDropMap();
 }

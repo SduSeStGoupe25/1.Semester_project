@@ -11,6 +11,7 @@ import Arq.IDomainGame;
 import Arq.IGame;
 import Arq.IHighscoreWrapper;
 import Arq.IItem;
+import Arq.INPC;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,19 @@ public class DomainData implements IDomainData {
 
     private IData data;
     private final GameMapper mapper = new GameMapper();
+    
+    private static DomainData instance;
+    
+    private DomainData() {
+    }
+    
+    public static DomainData getInstance(){
+        if(instance == null){
+            instance = new DomainData();
+        } 
+        return instance;
+    }
+    
 
     @Override
     public void addNewScore(String name, int score) {
@@ -78,6 +92,14 @@ public class DomainData implements IDomainData {
     @Override
     public Map<String, IItem> getItemMap() {
         return mapper.map(data.getItem());
+    }
+
+    @Override
+    public NPC getNPC(String name, int level) {
+        NPC npc = (NPC) mapper.map(data.getNPC(name.toLowerCase()));
+        npc.setLevel(level);
+        npc.setStatsToMax();
+        return npc;
     }
 
 }
