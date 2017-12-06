@@ -45,7 +45,6 @@ public class DomainGame implements IGame {
 
 //    private String[][] itemNames = {
 //        {"Rock", "Sword"}, {"Chainmail"}, {"Potion", "Meat"}, {"Key", "Key2"}, {"Wool"}};
-
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
@@ -245,8 +244,6 @@ public class DomainGame implements IGame {
      *
      * @return Returns the combat object
      */
-    
-
     /**
      * This method is called when moveableNPC's should move. It uses a for-each
      * loop to go through all rooms, and calls the move() method in each.
@@ -270,7 +267,6 @@ public class DomainGame implements IGame {
 //        }
 //        return -1;
 //    }
-
     void setFinished(boolean finished) {
         this.finished = finished;
     }
@@ -349,10 +345,10 @@ public class DomainGame implements IGame {
     }
 
     @Override
-    public ICombat getCombat(){
+    public ICombat getCombat() {
         return combat;
     }
-    
+
     @Override
     public String getCurrentRoom() {
         return currentRoom;
@@ -384,7 +380,6 @@ public class DomainGame implements IGame {
 //    void setItemNames(String[][] itemNames) {
 //        this.itemNames = itemNames;
 //    }
-
     @Override
     public boolean movePlayer(String direction) {
         return goRoom(direction);
@@ -445,7 +440,9 @@ public class DomainGame implements IGame {
     @Override
     public boolean usePotion() {
         for (IItem consumeable : player.getItemInventory().getInventory()) {
-            if (consumeable instanceof IConsumeable) {
+            System.out.println("her står vi nu jaja, i usepotion jaja" + player.getItemInventory().getInventory().contains(this));
+            if (consumeable instanceof Consumeable) {
+                System.out.println("instanceof statement klaret jaja");
                 if (consumeable.getName().equals("Potion")) {
                     player.restoreHp(consumeable);
                     return true;

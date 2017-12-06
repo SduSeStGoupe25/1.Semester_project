@@ -162,9 +162,8 @@ public class CombatScreenController implements Initializable {
 
     @FXML
     public void usePotionButtonPressed(ActionEvent event) throws IOException {
-        if (UI.getInstance().getDomainGame().usePotion() == true) {
+        if (UI.getInstance().getDomainGame().usePotion() == false) {
            
-        } else {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CombatPotionErrorWindow.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
@@ -175,6 +174,9 @@ public class CombatScreenController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        else { 
+            UI.getInstance().getDomainGame().usePotion();
         }
     }
 
