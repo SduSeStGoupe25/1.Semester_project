@@ -152,9 +152,6 @@ class GameMapper {
     }
 
     CharacterEntity map(ICharacterEntity toBeMapped) {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(toBeMapped);
-        System.out.println(toBeMapped.getName());
         switch (toBeMapped.getId()) {
             case 1:
                 return new NPC(
