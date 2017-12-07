@@ -138,7 +138,7 @@ public class FXMLDocumentController implements Initializable {
         UI.getInstance().setState(UIState.MAPSCREEN);
     }
 
-    private void buttonUpdate(boolean disable) {
+    void buttonUpdate(boolean disable) {
         worldViewButton.setDisable(disable);
         inventoryButton.setDisable(disable);
         searchButton.setDisable(disable);
@@ -201,10 +201,11 @@ public class FXMLDocumentController implements Initializable {
         return borderPane;
     }
     
-    public void update() {
+    public void update(boolean menuButtonDisabled) {
         statController.updateBars();
         statController.updateTextElements();
         onPlayerDeath();
+        buttonUpdate(menuButtonDisabled);
     }
     
     private void onPlayerDeath(){

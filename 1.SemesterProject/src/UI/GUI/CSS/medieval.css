@@ -9,6 +9,15 @@
     -fx-text-fill: #a89c1c;
 }
 
+
+#mapGrid { 
+-fx-background-image: url("gamemap.png");
+-fx-background-repeat: no-repeat;
+-fx-background-position: center center;
+
+
+}
+
 .button {
     -fx-border-style: solid; 
     -fx-border-width: 2;
@@ -60,6 +69,11 @@
     -fx-padding: 0 0 0 0;
 }
 
+#gameOverText {
+
+-fx-font-family: "Breathe Fire";
+
+}
 
 
 

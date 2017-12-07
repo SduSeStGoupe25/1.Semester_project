@@ -120,7 +120,6 @@ class GameMapper {
                             ((IWeapon) toBeMapped).getItemLevel());
             }
         }
-
         return null;
     }
 
@@ -151,8 +150,7 @@ class GameMapper {
         return p;
     }
 
-    private CharacterEntity map(ICharacterEntity toBeMapped) {
-        System.out.println(toBeMapped.getName());
+    CharacterEntity map(ICharacterEntity toBeMapped) {
         switch (toBeMapped.getId()) {
             case 1:
                 return new NPC(
@@ -162,7 +160,8 @@ class GameMapper {
                         toBeMapped.getAttack(),
                         toBeMapped.getLevel(),
                         ((INPC) toBeMapped).getExpDrop(),
-                        ((INPC) toBeMapped).getTalk());
+                        ((INPC) toBeMapped).getTalk(),
+                        ((INPC) toBeMapped).getItemDropMap());
             case 2:
                 break;
             case 3:
@@ -173,7 +172,8 @@ class GameMapper {
                         toBeMapped.getAttack(),
                         toBeMapped.getLevel(),
                         ((IShopkeeper) toBeMapped).getExpDrop(),
-                        ((IShopkeeper) toBeMapped).getTalk());
+                        ((IShopkeeper) toBeMapped).getTalk(),
+                        ((INPC) toBeMapped).getItemDropMap());
                 s.setItemsToSell(map(((IShopkeeper) toBeMapped).getItemsToSell()));
                 return s;
             case 4:
@@ -185,7 +185,8 @@ class GameMapper {
                         toBeMapped.getLevel(),
                         ((IMoveableNPC) toBeMapped).getExpDrop(),
                         ((IMoveableNPC) toBeMapped).getTalk(),
-                        ((IMoveableNPC) toBeMapped).getAllowedRooms());
+                        ((IMoveableNPC) toBeMapped).getAllowedRooms(),
+                        ((INPC) toBeMapped).getItemDropMap());
         }
         return null;
     }

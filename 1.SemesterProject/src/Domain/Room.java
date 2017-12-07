@@ -112,7 +112,8 @@ class Room implements IRoom {
                     count++;
 
                 }
-                this.charactersInRoom.add((new NPC(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 20, "Nonono")));
+                //this.charactersInRoom.add((new NPC(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 20, "Nonono")));
+                this.charactersInRoom.add(DomainData.getInstance().getNPC(monsterName, (int) (Math.random() * 10) + 1));
 
             }
             if ((int) (Math.random() * 2) == 0) {

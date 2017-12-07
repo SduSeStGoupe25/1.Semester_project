@@ -104,27 +104,34 @@ public class UI extends Application implements IUI {
                     stage.setScene(new Scene(pane));
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("WorldScreen.fxml")));
                     pane.getStylesheets().add(getClass().getResource("CSS/medieval.css").toExternalFor‌​m());
+                    mainGameController.update(false);
                     break;
                 case COMBATSCREEN:
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
+                    mainGameController.update(true);
                     break;
                 case INVENTORYSCREEN:
                     FXMLLoader InventoryLoader = new FXMLLoader(getClass().getResource("InventoryScreen.fxml"));
                     InventoryLoader.load();
                     ((InventoryScreenController) InventoryLoader.getController()).updateLists();
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("InventoryScreen.fxml")));
+                    mainGameController.update(false);
                     break;
                 case MAPSCREEN:
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("MapScene.fxml")));
+                    mainGameController.update(false);
                     break;
                 case QUESTSCREEN:
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("QuestlogScene.fxml")));
+                    mainGameController.update(false);
                     break;
                 case SHOPSCREEN:
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("ShopkeeperScreen.fxml")));
+                    mainGameController.update(false);
                     break;
                 case WORLDSCREEN:
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("WorldScreen.fxml")));
+                    mainGameController.update(false);
                     break;
                 case GAMEOVERSCREEN:
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("GameOverWindow.fxml"))));

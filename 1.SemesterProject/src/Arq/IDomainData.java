@@ -10,6 +10,8 @@ import java.util.Map;
  */
 public interface IDomainData {
 
+    INPC getNPC(String name, int level);
+    
     IItem getItem(String name);
     
     Map<String, IItem> getItemMap();

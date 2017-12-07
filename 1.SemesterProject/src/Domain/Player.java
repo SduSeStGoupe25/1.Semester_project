@@ -198,20 +198,34 @@ class Player extends CharacterEntity implements IPlayer{
      */
     boolean checkQuest(String room) {
         int itemCount = 0;
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
         for (ICharacterEntity ce : DomainGame.getInstance().getRoomMap().get(room).getCharactersInRoom()) { //Searches through all the CharacterEntities in the room
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!2");
             if (ce.getName().equals(getCurrentMainQuest().getGiver())) {    //If a CharacterEntity equals the quest giver
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!3");
                 for (String s : getCurrentMainQuest().getItems().keySet()) {        //then we look through the items required to complete the quest,
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!4");
                     for (IItem i : getItemInventory().getInventory()) {      //and then we look through our itemInventory
-                        if (i.getName().equals(s) && i.getCount() >= getCurrentMainQuest().getItems().get(s)) { //If the required quest item is in our inventory, and we have the correct amount (or more),
+                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!5");
+                        System.out.println(i.getName().equalsIgnoreCase(s));
+                        System.out.println("iname " + i.getName() + " s " + s);
+                        System.out.println(i.getCount() >= getCurrentMainQuest().getItems().get(s));
+                        System.out.println("count " + i.getCount() + " re items " + getCurrentMainQuest().getItems().get(s));
+                        if (i.getName().equalsIgnoreCase(s) && i.getCount() >= getCurrentMainQuest().getItems().get(s)) { //If the required quest item is in our inventory, and we have the correct amount (or more),
+                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!6");
                             itemCount++; //then it adds to itemCount
                             break;
                         }
                     }
                 }
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!7");
                 if (itemCount == getCurrentMainQuest().getItems().size()) { //If itemCount is equal to the required amount to complete the quest,
                     addGold(getCurrentMainQuest().getGold());               //then we add Gold to the player (reward for completing quest)
                     addExp(getCurrentMainQuest().getExp());
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!8");
                     for (String s : getCurrentMainQuest().getItems().keySet()) {    //We then look through the quest items, and remove them from players itemInventory
+                        System.out.println("item " + data.getItem(s));
+                        System.out.println("cu " + getCurrentMainQuest().getItems().get(s));
                         ((Inventory) getItemInventory()).removeItem(data.getItem(s), getCurrentMainQuest().getItems().get(s));
                     }
                     setQuestsCompleted(questsCompleted + 1);
@@ -219,10 +233,12 @@ class Player extends CharacterEntity implements IPlayer{
                     System.out.println(questsCompleted);
                     return true;
                 } else {
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!9");
                     return false;
                 }
             }
         }
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!10");
         return false;
     }
     public void getCompleteQuest(String room){

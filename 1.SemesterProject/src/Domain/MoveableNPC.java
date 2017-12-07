@@ -8,6 +8,7 @@ package Domain;
 import Arq.IMoveableNPC;
 import Domain.DomainGame;
 import Domain.Room;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -19,8 +20,8 @@ class MoveableNPC extends NPC implements Moveable, IMoveableNPC {
 
     private Set<String> allowedRooms;
     
-    MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Set<String> allowedRooms) {
-        super(name, health, armor, attack, level, expDrop, 4, talk);
+    MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Set<String> allowedRooms, Map<String, Integer> itemMap) {
+        super(name, health, armor, attack, level, expDrop, 4, talk, itemMap);
         this.allowedRooms = allowedRooms;
     }
 

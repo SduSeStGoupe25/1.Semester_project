@@ -6,6 +6,7 @@
 package Data;
 
 import Arq.INPC;
+import java.util.Map;
 
 /**
  *
@@ -15,6 +16,7 @@ class DataNPC extends DataCharactorEntity implements INPC {
 
     private String talk;
     private int expDrop;
+    private Map<String, Integer> itemMap;
 
     DataNPC(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id, String talk, int expDrop) {
         super(name, health, armor, level, maxHealth, baseHealth, baseAttack, attack, id);
@@ -30,6 +32,11 @@ class DataNPC extends DataCharactorEntity implements INPC {
     @Override
     public int getExpDrop() {
         return expDrop;
+    }
+
+    @Override
+    public Map<String, Integer> getItemDropMap() {
+        return itemMap;
     }
 
 }

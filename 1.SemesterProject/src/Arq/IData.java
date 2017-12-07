@@ -11,6 +11,17 @@ import java.util.Map;
  */
 public interface IData {
 
+    /**
+     * Called to get a NPC this this name
+     * @param name of the NPC
+     * @return the NPC
+     */
+    ICharacterEntity getNPC(String name);
+    
+    /**
+     * Called to get a map of all the items
+     * @return a map with IItems
+     */
     Map<String, IItem> getItem();
     
     /**

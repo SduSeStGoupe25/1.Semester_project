@@ -65,7 +65,7 @@ public class HBoxCell extends HBox {
                 break;
         }
 
-        this.name.setText(item.getName());
+        this.name.setText(item.getName() + "AMOUNT " + item.getCount());
         this.type.setText(typeString);
         this.value.setText(value);
         this.sellValue.setText(Integer.toString(item.getSellValue()));

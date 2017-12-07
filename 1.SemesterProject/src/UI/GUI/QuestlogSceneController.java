@@ -61,6 +61,9 @@ public class QuestlogSceneController implements Initializable {
 
     @FXML
     private void setQuestText(MouseEvent event) {
+        if (QuestListView.getSelectionModel().getSelectedItem() == null) { //prevents InvocationTargetException in case of the listview getting clicked withput an item being chosen
+            return;
+        }
         QuestTextArea.setText(game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getDescription());
         expField.setText("" + game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getExp());
         goldField.setText("" + game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getGold());
@@ -76,7 +79,7 @@ public class QuestlogSceneController implements Initializable {
                 UI.getInstance().setState(UIState.GAMEWONSCREEN);
             }else{
                 UI.getInstance().setState(UIState.QUESTSCREEN);
-                UI.getInstance().getMainController().update();
+                UI.getInstance().getMainController().update(false);
             }
             
         } else {

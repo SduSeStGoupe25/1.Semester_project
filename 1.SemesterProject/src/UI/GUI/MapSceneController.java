@@ -32,17 +32,20 @@ public class MapSceneController implements Initializable {
     private GridPane mapGrid;
     @FXML
     private ImageView mapImageView;
-    private Image playerIcon = new Image("File:Icons/player-icon.png");
+    ImageView iw = new ImageView();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        mapImageView.fitWidthProperty().bind(mapGrid.widthProperty());
-        mapImageView.fitHeightProperty().bind(mapGrid.heightProperty());
+        
         merlinRoom = findMoveableNPC("Merlin");
         princessRoom = findMoveableNPC("Princess");
+        File f = new File("src/UI/GUI/Icons/player-icon.png");
+                Image image = new Image(f.toURI().toString(), 50, 25, false, false);
+                
+                iw.setImage(image);
 
         updateMap();
     }
@@ -78,31 +81,39 @@ public class MapSceneController implements Initializable {
         }
         switch (playerRoom) {
             case "tower":
+                mapGrid.add(iw, 3, 9);
                 break;
             case "citycenter":
                 //3,4
-                File f = new File("src/UI/GUI/Icons/player-icon.png");
-                Image image = new Image(f.toURI().toString(), 50, 25, false, false);
-                ImageView iw = new ImageView();
-                iw.setImage(image);
+                
                 mapGrid.add(iw, 3, 4);
 
                 break;
             case "shop":
+                mapGrid.add(iw, 3, 1);
                 break;
             case "tavern":
+                //4,4
+                mapGrid.add(iw, 5, 4);
                 break;
             case "castle":
+                //3,6
+                mapGrid.add(iw, 3, 7);
                 break;
             case "forrest":
+                mapGrid.add(iw, 0, 4);
                 break;
             case "deepwoods":
+                mapGrid.add(iw, 1, 7);
                 break;
             case "cave":
+                mapGrid.add(iw, 2, 7);
                 break;
             case "excalibur":
+                mapGrid.add(iw, 5, 8);
                 break;
             case "farm":
+                mapGrid.add(iw, 2, 4);
                 break;
         }
 
