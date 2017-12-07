@@ -65,7 +65,7 @@
          },
          "4":{  
             "name":"Gathering some materials",
-            "description":"If we're gonna attempt getting Excalibur, we need to be ready for everything. There's a few... Let's call it obstacles, in the way. \nI need you to gather some horns from the wild boars, and some skin from a bear. Good luck.",
+            "description":"If we're gonna attempt getting Excalibur, we need to be ready for everything. There's a few... Let's call it obstacles, in the way. \nI need you to gather some horns from the wild boars out west. Good luck.",
             "gold":10,
             "exp":20,
             "items":[  
@@ -73,7 +73,17 @@
             ],
             "giver":"Merlin"
          },
-         "5":{
+         "5":{  
+            "name":"Gathering some more materials",
+            "description":"Nice, now we need some bear skin. There's some roaming bears out in the deep woods, see if you can get some for me.",
+            "gold":20,
+            "exp":25,
+            "items":[  
+               
+            ],
+            "giver":"Merlin"
+         },
+         "6":{
             "name":"The final encounter",
             "description":"You've made it! We're only a small step away from pulling the mighty Excalibur!\nThere's something I haven't told you yet, though. The sword is guarded by a big dragon... Let's hope we're strong enough to defeat it.",
             "gold":50,
@@ -83,7 +93,7 @@
             ],
             "giver":"Merlin"
          },
-         "6":{  
+         "7":{  
             "name":"The end of the Journey",
             "description":"We have done it! You pulled the mighty Excalibur! \n\nRequired items: Excalibur, the Mighty Greatsword",
             "gold":500,

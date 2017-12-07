@@ -8,6 +8,7 @@ package Data;
 import Arq.IItem;
 import Arq.IQuest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ class DataQuest implements IQuest {
     private String description;
     private int gold; //how much gold does the player reieve upon completion
     private int exp; //how much experience the player recieves upon completion
-    private ArrayList<IItem> items; //ArrayList to store questitems
+    private HashMap<String, Integer> items; //ArrayList to store questitems
     private String giver;
 
     @Override
@@ -44,7 +45,7 @@ class DataQuest implements IQuest {
     }
 
     @Override
-    public ArrayList<IItem> getItems() {
+    public HashMap<String, Integer> getItems() {
         return items;
     }
 

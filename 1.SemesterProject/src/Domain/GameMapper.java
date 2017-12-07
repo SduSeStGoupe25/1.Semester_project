@@ -40,7 +40,7 @@ class GameMapper {
             DomainGame g = DomainGame.getInstance();
             g.setCurrentRoom(toBeMapped.getCurrentRoom());
             g.setRoomMap(mapR(toBeMapped.getRoomMap()));
-           // g.setItemNames(toBeMapped.getItemNames());
+            // g.setItemNames(toBeMapped.getItemNames());
             g.setPlayer(map(toBeMapped.getPlayer()));
             g.makeCombat();
             return g;
@@ -196,7 +196,7 @@ class GameMapper {
                 toBeMapped.getDescription(),
                 toBeMapped.getGold(),
                 toBeMapped.getExp(),
-                map(toBeMapped.getItems()),
+                toBeMapped.getItems(),
                 toBeMapped.getGiver());
     }
 
@@ -288,6 +288,7 @@ class GameMapper {
         }
         return s;
     }
+
 //    private <K, V> Map<K, V> map(Map<K, V> toBeMapped) {
 //        Map<K, V> m;
 //        if (toBeMapped.getClass().equals(HashMap.class)) {

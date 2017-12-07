@@ -33,6 +33,7 @@ class Player extends CharacterEntity implements IPlayer{
     private int expToLevelUp;
     private int scoreValue;
     private int completedGame = 0;
+    private DomainData data;
     
     /**
      * Player constructor
@@ -199,9 +200,9 @@ class Player extends CharacterEntity implements IPlayer{
         int itemCount = 0;
         for (ICharacterEntity ce : DomainGame.getInstance().getRoomMap().get(room).getCharactersInRoom()) { //Searches through all the CharacterEntities in the room
             if (ce.getName().equals(getCurrentMainQuest().getGiver())) {    //If a CharacterEntity equals the quest giver
-                for (IItem item : getCurrentMainQuest().getItems()) {        //then we look through the items required to complete the quest,
+                for (String s : getCurrentMainQuest().getItems().keySet()) {        //then we look through the items required to complete the quest,
                     for (IItem i : getItemInventory().getInventory()) {      //and then we look through our itemInventory
-                        if (i.getName().equals(item.getName()) && i.getCount() >= item.getCount()) { //If the required quest item is in our inventory, and we have the correct amount (or more),
+                        if (i.getName().equals(s) && i.getCount() >= getCurrentMainQuest().getItems().get(s)) { //If the required quest item is in our inventory, and we have the correct amount (or more),
                             itemCount++; //then it adds to itemCount
                             break;
                         }
@@ -210,8 +211,8 @@ class Player extends CharacterEntity implements IPlayer{
                 if (itemCount == getCurrentMainQuest().getItems().size()) { //If itemCount is equal to the required amount to complete the quest,
                     addGold(getCurrentMainQuest().getGold());               //then we add Gold to the player (reward for completing quest)
                     addExp(getCurrentMainQuest().getExp());
-                    for (IItem item : getCurrentMainQuest().getItems()) {    //We then look through the quest items, and remove them from players itemInventory
-                        ((Inventory) getItemInventory()).removeItem(item, item.getCount());
+                    for (String s : getCurrentMainQuest().getItems().keySet()) {    //We then look through the quest items, and remove them from players itemInventory
+                        ((Inventory) getItemInventory()).removeItem(data.getItem(s), getCurrentMainQuest().getItems().get(s));
                     }
                     setQuestsCompleted(questsCompleted + 1);
                     System.out.println("COMPLETED QUEST");
