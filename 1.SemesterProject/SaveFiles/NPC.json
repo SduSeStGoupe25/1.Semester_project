@@ -176,8 +176,7 @@
 	               "id":1,
 		       "itemMap":{
 				"wool":100,
-				"meat":50
-			}
+				"meat":50			}
 		},
 		"pig":{
                	       "talk":"Hello",
