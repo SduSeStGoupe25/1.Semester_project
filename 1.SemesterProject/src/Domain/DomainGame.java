@@ -214,17 +214,23 @@ public class DomainGame implements IGame {
 
     @Override
     public boolean usePotion() {
+        System.out.println("INVENTORY USEPOTION " + player.getItemInventory().getInventory());
+        System.out.println("SIZE " + player.getItemInventory().getInventory().size());
+        
+        for (IItem item : player.getItemInventory().getInventory()) {
+            System.out.println("NAME " + item.getName());
+        }
+        
         for (IItem consumeable : player.getItemInventory().getInventory()) {
             System.out.println("her står vi nu jaja, i usepotion jaja" + player.getItemInventory().getInventory().contains(this));
+            System.out.println("Consumeable " + consumeable.toString());
             if (consumeable instanceof Consumeable) {
                 System.out.println("instanceof statement klaret jaja");
                 if (consumeable.getName().equals("Potion")) {
                     player.restoreHp(consumeable);
                     return true;
                 }
-            } else {
-                return false;
-            }
+            } 
         }
         return false;
     }

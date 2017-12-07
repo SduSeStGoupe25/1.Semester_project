@@ -162,6 +162,8 @@ public class CombatScreenController implements Initializable {
 
     @FXML
     public void usePotionButtonPressed(ActionEvent event) throws IOException {
+        System.out.println("INVENTORY " + UI.getInstance().getDomainGame().getPlayer().getItemInventory().getInventory());
+        //System.out.println(UI.getInstance().getDomainGame().usePotion());
         if (UI.getInstance().getDomainGame().usePotion() == false) {
            
             try {
