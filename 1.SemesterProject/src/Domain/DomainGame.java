@@ -35,8 +35,11 @@ public class DomainGame implements IGame {
 
     private transient boolean finished = false;
 
+<<<<<<< HEAD
 //    private String[][] itemNames = {
 //        {"Rock", "Sword"}, {"Chainmail"}, {"Potion", "Meat"}, {"Key", "Key2"}, {"Wool"}};
+=======
+>>>>>>> ee8d62e6346db9a9b4ae0c1b4e4ab2f09a4296dc
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
@@ -86,8 +89,9 @@ public class DomainGame implements IGame {
     void setCurrentIRoom(Room currentRoom) {
         this.currentRoom = currentRoom.getName();
     }
-
+    
     /**
+<<<<<<< HEAD
      *
      * Gets combat
      *
@@ -95,6 +99,8 @@ public class DomainGame implements IGame {
      */
     /**
      *
+=======
+>>>>>>> ee8d62e6346db9a9b4ae0c1b4e4ab2f09a4296dc
      * This method is called when moveableNPC's should move. It uses a for-each
      * loop to go through all rooms, and calls the move() method in each.
      */
@@ -105,6 +111,7 @@ public class DomainGame implements IGame {
         }
     }
 
+<<<<<<< HEAD
 //    public int checkItemName(String itemName) {
 //        int count = 0;
 //        for (String[] itemName1 : itemNames) {
@@ -117,6 +124,8 @@ public class DomainGame implements IGame {
 //        }
 //        return -1;
 //    }
+=======
+>>>>>>> ee8d62e6346db9a9b4ae0c1b4e4ab2f09a4296dc
     void setFinished(boolean finished) {
         this.finished = finished;
     }
