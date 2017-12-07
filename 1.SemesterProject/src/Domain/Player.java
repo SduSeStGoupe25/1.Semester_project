@@ -33,7 +33,6 @@ class Player extends CharacterEntity implements IPlayer{
     private int expToLevelUp;
     private int scoreValue;
     private int completedGame = 0;
-    private DomainData data;
     
     /**
      * Player constructor
@@ -224,9 +223,9 @@ class Player extends CharacterEntity implements IPlayer{
                     addExp(getCurrentMainQuest().getExp());
                     System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!8");
                     for (String s : getCurrentMainQuest().getItems().keySet()) {    //We then look through the quest items, and remove them from players itemInventory
-                        System.out.println("item " + data.getItem(s));
+                        System.out.println("item " + DomainData.getInstance().getItem(s));
                         System.out.println("cu " + getCurrentMainQuest().getItems().get(s));
-                        ((Inventory) getItemInventory()).removeItem(data.getItem(s), getCurrentMainQuest().getItems().get(s));
+                        ((Inventory) getItemInventory()).removeItem(DomainData.getInstance().getItem(s), getCurrentMainQuest().getItems().get(s));
                     }
                     setQuestsCompleted(questsCompleted + 1);
                     System.out.println("COMPLETED QUEST");
