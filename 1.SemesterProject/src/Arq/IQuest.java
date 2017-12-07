@@ -1,7 +1,6 @@
 package Arq;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
@@ -37,7 +36,7 @@ public interface IQuest {
      * Called to get the item necessary to complete the quest
      * @return the list of item
      */
-    HashMap<String, Integer> getItems();
+    ArrayList<IItem> getItems();
 
     /**
      * Called to get the name of the quest giver

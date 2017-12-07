@@ -6,7 +6,6 @@ package Domain;
 import Arq.IItem;
 import Arq.IQuest;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,11 +18,11 @@ class Quest implements IQuest{
     private String description; 
     private int gold; //how much gold does the player reieve upon completion
     private int exp; //how much experience the player recieves upon completion
-    private HashMap<String, Integer> items; //HashMap to hold items
+    private ArrayList<IItem> items; //ArrayList to store questitems
     private String giver; //The NPC from whom the quest is recieved
 //    private boolean isMainQuest; //boolean to seperate the main quests and side quests
 
-    Quest(String name, String description, int gold, int exp, HashMap<String, Integer> items, String giver) { 
+    Quest(String name, String description, int gold, int exp, ArrayList<IItem> items, String giver) { 
         this.name = name;
         this.description = description;
         this.gold = gold;
@@ -70,15 +69,11 @@ class Quest implements IQuest{
     }
 
     @Override
-    public HashMap<String, Integer> getItems() {
+    public ArrayList<IItem> getItems() {
         return items;
     }
-    
-//    public String getItemName(HashMap<String, Integer> items){
-//        return items.keySet();
-//    }
 
-    void setItems(HashMap<String, Integer> items) {
+    void setItems(ArrayList<IItem> items) {
         this.items = items;
     }
 
@@ -101,19 +96,19 @@ class Quest implements IQuest{
 //        this.isMainQuest = isMainQuest;
 //    }
 
-//    @Override
-//    public String toString() {
-//        StringBuilder output = new StringBuilder("Quest: " + name + " \n" + description + " \n" + giver + " needs these items: " );
-//        for(IItem i : items){
-//            output.append(i.getName());
-//            output.append(" x");
-//            output.append(i.getCount());
-//        }
-//        output.append("\n Your reword is Gold: ");
-//        output.append(gold);
-//        output.append(" Exp: ");
-//        output.append(exp);
-//        return output.toString();
-//    }
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder("Quest: " + name + " \n" + description + " \n" + giver + " needs these items: " );
+        for(IItem i : items){
+            output.append(i.getName());
+            output.append(" x");
+            output.append(i.getCount());
+        }
+        output.append("\n Your reword is Gold: ");
+        output.append(gold);
+        output.append(" Exp: ");
+        output.append(exp);
+        return output.toString();
+    }
 
 }

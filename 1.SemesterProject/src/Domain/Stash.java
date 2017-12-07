@@ -34,27 +34,27 @@ private static Map<String, Item>itemMap=new HashMap<>();
 //    return itemMap;
 //}
 
-//public static LinkedHashMap<Integer, Quest> getQuestMap(){
-//    LinkedHashMap<Integer, Quest> questMap = new LinkedHashMap<>();
-//    int questCount = 0;
-//    ArrayList<Item> questItem = new ArrayList<>();
-//    questItem.add(itemMap.get("rock"));
-//    questMap.put(questCount++, new Quest("Start 1", "To survive in this kingdom you must be able to fight. "
-//                                            + "Practice by killing some sheeps, they are found on the farm." +
-//                                            "You may find a weapon, for example, a rock.", 10, 10, 
-//                                            new ArrayList<>(questItem), "Merlin"));
-//    
-//    questItem.clear();
-//    questItem.add(itemMap.get("sword"));
-//    questMap.put(questCount++, new Quest("Start 2", "The start part 2", 10, 10, new ArrayList<>(questItem), "Shopkeeper"));
-//    
-//    questItem.clear();
-//    questMap.put(questCount++, new Quest("The final encounter", "You've made it all the way to Excalibur! "
-//                                            + "now it's time to slay that dragon, "
-//                                            + "and pull Excalibur from the stone!", 25, 50, new ArrayList<>(questItem), "Merlin"));
-//    
-//    questItem.clear();
-//    questMap.put(questCount++, new Quest("Comming soon!", "More comming soon", 0, 0, new ArrayList<>(questItem), "No one yet"));
-//    return questMap;
-//}
+public static LinkedHashMap<Integer, Quest> getQuestMap(){
+    LinkedHashMap<Integer, Quest> questMap = new LinkedHashMap<>();
+    int questCount = 0;
+    ArrayList<Item> questItem = new ArrayList<>();
+    questItem.add(itemMap.get("rock"));
+    questMap.put(questCount++, new Quest("Start 1", "To survive in this kingdom you must be able to fight. "
+                                            + "Practice by killing some sheeps, they are found on the farm." +
+                                            "You may find a weapon, for example, a rock.", 10, 10, 
+                                            new ArrayList<>(questItem), "Merlin"));
+    
+    questItem.clear();
+    questItem.add(itemMap.get("sword"));
+    questMap.put(questCount++, new Quest("Start 2", "The start part 2", 10, 10, new ArrayList<>(questItem), "Shopkeeper"));
+    
+    questItem.clear();
+    questMap.put(questCount++, new Quest("The final encounter", "You've made it all the way to Excalibur! "
+                                            + "now it's time to slay that dragon, "
+                                            + "and pull Excalibur from the stone!", 25, 50, new ArrayList<>(questItem), "Merlin"));
+    
+    questItem.clear();
+    questMap.put(questCount++, new Quest("Comming soon!", "More comming soon", 0, 0, new ArrayList<>(questItem), "No one yet"));
+    return questMap;
+}
 }

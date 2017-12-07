@@ -197,7 +197,7 @@ class GameMapper {
                 toBeMapped.getDescription(),
                 toBeMapped.getGold(),
                 toBeMapped.getExp(),
-                toBeMapped.getItems(),
+                map(toBeMapped.getItems()),
                 toBeMapped.getGiver());
     }
 
@@ -289,7 +289,6 @@ class GameMapper {
         }
         return s;
     }
-
 //    private <K, V> Map<K, V> map(Map<K, V> toBeMapped) {
 //        Map<K, V> m;
 //        if (toBeMapped.getClass().equals(HashMap.class)) {
