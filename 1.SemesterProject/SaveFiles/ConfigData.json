@@ -2,17 +2,15 @@
    "currentRoom":"citycenter",
    "player":{  
       "itemInventory":{  
-         "inventory":[  
-            {  
-               "baseAttack":10,
-               "attackValue":11,
-               "itemLevel":1,
-               "name":"Stone of the BEAR",
-               "sellValue":10,
-               "count":1,
-               "MAX_COUNT":1,
-               "id":4
-            }
+         "inventory":[  {
+                 "name":"Stone",
+                 "id":4,
+                 "sellValue":10,
+                 "count":1,
+                 "MAX_COUNT":1,
+                 "baseAttack":10,
+                 "itemLevel":1
+                 }
          ],
          "maxSlots":20
       },
@@ -27,91 +25,80 @@
       "mainQuest":{  
          "0":{  
             "name":"Arriving to town",
-            "description":"Hello there, my name is Merlin. You\u0027ve come to try and draw the mighty Excalibur I assume? Very well. You can start by proving yourself worthy by killing some pigs. You might be able to find a weapon around here somewhere... Or maybe a rock will do.",
+            "description":"Hello there, my name is Merlin. You've come to try and draw the mighty Excalibur I assume? Very well. You can start by proving yourself worthy by killing some pigs. You might be able to find a weapon around here somewhere... Or maybe a rock will do.",
             "gold":10,
             "exp":5,
-            "items":[  
-
-            ],
+            "items":{},
             "giver":"Merlin"
          },
          "1":{  
             "name":"Helping out",
-            "description":"Good job on killing those pigs! I\u0027ve heard the shopkeeper in town is in dire need of some supplies, maybe you could help him out?",
+            "description":"Good job on killing those pigs! I've heard the shopkeeper in town is in dire need of some supplies, maybe you could help him out?",
             "gold":0,
             "exp":5,
-            "items":[  
-
-            ],
+            "items":{},
             "giver":"Shopkeeper"
          },
          "2":{  
             "name":"Fetching some wool",
-            "description":"\u0027ello lad! Welcome to me shop! I\u0027ve got all the things ya could dream of! \nAnyhow, I need ya help lad. Could ya bring me some wool? I\u0027ll make it worth the trouble.",
+            "description":"'ello lad! Welcome to me shop! I've got all the things ya could dream of! \nAnyhow, I need ya help lad. Could ya bring me some wool? I'll make it worth the trouble.",
             "gold":20,
             "exp":10,
-            "items":[  
-
-            ],
+            "items":{"Potion":1},
             "giver":"Shopkeeper"
          },
          "3":{  
             "name":"Finding Merlin",
-            "description":"Oh lad, that\u0027s some fine wool ya brought me alright! \nThat wizard Merlin was in here looking for ya while you were out, ya should probably go talk to him. See ya soon!",
+            "description":"Oh lad, that's some fine wool ya brought me alright! \nThat wizard Merlin was in here looking for ya while you were out, ya should probably go talk to him. See ya soon!",
             "gold":0,
             "exp":5,
-            "items":[  
-
-            ],
+            "items":{},
             "giver":"Merlin"
          },
          "4":{  
             "name":"Gathering some materials",
-            "description":"If we\u0027re gonna attempt getting Excalibur, we need to be ready for everything. There\u0027s a few... Let\u0027s call it obstacles, in the way. \nI need you to gather some horns from the wild boars, and some skin from a bear. Good luck.",
+            "description":"If we're gonna attempt getting Excalibur, we need to be ready for everything. There's a few... Let's call it obstacles, in the way. \nI need you to gather some horns from the wild boars out west. Good luck.",
             "gold":10,
             "exp":20,
-            "items":[  
-
-            ],
+            "items":{},
             "giver":"Merlin"
          },
          "5":{  
-            "name":"The final encounter",
-            "description":"You\u0027ve made it! We\u0027re only a small step away from pulling the mighty Excalibur!\nThere\u0027s something I haven\u0027t told you yet, though. The sword is guarded by a big dragon... Let\u0027s hope we\u0027re strong enough to defeat it.",
-            "gold":50,
-            "exp":35,
-            "items":[  
-
-            ],
+            "name":"Gathering some more materials",
+            "description":"Nice, now we need some bear skin. There's some roaming bears out in the deep woods, see if you can get some for me.",
+            "gold":20,
+            "exp":25,
+            "items":{},
             "giver":"Merlin"
          },
-         "6":{  
+         "6":{
+            "name":"The final encounter",
+            "description":"You've made it! We're only a small step away from pulling the mighty Excalibur!\nThere's something I haven't told you yet, though. The sword is guarded by a big dragon... Let's hope we're strong enough to defeat it.",
+            "gold":50,
+            "exp":35,
+            "items":{},
+            "giver":"Merlin"
+         },
+         "7":{  
             "name":"The end of the Journey",
             "description":"We have done it! You pulled the mighty Excalibur! \n\nRequired items: Excalibur, the Mighty Greatsword",
             "gold":500,
             "exp":50,
-            "items":[  
-
-            ],
+            "items":{},
             "giver":"Merlin"
          }
       },
-      "sideQuest":{  
-
-      },
       "questsCompleted":0,
       "hunger":100,
-      "maxHunger":100,
       "expToLevelUp":10,
       "scoreValue":0,
-      "completedGame":0,
       "name":"Arthur",
       "health":100,
       "armor":10,
       "level":1,
       "maxHealth":100,
       "baseHealth":100,
-      "baseAttack":100,
+      "baseAttack":10,
       "attack":10,
       "id":2
    },
@@ -129,24 +116,21 @@
          },
          "charactersInRoom":[  
             {  
-	               "itemstoSell":{  
-	
-	               },
-	               "talk":"Hello",
-	               "expDrop":10,
-	               "name":"Shopkeeper",
-	               "health":100,
-        	       "armor":10,
-	               "level":10,
-	               "maxHealth":100,
-	               "baseHealth":10,
-	               "baseAttack":10,
-        	       "attack":100,
-  	               "id":3,
-		       "itemMap":{
-				"postion":50
-			}
-}
+               "itemstoSell":{  
+
+               },
+               "talk":"Hello",
+               "expDrop":10,
+               "name":"Shopkeeper",
+               "health":100,
+               "armor":10,
+               "level":10,
+               "maxHealth":100,
+               "baseHealth":10,
+               "baseAttack":10,
+               "attack":100,
+               "id":3
+            }
          ],
          "items":[  
 
@@ -179,7 +163,7 @@
 
          ],
          "allowedMonsters":[  
-		"troll"
+
          ]
       },
       "castle":{  
@@ -213,43 +197,37 @@
          },
          "charactersInRoom":[  
             {  
-               	       "talk":"Hello",
-	               "expDrop":10,
-	               "name":"King",
-	               "health":100,
-	               "armor":10,
-	               "level":10,
-	               "maxHealth":100,
-	               "baseHealth":10,
-	               "baseAttack":10,
-	               "attack":100,
-	               "id":1,
-		       "itemMap":{
-				"king chainmal":100
-			}
+               "talk":"Hello",
+               "expDrop":10,
+               "name":"King",
+               "health":100,
+               "armor":10,
+               "level":10,
+               "maxHealth":100,
+               "baseHealth":10,
+               "baseAttack":10,
+               "attack":100,
+               "id":1
             },
             {  
-            		"allowedRooms":[  
-	                  "shop",
-	                  "castle",
-	                  "citycenter",
-        	          "tavern",
-                	  "tower"
-	               ],
-        	       "talk":"Hello",
-	               "expDrop":10,
-	               "name":"Princess",
-        	       "health":100,
-	               "armor":10,
-	               "level":10,
-	               "maxHealth":100,
-	               "baseHealth":10,
-	               "baseAttack":10,
-	               "attack":100,
-	               "id":4,
-		       "itemMap":{
-				"berry":20
-			}
+               "allowedRooms":[  
+                  "shop",
+                  "castle",
+                  "citycenter",
+                  "tavern",
+                  "tower"
+               ],
+               "talk":"Hello",
+               "expDrop":10,
+               "name":"Princess",
+               "health":100,
+               "armor":10,
+               "level":10,
+               "maxHealth":100,
+               "baseHealth":10,
+               "baseAttack":10,
+               "attack":100,
+               "id":4
             }
          ],
          "items":[  
@@ -290,27 +268,24 @@
          },
          "charactersInRoom":[  
             {  
-               		"allowedRooms":[  
-	                  "shop",
-        	          "castle",
-                	  "citycenter",
-	                  "tavern",
-        	          "tower"
-	               ],
-        	       "talk":"Hello",
-	               "expDrop":10,
-	               "name":"Merlin",
-	               "health":190,
-        	       "armor":1,
-	               "level":10,
-	               "maxHealth":190,
-	               "baseHealth":100,
-	               "baseAttack":1,
-	               "attack":10,
-	               "id":4,
-		       "itemMap":{
-				"stick":100
-			}
+               "allowedRooms":[  
+                  "shop",
+                  "castle",
+                  "citycenter",
+                  "tavern",
+                  "tower"
+               ],
+               "talk":"Hello",
+               "expDrop":10,
+               "name":"Merlin",
+               "health":190,
+               "armor":1,
+               "level":10,
+               "maxHealth":190,
+               "baseHealth":100,
+               "baseAttack":1,
+               "attack":10,
+               "id":4
             }
          ],
          "items":[  
@@ -318,7 +293,7 @@
                "baseAttack":1,
                "attackValue":2,
                "itemLevel":1,
-               "name":"Rock of the BEAR",
+               "name":"Rock",
                "sellValue":1,
                "count":1,
                "MAX_COUNT":1,
@@ -342,29 +317,37 @@
          },
          "charactersInRoom":[  
             {  
-               	       "talk":"Hello",
-	               "expDrop":10,
-        	       "name":"Bartender",
-	               "health":100,
-	               "armor":10,
-        	       "level":10,
-	               "maxHealth":100,
-	               "baseHealth":10,
-	               "baseAttack":10,
-	               "attack":100,
-	               "id":1,
-		       "itemMap":{
-				"meat":60
-			}
+               "talk":"Hello",
+               "expDrop":10,
+               "name":"Bartender",
+               "health":100,
+               "armor":10,
+               "level":10,
+               "maxHealth":100,
+               "baseHealth":10,
+               "baseAttack":10,
+               "attack":100,
+               "id":1
+            },
+            {  
+               "talk":"Hello",
+               "expDrop":10,
+               "name":"Drunk man",
+               "health":100,
+               "armor":10,
+               "level":10,
+               "maxHealth":100,
+               "baseHealth":10,
+               "baseAttack":10,
+               "attack":100,
+               "id":1
             }
          ],
          "items":[  
 
          ],
          "allowedMonsters":[  
-		"waitress",
-		"drunk man",
-		"bartender"
+
          ]
       },
       "farm":{  
@@ -386,29 +369,24 @@
          },
          "charactersInRoom":[  
             {  
-               	       "talk":"Hello",
-	               "expDrop":10,
-        	       "name":"Farmer",
-	               "health":100,
-	               "armor":10,
-	               "level":10,
-	               "maxHealth":100,
-	               "baseHealth":10,
-	               "baseAttack":10,
-	               "attack":100,
-	               "id":1,
-		       "itemMap":{
-				"rock":100,
-				"leather jacket":75
-			}
+               "talk":"Hello",
+               "expDrop":10,
+               "name":"Farmer",
+               "health":100,
+               "armor":10,
+               "level":10,
+               "maxHealth":100,
+               "baseHealth":10,
+               "baseAttack":10,
+               "attack":100,
+               "id":1
             }
          ],
          "items":[  
 
          ],
          "allowedMonsters":[  
-            "sheep",
-		"pig"
+            "Sheep"
          ]
       },
       "deepwoods":{  
@@ -435,8 +413,7 @@
 
          ],
          "allowedMonsters":[  
-	        "Bear",
-		"wild boar"
+		
          ]
       },
       "excalibur":{  
@@ -451,19 +428,7 @@
             }
          },
          "charactersInRoom":[  
-            {  
-               "talk":"You\u0027ve made it far traveler, most impressively far. You could have been king by now. Sadly for you, your journey ends right. Now.",
-               "expDrop":100,
-               "name":"Dragon",
-               "health":1140,
-               "armor":10,
-               "level":15,
-               "maxHealth":1140,
-               "baseHealth":1000,
-               "baseAttack":1000,
-               "attack":1500,
-               "id":1
-            }
+
          ],
          "items":[  
 
@@ -476,15 +441,15 @@
          "name":"forrest",
          "description":"in the forrest",
          "exits":{  
-            "east":{  
-               "name1":"forrest",
-               "name2":"farm",
-               "locked":false,
-               "lockID":0
-            },
             "south":{  
                "name1":"forrest",
                "name2":"deepwoods",
+               "locked":false,
+               "lockID":0
+            },
+            "east":{  
+               "name1":"forrest",
+               "name2":"farm",
                "locked":false,
                "lockID":0
             }
@@ -496,8 +461,9 @@
 
          ],
          "allowedMonsters":[  
-            "Imp",
-            "Ogre"
+		"Imp",
+		"Bear",
+		"Ogre"
          ]
       },
       "tower":{  
@@ -521,5 +487,25 @@
 
          ]
       }
-   }
+   },
+   "itemNames":[  
+      [  
+         "Rock",
+         "Sword"
+      ],
+      [  
+         "Chainmail"
+      ],
+      [  
+         "Potion",
+         "Meat"
+      ],
+      [  
+         "Key",
+         "Key2"
+      ],
+      [  
+         "Wool"
+      ]
+   ]
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="150.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.StatsPanelController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="150.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.StatsPanelController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -37,7 +37,7 @@
          </GridPane.margin></Label>
       <Label fx:id="hpLabel" onMouseEntered="#labelClick" text="Health" />
       <Label fx:id="hungerLabel" text="Hunger" GridPane.rowIndex="1" />
-      <Label text="Experience" GridPane.rowIndex="2" fx:id="xpLabel" />
+      <Label text="Exp" GridPane.rowIndex="2" fx:id="xpLabel" />
       <Text fx:id="currentHealth" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <Text fx:id="currentHunger" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Text fx:id="currentExp" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
