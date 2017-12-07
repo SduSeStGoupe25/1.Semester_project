@@ -35,6 +35,7 @@ public class DomainGame implements IGame {
 
     private transient boolean finished = false;
 
+
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
@@ -212,6 +213,7 @@ public class DomainGame implements IGame {
         return combat.combatLoop(action);
     }
 
+
     @Override
     public boolean usePotion() {
         System.out.println("INVENTORY USEPOTION " + player.getItemInventory().getInventory());
@@ -222,8 +224,6 @@ public class DomainGame implements IGame {
         }
         
         for (IItem consumeable : player.getItemInventory().getInventory()) {
-            System.out.println("her står vi nu jaja, i usepotion jaja" + player.getItemInventory().getInventory().contains(this));
-            System.out.println("Consumeable " + consumeable.toString());
             if (consumeable instanceof Consumeable) {
                 System.out.println("instanceof statement klaret jaja");
                 if (consumeable.getName().equals("Potion")) {
@@ -232,6 +232,7 @@ public class DomainGame implements IGame {
                 }
             } 
         }
+
         return false;
     }
 
