@@ -91,7 +91,7 @@
 		"berry":{
 			"useValue":-2,
 			"hungerValue":4,
-        	       "name":"Barry",
+        	       "name":"Berry",
 	               "sellValue":2,
         	       "count":1,
 	               "MAX_COUNT":20,

@@ -120,7 +120,6 @@ class GameMapper {
                             ((IWeapon) toBeMapped).getItemLevel());
             }
         }
-
         return null;
     }
 

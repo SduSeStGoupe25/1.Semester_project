@@ -11,8 +11,8 @@ import Arq.IDomainGame;
 import Arq.IGame;
 import Arq.IHighscoreWrapper;
 import Arq.IItem;
-import Arq.INPC;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,7 +70,6 @@ public class DomainData implements IDomainData {
     public IGame loadGame(boolean newGame) {
         IGame f = mapper.map(data.loadGame(newGame));
         return f;
-        //return DomainGame.getInstance().initialize(data.loadGame(newGame));
     }
 
     @Override
@@ -84,9 +83,8 @@ public class DomainData implements IDomainData {
     }
 
     @Override
-    public IItem getItem(String name) {
-        
-        return mapper.map(data.getItem().get(name));
+    public IItem getItem(String name) { 
+        return mapper.map(data.getItem().get(name.toLowerCase()));
     }
 
     @Override

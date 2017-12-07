@@ -27,12 +27,12 @@ abstract class Item implements IItem{
     }
     
     void addCount(int countToAdd) {
-        countToAdd += countToAdd;
+        count += countToAdd;
     }
 
     @Override
     public String toString() {
-        return name + " \n" + "Sells for: " + sellValue + " gold coins." + "\t" + "Can be bought for: " + (sellValue * 2) + " gold coins";
+        return name + " \n" + "Sells for: " + sellValue + " gold coins." + "\t" + "Can be bought for: " + (sellValue * 2) + " gold coins " + " AMOUNT " + count;
     }
     
     

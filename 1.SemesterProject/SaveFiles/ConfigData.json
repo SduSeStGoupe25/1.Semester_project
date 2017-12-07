@@ -129,21 +129,24 @@
          },
          "charactersInRoom":[  
             {  
-               "itemstoSell":{  
-
-               },
-               "talk":"Hello",
-               "expDrop":10,
-               "name":"Shopkeeper",
-               "health":190,
-               "armor":10,
-               "level":10,
-               "maxHealth":190,
-               "baseHealth":100,
-               "baseAttack":100,
-               "attack":100,
-               "id":3
-            }
+	               "itemstoSell":{  
+	
+	               },
+	               "talk":"Hello",
+	               "expDrop":10,
+	               "name":"Shopkeeper",
+	               "health":100,
+        	       "armor":10,
+	               "level":10,
+	               "maxHealth":100,
+	               "baseHealth":10,
+	               "baseAttack":10,
+        	       "attack":100,
+  	               "id":3,
+		       "itemMap":{
+				"postion":50
+			}
+}
          ],
          "items":[  
 
@@ -210,37 +213,43 @@
          },
          "charactersInRoom":[  
             {  
-               "talk":"Hello",
-               "expDrop":10,
-               "name":"King",
-               "health":190,
-               "armor":10,
-               "level":10,
-               "maxHealth":190,
-               "baseHealth":100,
-               "baseAttack":100,
-               "attack":100,
-               "id":1
+               	       "talk":"Hello",
+	               "expDrop":10,
+	               "name":"King",
+	               "health":100,
+	               "armor":10,
+	               "level":10,
+	               "maxHealth":100,
+	               "baseHealth":10,
+	               "baseAttack":10,
+	               "attack":100,
+	               "id":1,
+		       "itemMap":{
+				"king chainmal":100
+			}
             },
             {  
-               "allowedRooms":[  
-                  "shop",
-                  "castle",
-                  "citycenter",
-                  "tavern",
-                  "tower"
-               ],
-               "talk":"Hello",
-               "expDrop":10,
-               "name":"Princess",
-               "health":190,
-               "armor":10,
-               "level":10,
-               "maxHealth":190,
-               "baseHealth":100,
-               "baseAttack":100,
-               "attack":100,
-               "id":4
+            		"allowedRooms":[  
+	                  "shop",
+	                  "castle",
+	                  "citycenter",
+        	          "tavern",
+                	  "tower"
+	               ],
+        	       "talk":"Hello",
+	               "expDrop":10,
+	               "name":"Princess",
+        	       "health":100,
+	               "armor":10,
+	               "level":10,
+	               "maxHealth":100,
+	               "baseHealth":10,
+	               "baseAttack":10,
+	               "attack":100,
+	               "id":4,
+		       "itemMap":{
+				"berry":20
+			}
             }
          ],
          "items":[  
@@ -281,24 +290,27 @@
          },
          "charactersInRoom":[  
             {  
-               "allowedRooms":[  
-                  "shop",
-                  "castle",
-                  "citycenter",
-                  "tavern",
-                  "tower"
-               ],
-               "talk":"Hello",
-               "expDrop":10,
-               "name":"Merlin",
-               "health":280,
-               "armor":1,
-               "level":10,
-               "maxHealth":280,
-               "baseHealth":190,
-               "baseAttack":10,
-               "attack":10,
-               "id":4
+               		"allowedRooms":[  
+	                  "shop",
+        	          "castle",
+                	  "citycenter",
+	                  "tavern",
+        	          "tower"
+	               ],
+        	       "talk":"Hello",
+	               "expDrop":10,
+	               "name":"Merlin",
+	               "health":190,
+        	       "armor":1,
+	               "level":10,
+	               "maxHealth":190,
+	               "baseHealth":100,
+	               "baseAttack":1,
+	               "attack":10,
+	               "id":4,
+		       "itemMap":{
+				"stick":100
+			}
             }
          ],
          "items":[  
@@ -330,30 +342,20 @@
          },
          "charactersInRoom":[  
             {  
-               "talk":"Hello",
-               "expDrop":10,
-               "name":"Bartender",
-               "health":190,
-               "armor":10,
-               "level":10,
-               "maxHealth":190,
-               "baseHealth":100,
-               "baseAttack":100,
-               "attack":100,
-               "id":1
-            },
-            {  
-               "talk":"Hello",
-               "expDrop":10,
-               "name":"Drunk man",
-               "health":190,
-               "armor":10,
-               "level":10,
-               "maxHealth":190,
-               "baseHealth":100,
-               "baseAttack":100,
-               "attack":100,
-               "id":1
+               	       "talk":"Hello",
+	               "expDrop":10,
+        	       "name":"Bartender",
+	               "health":100,
+	               "armor":10,
+        	       "level":10,
+	               "maxHealth":100,
+	               "baseHealth":10,
+	               "baseAttack":10,
+	               "attack":100,
+	               "id":1,
+		       "itemMap":{
+				"meat":60
+			}
             }
          ],
          "items":[  
@@ -361,7 +363,8 @@
          ],
          "allowedMonsters":[  
 		"waitress",
-		"drunk man"
+		"drunk man",
+		"bartender"
          ]
       },
       "farm":{  
@@ -383,17 +386,21 @@
          },
          "charactersInRoom":[  
             {  
-               "talk":"Hello",
-               "expDrop":10,
-               "name":"Farmer",
-               "health":190,
-               "armor":10,
-               "level":10,
-               "maxHealth":190,
-               "baseHealth":100,
-               "baseAttack":100,
-               "attack":100,
-               "id":1
+               	       "talk":"Hello",
+	               "expDrop":10,
+        	       "name":"Farmer",
+	               "health":100,
+	               "armor":10,
+	               "level":10,
+	               "maxHealth":100,
+	               "baseHealth":10,
+	               "baseAttack":10,
+	               "attack":100,
+	               "id":1,
+		       "itemMap":{
+				"rock":100,
+				"leather jacket":75
+			}
             }
          ],
          "items":[  
