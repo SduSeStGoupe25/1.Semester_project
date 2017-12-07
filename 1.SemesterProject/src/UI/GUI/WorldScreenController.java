@@ -118,10 +118,10 @@ public class WorldScreenController implements Initializable {
             } else {
                 btnWest.setDisable(true);
             }
-
+            UI.getInstance().getMainController().update(false);
         } else {
             UI.getInstance().setState(UIState.COMBATSCREEN);
         }
-        UI.getInstance().getMainController().update();
+        
     }
 }

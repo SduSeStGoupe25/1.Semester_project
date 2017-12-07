@@ -107,6 +107,7 @@ public class UI extends Application implements IUI {
                     break;
                 case COMBATSCREEN:
                     mainGameController.getBorderPane().setCenter(FXMLLoader.load(getClass().getResource("CombatScreen.fxml")));
+                    mainGameController.update(true);
                     break;
                 case INVENTORYSCREEN:
                     FXMLLoader InventoryLoader = new FXMLLoader(getClass().getResource("InventoryScreen.fxml"));

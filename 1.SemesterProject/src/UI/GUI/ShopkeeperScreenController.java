@@ -90,7 +90,7 @@ public class ShopkeeperScreenController implements Initializable {
         UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()), p);
 
         loadPlayerInfo();
-        UI.getInstance().getMainController().update();
+        UI.getInstance().getMainController().update(false);
     }
 
     @FXML

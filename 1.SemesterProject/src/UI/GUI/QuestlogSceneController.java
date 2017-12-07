@@ -79,7 +79,7 @@ public class QuestlogSceneController implements Initializable {
                 UI.getInstance().setState(UIState.GAMEWONSCREEN);
             }else{
                 UI.getInstance().setState(UIState.QUESTSCREEN);
-                UI.getInstance().getMainController().update();
+                UI.getInstance().getMainController().update(false);
             }
             
         } else {

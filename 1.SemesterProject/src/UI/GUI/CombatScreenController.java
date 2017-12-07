@@ -97,6 +97,7 @@ public class CombatScreenController implements Initializable {
         imageForest.setPreserveRatio(true);
         imageForest.fitHeightProperty().bind(imagePane.heightProperty());
         imageForest.fitWidthProperty().bind(imagePane.widthProperty());
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
     public void updatEquippedInventory() {
@@ -115,7 +116,7 @@ public class CombatScreenController implements Initializable {
         attackText.setText(Integer.toString(p.getAttack()));
         defenceText.setText(Integer.toString(p.getArmor()));
         }
-        UI.getInstance().getMainController().update();
+        UI.getInstance().getMainController().update(true);
 
     }
 
@@ -178,7 +179,7 @@ public class CombatScreenController implements Initializable {
             }
         }
         else { 
-            UI.getInstance().getDomainGame().usePotion();
+            updatePlayerStats();
         }
     }
 
