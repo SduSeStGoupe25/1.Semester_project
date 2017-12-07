@@ -97,7 +97,6 @@ public class CombatScreenController implements Initializable {
         imageForest.setPreserveRatio(true);
         imageForest.fitHeightProperty().bind(imagePane.heightProperty());
         imageForest.fitWidthProperty().bind(imagePane.widthProperty());
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
     public void updatEquippedInventory() {
@@ -145,8 +144,8 @@ public class CombatScreenController implements Initializable {
     @FXML
     public void lightAttackButtonPressed(ActionEvent event) {
         c = UI.getInstance().getDomainGame().getCombatResponse(0);
-        updateOpponentStats();
         updatePlayerStats();
+        updateOpponentStats();
     }
     
     public void exitCombat()  { 
@@ -156,9 +155,8 @@ public class CombatScreenController implements Initializable {
     @FXML
     public void heavyAttackButtonPressed(ActionEvent event) {
         c = UI.getInstance().getDomainGame().getCombatResponse(1);
-        updateOpponentStats();
         updatePlayerStats();
-        
+        updateOpponentStats();
     }
 
     @FXML
