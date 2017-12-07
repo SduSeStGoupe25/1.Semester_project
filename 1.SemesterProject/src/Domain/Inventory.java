@@ -103,6 +103,11 @@ class Inventory implements IInventory{
         return inventory;
     }
 
+    @Override
+    public String toString() {
+        return "Inventory{" + "inventory=" + inventory + ", maxSlots=" + maxSlots + '}';
+    }
+
     void setInventory(ArrayList<IItem> inventory) {
         this.inventory = inventory;
     }
