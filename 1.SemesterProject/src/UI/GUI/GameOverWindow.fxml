@@ -41,6 +41,9 @@
       <Text fx:id="gameOverText" strokeType="OUTSIDE" strokeWidth="0.0" text="GAME OVER, NOOB!" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
             <Font size="36.0" />
-         </font></Text>
+         </font>
+         <GridPane.margin>
+            <Insets top="15.0" />
+         </GridPane.margin></Text>
    </children>
 </GridPane>

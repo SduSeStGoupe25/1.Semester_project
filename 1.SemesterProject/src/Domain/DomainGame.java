@@ -35,11 +35,7 @@ public class DomainGame implements IGame {
 
     private transient boolean finished = false;
 
-<<<<<<< HEAD
-//    private String[][] itemNames = {
-//        {"Rock", "Sword"}, {"Chainmail"}, {"Potion", "Meat"}, {"Key", "Key2"}, {"Wool"}};
-=======
->>>>>>> ee8d62e6346db9a9b4ae0c1b4e4ab2f09a4296dc
+
     /**
      * This is the constructor, which is used when a instance of Game is made.
      */
@@ -91,16 +87,6 @@ public class DomainGame implements IGame {
     }
     
     /**
-<<<<<<< HEAD
-     *
-     * Gets combat
-     *
-     * @return Returns the combat object
-     */
-    /**
-     *
-=======
->>>>>>> ee8d62e6346db9a9b4ae0c1b4e4ab2f09a4296dc
      * This method is called when moveableNPC's should move. It uses a for-each
      * loop to go through all rooms, and calls the move() method in each.
      */
@@ -111,21 +97,6 @@ public class DomainGame implements IGame {
         }
     }
 
-<<<<<<< HEAD
-//    public int checkItemName(String itemName) {
-//        int count = 0;
-//        for (String[] itemName1 : itemNames) {
-//            for (String string : itemName1) {
-//                if (itemName.equalsIgnoreCase(string)) {
-//                    return count;
-//                }
-//            }
-//            count++;
-//        }
-//        return -1;
-//    }
-=======
->>>>>>> ee8d62e6346db9a9b4ae0c1b4e4ab2f09a4296dc
     void setFinished(boolean finished) {
         this.finished = finished;
     }
@@ -242,22 +213,7 @@ public class DomainGame implements IGame {
         return combat.combatLoop(action);
     }
 
-//    @Override
-//    public boolean usePotion() {
-//        for (IItem consumeable : player.getItemInventory().getInventory()) {
-//            System.out.println("her står vi nu jaja, i usepotion jaja" + player.getItemInventory().getInventory());
-//            if (consumeable instanceof Consumeable) {
-//                System.out.println("instanceof statement klaret jaja");
-//                if (consumeable.getName().equals("Potion")) {
-//                    player.restoreHp(consumeable);
-//                    return true;
-//                }
-//            } else {
-//                return false;
-//            }
-//        }
-//        return false;
-//    }
+
     @Override
     public boolean usePotion() {
         System.out.println("INVENTORY USEPOTION " + player.getItemInventory().getInventory());
@@ -268,19 +224,6 @@ public class DomainGame implements IGame {
         }
         
         for (IItem consumeable : player.getItemInventory().getInventory()) {
-<<<<<<< HEAD
-            System.out.println(player.getItemInventory());
-            if (consumeable.getName().equals("Potion")) {
-                System.out.println("fjerifhperfhw hæhæhæhæh");
-                player.restoreHp(consumeable);
-            } else {
-                return false;
-            }
-            
-        } 
-=======
-            System.out.println("her står vi nu jaja, i usepotion jaja" + player.getItemInventory().getInventory().contains(this));
-            System.out.println("Consumeable " + consumeable.toString());
             if (consumeable instanceof Consumeable) {
                 System.out.println("instanceof statement klaret jaja");
                 if (consumeable.getName().equals("Potion")) {
@@ -289,7 +232,7 @@ public class DomainGame implements IGame {
                 }
             } 
         }
->>>>>>> 93dc8d7bcf994820ff7d6ed8433ce0ef0120f786
+
         return false;
     }
 
