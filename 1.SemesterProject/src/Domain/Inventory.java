@@ -33,7 +33,6 @@ class Inventory implements IInventory {
                 //Goes through all the items in the inventory, to see if there 
                 //are a item of the type of the item being added with available space. 
                 for (IItem i : inventory) {
-                    System.out.println("INVENTORY AMOUNT BACK " + amountBack);
                     //Checks if item has the same name as the current item in the inventory
                     if (i.getName().equals(item.getName())) {
                         //Checks if there are space enough to add all the desired amount

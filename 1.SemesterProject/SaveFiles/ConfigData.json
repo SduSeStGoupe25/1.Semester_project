@@ -2,9 +2,7 @@
    "currentRoom":"citycenter",
    "player":{  
       "itemInventory":{  
-         "inventory":[  {
-
-                 }
+         "inventory":[ 
          ],
          "maxSlots":20
       },
