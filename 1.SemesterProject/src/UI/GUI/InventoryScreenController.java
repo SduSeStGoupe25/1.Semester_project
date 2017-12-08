@@ -84,21 +84,21 @@ public class InventoryScreenController implements Initializable {
     }
 
     public void updateLists() {
-        if (!player.getItemInventory().getInventory().isEmpty()) {
-            List<HBoxCell> items = new ArrayList<>();
 
-            for (IItem item : player.getItemInventory().getInventory()) {
-                items.add(new HBoxCell(item));
-            }
-            listInventory.setItems(FXCollections.observableList(items));
+        List<HBoxCell> items = new ArrayList<>();
 
-            List<HBoxCell> equipableItems = new ArrayList<>();
-
-            for (IItem item : player.getEquipableInventory().getInventory()) {
-                equipableItems.add(new HBoxCell(item));
-            }
-            listEquipedItems.setItems(FXCollections.observableList(equipableItems));
+        for (IItem item : player.getItemInventory().getInventory()) {
+            items.add(new HBoxCell(item));
         }
+        listInventory.setItems(FXCollections.observableList(items));
+
+        List<HBoxCell> equipableItems = new ArrayList<>();
+
+        for (IItem item : player.getEquipableInventory().getInventory()) {
+            equipableItems.add(new HBoxCell(item));
+        }
+        listEquipedItems.setItems(FXCollections.observableList(equipableItems));
+
         UI.getInstance().getMainController().update(false);
     }
 

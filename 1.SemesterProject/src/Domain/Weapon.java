@@ -19,28 +19,28 @@ class Weapon extends Item implements IWeapon {
         this.baseAttack = baseAttack;
         this.itemLevel = itemLevel;
         attackValue = baseAttack + itemLevel;
-        super.setName(name + " of the " + getExtension());
+        super.setName(name);
     }
 
-    public String getExtension() {
-        String s = "";
-        int i = itemLevel % 4;
-        switch (i) {
-            case 0:
-                s += WeaponExtension.MONKEY;
-                break;
-            case 1:
-                s += WeaponExtension.BEAR;
-                break;
-            case 2:
-                s += WeaponExtension.KING;
-                break;
-            case 3:
-                s += WeaponExtension.DRAGON;
-                break;
-        }
-        return s;
-    }
+//    public String getExtension() {
+//        String s = "";
+//        int i = itemLevel % 4;
+//        switch (i) {
+//            case 0:
+//                s += WeaponExtension.MONKEY;
+//                break;
+//            case 1:
+//                s += WeaponExtension.BEAR;
+//                break;
+//            case 2:
+//                s += WeaponExtension.KING;
+//                break;
+//            case 3:
+//                s += WeaponExtension.DRAGON;
+//                break;
+//        }
+//        return s;
+//    }
 
     @Override
     public String toString() {

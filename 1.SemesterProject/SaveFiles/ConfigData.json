@@ -204,7 +204,8 @@
 	               "attack":100,
 	               "id":1,
 		       "itemMap":{
-				"king chainmal":100
+				"king chainmal":100,
+				"key":100
 			}
             },
             {  
@@ -297,7 +298,7 @@
                "baseAttack":1,
                "attackValue":2,
                "itemLevel":1,
-               "name":"Rock",
+               "name":"rock",
                "sellValue":1,
                "count":1,
                "MAX_COUNT":1,
