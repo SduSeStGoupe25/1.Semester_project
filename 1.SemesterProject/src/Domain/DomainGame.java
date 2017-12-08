@@ -1,15 +1,15 @@
 package Domain;
 
-import Arq.ICombat;
-import Arq.ICombatResponse;
-import Arq.IConsumeable;
-import Arq.IDomainGame;
-import Arq.IExit;
-import Arq.IGame;
-import Arq.IItem;
-import Arq.IPlayer;
-import Arq.IRoom;
-import Arq.IShopkeeper;
+import Acq.ICombat;
+import Acq.ICombatResponse;
+import Acq.IConsumeable;
+import Acq.IDomainGame;
+import Acq.IExit;
+import Acq.IGame;
+import Acq.IItem;
+import Acq.IPlayer;
+import Acq.IRoom;
+import Acq.IShopkeeper;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.LinkedHashMap;

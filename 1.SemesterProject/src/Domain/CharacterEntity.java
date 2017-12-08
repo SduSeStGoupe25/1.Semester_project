@@ -1,6 +1,6 @@
 package Domain;
 
-import Arq.ICharacterEntity;
+import Acq.ICharacterEntity;
 
 /*
  *This is an abstract class that all characters in the game extends from.

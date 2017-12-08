@@ -5,7 +5,7 @@
  */
 package UI.GUI;
 
-import Arq.IPlayer;
+import Acq.IPlayer;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;

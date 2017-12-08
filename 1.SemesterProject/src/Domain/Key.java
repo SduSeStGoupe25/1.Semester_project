@@ -1,7 +1,7 @@
 package Domain;
 
 
-import Arq.IKey;
+import Acq.IKey;
 
 class Key extends Item implements IKey{
     

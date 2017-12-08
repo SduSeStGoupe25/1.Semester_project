@@ -5,10 +5,10 @@
  */
 package Data;
 
-import Arq.ICharacterEntity;
-import Arq.IExit;
-import Arq.IItem;
-import Arq.IRoom;
+import Acq.ICharacterEntity;
+import Acq.IExit;
+import Acq.IItem;
+import Acq.IRoom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;

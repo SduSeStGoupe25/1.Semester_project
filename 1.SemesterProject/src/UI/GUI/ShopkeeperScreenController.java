@@ -5,9 +5,9 @@
  */
 package UI.GUI;
 
-import Arq.IItem;
-import Arq.IPlayer;
-import Arq.IShopkeeper;
+import Acq.IItem;
+import Acq.IPlayer;
+import Acq.IShopkeeper;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;

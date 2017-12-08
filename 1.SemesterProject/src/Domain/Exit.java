@@ -6,9 +6,9 @@
 package Domain;
 
 //@author Mikkel Pedersen
-import Arq.IExit;
-import Arq.IInventory;
-import Arq.IItem;
+import Acq.IExit;
+import Acq.IInventory;
+import Acq.IItem;
 
 class Exit implements IExit {
 

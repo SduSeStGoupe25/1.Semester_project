@@ -5,7 +5,7 @@
  */
 package Domain;
 
-import Arq.IMoveableNPC;
+import Acq.IMoveableNPC;
 import Domain.DomainGame;
 import Domain.Room;
 import java.util.Map;

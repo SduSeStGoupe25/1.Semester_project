@@ -1,15 +1,15 @@
 package Data;
 
-import Arq.ICharacterEntity;
-import Arq.IData;
-import Arq.IDomainGame;
-import Arq.IExit;
-import Arq.IHighscoreWrapper;
-import Arq.IInventory;
-import Arq.IItem;
-import Arq.INPC;
-import Arq.IQuest;
-import Arq.IRoom;
+import Acq.ICharacterEntity;
+import Acq.IData;
+import Acq.IDomainGame;
+import Acq.IExit;
+import Acq.IHighscoreWrapper;
+import Acq.IInventory;
+import Acq.IItem;
+import Acq.INPC;
+import Acq.IQuest;
+import Acq.IRoom;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;

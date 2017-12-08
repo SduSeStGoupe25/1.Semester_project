@@ -5,7 +5,7 @@
  */
 package Domain;
 
-import Arq.IItem;
+import Acq.IItem;
 
 /**
  *

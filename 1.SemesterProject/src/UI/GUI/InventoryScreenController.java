@@ -5,10 +5,10 @@
  */
 package UI.GUI;
 
-import Arq.IDomainGame;
-import Arq.IGame;
-import Arq.IItem;
-import Arq.IPlayer;
+import Acq.IDomainGame;
+import Acq.IGame;
+import Acq.IItem;
+import Acq.IPlayer;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;

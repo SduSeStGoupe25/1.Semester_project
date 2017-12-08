@@ -5,10 +5,10 @@
  */
 package UI.GUI;
 
-import Arq.ICharacterEntity;
-import Arq.ICombatResponse;
-import Arq.IItem;
-import Arq.IPlayer;
+import Acq.ICharacterEntity;
+import Acq.ICombatResponse;
+import Acq.IItem;
+import Acq.IPlayer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

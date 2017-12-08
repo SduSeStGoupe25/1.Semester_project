@@ -7,7 +7,7 @@ package Domain;
 
 //@author Mikkel Pedersen
 
-import Arq.IConsumeable;
+import Acq.IConsumeable;
 
 
 class Consumeable extends Item implements IConsumeable{

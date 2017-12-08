@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Arq;
+package Acq;
 
 /**
  *
  * @author madsd
  */
-public interface ICombatResponse {
-    int getPlayerAttack();
-    int getOpponentAttack();
-    boolean getIsRunning();
-    ICharacterEntity getOpponent();
+public interface IWeapon extends IItem{
+
+    int getAttackValue();
+
+    int getItemLevel();
+    
+    int getBaseAttack();
 }

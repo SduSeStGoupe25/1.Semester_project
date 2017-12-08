@@ -1,11 +1,11 @@
 package Domain;
 
-import Arq.ICharacterEntity;
-import Arq.IConsumeable;
-import Arq.IInventory;
-import Arq.IItem;
-import Arq.IPlayer;
-import Arq.IQuest;
+import Acq.ICharacterEntity;
+import Acq.IConsumeable;
+import Acq.IInventory;
+import Acq.IItem;
+import Acq.IPlayer;
+import Acq.IQuest;
 import Domain.CharacterEntity;
 import Domain.DomainGame;
 import java.util.HashMap;
@@ -352,4 +352,8 @@ class Player extends CharacterEntity implements IPlayer{
     void setScoreValue(int scoreValue) {
         this.scoreValue = scoreValue;
     }
+    
+    void addScore (int expDrop) { 
+        scoreValue += expDrop;
+    } 
 }

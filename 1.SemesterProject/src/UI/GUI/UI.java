@@ -5,10 +5,10 @@
  */
 package UI.GUI;
 
-import Arq.IDomainData;
-import Arq.IDomainGame;
-import Arq.IGame;
-import Arq.IUI;
+import Acq.IDomainData;
+import Acq.IDomainGame;
+import Acq.IGame;
+import Acq.IUI;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

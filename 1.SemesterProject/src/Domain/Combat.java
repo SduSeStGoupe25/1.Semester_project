@@ -1,11 +1,11 @@
 package Domain;
 
-import Arq.ICharacterEntity;
-import Arq.ICombat;
-import Arq.ICombatResponse;
-import Arq.IDomainGame;
-import Arq.IPlayer;
-import Arq.IRoom;
+import Acq.ICharacterEntity;
+import Acq.ICombat;
+import Acq.ICombatResponse;
+import Acq.IDomainGame;
+import Acq.IPlayer;
+import Acq.IRoom;
 import Domain.DomainGame;
 import Domain.Room;
 

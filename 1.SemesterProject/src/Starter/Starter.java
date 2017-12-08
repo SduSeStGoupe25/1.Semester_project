@@ -5,9 +5,9 @@
  */
 package Starter;
 
-import Arq.IData;
-import Arq.IDomainData;
-import Arq.IUI;
+import Acq.IData;
+import Acq.IDomainData;
+import Acq.IUI;
 import Data.JSONDatabase;
 import Domain.DomainData;
 import UI.GUI.UI;

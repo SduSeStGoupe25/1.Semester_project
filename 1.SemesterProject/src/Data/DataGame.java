@@ -5,9 +5,9 @@
  */
 package Data;
 
-import Arq.IDomainGame;
-import Arq.IPlayer;
-import Arq.IRoom;
+import Acq.IDomainGame;
+import Acq.IPlayer;
+import Acq.IRoom;
 import java.util.Map;
 
 /**

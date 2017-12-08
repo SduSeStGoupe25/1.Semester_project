@@ -5,7 +5,7 @@
  */
 package Data;
 
-import Arq.ICharacterEntity;
+import Acq.ICharacterEntity;
 
 /**
  *

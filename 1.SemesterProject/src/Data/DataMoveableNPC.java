@@ -5,7 +5,7 @@
  */
 package Data;
 
-import Arq.IMoveableNPC;
+import Acq.IMoveableNPC;
 import java.util.Set;
 
 /**

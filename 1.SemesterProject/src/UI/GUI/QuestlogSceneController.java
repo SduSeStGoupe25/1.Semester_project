@@ -5,7 +5,7 @@
  */
 package UI.GUI;
 
-import Arq.IGame;
+import Acq.IGame;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;

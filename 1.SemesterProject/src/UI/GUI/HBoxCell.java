@@ -5,10 +5,10 @@
  */
 package UI.GUI;
 
-import Arq.IArmor;
-import Arq.IConsumeable;
-import Arq.IItem;
-import Arq.IWeapon;
+import Acq.IArmor;
+import Acq.IConsumeable;
+import Acq.IItem;
+import Acq.IWeapon;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;

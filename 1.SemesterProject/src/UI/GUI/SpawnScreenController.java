@@ -5,8 +5,8 @@
  */
 package UI.GUI;
 
-import Arq.IGame;
-import Arq.IRoom;
+import Acq.IGame;
+import Acq.IRoom;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;

@@ -5,8 +5,8 @@
  */
 package Domain;
 
-import Arq.IInventory;
-import Arq.IItem;
+import Acq.IInventory;
+import Acq.IItem;
 import java.util.ArrayList;
 
 /**

@@ -5,7 +5,7 @@
  */
 package Data;
 
-import Arq.IConsumeable;
+import Acq.IConsumeable;
 
 /**
  *

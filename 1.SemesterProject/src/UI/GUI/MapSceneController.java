@@ -3,10 +3,10 @@
  */
 package UI.GUI;
 
-import Arq.ICharacterEntity;
-import Arq.IMoveableNPC;
-import Arq.INPC;
-import Arq.IRoom;
+import Acq.ICharacterEntity;
+import Acq.IMoveableNPC;
+import Acq.INPC;
+import Acq.IRoom;
 import java.io.File;
 import java.net.URL;
 import java.util.Map;

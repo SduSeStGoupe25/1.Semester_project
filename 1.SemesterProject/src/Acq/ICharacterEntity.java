@@ -1,4 +1,4 @@
-package Arq;
+package Acq;
 
 /**
  * CharacterEntity interface

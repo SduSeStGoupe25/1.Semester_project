@@ -5,7 +5,7 @@
  */
 package UI.GUI;
 
-import Arq.IGame;
+import Acq.IGame;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -5,11 +5,10 @@
  */
 package UI.GUI;
 
-import Arq.IDomainData;
-
-import Arq.IDomainGame;
-import Arq.IGame;
-import Arq.IHighscoreWrapper;
+import Acq.IDomainData;
+import Acq.IDomainGame;
+import Acq.IGame;
+import Acq.IHighscoreWrapper;
 import Domain.DomainGame;
 import java.io.IOException;
 import java.net.URL;

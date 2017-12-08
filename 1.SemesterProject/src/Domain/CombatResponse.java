@@ -5,7 +5,7 @@
  */
 package Domain;
 
-import Arq.ICombatResponse;
+import Acq.ICombatResponse;
 
 /**
  *

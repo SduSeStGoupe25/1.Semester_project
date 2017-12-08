@@ -5,9 +5,9 @@
  */
 package UI.GUI;
 
-import Arq.ICharacterEntity;
-import Arq.INPC;
-import Arq.IRoom;
+import Acq.ICharacterEntity;
+import Acq.INPC;
+import Acq.IRoom;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javafx.event.ActionEvent;

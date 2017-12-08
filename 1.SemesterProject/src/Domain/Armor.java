@@ -1,6 +1,6 @@
 package Domain;
 
-import Arq.IArmor;
+import Acq.IArmor;
 
 class Armor extends Item implements IArmor {
 

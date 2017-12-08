@@ -5,9 +5,9 @@
  */
 package UI.GUI;
 
-import Arq.IGame;
-import Arq.IItem;
-import Arq.IPlayer;
+import Acq.IGame;
+import Acq.IItem;
+import Acq.IPlayer;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;

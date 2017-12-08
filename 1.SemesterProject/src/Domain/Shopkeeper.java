@@ -3,8 +3,8 @@
  */
 package Domain;
 
-import Arq.IItem;
-import Arq.IShopkeeper;
+import Acq.IItem;
+import Acq.IShopkeeper;
 import java.util.HashMap;
 import java.util.Map;
 

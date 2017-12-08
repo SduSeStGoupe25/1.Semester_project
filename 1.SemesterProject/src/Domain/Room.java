@@ -1,10 +1,10 @@
 package Domain;
 
-import Arq.ICharacterEntity;
-import Arq.IExit;
-import Arq.IItem;
-import Arq.INPC;
-import Arq.IRoom;
+import Acq.ICharacterEntity;
+import Acq.IExit;
+import Acq.IItem;
+import Acq.INPC;
+import Acq.IRoom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;

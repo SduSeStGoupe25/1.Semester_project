@@ -6,7 +6,7 @@
 package Domain;
 
 //import Domain.Game;
-import Arq.INPC;
+import Acq.INPC;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,6 +61,7 @@ class NPC extends CharacterEntity implements INPC {
                 }
             }
         }
+        ((Player)DomainGame.getInstance().getPlayer()).addScore(this.expDrop);
     }
 
     @Override

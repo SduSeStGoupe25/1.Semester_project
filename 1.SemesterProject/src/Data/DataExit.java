@@ -5,7 +5,7 @@
  */
 package Data;
 
-import Arq.IExit;
+import Acq.IExit;
 
 /**
  *

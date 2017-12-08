@@ -1,4 +1,4 @@
-package Arq;
+package Acq;
 
 /**
  * Interface for a item of the type armor

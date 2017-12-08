@@ -5,7 +5,7 @@
  */
 package Data;
 
-import Arq.IWeapon;
+import Acq.IWeapon;
 
 /**
  *

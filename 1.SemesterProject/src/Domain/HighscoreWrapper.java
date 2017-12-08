@@ -5,7 +5,7 @@
  */
 package Domain;
 
-import Arq.IHighscoreWrapper;
+import Acq.IHighscoreWrapper;
 
 /**
  *

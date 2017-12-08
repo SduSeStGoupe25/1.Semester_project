@@ -6,7 +6,7 @@
 package Domain;
 
 //@author Mikkel Pedersen
-import Arq.IWeapon;
+import Acq.IWeapon;
 
 class Weapon extends Item implements IWeapon {
 

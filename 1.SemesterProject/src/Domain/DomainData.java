@@ -5,12 +5,12 @@
  */
 package Domain;
 
-import Arq.IData;
-import Arq.IDomainData;
-import Arq.IDomainGame;
-import Arq.IGame;
-import Arq.IHighscoreWrapper;
-import Arq.IItem;
+import Acq.IData;
+import Acq.IDomainData;
+import Acq.IDomainGame;
+import Acq.IGame;
+import Acq.IHighscoreWrapper;
+import Acq.IItem;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

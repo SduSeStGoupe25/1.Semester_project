@@ -5,7 +5,7 @@
  */
 package Data;
 
-import Arq.IHighscoreWrapper;
+import Acq.IHighscoreWrapper;
 
 /**
  *
