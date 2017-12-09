@@ -144,6 +144,10 @@ public class UI extends Application implements IUI {
     void setStage(Stage stage) {
         this.stage = stage;
     }
+    
+    Stage getStage() {
+        return stage;
+    }
 
     public FXMLDocumentController getMainController() {
         return mainGameController;

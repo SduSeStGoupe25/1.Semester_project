@@ -5,16 +5,14 @@
  */
 package UI.GUI;
 
-import Acq.IGame;
-import Acq.IRoom;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -23,63 +21,43 @@ import javafx.scene.layout.TilePane;
  */
 public class SpawnScreenController implements Initializable {
 
-    private int amount = 3;
-    @FXML
-    private StackPane tilePane;
+    private int amount;
+    private int amountPerRaw = 4;
 
-    IGame game;
-    IRoom currentRoom;
+    @FXML
+    private TilePane tilePane;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        game = UI.getInstance().getDomainGame();
-        update();
     }
 
-    public void update() {
+    void update() {
+        amount = UI.getInstance().getDomainGame().getRoomMap().get(UI.getInstance().getDomainGame().getCurrentRoom()).getCharactersInRoom().size();
+
         tilePane.getChildren().clear();
-        currentRoom = game.getRoomMap().get(game.getCurrentRoom());
-        System.out.println("WIDTH " + tilePane.getWidth());
-        //tilePane.setHgap(10);
-        //tilePane.setVgap(10);
+        if (amount > 0) {
+            tilePane.setHgap(10);
+            tilePane.setVgap(10);
 
-        int amountOfFields = currentRoom.getCharactersInRoom().size();
-        //int amountOfFields = (amount % 2 != 0) ? amount++ : amount;
-        System.out.println("AAA " + amountOfFields);
-
-        if (amountOfFields < 5) {
-            //tilePane.setPrefRows(1);
-            //tilePane.setPrefColumns(amountOfFields);
-            for (int c = 0; c < amountOfFields; c++) {
-                tilePane.getChildren().add(new UICharacter(currentRoom.getCharactersInRoom().get(c), currentRoom));
-                tilePane.getChildren().get(c).setTranslateX(100 * c);
-                tilePane.getChildren().get(c).toBack();
-                //tilePane.getChildren().add(new Button("HEJ"));
-                System.out.println("HERE");
-            }
-        } else {
-            for (int r = 0; r < amountOfFields / 2; r++) {
-                //tilePane.setPrefColumns(r);
-                //tilePane.setPrefRows(r);
-                for (int c = 0; c < amountOfFields / 2; c++) {
-                    tilePane.getChildren().add(new UICharacter(currentRoom.getCharactersInRoom().get(c), currentRoom));
+            int amountOfFields = (amount % 2 != 0) ? amount + 1 : amount;
+            int rows = (amountOfFields / amountPerRaw == 0) ? 1 : amountOfFields / amountPerRaw;
+            int cols = (amountOfFields / rows > amountPerRaw) ? amountOfFields / ++rows : amountOfFields / rows;
+            
+            tilePane.setPrefRows(rows);
+            tilePane.setPrefColumns(cols);
+            int count = 0;
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    if (count != amount) {
+                        tilePane.getChildren().add(new UICharacter(UI.getInstance().getDomainGame().getRoomMap().get(UI.getInstance().getDomainGame().getCurrentRoom()).getCharactersInRoom().get(count)));
+                        count++;
+                    }
                 }
+
             }
         }
-        System.out.println("WIDTH " + tilePane.getLayoutBounds());
-
     }
-
-//    private void cleanPane() {
-//        while (gridPane.getRowConstraints().size() > 0) {
-//            gridPane.getRowConstraints().remove(0);
-//        }
-//
-//        while (gridPane.getColumnConstraints().size() > 0) {
-//            gridPane.getColumnConstraints().remove(0);
-//        }
-//    }
 }

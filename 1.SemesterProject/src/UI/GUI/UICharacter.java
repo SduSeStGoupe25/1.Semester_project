@@ -6,109 +6,77 @@
 package UI.GUI;
 
 import Acq.ICharacterEntity;
-import Acq.INPC;
-import Acq.IRoom;
-import java.awt.event.ActionListener;
 import java.io.File;
-import javafx.event.ActionEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 /**
  *
  * @author madsd
  */
-public class UICharacter extends SplitPane {
+public class UICharacter extends ImageView {
 
     private ICharacterEntity ce;
-    private IRoom room;
-    private VBox vb;
+    private Popup popup;
 
-    public UICharacter(ICharacterEntity ce, IRoom room) {
+    public UICharacter(ICharacterEntity ce) {
+
         this.ce = ce;
-        this.room = room;
-        ImageView iw = new ImageView();
-        vb = new VBox();
-        Label name = new Label(ce.getName());
-        vb.getChildren().add(name);
-        this.getItems().add(iw);
 
-        switch (ce.getId()) {
+        this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                showPopupMessage(UI.getInstance().getStage(), event);
+            }
+        });
 
-            case 3:
-                Button btnShop = new Button("Shop");
-                btnShop.setOnAction((e) -> {
-                    startShop();
-                });
-                vb.getChildren().addAll(btnShop);
-            case 4:
-
-            case 1:
-                Button btnTalk = new Button("Talk");
-                btnTalk.setOnAction((e) -> {
-                    startTalk();
-                });
-                vb.getChildren().addAll(btnTalk);
-            case 0:
-                Button btnFight = new Button("Attack");
-                btnFight.setOnAction((e) -> {
-                    startCombat();
-                });
-                vb.getChildren().addAll(btnFight);
-                break;
+        File f = new File("Img/NPC/" + ce.getName() + ".png");
+        if (!f.exists()) {
+            f = new File("Img/place.png");
         }
-
-        this.setOnMouseEntered((e) -> {
-            showButtons();
-        });
-
-        this.setOnMouseExited((e) -> {
-            hideButtons();
-        });
-
-        //super();
-//        File file = new File("shopkeeperArt.png");
-        File f = new File("Img/NPC/merlin.png");
         Image image = new Image(f.toURI().toString(), 100, 100, false, false);
-        iw.setImage(image);
-//        this.setFitHeight(9);
-//        this.setFitWidth(9);
-////        int r = (int) (Math.random() * 6000);
-////        String c = "#" + r;
-////        this.setStyle("-fx-background-color:" + c);
+        this.setImage(image);
+        
         System.out.println("image");
-        showButtons();
-        hideButtons();
     }
 
-    private void showButtons() {
-        this.getItems().add(vb);
-        this.setTranslateX((vb.getWidth() / 2) + this.getTranslateX());
+    public Popup createPopup() {
+        try {
+            popup = new Popup();
+            PopupCharacterController controller = new PopupCharacterController();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PopupCharacter.fxml"));
+            loader.setController(controller);
+            popup.getContent().add((Parent) loader.load());
+            controller.setCE(ce);
+            controller.setPopup(popup);
+
+            popup.setAutoFix(true);
+            popup.setAutoHide(true);
+            popup.setHideOnEscape(true);
+
+            return popup;
+        } catch (IOException ex) {
+            Logger.getLogger(UICharacter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    private void hideButtons() {
-        this.getItems().remove(vb);
-        this.setTranslateX((-vb.getWidth() / 2) + this.getTranslateX());
-    }
-
-    private void startCombat() {
-        UI.getInstance().getDomainGame().getCombat().startCombat(ce, room);
-        UI.getInstance().setState(UIState.COMBATSCREEN);
-    }
-
-    private void startTalk() {
-        System.out.println(((INPC) ce).getTalk());
-    }
-
-    private void startShop() {
-        UI.getInstance().setState(UIState.SHOPSCREEN);
+    public void showPopupMessage(Stage stage, MouseEvent a) {
+        Popup popup = createPopup();
+        popup.setX(a.getSceneX() + stage.getX() - popup.getWidth() / 2);
+        popup.setY(a.getSceneY() + stage.getY() - popup.getHeight() / 2);
+        popup.show(stage);
     }
 }

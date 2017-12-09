@@ -119,7 +119,7 @@ class Room implements IRoom {
             if ((int) (Math.random() * 2) == 0) {
                 int nonMonstersInRoom = charactersInRoom.size() - monsterAmount;
                 int opponent = (int) (Math.random() * monsterAmount) + nonMonstersInRoom;
-                DomainGame.getInstance().getCombat().startCombat(charactersInRoom.get(opponent), this);
+                DomainGame.getInstance().getCombat().startCombat(charactersInRoom.get(opponent));
             }
         }
 
