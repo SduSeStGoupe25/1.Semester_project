@@ -59,6 +59,7 @@ class Inventory implements IInventory {
             while (amountBack > 0) {
                 //Creates a new item
                 Item itemToAdd = (Item) DomainData.getInstance().getItem(item.getName());
+                System.out.println("ITEM " + itemToAdd);
                 //Checks if the amountBack is bigger than the amount that can be in one item
                 if (amountBack > item.getMAX_COUNT()) {
                     //Add the maxcount the item
