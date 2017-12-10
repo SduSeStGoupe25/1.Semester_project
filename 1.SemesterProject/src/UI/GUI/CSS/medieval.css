@@ -15,7 +15,16 @@
     -fx-text-fill: #a89c1c;
 }
 
+#talkButton  { 
+-fx-font-family: "Breathe Fire";
 
+} 
+
+
+#attackButton { 
+-fx-font-family: "Breathe Fire";
+
+}
 #mapGrid { 
 -fx-background-image: url("gamemap.png");
 -fx-background-repeat: no-repeat;
