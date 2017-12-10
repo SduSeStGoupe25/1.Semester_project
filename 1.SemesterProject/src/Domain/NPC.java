@@ -20,15 +20,12 @@ class NPC extends CharacterEntity implements INPC {
     private int expDrop;
     private Map<String, Integer> itemMap = new HashMap<>();
 
-    NPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Map<String, Integer> itemMap) {
-        super(name, health, armor, attack, level, 1);
-        this.talk = talk;
-        this.expDrop = expDrop;
-        this.itemMap = itemMap;
+    NPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Map<String, Integer> itemMap, boolean hostile, boolean despawning) {
+        this(name, health, armor, attack, level, 1, expDrop, talk, itemMap, hostile, despawning);
     }
 
-    NPC(String name, int health, int armor, int attack, int level, int expDrop, int id, String talk, Map<String, Integer> itemMap) {
-        super(name, health, armor, attack, level, id);
+    NPC(String name, int health, int armor, int attack, int level, int expDrop, int id, String talk, Map<String, Integer> itemMap, boolean hostile, boolean despawning) {
+        super(name, health, armor, attack, level, id, hostile, despawning);
         this.talk = talk;
         this.expDrop = expDrop;
         this.itemMap = itemMap;

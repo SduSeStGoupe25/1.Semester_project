@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
-
+import java.util.Iterator;
 
 /**
  * Class that creates and controls the game Rooms/areas. This includes both
@@ -95,6 +95,17 @@ class Room implements IRoom {
         allowedMonsters.addAll(d);
     }
 
+    void despawnEnemies() {
+        if (!charactersInRoom.isEmpty()) {
+            Iterator<ICharacterEntity> iterator = charactersInRoom.iterator();
+            while (iterator.hasNext()) {
+                if (iterator.next().isDespawning()) {
+                    iterator.remove();
+                }
+            }
+        }
+    }
+
     void spawnEnemies() { //Spawns a randomly generated amount of enemies for the room
 
         if (!allowedMonsters.isEmpty()) {
@@ -119,7 +130,10 @@ class Room implements IRoom {
             if ((int) (Math.random() * 2) == 0) {
                 int nonMonstersInRoom = charactersInRoom.size() - monsterAmount;
                 int opponent = (int) (Math.random() * monsterAmount) + nonMonstersInRoom;
-                DomainGame.getInstance().getCombat().startCombat(charactersInRoom.get(opponent));
+                ICharacterEntity ce = charactersInRoom.get(opponent);
+                if (ce.isHostile()) {
+                    DomainGame.getInstance().getCombat().startCombat(ce);
+                }
             }
         }
 

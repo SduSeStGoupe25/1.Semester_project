@@ -16,8 +16,8 @@ class Shopkeeper extends NPC implements IShopkeeper {
 
     private Map<String, IItem> itemstoSell = new HashMap<>();
 
-    Shopkeeper(String name, int health, int armor, int attack, int level, int expDrop, String talk, Map<String, Integer> itemMap) {
-        super(name, health, armor, attack, level, expDrop, 3, talk, itemMap);
+    Shopkeeper(String name, int health, int armor, int attack, int level, int expDrop, String talk, Map<String, Integer> itemMap, boolean hostile, boolean despawning) {
+        super(name, health, armor, attack, level, expDrop, 3, talk, itemMap, hostile, despawning);
 
     }
 

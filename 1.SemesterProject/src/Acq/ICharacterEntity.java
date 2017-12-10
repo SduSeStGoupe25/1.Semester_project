@@ -8,6 +8,8 @@ package Acq;
  */
 public interface ICharacterEntity {
 
+    boolean isHostile();
+    boolean isDespawning();
     int getBaseHealth();
     int getBaseAttack();
     /**

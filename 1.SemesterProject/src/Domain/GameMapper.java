@@ -161,7 +161,9 @@ class GameMapper {
                         toBeMapped.getLevel(),
                         ((INPC) toBeMapped).getExpDrop(),
                         ((INPC) toBeMapped).getTalk(),
-                        ((INPC) toBeMapped).getItemDropMap());
+                        ((INPC) toBeMapped).getItemDropMap(),
+                        toBeMapped.isHostile(),
+                        toBeMapped.isDespawning());
             case 2:
                 break;
             case 3:
@@ -173,7 +175,9 @@ class GameMapper {
                         toBeMapped.getLevel(),
                         ((IShopkeeper) toBeMapped).getExpDrop(),
                         ((IShopkeeper) toBeMapped).getTalk(),
-                        ((INPC) toBeMapped).getItemDropMap());
+                        ((INPC) toBeMapped).getItemDropMap(),
+                        toBeMapped.isHostile(),
+                        toBeMapped.isDespawning());
                 s.setItemsToSell(map(((IShopkeeper) toBeMapped).getItemsToSell()));
                 return s;
             case 4:
@@ -186,7 +190,9 @@ class GameMapper {
                         ((IMoveableNPC) toBeMapped).getExpDrop(),
                         ((IMoveableNPC) toBeMapped).getTalk(),
                         ((IMoveableNPC) toBeMapped).getAllowedRooms(),
-                        ((INPC) toBeMapped).getItemDropMap());
+                        ((INPC) toBeMapped).getItemDropMap(),
+                        toBeMapped.isHostile(),
+                        toBeMapped.isDespawning());
         }
         return null;
     }

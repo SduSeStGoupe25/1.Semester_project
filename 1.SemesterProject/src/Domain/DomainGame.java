@@ -112,6 +112,7 @@ public class DomainGame implements IGame {
         } else if (((Exit) exit).isLocked(player.getItemInventory())) {
             return false;
         } else {  //If it has
+            ((Room)rooms.get(currentRoom)).despawnEnemies();
             Room nextRoom = (Room) getRoomMap().get(((Exit) exit).nextRoom(getCurrentIRoom().getName()));
             setCurrentIRoom(nextRoom); //Current room is now the nextRoom
             player.addHunger(-3);

@@ -20,8 +20,8 @@ class MoveableNPC extends NPC implements Moveable, IMoveableNPC {
 
     private Set<String> allowedRooms;
     
-    MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Set<String> allowedRooms, Map<String, Integer> itemMap) {
-        super(name, health, armor, attack, level, expDrop, 4, talk, itemMap);
+    MoveableNPC(String name, int health, int armor, int attack, int level, int expDrop, String talk, Set<String> allowedRooms, Map<String, Integer> itemMap, boolean hostile, boolean despawning) {
+        super(name, health, armor, attack, level, expDrop, 4, talk, itemMap, hostile, despawning);
         this.allowedRooms = allowedRooms;
     }
 

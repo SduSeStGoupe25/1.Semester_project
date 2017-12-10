@@ -21,9 +21,15 @@ abstract class DataCharactorEntity implements ICharacterEntity {
     private int baseHealth;
     private int baseAttack;
     private int attack;
+    private boolean hostile;
+    private boolean despawning;
     private int id; // 0 = CharacterEntity, 1 = NPC, 2 = Player, 3 = Shopkeeper, 4 = MovableNPC
 
     DataCharactorEntity(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
+        this(name, health, armor, level, maxHealth, baseHealth, baseAttack, attack, id, false, false);
+    }
+
+    DataCharactorEntity(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id, boolean hostile, boolean despawning) {
         this.name = name;
         this.health = health;
         this.armor = armor;
@@ -33,6 +39,8 @@ abstract class DataCharactorEntity implements ICharacterEntity {
         this.baseAttack = baseAttack;
         this.attack = attack;
         this.id = id;
+        this.hostile = hostile;
+        this.despawning = despawning;
     }
 
     @Override
@@ -80,4 +88,15 @@ abstract class DataCharactorEntity implements ICharacterEntity {
         return id;
     }
 
+    @Override
+    public boolean isDespawning(){
+        return despawning;
+    }
+
+    @Override
+    public boolean isHostile(){
+        return hostile;
+    }
+
+    
 }

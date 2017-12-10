@@ -15,20 +15,27 @@ abstract class CharacterEntity implements ICharacterEntity {
     private int baseHealth;
     private int baseAttack;
     private int attack;
+    private boolean hostile;
+    private boolean despawning;
     private int id; // 0 = CharacterEntity, 1 = NPC, 2 = Player, 3 = Shopkeeper, 4 = MovableNPC
 
     //Constructor
     CharacterEntity(String name, int baseHealth, int armor, int baseAttack, int level, int id) {
+        this(name, baseHealth, armor, baseAttack, level, id, false, false);
+    }
+
+    CharacterEntity(String name, int baseHealth, int armor, int baseAttack, int level, int id, boolean hostile, boolean despawning) {
         this.baseHealth = baseHealth;
         this.baseAttack = baseAttack;
         this.name = name;
         this.level = level;
-        
+        this.hostile = hostile;
+        this.despawning = despawning;
+
         setStats();
         this.health = maxHealth;
         this.armor = armor;
         this.id = id;
-        
     }
 
     /**
@@ -39,8 +46,8 @@ abstract class CharacterEntity implements ICharacterEntity {
         attack = (level * baseAttack) / 10;
         maxHealth = ((level - 1) * 10) + baseHealth;
     }
-    
-    void setStatsToMax(){
+
+    void setStatsToMax() {
         setStats();
         health = maxHealth;
     }
@@ -135,4 +142,15 @@ abstract class CharacterEntity implements ICharacterEntity {
     void setBaseAttack(int baseAttack) {
         this.baseAttack = baseAttack;
     }
+
+    @Override
+    public boolean isDespawning() {
+        return despawning;
+    }
+
+    @Override
+    public boolean isHostile() {
+        return hostile;
+    }
+
 }
