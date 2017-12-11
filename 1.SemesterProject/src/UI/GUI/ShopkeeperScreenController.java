@@ -73,10 +73,13 @@ public class ShopkeeperScreenController implements Initializable {
     }
 
     void loadShopkeeper() { //loads shopkeepers selection to listview, and adjusts the pricetext according to the selected item from the listview
-        Set<IItem> itemsToSell = new HashSet();
+        ArrayList<IItem> itemsToSell = new ArrayList<>();
         for (String s : UI.getInstance().getDomainGame().getShopkeeper().getItemsToSell()) {
             itemsToSell.add(UI.getInstance().getDomainData().getItem(s));
         }
+        
+        ObservableList<IItem> ob = FXCollections.observableArrayList(itemsToSell);
+        shopSelectionList.setItems(ob);
     }
 
     @FXML
