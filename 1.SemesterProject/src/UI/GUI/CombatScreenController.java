@@ -94,6 +94,7 @@ public class CombatScreenController implements Initializable {
         updateOpponentStats();
         updatEquippedInventory();
         
+        
         imageForest.setPreserveRatio(true);
         imageForest.fitHeightProperty().bind(imagePane.heightProperty());
         imageForest.fitWidthProperty().bind(imagePane.widthProperty());
