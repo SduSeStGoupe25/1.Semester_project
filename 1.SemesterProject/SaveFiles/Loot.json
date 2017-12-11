@@ -1,5 +1,4 @@
 {
-	"items":{
 		"rock":{
                	       "baseAttack":1,
              	       "attackValue":2,
@@ -120,5 +119,5 @@
 	               "MAX_COUNT":10,
 	               "id":4
 			}
-		}
+
 }

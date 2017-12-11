@@ -7,7 +7,6 @@ import Acq.IExit;
 import Acq.IHighscoreWrapper;
 import Acq.IInventory;
 import Acq.IItem;
-import Acq.INPC;
 import Acq.IQuest;
 import Acq.IRoom;
 import com.google.gson.Gson;
@@ -16,6 +15,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import java.io.File;
 import java.io.FileReader;
@@ -23,7 +23,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -83,26 +82,17 @@ public class JSONDatabase implements IData {
                     .registerTypeHierarchyAdapter(ICharacterEntity.class, new CharacterEntityDeserializer()) // use read item correct
                     .create();
 
-            //Converts the string to a lootClass
-            NPCClass obj = gson.fromJson(jsonReader, NPCClass.class);
+            //Gets the type
+            Type type = new TypeToken<Map<String, ICharacterEntity>>() {
+            }.getType();
+
+            //Converts the json string to a map
+            Map<String, ICharacterEntity> obj = gson.fromJson(jsonReader, type);
             //Return npc
-            return obj.npc.get(name);
+            return obj.get(name);
         } catch (IOException e) {
         }
         return null;
-    }
-
-    /**
-     * Private inner class to avoid exception when saving and loading. The only
-     * use it to store the Map
-     */
-    private class NPCClass {
-
-        Map<String, ICharacterEntity> npc;
-
-        public NPCClass() {
-            npc = new HashMap<>();
-        }
     }
 
     //////////////////////////
@@ -118,26 +108,17 @@ public class JSONDatabase implements IData {
                     .registerTypeHierarchyAdapter(IItem.class, new ItemDeserializer()) // use read item correct
                     .create();
 
-            //Converts the string to a lootClass
-            LootClass obj = gson.fromJson(jsonReader, LootClass.class);
+            //Gets the type
+            Type type = new TypeToken<Map<String, IItem>>() {
+            }.getType();
+
+            //Converts the json string to a map
+            Map<String, IItem> obj = gson.fromJson(jsonReader, type);
             //Return map
-            return obj.items;
+            return obj;
         } catch (IOException e) {
         }
         return null;
-    }
-
-    /**
-     * Private inner class to avoid exception when saving and loading. The only
-     * use it to store the Map
-     */
-    private class LootClass {
-
-        Map<String, IItem> items;
-
-        public LootClass() {
-            items = new HashMap<>();
-        }
     }
 
     //////////////////////////
