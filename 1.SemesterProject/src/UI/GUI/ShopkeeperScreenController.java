@@ -81,6 +81,9 @@ public class ShopkeeperScreenController implements Initializable {
 
     @FXML
     private void buyButtonPressed(ActionEvent event) {
+        if (shopSelectionList.getSelectionModel().getSelectedItem() == null) { //prevents invocation target exception if sell is pressed without an item selected
+            return;
+        }
         if (amountField.getText().isEmpty()) {
             UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), 1);
             loadPlayerInfo();
@@ -94,6 +97,9 @@ public class ShopkeeperScreenController implements Initializable {
 
     @FXML
     private void sellButtonPressed(ActionEvent event) {
+        if (playerInventoryList.getSelectionModel().getSelectedItem() == null) { //prevents invocation target exception if buy is pressed without an item selected
+            return;
+        }
         if (amountField.getText().isEmpty() ) { 
              UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), 1);
              loadPlayerInfo();
