@@ -7,8 +7,6 @@ package UI.GUI;
 
 import Acq.IGame;
 import Acq.IItem;
-import Acq.IPlayer;
-import Domain.DomainGame;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,18 +20,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
