@@ -3,9 +3,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Text?>
 
 <GridPane fx:id="mapGrid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.MapSceneController">
   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -15,16 +18,71 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
+   <children>
+      <StackPane fx:id="legendPane" prefHeight="150.0" prefWidth="195.0" GridPane.columnSpan="2" GridPane.rowSpan="2" />
+      <StackPane fx:id="forrestPane" prefHeight="150.0" prefWidth="195.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Forrest" />
+         </children>
+      </StackPane>
+      <StackPane fx:id="deepWoodsPane" prefHeight="150.0" prefWidth="195.0" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deep Woods" />
+         </children>
+      </StackPane>
+      <StackPane fx:id="cavePane" prefHeight="150.0" prefWidth="195.0" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cave" />
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowSpan="2" />
+      <StackPane fx:id="farmPane" prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Farm" />
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2" />
+      <StackPane prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="2" />
+      <StackPane fx:id="shopPane" prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowSpan="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shop" />
+         </children>
+      </StackPane>
+      <StackPane fx:id="cityCenterPane" prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City Center" />
+         </children>
+      </StackPane>
+      <StackPane fx:id="castlePane" prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Castle" />
+         </children>
+      </StackPane>
+      <StackPane fx:id="towerPane" prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tower" />
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowSpan="2" />
+      <StackPane fx:id="tawernPane" prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tavern" />
+         </children>
+      </StackPane>
+      <StackPane fx:id="excaliburPane" prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Excalibur" />
+         </children>
+      </StackPane>
+      <StackPane fx:id="compasPane" prefHeight="150.0" prefWidth="195.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="2" />
+   </children>
 </GridPane>

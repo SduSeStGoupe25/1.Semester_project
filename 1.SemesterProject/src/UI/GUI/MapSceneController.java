@@ -32,7 +32,9 @@ public class MapSceneController implements Initializable {
     private GridPane mapGrid;
     @FXML
     private ImageView mapImageView;
-    ImageView iw = new ImageView();
+    ImageView pw = new ImageView();
+    ImageView princessView = new ImageView();
+    ImageView merlinView = new ImageView();
 
     /**
      * Initializes the controller class.
@@ -44,8 +46,15 @@ public class MapSceneController implements Initializable {
         princessRoom = findMoveableNPC("Princess");
         File f = new File("src/UI/GUI/Icons/player-icon.png");
                 Image image = new Image(f.toURI().toString(), 50, 25, false, false);
+                pw.setImage(image);
+        
+        File f1 = new File("src/UI/GUI/Icons/princess-icon.png");
+                Image image1 = new Image(f1.toURI().toString(), 50, 25, false, false);
+                princessView.setImage(image1);
                 
-                iw.setImage(image);
+       File f2 = new File("src/UI/GUI/Icons/merlin-icon.png");
+                Image image2 = new Image(f2.toURI().toString(), 50, 25, false, false);
+                merlinView.setImage(image2);
 
         updateMap();
     }
@@ -53,67 +62,72 @@ public class MapSceneController implements Initializable {
     public void updateMap() {
         switch (merlinRoom) {
             case "tower":
+                mapGrid.add(merlinView, 4, 7);
                 break;
             case "citycenter":
+                mapGrid.add(merlinView, 4, 3);
                 break;
             case "shop":
+                mapGrid.add(merlinView, 4, 1);
                 break;
             case "tavern":
+                mapGrid.add(merlinView, 6, 2);
                 break;
             case "castle":
+                mapGrid.add(merlinView, 4, 4);
                 break;
             case "dead":
                 break;
         }
         switch (princessRoom) {
             case "tower":
+                mapGrid.add(princessView, 5,6);
                 break;
             case "citycenter":
+                mapGrid.add(princessView, 5,2);
                 break;
             case "shop":
+                mapGrid.add(princessView, 5,0);
                 break;
             case "tavern":
+                mapGrid.add(princessView, 7,2);
                 break;
             case "castle":
+                mapGrid.add(princessView, 5,4);
                 break;
             case "dead":
                 break;
         }
         switch (playerRoom) {
             case "tower":
-                mapGrid.add(iw, 3, 9);
+                mapGrid.add(pw, 5, 7);
                 break;
             case "citycenter":
-                //3,4
-                
-                mapGrid.add(iw, 3, 4);
-
+                mapGrid.add(pw, 5, 3);
                 break;
             case "shop":
-                mapGrid.add(iw, 3, 1);
+                mapGrid.add(pw, 5, 1);
                 break;
             case "tavern":
-                //4,4
-                mapGrid.add(iw, 5, 4);
+                mapGrid.add(pw, 7, 3);
                 break;
             case "castle":
-                //3,6
-                mapGrid.add(iw, 3, 7);
+                mapGrid.add(pw, 5, 5);
                 break;
             case "forrest":
-                mapGrid.add(iw, 0, 4);
+                mapGrid.add(pw, 1, 3);
                 break;
             case "deepwoods":
-                mapGrid.add(iw, 1, 7);
+                mapGrid.add(pw, 1, 5);
                 break;
             case "cave":
-                mapGrid.add(iw, 2, 7);
+                mapGrid.add(pw, 1, 7);
                 break;
             case "excalibur":
-                mapGrid.add(iw, 5, 8);
+                mapGrid.add(pw, 7, 5);
                 break;
             case "farm":
-                mapGrid.add(iw, 2, 4);
+                mapGrid.add(pw, 3, 3);
                 break;
         }
 
