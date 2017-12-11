@@ -246,7 +246,7 @@ public class DomainGame implements IGame {
     }
 
     @Override
-    public boolean buy(IItem item, int amount, IPlayer player) {
+    public boolean buy(IItem item, int amount) {
         Shopkeeper s = (Shopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
         if (s.buy((Item) item, amount, (Player) player) == true) {
             return true;
@@ -257,7 +257,7 @@ public class DomainGame implements IGame {
     }
 
     @Override
-    public boolean sell(IItem item, int amount, IPlayer player) {
+    public boolean sell(IItem item, int amount) {
         Shopkeeper s = (Shopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
         if (s.sell((Item) item, amount, (Player) player) == true) {
             return true;

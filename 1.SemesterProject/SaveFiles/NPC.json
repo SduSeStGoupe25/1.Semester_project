@@ -1,9 +1,9 @@
 
 	{
 		"shopkeeper":{
-	               "itemstoSell":{  
+	               "itemstoSell":["rock", "club", "chainmail", "leather jacket", "potion", "meat", "berry", "wool"  
 	
-	               },
+	               ],
 	               "talk":"Hello",
 	               "expDrop":10,
 	               "name":"Shopkeeper",

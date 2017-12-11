@@ -1,16 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Acq;
 
-import java.util.Map;
+import java.util.Set;
 
 /**
  *
- * @author madsd
+ * Interface shopkeeper
  */
-public interface IShopkeeper extends INPC{
-    Map<String, IItem> getItemsToSell();
+public interface IShopkeeper extends INPC {
+
+    /**
+     * Called to get the item the shopkeeper can sell
+     *
+     * @return a Set with the name of item to sell
+     */
+    Set<String> getItemsToSell();
 }

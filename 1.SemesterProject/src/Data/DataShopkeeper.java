@@ -5,9 +5,8 @@
  */
 package Data;
 
-import Acq.IItem;
 import Acq.IShopkeeper;
-import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -15,14 +14,14 @@ import java.util.Map;
  */
 class DataShopkeeper extends DataNPC implements IShopkeeper {
 
-    private Map<String, IItem> itemstoSell;
+    private Set<String> itemstoSell;
 
     public DataShopkeeper(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id, String talk, int expDrop, boolean hostile, boolean despawning) {
         super(name, health, armor, level, maxHealth, baseHealth, baseAttack, attack, id, talk, expDrop, hostile, despawning);
     }
 
     @Override
-    public Map<String, IItem> getItemsToSell() {
+    public Set<String> getItemsToSell() {
         return itemstoSell;
     }
 

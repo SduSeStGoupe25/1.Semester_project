@@ -1,19 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Acq;
 
 /**
  *
- * @author madsd
+ * Interface weapon
  */
-public interface IWeapon extends IItem{
+public interface IWeapon extends IItem {
 
+    /**
+     * Called to get the attack value
+     *
+     * @return the attack value
+     */
     int getAttackValue();
 
+    /**
+     * Called to get the item level
+     *
+     * @return the item level
+     */
     int getItemLevel();
-    
+
+    /**
+     * Called to get the base attack
+     *
+     * @return the base attack
+     */
     int getBaseAttack();
 }

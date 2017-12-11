@@ -65,7 +65,7 @@ class GameMapper {
         r.setExits(mapT(((IRoom) toBeMapped).getExits()));
         r.setCharactersInRoom(map(((IRoom) toBeMapped).getCharactersInRoom()));
         r.setItemList(map(((IRoom) toBeMapped).getItemList()));
-        r.setAllowesMonsters(map(((IRoom) toBeMapped).getAllowesMonsters()));
+        r.setAllowesMonsters(map(((IRoom) toBeMapped).getAllowesNPC()));
         return r;
     }
 
@@ -178,7 +178,7 @@ class GameMapper {
                         ((INPC) toBeMapped).getItemDropMap(),
                         toBeMapped.isHostile(),
                         toBeMapped.isDespawning());
-                s.setItemsToSell(map(((IShopkeeper) toBeMapped).getItemsToSell()));
+                s.setItemsToSell(((IShopkeeper) toBeMapped).getItemsToSell());
                 return s;
             case 4:
                 return new MoveableNPC(

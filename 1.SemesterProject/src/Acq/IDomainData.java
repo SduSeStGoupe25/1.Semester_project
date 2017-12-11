@@ -10,12 +10,30 @@ import java.util.Map;
  */
 public interface IDomainData {
 
+    /**
+     * Called to get a new NPC instance
+     *
+     * @param name the name of the NPC to be loaded
+     * @param level the level of the NPC
+     * @return a new NPC instance
+     */
     INPC getNPC(String name, int level);
-    
+
+    /**
+     * Called to get a new Item instance
+     *
+     * @param name the name of the item to be loaded
+     * @return a new Item instance
+     */
     IItem getItem(String name);
-    
+
+    /**
+     * Called to get a Map of all item in the game
+     *
+     * @return a Map of all item in the game
+     */
     Map<String, IItem> getItemMap();
-    
+
     /**
      * Called to add a new score to the scoretable in the data layer
      *
@@ -40,12 +58,14 @@ public interface IDomainData {
 
     /**
      * Called to get the highScoreTable
+     *
      * @return a List with IHighscoreWrapper
      */
     List<IHighscoreWrapper> getHighScoreTable();
 
     /**
      * Called to inject data to instance that implements this interface
+     *
      * @param data a instance of IData
      */
     void injectData(IData data);

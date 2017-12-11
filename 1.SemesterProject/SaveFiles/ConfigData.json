@@ -112,7 +112,7 @@
          },
          "charactersInRoom": [
             {
-               "itemstoSell": {},
+               "itemstoSell": ["rock", "club", "chainmail", "leather jacket", "potion", "meat", "berry", "wool"],
                "talk": "Hello",
                "expDrop": 10,
                "itemMap": {

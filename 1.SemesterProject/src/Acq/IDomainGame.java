@@ -1,21 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Acq;
 
 import java.util.Map;
 
 /**
  *
- * @author madsd
+ * Interface for DomainGame
  */
 public interface IDomainGame {
+
+    /**
+     * Called to get the name of the current room
+     *
+     * @return name of the current room
+     */
     String getCurrentRoom();
+
+    /**
+     * Called to get the player
+     *
+     * @return the player
+     */
     IPlayer getPlayer();
-    //ICombat getCombat();
-    
+
+    /**
+     * Called to get a Map with all Rooms in the game
+     *
+     * @return a Map with Rooms
+     */
     Map<String, IRoom> getRoomMap();
-   // String[][] getItemNames();
 }

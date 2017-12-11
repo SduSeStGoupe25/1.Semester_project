@@ -3,10 +3,10 @@
  */
 package Domain;
 
-import Acq.IItem;
 import Acq.IShopkeeper;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -14,7 +14,7 @@ import java.util.Map;
  */
 class Shopkeeper extends NPC implements IShopkeeper {
 
-    private Map<String, IItem> itemstoSell = new HashMap<>();
+    private Set<String> itemstoSell = new HashSet<>();
 
     Shopkeeper(String name, int health, int armor, int attack, int level, int expDrop, String talk, Map<String, Integer> itemMap, boolean hostile, boolean despawning) {
         super(name, health, armor, attack, level, expDrop, 3, talk, itemMap, hostile, despawning);
@@ -43,11 +43,11 @@ class Shopkeeper extends NPC implements IShopkeeper {
     }
 
     @Override
-    public Map<String, IItem> getItemsToSell() {
+    public Set<String> getItemsToSell() {
         return itemstoSell;
     }
 
-    void setItemsToSell(Map<String, IItem> itemstoSell) {
+    void setItemsToSell(Set<String> itemstoSell) {
         this.itemstoSell = itemstoSell;
     }
 

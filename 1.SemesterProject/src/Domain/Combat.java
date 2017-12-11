@@ -3,11 +3,6 @@ package Domain;
 import Acq.ICharacterEntity;
 import Acq.ICombat;
 import Acq.ICombatResponse;
-import Acq.IDomainGame;
-import Acq.IPlayer;
-import Acq.IRoom;
-import Domain.DomainGame;
-import Domain.Room;
 
 /**
  *
