@@ -126,9 +126,6 @@ public class JSONDatabase implements IData {
     //////////////////////////
     @Override
     public List<IHighscoreWrapper> getHighscore() {
-        //Instanciates a list to return
-        List<IHighscoreWrapper> highscoreTable = new ArrayList<>();
-
         //Try to read file
         try (FileReader reader = new FileReader(fileHigh)) {
 
@@ -138,16 +135,20 @@ public class JSONDatabase implements IData {
                     .registerTypeHierarchyAdapter(IHighscoreWrapper.class, new ScoreDeserializer()) // use read CharacterEntity correct
                     .create();
 
+            //Gets the type
+            Type type = new TypeToken<List<IHighscoreWrapper>>() {
+            }.getType();
+
             //Converts the string to a list
-            highScoreObject ho = gson.fromJson(jsonReader, highScoreObject.class);
-            highscoreTable = ho.list;
+            List<IHighscoreWrapper> ho = gson.fromJson(jsonReader, type);
 
             System.out.println("Done loading");
+            return ho;
         } catch (IOException e) {
         }
 
         //Returns the high score table
-        return highscoreTable;
+        return null;
     }
 
     /**
@@ -163,19 +164,6 @@ public class JSONDatabase implements IData {
             return (DataHighScoreWrapper) g.fromJson(je, DataHighScoreWrapper.class);
         }
 
-    }
-
-    /**
-     * Private inner class to avoid exception when saving and loading. The only
-     * use it to store the List
-     */
-    private class highScoreObject {
-
-        List<IHighscoreWrapper> list;
-
-        public highScoreObject(List<IHighscoreWrapper> list) {
-            this.list = list;
-        }
     }
 
     //////////////////////////
@@ -367,7 +355,7 @@ public class JSONDatabase implements IData {
     @Override
     public void saveScoreTable(List<IHighscoreWrapper> list) {
         //Saves the highScoreTable
-        saveData(new highScoreObject(list), fileHigh);
+        saveData(list, fileHigh);
     }
 
     //////////////////////////
