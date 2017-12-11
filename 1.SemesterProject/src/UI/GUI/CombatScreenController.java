@@ -9,6 +9,7 @@ import Acq.ICharacterEntity;
 import Acq.ICombatResponse;
 import Acq.IItem;
 import Acq.IPlayer;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,7 +27,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -39,8 +46,6 @@ import javafx.stage.Stage;
  */
 public class CombatScreenController implements Initializable {
 
-    @FXML
-    private ImageView imageForest;
     @FXML
     private Button lightAttackButton;
     @FXML
@@ -63,7 +68,7 @@ public class CombatScreenController implements Initializable {
     private IPlayer p = UI.getInstance().getDomainGame().getPlayer();
 
     private List<IItem> equippedList;
-    
+
     private StatsPanelController spc;
 
     @FXML
@@ -93,11 +98,12 @@ public class CombatScreenController implements Initializable {
         updatePlayerStats();
         updateOpponentStats();
         updatEquippedInventory();
-        
-        
-        imageForest.setPreserveRatio(true);
-        imageForest.fitHeightProperty().bind(imagePane.heightProperty());
-        imageForest.fitWidthProperty().bind(imagePane.widthProperty());
+
+        File f = new File("Img/combat.png");
+        Image image = new Image(f.toURI().toString());
+        BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
+        imagePane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize)));
+        imagePane.getChildren().add(new UICharacter(c.getOpponent()));
     }
 
     public void updatEquippedInventory() {
@@ -109,12 +115,11 @@ public class CombatScreenController implements Initializable {
     }
 
     public void updatePlayerStats() { //Method for updating the players combat-screen stats
-        if (p.getHealth() < 1) { 
+        if (p.getHealth() < 1) {
             UI.getInstance().setState(UIState.GAMEOVERSCREEN);
-        }
-        else {
-        attackText.setText(Integer.toString(p.getAttack()));
-        defenceText.setText(Integer.toString(p.getArmor()));
+        } else {
+            attackText.setText(Integer.toString(p.getAttack()));
+            defenceText.setText(Integer.toString(p.getArmor()));
         }
         UI.getInstance().getMainController().update(true);
 
@@ -122,7 +127,7 @@ public class CombatScreenController implements Initializable {
 
     public void updateOpponentStats() { //updates opponent entity's combat-screen stats
         ICharacterEntity o = c.getOpponent();
-        if (o.getHealth() < 1) { 
+        if (o.getHealth() < 1) {
             exitCombat();
         }
         opponentNameText.setText(o.getName());
@@ -148,11 +153,11 @@ public class CombatScreenController implements Initializable {
         updatePlayerStats();
         updateOpponentStats();
     }
-    
-    public void exitCombat()  { 
+
+    public void exitCombat() {
         UI.getInstance().setState(UIState.WORLDSCREEN);
     }
-       
+
     @FXML
     public void heavyAttackButtonPressed(ActionEvent event) {
         c = UI.getInstance().getDomainGame().getCombatResponse(1);
@@ -163,7 +168,7 @@ public class CombatScreenController implements Initializable {
     @FXML
     public void usePotionButtonPressed(ActionEvent event) throws IOException {
         if (UI.getInstance().getDomainGame().usePotion() == false) {
-           
+
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CombatPotionErrorWindow.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
@@ -174,12 +179,9 @@ public class CombatScreenController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else { 
+        } else {
             updatePlayerStats();
         }
     }
 
 }
-
-
