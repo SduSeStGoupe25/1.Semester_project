@@ -40,6 +40,7 @@ public class PopupCharacterController implements Initializable {
     @FXML
     private VBox popUpVBox;
     
+    
     private ICharacterEntity ce;
     private Popup popup;
 
@@ -59,7 +60,8 @@ public class PopupCharacterController implements Initializable {
         if(ce.getId() == 3){
             Button shopBut = new Button("Shop");
             buttonBox.getChildren().add(shopBut);
-            shopBut.setOnMouseClicked((event) -> {
+            shopBut.setStyle("-fx-font-family: 'Breathe Fire';"); //adds font to button added in runtime
+            shopBut.setOnMouseClicked((event) -> { //Lambda-udtryk for eventhandling af mouseclick
                 UI.getInstance().setState(UIState.SHOPSCREEN);
                 popup.hide();
             });
