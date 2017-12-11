@@ -65,15 +65,6 @@ public class WorldScreenController implements Initializable {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        File f = new File("Img/" + game.getCurrentRoom() + ".png");
-        if (!f.exists()) {
-            f = new File("Img/place.png");
-        }
-        //https://stackoverflow.com/questions/41188217/javafx-replacing-background-image-of-a-borderpane
-        Image image = new Image(f.toURI().toString(), 100, 100, false, false);
-        BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
-        borderPane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize)));
-
         // Create a controller instance
         Scon = loader.getController();
 
@@ -112,6 +103,15 @@ public class WorldScreenController implements Initializable {
         Scon.update();
         game = UI.getInstance().getDomainGame();
         if (!game.isInCombat()) {
+            File f = new File("Img/" + game.getCurrentRoom() + ".png");
+            if (!f.exists()) {
+                f = new File("Img/place.png");
+            }
+            //https://stackoverflow.com/questions/41188217/javafx-replacing-background-image-of-a-borderpane
+            Image image = new Image(f.toURI().toString(), 100, 100, false, false);
+            BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
+            borderPane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize)));
+
             if (game.getExitCurrentRoom("north") != null) {
                 btnNorth.setDisable(false);
             } else {
