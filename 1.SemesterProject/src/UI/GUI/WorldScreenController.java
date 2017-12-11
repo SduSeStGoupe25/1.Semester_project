@@ -108,7 +108,7 @@ public class WorldScreenController implements Initializable {
                 f = new File("Img/place.png");
             }
             //https://stackoverflow.com/questions/41188217/javafx-replacing-background-image-of-a-borderpane
-            Image image = new Image(f.toURI().toString(), 100, 100, false, false);
+            Image image = new Image(f.toURI().toString());
             BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
             borderPane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize)));
 
