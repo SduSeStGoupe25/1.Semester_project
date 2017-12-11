@@ -13,17 +13,19 @@ public interface IData {
 
     /**
      * Called to get a NPC this this name
+     *
      * @param name of the NPC
      * @return the NPC
      */
     ICharacterEntity getNPC(String name);
-    
+
     /**
      * Called to get a map of all the items
+     *
      * @return a map with IItems
      */
     Map<String, IItem> getItem();
-    
+
     /**
      * Called to get to scoreTable
      *
@@ -44,6 +46,8 @@ public interface IData {
 
     /**
      * Called to save the state of the game
+     *
+     * @param game this will be saved
      */
     void saveGame(IDomainGame game);
 

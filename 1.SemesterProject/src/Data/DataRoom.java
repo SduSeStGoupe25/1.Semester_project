@@ -29,7 +29,7 @@ class DataRoom implements IRoom {
     private HashSet<String> allowedMonsters;
 
     @Override
-    public Set<String> getAllowesMonsters() {
+    public Set<String> getAllowesNPC() {
         return allowedMonsters;
     }
 

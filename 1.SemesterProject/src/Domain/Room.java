@@ -155,7 +155,7 @@ class Room implements IRoom {
     }
 
     @Override
-    public Set<String> getAllowesMonsters() {
+    public Set<String> getAllowesNPC() {
         return allowedMonsters;
     }
 

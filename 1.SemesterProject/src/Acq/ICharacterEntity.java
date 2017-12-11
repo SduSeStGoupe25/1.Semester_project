@@ -8,10 +8,34 @@ package Acq;
  */
 public interface ICharacterEntity {
 
+    /**
+     * Called to see if the character is hostile
+     *
+     * @return true if hostile else false
+     */
     boolean isHostile();
+
+    /**
+     * Called to see if the character is despawning
+     *
+     * @return true if despawning else false
+     */
     boolean isDespawning();
+
+    /**
+     * Called to get the base health, the heath at level 1
+     *
+     * @return base health
+     */
     int getBaseHealth();
+
+    /**
+     * Called to get the base attack, the attack at level 1
+     *
+     * @return
+     */
     int getBaseAttack();
+
     /**
      * Called to get the name
      *

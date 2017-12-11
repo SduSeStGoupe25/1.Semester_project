@@ -10,8 +10,10 @@ import Acq.IPlayer;
 import Acq.IShopkeeper;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -71,19 +73,20 @@ public class ShopkeeperScreenController implements Initializable {
     }
 
     void loadShopkeeper() { //loads shopkeepers selection to listview, and adjusts the pricetext according to the selected item from the listview
-        shopSelectionList.getItems().setAll(UI.getInstance().getDomainData().getItemMap().values());
-//shopSelectionList.getItems().setAll(s.getItemsToSell().values()); //adds values from map to listview. 
-
+        Set<IItem> itemsToSell = new HashSet();
+        for (String s : UI.getInstance().getDomainGame().getShopkeeper().getItemsToSell()) {
+            itemsToSell.add(UI.getInstance().getDomainData().getItem(s));
+        }
     }
 
     @FXML
     private void buyButtonPressed(ActionEvent event) {
         if (amountField.getText().isEmpty()) {
-            UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), 1, p);
+            UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), 1);
             loadPlayerInfo();
             return;
         }
-        UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()), p);
+        UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()));
 
         loadPlayerInfo();
         UI.getInstance().getMainController().update(false);
@@ -92,11 +95,11 @@ public class ShopkeeperScreenController implements Initializable {
     @FXML
     private void sellButtonPressed(ActionEvent event) {
         if (amountField.getText().isEmpty() ) { 
-             UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), 1, p);
+             UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), 1);
              loadPlayerInfo();
              return;
         }
-        UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()), p);
+        UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()));
         loadPlayerInfo();
     }
 
