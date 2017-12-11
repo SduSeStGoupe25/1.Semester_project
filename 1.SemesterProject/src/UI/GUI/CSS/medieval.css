@@ -25,10 +25,7 @@
 -fx-font-family: "Breathe Fire";
 
 }
-#mapGrid { 
--fx-background-image: url("gamemap.png");
--fx-background-repeat: no-repeat;
--fx-background-position: center center;
+
 
 
 }
