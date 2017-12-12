@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI.GUI;
 
 import Acq.ICharacterEntity;
+import Acq.INPC;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -16,11 +12,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author madsd
  */
 public class PopupCharacterController implements Initializable {
 
@@ -31,17 +27,16 @@ public class PopupCharacterController implements Initializable {
     @FXML
     private HBox buttonBox;
     @FXML
-    private Button talkButton;
-    @FXML
-    private Button attackButton;
-    @FXML
     private Label healthLabel;
     @FXML
     private VBox popUpVBox;
-    
-    
-    private ICharacterEntity ce;
+
+    //The CharacterEntity to show data about
+    private ICharacterEntity ce; 
+    //The popup
     private Popup popup;
+    //The popups controller
+    private PopupTalkController pController;
 
     /**
      * Initializes the controller class.
@@ -49,14 +44,18 @@ public class PopupCharacterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         popUpVBox.getStylesheets().add(getClass().getResource("CSS/medieval.css").toExternalFor‌​m());
-    }    
-    
+    }
+
+    /**
+     * Called to update the popup content
+     */
     private void update() {
         nameLabel.setText(ce.getName());
         levelLabel.setText("" + ce.getLevel());
-        healthLabel.setText("" +ce.getHealth());
-        
-        if(ce.getId() == 3){
+        healthLabel.setText("" + ce.getHealth());
+
+        //Checks if the character is a shopkeeper
+        if (ce.getId() == 3) { // if it is
             Button shopBut = new Button("Shop");
             buttonBox.getChildren().add(shopBut);
             shopBut.setStyle("-fx-font-family: 'Breathe Fire';"); //adds font to button added in runtime
@@ -66,18 +65,31 @@ public class PopupCharacterController implements Initializable {
             });
         }
     }
-    
+
+    /**
+     * Called to set the character to show data about
+     * @param ce the character
+     */
     public void setCE(ICharacterEntity ce) {
         this.ce = ce;
         update();
     }
-    
-    public void setPopup(Popup popup){
+
+    /**
+     * Called to set the popup
+     * @param popup the popup
+     */
+    public void setPopup(Popup popup) {
         this.popup = popup;
     }
 
     @FXML
     private void talkClicked(MouseEvent event) {
+        popup.hide();
+        pController = new PopupTalkController();
+        Stage stage = UI.getInstance().getStage();
+        popup = new UIPopup(pController, "PopupTalk.fxml", stage, stage.getWidth() / 2, stage.getHeight() - (stage.getHeight() / 6));
+        pController.setText(((INPC) ce).getTalk());
     }
 
     @FXML
