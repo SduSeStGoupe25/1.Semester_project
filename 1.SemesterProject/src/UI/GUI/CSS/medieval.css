@@ -5,9 +5,9 @@
 }
 
 #gameTitleLabel { 
--fx-font-family: "Salterio Shadow";
--fx-font-size:250%;
--fx-text-fill: #a89c1c;
+    -fx-font-family: "Salterio Shadow";
+    -fx-font-size:250%;
+    -fx-text-fill: #a89c1c;
 
 
 
@@ -16,10 +16,13 @@
 
 
 
-
+#talkLabel{
+    -fx-background-color: #875920;
+}
 #PopupPane{
     -fx-background-color: #875920;
-    -fx-padding: 10; 
+    -fx-padding: 15; 
+
 }
 
 
@@ -36,65 +39,65 @@
 }
 
 #legendPane {
--fx-background-position: center center;
--fx-background-repeat: no-repeat;
--fx-background-image: url("icon-legend.png");
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("icon-legend.png");
 
 
 }
 
 #talkButton  { 
--fx-font-family: "Breathe Fire";
+    -fx-font-family: "Breathe Fire";
 
 } 
 
 #cityCenterPane {
--fx-border-style: dashed; 
+    -fx-border-style: dashed; 
     -fx-border-width: 3;
     -fx-padding: 2;
 
 }
 
 #forrestPane { 
--fx-border-style: dashed; 
+    -fx-border-style: dashed; 
     -fx-border-width: 3;
     -fx-padding: 2;
 }
 
 #farmPane {
--fx-border-style: dashed; 
+    -fx-border-style: dashed; 
     -fx-border-width: 3;
     -fx-padding: 2;
 }
 
 #deepWoodsPane {
--fx-border-style: dashed; 
+    -fx-border-style: dashed; 
     -fx-border-width: 3;
     -fx-padding: 2;
 
 }
 
 #cavePane { 
--fx-border-style: dashed; 
+    -fx-border-style: dashed; 
     -fx-border-width: 3;
     -fx-padding: 2;
 }
 
 #shopPane {
--fx-border-style: dashed; 
+    -fx-border-style: dashed; 
     -fx-border-width: 3;
     -fx-padding: 2;
 }
 
 
 #castlePane { 
--fx-border-style: dashed; 
+    -fx-border-style: dashed; 
     -fx-border-width: 3;
     -fx-padding: 2;
 }
 
 #excaliburPane { 
--fx-border-style: dashed; 
+    -fx-border-style: dashed; 
     -fx-border-width: 3;
     -fx-padding: 2;
 
@@ -102,37 +105,37 @@
 }
 
 #tawernPane { 
--fx-border-style: dashed; 
+    -fx-border-style: dashed; 
     -fx-border-width: 3;
     -fx-padding: 2;
 }
 
 #towerPane {
--fx-border-style: dashed; 
+    -fx-border-style: dashed; 
     -fx-border-width: 3;
     -fx-padding: 2;
 }
 
 #compasPane { 
--fx-background-position: center center;
--fx-background-repeat: no-repeat;
--fx-background-image: url("compass-clipart.gif");
--fx-background-size: 150px;
-  -fx-background-width: 300px;
-  -fx-background-height: 300px;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("compass-clipart.gif");
+    -fx-background-size: 150px;
+    -fx-background-width: 300px;
+    -fx-background-height: 300px;
 
 
 }
 
 #attackButton { 
--fx-font-family: "Breathe Fire";
+    -fx-font-family: "Breathe Fire";
 
 }
 #mapGrid { 
--fx-background-image: url("XqRBXyO.jpg");
+    -fx-background-image: url("XqRBXyO.jpg");
 
--fx-background-position: center center;
--fx-font-size:150%;
+    -fx-background-position: center center;
+    -fx-font-size:150%;
 
 
 }
@@ -176,11 +179,11 @@
 
 .label{ 
     -fx-font-family: "Breathe Fire";
--fx-font-size:150%;
+    -fx-font-size:150%;
 }
 
 .split-pane{
-    
+
 }
 
 .split-pane-divider{
@@ -190,7 +193,7 @@
 
 #gameOverText {
 
--fx-font-family: "Breathe Fire";
+    -fx-font-family: "Breathe Fire";
 
 }
 

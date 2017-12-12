@@ -88,7 +88,7 @@ public class PopupCharacterController implements Initializable {
         popup.hide();
         pController = new PopupTalkController();
         Stage stage = UI.getInstance().getStage();
-        popup = new UIPopup(pController, "PopupTalk.fxml", stage, stage.getWidth() / 2, stage.getHeight() - (stage.getHeight() / 6));
+        popup = new UIPopup(pController, "PopupTalk.fxml", stage, stage.getWidth() / 2.3, stage.getHeight() - (stage.getHeight() / 5));
         pController.setText(((INPC) ce).getTalk());
     }
 
