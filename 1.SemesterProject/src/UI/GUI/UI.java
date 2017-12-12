@@ -73,6 +73,7 @@ public class UI extends Application implements IUI {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Font.loadFont(getClass().getResourceAsStream("Fonts/breathefire.otf"), 16);
+        Font.loadFont(getClass().getResourceAsStream("Fonts/salterioshadow.ttf"), 16);
 
         stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));

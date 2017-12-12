@@ -2,13 +2,25 @@
     -fx-font-family: "Breathe Fire";
     -fx-background-color: #56585b;
 
+}
+
+#gameTitleLabel { 
+-fx-font-family: "Salterio Shadow";
+-fx-font-size:250%;
+-fx-text-fill: #a89c1c;
+
+
 
 }
+
+
+
 
 #popUpVBox{
     -fx-background-color: #875920;
     -fx-padding: 10;
 }
+
 
 
 
