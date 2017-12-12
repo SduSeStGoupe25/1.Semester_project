@@ -113,7 +113,7 @@
          "charactersInRoom": [
             {
                "itemstoSell": ["rock", "club", "chainmail", "leather jacket", "potion", "meat", "berry", "wool"],
-               "talk": "Hello",
+               "talk": "Hello there traveler! If yer lookin' for yer local supplier of various goods, for both battlefield & every day life, look no further! Best prices in the kingdom!",
                "expDrop": 10,
                "itemMap": {
                   "postion": 50
@@ -188,7 +188,7 @@
          },
          "charactersInRoom": [
             {
-               "talk": "Hello",
+               "talk": "Out of my way peasant, I've got a kingdom to rule",
                "expDrop": 1,
                "itemMap": {
                   "king chainmal": 100,
@@ -273,7 +273,7 @@
                   "tavern",
                   "tower"
                ],
-               "talk": "Hello",
+               "talk": "Hello there my boy! Be sure to check out your Quest-log, to keep track of the next steps on your journey!",
                "expDrop": 10,
                "itemMap": {
                   "stick": 100
@@ -318,7 +318,7 @@
          },
          "charactersInRoom": [
             {
-               "talk": "Hello",
+               "talk": "Well hello there young lad! Rumour has it that you're on a quest to pull Excalibur from the stone.. Don't worry, I won't tell a soul. You should try talking to the drunk over there in the corner. He has info that you might just be interested in. Just use short words.. He's been here for a solid while",
                "expDrop": 1,
                "itemMap": {
                   "meat": 60
@@ -336,7 +336,7 @@
                "id": 1
             },
             {
-               "talk": "Hello",
+               "talk": "... lemme tell ya sumthin little lad... *burp* ....... them Trolls out in the cave, past the deep dangerous part of the woods... one of 'em has a key, that unlocks a secret pathway in the cave... might lead ye to sumthin interesting, if ya know what I mean",
                "expDrop": 1,
                "itemMap": {
                   "rock": 50
@@ -380,7 +380,7 @@
          },
          "charactersInRoom": [
             {
-               "talk": "Hello",
+               "talk": "Another beautiful day at my farm! I just wish Merlin would stop sending out people to murder my sheep... Guess it would help if they stopped jumping at people",
                "expDrop": 1,
                "itemMap": {
                   "rock": 100,
@@ -443,7 +443,7 @@
          },
          "charactersInRoom": [
             {
-               "talk": "You've made it far traveler, most impressively far. You could have been king by now. Sadly for you, your journey ends right. Now.",
+               "talk": "You've made it far traveler, most impressively far. You could have been king by now, had you not run into me.. Prepare to die",
                "expDrop": 1,
                "itemMap": {
                   "excalibur": 100
