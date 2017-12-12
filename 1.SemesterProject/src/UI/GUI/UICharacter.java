@@ -19,10 +19,12 @@ public class UICharacter extends ImageView {
         this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                PopupCharacterController pController = new PopupCharacterController();
-                Popup popup = new UIPopup(pController, "PopupCharacter.fxml", UI.getInstance().getStage(), event.getSceneX(), event.getSceneY());
-                pController.setCE(ce);
-                pController.setPopup(popup);
+                if (!UI.getInstance().getDomainGame().isInCombat()) {
+                    PopupCharacterController pController = new PopupCharacterController();
+                    Popup popup = new UIPopup(pController, "PopupCharacter.fxml", UI.getInstance().getStage(), event.getSceneX(), event.getSceneY());
+                    pController.setCE(ce);
+                    pController.setPopup(popup);
+                }
             }
         });
 
