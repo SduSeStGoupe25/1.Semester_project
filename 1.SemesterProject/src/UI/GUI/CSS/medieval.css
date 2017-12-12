@@ -5,6 +5,11 @@
 
 }
 
+#PopupPane{
+    -fx-background-color: #875920;
+    -fx-padding: 10; 
+}
+
 #popUpVBox{
     -fx-background-color: #875920;
     -fx-padding: 10;
