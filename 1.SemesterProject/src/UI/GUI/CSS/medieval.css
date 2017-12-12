@@ -14,7 +14,9 @@
 }
 
 
-
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
 
 #talkLabel{
     -fx-background-color: #875920;
