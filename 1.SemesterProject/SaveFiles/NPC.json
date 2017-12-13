@@ -90,7 +90,7 @@
 			}
 		},
 		"bartender":{
-               	       "talk":"Hello",
+               	       "talk":"Hello there, care for some wine or beer?",
 	               "expDrop":10,
         	       "name":"Bartender",
 	               "health":100,
@@ -108,7 +108,7 @@
 			}
 		},
 		"waitress":{
-               	       "talk":"Hello",
+               	       "talk":"Hello there, care for some refreshments?",
 	               "expDrop":10,
         	       "name":"Waitress",
 	               "health":100,
@@ -126,7 +126,7 @@
 			}
 		},
 		"drunk man":{
-	               "talk":"Hello",
+	               "talk":"Country roooooads, take me hoooooome *burp*, to da placeee..",
         	       "expDrop":10,
 	               "name":"Drunk man",
 	               "health":100,
@@ -181,7 +181,7 @@
 			}
 		},
 		"sheep":{
-               	       "talk":"Hello",
+               	       "talk":"Baaaah",
 	               "expDrop":10,
         	       "name":"Sheep",
 	               "health":10,
@@ -199,7 +199,7 @@
 				"meat":50			}
 		},
 		"pig":{
-               	       "talk":"Hello",
+               	       "talk":"Oink",
 	               "expDrop":10,
         	       "name":"Pig",
 	               "health":10,
@@ -217,7 +217,7 @@
 			}
 		},
 		"imp":{
-               	       "talk":"Hello",
+               	       "talk":"*Inhuman screeching*",
 	               "expDrop":10,
         	       "name":"Imp",
 	               "health":10,
@@ -235,7 +235,7 @@
 			}
 		},
 		"bear":{
-               	       "talk":"Hello",
+               	       "talk":"Roar",
 	               "expDrop":10,
         	       "name":"Bear",
 	               "health":10,
@@ -253,7 +253,7 @@
 			}
 		},
 		"wild boar":{
-               	       "talk":"Hello",
+               	       "talk":"Grunt",
 	               "expDrop":10,
         	       "name":"Wild boar",
 	               "health":10,
@@ -271,7 +271,7 @@
 			}
 		},
 		"ogre":{
-               	       "talk":"Hello",
+               	       "talk":"ARRRRRRGRH",
 	               "expDrop":10,
         	       "name":"Ogre",
 	               "health":10,
@@ -289,7 +289,7 @@
 			}
 		},
 		"troll":{
-               	       "talk":"Hello",
+               	       "talk":"ARRGHRGRH",
 	               "expDrop":10,
         	       "name":"Troll",
 	               "health":10,
