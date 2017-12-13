@@ -28,6 +28,7 @@ public class PopupTalkController implements Initializable {
      * Initializes the controller class.
      * https://stackoverflow.com/questions/24700765/how-to-hide-a-pannable-scrollbar-in-javafx
      * https://stackoverflow.com/questions/24472170/how-can-we-make-text-auto-scroll-continuious-loop
+     * https://stackoverflow.com/questions/22952531/scrollpanes-in-javafx-8-always-have-gray-background
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

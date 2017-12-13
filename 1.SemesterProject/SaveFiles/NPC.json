@@ -36,7 +36,8 @@
                        "despawning": false,
 	               "id":1,
 		       "itemMap":{
-				"king chainmal":100
+				"king chainmail":100,
+				"key":100
 			}
 		},
 		"princess":{
