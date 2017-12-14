@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="150.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.StatsPanelController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="150.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.StatsPanelController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -41,22 +41,22 @@
       <Text fx:id="currentHealth" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <Text fx:id="currentHunger" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Text fx:id="currentExp" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Attack value:" wrappingWidth="73.74951171875" GridPane.rowIndex="4">
+      <Text fx:id="attackText" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack value:" wrappingWidth="73.74951171875" GridPane.rowIndex="4">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Armor value:" wrappingWidth="73.74951171875" GridPane.rowIndex="5">
+      <Text fx:id="armorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Armor value:" wrappingWidth="73.74951171875" GridPane.rowIndex="5">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medieval Bitcoin:" GridPane.rowIndex="6">
+      <Text fx:id="goldText" strokeType="OUTSIDE" strokeWidth="0.0" text="Medieval Bitcoin:" GridPane.rowIndex="6">
          <font>
             <Font size="10.0" />
          </font>
       </Text>
-      <Label fx:id="goldText" text="Gold" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <Label fx:id="goldLabel" text="Gold" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></Label>

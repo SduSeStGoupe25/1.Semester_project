@@ -13,6 +13,18 @@
 
 }
 
+#attackText {
+ -fx-font-family: "Breathe Fire";
+}
+
+#goldText {
+ -fx-font-family: "Breathe Fire";
+}
+
+#armorText { 
+ -fx-font-family: "Breathe Fire";
+}
+
 
 .scroll-pane > .viewport {
    -fx-background-color: transparent;
