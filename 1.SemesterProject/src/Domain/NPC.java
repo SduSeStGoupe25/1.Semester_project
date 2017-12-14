@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
-//import Domain.Game;
 import Acq.INPC;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- * @author Victor Gram
+ * NPC class
  */
 class NPC extends CharacterEntity implements INPC {
 

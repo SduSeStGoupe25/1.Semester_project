@@ -1,23 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
 import Acq.IItem;
 
 /**
- *
- * @author rasmusstamm
+ * The item class
  */
-abstract class Item implements IItem{
+class Item implements IItem{
     private String name;
     private int sellValue;
     private int count;
     private final int MAX_COUNT;
     private int id; // 0 = armor, 1 = comsum, 2 = key, 3 = normal, 4 = weapon
 
+    Item(String name, int sellValue, int count){
+        this(name, sellValue, count, 10, 3);
+    }
+    
     Item(String name, int sellValue, int count, int MAX_COUNT, int id) {
         this.name = name;
         this.sellValue = sellValue;
@@ -34,8 +32,6 @@ abstract class Item implements IItem{
     public String toString() {
         return name + " \n" + "Sells for: " + sellValue + " gold coins." + "\t" + "Can be bought for: " + (sellValue * 2) + " gold coins " + " AMOUNT " + count;
     }
-    
-    
 
     @Override
     public String getName() {

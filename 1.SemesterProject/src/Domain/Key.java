@@ -1,8 +1,10 @@
 package Domain;
 
-
 import Acq.IKey;
 
+/**
+ * The key class
+ */
 class Key extends Item implements IKey{
     
     private int keyID;

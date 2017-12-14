@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
 import Acq.IMoveableNPC;
-import Domain.DomainGame;
-import Domain.Room;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
 /**
- *
- * @author Victor Gram
+ * MoveableNPC class
  */
 class MoveableNPC extends NPC implements Moveable, IMoveableNPC {
 

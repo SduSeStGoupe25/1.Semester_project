@@ -5,9 +5,7 @@ import Acq.IInventory;
 import Acq.IItem;
 
 /**
- * 
- *  
- * 
+ * Exit class
  */
 class Exit implements IExit {
 

@@ -1,6 +1,3 @@
-/*
- * The Shoopkeper class, used by the games shopkeeper, for the player to buy and sell tems
- */
 package Domain;
 
 import Acq.IShopkeeper;
@@ -8,9 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-/**
- *
- * @author Victor Gram
+/*
+ * The Shoopkeper class, used by the games shopkeeper, for the player to buy and sell tems
  */
 class Shopkeeper extends NPC implements IShopkeeper {
 
@@ -21,7 +17,8 @@ class Shopkeeper extends NPC implements IShopkeeper {
 
     }
 
-    public boolean buy(Item item, int amount, Player player) {
+    public boolean buy(Item item, int amount) {
+        Player player = (Player) DomainGame.getInstance().getPlayer();
         if ((item.getSellValue() * amount) * 2 > player.getGold()) { //Checks if the player has enough gold to purchase the item
             return false;
         }
@@ -34,7 +31,8 @@ class Shopkeeper extends NPC implements IShopkeeper {
 
     }
 
-    public boolean sell(Item item, int amount, Player player) {
+    public boolean sell(Item item, int amount) {
+        Player player = (Player) DomainGame.getInstance().getPlayer();
         if (((Inventory) player.getItemInventory()).removeItem(item, amount)) {
             player.addGold(item.getSellValue() * amount);
             return true;

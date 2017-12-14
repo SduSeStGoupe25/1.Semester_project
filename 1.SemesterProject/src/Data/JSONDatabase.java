@@ -329,19 +329,19 @@ public class JSONDatabase implements IData {
             //Determinds what type of Item the JsonElement is
             switch (id) {
                 case 0:
-                    //Returns instance of Armor
+                    //Returns instance of DataArmor
                     return (DataArmor) g.fromJson(je, DataArmor.class);
                 case 1:
-                    //Returns instance of Consumeable
+                    //Returns instance of DataConsumeable
                     return (DataConsumeable) g.fromJson(je, DataConsumeable.class);
                 case 2:
-                    //Returns instance of Key
+                    //Returns instance of DataKey
                     return (DataKey) g.fromJson(je, DataKey.class);
                 case 3:
-                    //Returns instance of NormalItem
-                    return (DataNormalItem) g.fromJson(je, DataNormalItem.class);
+                    //Returns instance of DataItem
+                    return (DataItem) g.fromJson(je, DataItem.class);
                 case 4:
-                    //Returns instance of Weapon
+                    //Returns instance of DataWeapon
                     return (DataWeapon) g.fromJson(je, DataWeapon.class);
             }
             return null;

@@ -1,21 +1,13 @@
 package Domain;
 
 import Acq.ICharacterEntity;
-import Acq.IConsumeable;
 import Acq.IInventory;
 import Acq.IItem;
 import Acq.IPlayer;
 import Acq.IQuest;
-import Domain.CharacterEntity;
-import Domain.DomainGame;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
-/**
- *
- * @author Victor Gram
- */
 /**
  * This class defines a Player
  */
@@ -41,7 +33,7 @@ class Player extends CharacterEntity implements IPlayer{
         super(name, health, armor, attack, level, 2);
         this.gold = gold;
         this.exp = exp;
-        mainQuest = null;//Stash.getQuestMap();
+        mainQuest = null;
         itemInventory = new Inventory(20);
         equipableInventory = new Inventory(3);
         questsCompleted = 0;

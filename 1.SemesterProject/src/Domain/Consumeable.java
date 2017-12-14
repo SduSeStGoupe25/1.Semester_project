@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
-
-//@author Mikkel Pedersen
 
 import Acq.IConsumeable;
 
-
+/**
+ * Consumeable class
+ */
 class Consumeable extends Item implements IConsumeable{
     
     private int useValue;

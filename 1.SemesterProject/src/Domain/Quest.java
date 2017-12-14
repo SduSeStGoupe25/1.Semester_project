@@ -1,17 +1,10 @@
-/**
- * Class creating and controlling quests in the game.
- */
 package Domain;
 
-import Acq.IItem;
 import Acq.IQuest;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
- *
- * @author Victor Gram
+ * Class creating and controlling quests in the game.
  */
 class Quest implements IQuest{
 
@@ -21,7 +14,6 @@ class Quest implements IQuest{
     private int exp; //how much experience the player recieves upon completion
     private HashMap<String, Integer> items; //HashMap to hold items
     private String giver; //The NPC from whom the quest is recieved
-//    private boolean isMainQuest; //boolean to seperate the main quests and side quests
 
     Quest(String name, String description, int gold, int exp, HashMap<String, Integer> items, String giver) { 
         this.name = name;
@@ -30,7 +22,6 @@ class Quest implements IQuest{
         this.exp = exp;
         this.items = items;
         this.giver = giver;
-//        this.isMainQuest = isMainQuest;   
     }
 
     @Override
@@ -73,10 +64,6 @@ class Quest implements IQuest{
     public HashMap<String, Integer> getItems() {
         return items;
     }
-    
-//    public String getItemName(HashMap<String, Integer> items){
-//        return items.keySet();
-//    }
 
     void setItems(HashMap<String, Integer> items) {
         this.items = items;
@@ -90,30 +77,4 @@ class Quest implements IQuest{
     void setGiver(String giver){
         this.giver = giver;
     }
-    
-    
-//      Maybe for use later
-//    public boolean isIsMainQuest() {
-//        return isMainQuest;
-//    }
-//
-//    public void setIsMainQuest(boolean isMainQuest) {
-//        this.isMainQuest = isMainQuest;
-//    }
-
-//    @Override
-//    public String toString() {
-//        StringBuilder output = new StringBuilder("Quest: " + name + " \n" + description + " \n" + giver + " needs these items: " );
-//        for(IItem i : items){
-//            output.append(i.getName());
-//            output.append(" x");
-//            output.append(i.getCount());
-//        }
-//        output.append("\n Your reword is Gold: ");
-//        output.append(gold);
-//        output.append(" Exp: ");
-//        output.append(exp);
-//        return output.toString();
-//    }
-
 }

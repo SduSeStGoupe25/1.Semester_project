@@ -3,7 +3,7 @@ package Domain;
 import Acq.ICharacterEntity;
 
 /*
- *This is an abstract class that all characters in the game extends from.
+ * This is an abstract class that all characters in the game extends from.
  */
 abstract class CharacterEntity implements ICharacterEntity {
 

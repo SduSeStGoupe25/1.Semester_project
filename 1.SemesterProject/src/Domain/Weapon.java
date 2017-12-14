@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
-//@author Mikkel Pedersen
 import Acq.IWeapon;
 
+/**
+ * The weapon class
+ */
 class Weapon extends Item implements IWeapon {
 
     private int baseAttack;
@@ -21,26 +18,6 @@ class Weapon extends Item implements IWeapon {
         attackValue = baseAttack + itemLevel;
         super.setName(name);
     }
-
-//    public String getExtension() {
-//        String s = "";
-//        int i = itemLevel % 4;
-//        switch (i) {
-//            case 0:
-//                s += WeaponExtension.MONKEY;
-//                break;
-//            case 1:
-//                s += WeaponExtension.BEAR;
-//                break;
-//            case 2:
-//                s += WeaponExtension.KING;
-//                break;
-//            case 3:
-//                s += WeaponExtension.DRAGON;
-//                break;
-//        }
-//        return s;
-//    }
 
     @Override
     public String toString() {

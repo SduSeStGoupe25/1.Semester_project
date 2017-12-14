@@ -3,7 +3,6 @@ package Domain;
 import Acq.ICharacterEntity;
 import Acq.IExit;
 import Acq.IItem;
-import Acq.INPC;
 import Acq.IRoom;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +14,6 @@ import java.util.Iterator;
 /**
  * Class that creates and controls the game Rooms/areas. This includes both
  * which items and NPC's there are within the room
- */
-/**
- * @author Michael Kolling and David J. Barnes
- * @version 2006.03.30
  */
 class Room implements IRoom {
 
@@ -51,28 +46,6 @@ class Room implements IRoom {
 
     void setExit(String direction, Exit neighbor) {
         exits.put(direction, neighbor);
-    }
-
-    String getLongDescription() {
-        return "You are " + description + ".\n" + getExitString();
-
-    }
-
-    String getItems() {
-        String s = "";
-        for (IItem i : items) {
-            s += i.getName() + "\n";
-        }
-        return s;
-    }
-
-    private String getExitString() {
-        String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for (String exit : keys) {
-            returnString += " " + exit;
-        }
-        return returnString;
     }
 
     IExit getExit(String direction) {
@@ -123,7 +96,6 @@ class Room implements IRoom {
                     count++;
 
                 }
-                //this.charactersInRoom.add((new NPC(monsterName, 10, 1, 1, (int) (Math.random() * 10) + 1, 20, "Nonono")));
                 this.charactersInRoom.add(DomainData.getInstance().getNPC(monsterName, (int) (Math.random() * 10) + 1));
 
             }
@@ -136,7 +108,6 @@ class Room implements IRoom {
                 }
             }
         }
-
     }
 
     ICharacterEntity getCharacterEntity(int index) {

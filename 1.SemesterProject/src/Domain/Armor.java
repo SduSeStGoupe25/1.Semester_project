@@ -4,9 +4,14 @@ import Acq.IArmor;
 
 class Armor extends Item implements IArmor {
 
-    private int baseArmor;
+    //Armor at level 1
+    private final int baseArmor;
+    
+    //Items armor value
     private int armorValue;
-    private int itemLevel;
+        
+    //Items level
+    private final int itemLevel;
 
     Armor(String name, int sellValue, int count, int baseArmor, int itemLevel) {
         super(name, sellValue, count, 1, 0);

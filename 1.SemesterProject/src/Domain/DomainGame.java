@@ -2,8 +2,6 @@ package Domain;
 
 import Acq.ICombat;
 import Acq.ICombatResponse;
-import Acq.IConsumeable;
-import Acq.IDomainGame;
 import Acq.IExit;
 import Acq.IGame;
 import Acq.IItem;
@@ -101,7 +99,6 @@ public class DomainGame implements IGame {
         this.finished = finished;
     }
 
-    // @Override
     public boolean goRoom(String direction) {
 
         IExit exit = ((Room) getCurrentIRoom()).getExit(direction); //Instantiats a room next to the current room
@@ -149,14 +146,6 @@ public class DomainGame implements IGame {
         this.rooms = rooms;
     }
 
-//    @Override
-//    public String[][] getItemNames() {
-//        return itemNames;
-//    }
-//
-//    void setItemNames(String[][] itemNames) {
-//        this.itemNames = itemNames;
-//    }
     @Override
     public boolean movePlayer(String direction) {
         return goRoom(direction);
@@ -248,7 +237,7 @@ public class DomainGame implements IGame {
     @Override
     public boolean buy(IItem item, int amount) {
         Shopkeeper s = (Shopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
-        if (s.buy((Item) item, amount, (Player) player) == true) {
+        if (s.buy((Item) item, amount) == true) {
             return true;
         } else {
             return false;
@@ -259,7 +248,7 @@ public class DomainGame implements IGame {
     @Override
     public boolean sell(IItem item, int amount) {
         Shopkeeper s = (Shopkeeper) rooms.get("shop").getCharactersInRoom().get(0);
-        if (s.sell((Item) item, amount, (Player) player) == true) {
+        if (s.sell((Item) item, amount) == true) {
             return true;
         } else {
             return false;

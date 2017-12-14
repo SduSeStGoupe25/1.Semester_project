@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
 import Acq.IArmor;
@@ -30,8 +25,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- *
- * @author madsd
+ * GameMapper class
  */
 class GameMapper {
 
@@ -40,7 +34,6 @@ class GameMapper {
             DomainGame g = DomainGame.getInstance();
             g.setCurrentRoom(toBeMapped.getCurrentRoom());
             g.setRoomMap(mapR(toBeMapped.getRoomMap()));
-            // g.setItemNames(toBeMapped.getItemNames());
             g.setPlayer(map(toBeMapped.getPlayer()));
             g.makeCombat();
             return g;
@@ -107,7 +100,7 @@ class GameMapper {
                             toBeMapped.getCount(),
                             ((IKey) toBeMapped).getKeyID());
                 case 3:
-                    return new NormalItem(
+                    return new Item(
                             toBeMapped.getName(),
                             toBeMapped.getSellValue(),
                             toBeMapped.getCount());
@@ -295,20 +288,4 @@ class GameMapper {
         }
         return s;
     }
-
-//    private <K, V> Map<K, V> map(Map<K, V> toBeMapped) {
-//        Map<K, V> m;
-//        if (toBeMapped.getClass().equals(HashMap.class)) {
-//            m = new HashMap<>();
-//        } else if (toBeMapped.getClass().equals(LinkedHashMap.class)) {
-//            m = new LinkedHashMap<>();
-//        } else {
-//            return null;
-//        }
-//
-//        for (K k : toBeMapped.keySet()) {
-//            m.put(k, map(toBeMapped.get(k)));
-//        }
-//        return m;
-//    }
 }
