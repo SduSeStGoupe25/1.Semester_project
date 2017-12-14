@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI.GUI;
 
 import Acq.IItem;
@@ -10,10 +5,7 @@ import Acq.IPlayer;
 import Acq.IShopkeeper;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +21,6 @@ import javafx.scene.text.Text;
 /**
  * FXML Controller class
  *
- * @author Mikkel Pedersen
  */
 public class ShopkeeperScreenController implements Initializable {
 
@@ -130,5 +121,4 @@ public class ShopkeeperScreenController implements Initializable {
         }
         priceText.setText("Price: " + Integer.toString(playerInventoryList.getSelectionModel().getSelectedItem().getSellValue()));
     }
-
 }

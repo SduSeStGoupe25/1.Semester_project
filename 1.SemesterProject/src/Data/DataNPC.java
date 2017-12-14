@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Data;
 
 import Acq.INPC;
 import java.util.Map;
 
 /**
- *
- * @author madsd
+ * DataNPC class
  */
-class DataNPC extends DataCharactorEntity implements INPC {
+class DataNPC extends DataCharacterEntity implements INPC {
 
     private String talk;
     private int expDrop;
@@ -38,5 +32,4 @@ class DataNPC extends DataCharactorEntity implements INPC {
     public Map<String, Integer> getItemDropMap() {
         return itemMap;
     }
-
 }

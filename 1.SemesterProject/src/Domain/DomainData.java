@@ -29,7 +29,6 @@ public class DomainData implements IDomainData {
         } 
         return instance;
     }
-    
 
     @Override
     public void addNewScore(String name, int score) {
@@ -92,5 +91,4 @@ public class DomainData implements IDomainData {
         npc.setStatsToMax();
         return npc;
     }
-
 }

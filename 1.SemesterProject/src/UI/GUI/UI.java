@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI.GUI;
 
 import Acq.IDomainData;
-import Acq.IDomainGame;
 import Acq.IGame;
 import Acq.IUI;
 import java.io.IOException;
@@ -16,14 +10,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
  *
- * @author rasmusstamm
  */
 public class UI extends Application implements IUI {
 

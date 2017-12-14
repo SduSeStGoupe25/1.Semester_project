@@ -55,6 +55,4 @@ public class CombatResponse implements ICombatResponse{
     public boolean getIsRunning() {
         return isRunning;
     }
-    
-    
 }

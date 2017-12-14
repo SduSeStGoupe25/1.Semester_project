@@ -47,11 +47,17 @@ abstract class CharacterEntity implements ICharacterEntity {
         maxHealth = ((level - 1) * 10) + baseHealth;
     }
 
+    /**
+     * Called to set stats to max
+     */
     void setStatsToMax() {
         setStats();
         health = maxHealth;
     }
 
+    /**
+     * Called when the characterEntity deaths
+     */
     abstract void onDeath();
 
     void changeHealth(int amount) {
@@ -152,5 +158,4 @@ abstract class CharacterEntity implements ICharacterEntity {
     public boolean isHostile() {
         return hostile;
     }
-
 }

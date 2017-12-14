@@ -17,6 +17,12 @@ class Inventory implements IInventory {
         this.maxSlots = maxSlots;
     }
 
+    /**
+     * Called to add a item to the inventory
+     * @param item the item to add
+     * @param amount the amount to add
+     * @return true if add was successful, else false 
+     */
     boolean addItem(Item item, int amount) {
         //Checks if there enough space in the inventory to the desired amount
         if (amount / item.getMAX_COUNT() + inventory.size() <= maxSlots) {
@@ -76,6 +82,12 @@ class Inventory implements IInventory {
         return false;
     }
 
+    /**
+     * Called to remove a item from the inventory
+     * @param item the item to remove
+     * @param amount the amount to remove
+     * @return true if remove was successful, else false
+     */
     boolean removeItem(IItem item, int amount) {
         int totalAmount = 0;
         for (IItem i : inventory) {

@@ -1,17 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Data;
 
 import Acq.ICharacterEntity;
 
 /**
- *
- * @author madsd
+ * DataCharacterEntity class
  */
-abstract class DataCharactorEntity implements ICharacterEntity {
+abstract class DataCharacterEntity implements ICharacterEntity {
 
     private String name;
     private int health;
@@ -25,11 +19,11 @@ abstract class DataCharactorEntity implements ICharacterEntity {
     private boolean despawning;
     private int id; // 0 = CharacterEntity, 1 = NPC, 2 = Player, 3 = Shopkeeper, 4 = MovableNPC
 
-    DataCharactorEntity(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
+    DataCharacterEntity(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
         this(name, health, armor, level, maxHealth, baseHealth, baseAttack, attack, id, false, false);
     }
 
-    DataCharactorEntity(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id, boolean hostile, boolean despawning) {
+    DataCharacterEntity(String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id, boolean hostile, boolean despawning) {
         this.name = name;
         this.health = health;
         this.armor = armor;

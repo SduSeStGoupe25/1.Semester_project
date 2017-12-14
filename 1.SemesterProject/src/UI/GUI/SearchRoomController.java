@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI.GUI;
 
 import Acq.IGame;
@@ -21,7 +16,6 @@ import javafx.scene.input.MouseEvent;
 /**
  * FXML Controller class
  *
- * @author rasmusstamm
  */
 public class SearchRoomController implements Initializable {
 
@@ -45,7 +39,6 @@ public class SearchRoomController implements Initializable {
         player = game.getPlayer();
         items = FXCollections.observableArrayList(game.getRoomMap().get(game.getCurrentRoom()).getItemList());
         listItemsInRoom.setItems(items);
-        // TODO
     }    
 
     @FXML
@@ -57,5 +50,4 @@ public class SearchRoomController implements Initializable {
     private void getSelectedItem(MouseEvent event) {
         selectedItem = listItemsInRoom.getSelectionModel().getSelectedIndex();
     }
-    
 }

@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 /**
@@ -52,5 +51,4 @@ public class PopupTalkController implements Initializable {
     public void setText(String text) {
         talkLabel.setText(text);
     }
-
 }

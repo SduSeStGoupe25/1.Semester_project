@@ -2,6 +2,9 @@ package Domain;
 
 import Acq.IArmor;
 
+/**
+ * Armor class, a subclass of Item
+ */
 class Armor extends Item implements IArmor {
 
     //Armor at level 1

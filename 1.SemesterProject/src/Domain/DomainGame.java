@@ -99,6 +99,11 @@ public class DomainGame implements IGame {
         this.finished = finished;
     }
 
+    /**
+     * Called to move the player to a new room
+     * @param direction the direction to move to
+     * @return true if the player has moved to the new room, else false
+     */
     public boolean goRoom(String direction) {
 
         IExit exit = ((Room) getCurrentIRoom()).getExit(direction); //Instantiats a room next to the current room
