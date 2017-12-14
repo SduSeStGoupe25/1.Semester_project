@@ -28,6 +28,12 @@ class Exit implements IExit {
         this.lockID = lockID;
     }
 
+    /**
+     * Called to get the name of the room next to
+     *
+     * @param currentRoom the name of the current room
+     * @return the name of the room next to
+     */
     String nextRoom(String currentRoom) {
         if (currentRoom.equals(name1)) {
             return name2;
@@ -36,6 +42,13 @@ class Exit implements IExit {
         }
     }
 
+    /**
+     * Called to check if the exit is locked, if it is then checks if the
+     * specified inventory has the proper key
+     *
+     * @param inventory the inventory to after the key in
+     * @return true if the exit locked, else false
+     */
     boolean isLocked(IInventory inventory) {
         if (!locked) {
             return false;

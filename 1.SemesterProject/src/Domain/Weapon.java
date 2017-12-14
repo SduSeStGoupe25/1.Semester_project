@@ -53,5 +53,4 @@ class Weapon extends Item implements IWeapon {
     ) {
         this.itemLevel = itemLevel;
     }
-
 }

@@ -68,6 +68,9 @@ class Room implements IRoom {
         allowedMonsters.addAll(d);
     }
 
+    /**
+     * Called to despawn despawning NPC's from the room
+     */
     void despawnEnemies() {
         if (!charactersInRoom.isEmpty()) {
             Iterator<ICharacterEntity> iterator = charactersInRoom.iterator();
@@ -79,6 +82,9 @@ class Room implements IRoom {
         }
     }
 
+    /**
+     * Called to spawn NPC's to the room
+     */
     void spawnEnemies() { //Spawns a randomly generated amount of enemies for the room
 
         if (!allowedMonsters.isEmpty()) {
@@ -114,6 +120,9 @@ class Room implements IRoom {
         return charactersInRoom.get(index);
     }
 
+    /**
+     * Called to move all movableNPC's in the room
+     */
     void move() {
         for (int i = charactersInRoom.size() - 1; i >= 0; i--) {
             ICharacterEntity characterEntity = charactersInRoom.get(i);

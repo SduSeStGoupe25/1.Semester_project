@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI.GUI;
 
 import Acq.IArmor;
@@ -16,7 +11,6 @@ import javafx.scene.layout.Priority;
 
 /**
  *
- * @author rasmusstamm
  */
 // https://stackoverflow.com/questions/15661500/javafx-listview-item-with-an-image-button
 public class HBoxCell extends HBox {
@@ -82,5 +76,4 @@ public class HBoxCell extends HBox {
     public IItem getItem(){
         return item;
     }
-
 }

@@ -32,5 +32,4 @@ public class UIPopup extends Popup {
             Logger.getLogger(UICharacter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

@@ -21,7 +21,6 @@ import javafx.scene.layout.GridPane;
 /**
  * FXML Controller class
  *
- * @author Mikkel Pedersen
  */
 public class MapSceneController implements Initializable {
 
@@ -140,14 +139,10 @@ public class MapSceneController implements Initializable {
                 if (npc instanceof IMoveableNPC) {
                     if (npc.getName().equals(name)) {
                         return room.getKey();
-
                     }
-
                 }
-
             }
         }
         return "dead";
-
     }
 }

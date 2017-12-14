@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Data;
 
 import Acq.IInventory;
@@ -10,13 +5,11 @@ import Acq.IPlayer;
 import Acq.IQuest;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
- *
- * @author madsd
+ * DataPlayer class
  */
-public class DataPlayer extends DataCharactorEntity implements IPlayer {
+public class DataPlayer extends DataCharacterEntity implements IPlayer {
 
     private IInventory itemInventory;
     private IInventory equipableInventory;

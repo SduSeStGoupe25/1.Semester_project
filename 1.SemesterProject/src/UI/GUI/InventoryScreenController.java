@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI.GUI;
 
-import Acq.IDomainGame;
 import Acq.IGame;
 import Acq.IItem;
 import Acq.IPlayer;
@@ -14,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,7 +18,6 @@ import javafx.scene.input.MouseEvent;
 /**
  * FXML Controller class
  *
- * @author Mikkel Pedersen
  */
 public class InventoryScreenController implements Initializable {
 
@@ -39,9 +31,7 @@ public class InventoryScreenController implements Initializable {
     private ListView<HBoxCell> listInventory;
     @FXML
     private ListView<HBoxCell> listEquipedItems;
-
-    //ObservableList<HBoxCell> items;
-    //ObservableList<HBoxCell> equipableItems;
+    
     HBoxCell selectedItem;
 
     int selectedIndex;
@@ -134,8 +124,6 @@ public class InventoryScreenController implements Initializable {
                 btnEquip.setDisable(true);
                 btnDrop.setDisable(true);
             }
-
         }
     }
-
 }

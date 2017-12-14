@@ -48,6 +48,12 @@ class MoveableNPC extends NPC implements Moveable, IMoveableNPC {
         }
     }
 
+    /**
+     * Called to move the NPC to a room
+     * @param nameCurrentRoom the name of the current room
+     * @param direction the direction to move to
+     * @return true if NPC was moved, else false
+     */
     private boolean moveNPC(String nameCurrentRoom, String direction) {
         Room currentRoom = (Room)DomainGame.getInstance().getRoomMap().get(nameCurrentRoom);
         if (currentRoom.getExit(direction) != null && allowedRooms.contains(((Exit) currentRoom.getExit(direction)).nextRoom(currentRoom.getName()))) {

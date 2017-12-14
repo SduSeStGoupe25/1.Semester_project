@@ -29,6 +29,11 @@ import java.util.Set;
  */
 class GameMapper {
 
+    /**
+     * Called to map an instance to IDomainGame to an instance of DomainGame
+     * @param toBeMapped the instance of IDomainGame to be mapped
+     * @return the instance of domainGame
+     */
     DomainGame map(IDomainGame toBeMapped) {
         if (toBeMapped != null) {
             DomainGame g = DomainGame.getInstance();
