@@ -103,7 +103,6 @@ class Room implements IRoom {
 
                 }
                 this.charactersInRoom.add(DomainData.getInstance().getNPC(monsterName, (int) (Math.random() * 10) + 1));
-
             }
             if ((int) (Math.random() * 2) == 0) {
                 int nonMonstersInRoom = charactersInRoom.size() - monsterAmount;

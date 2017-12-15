@@ -57,6 +57,8 @@ class GameMapper {
     }
 
     private Room map(IRoom toBeMapped) {
+        System.out.println("ROOM________________________ " + toBeMapped.getName());
+        System.out.println("Characters " + toBeMapped.getCharactersInRoom());
         Room r = new Room(
                 toBeMapped.getName(),
                 toBeMapped.getShortDescription());
@@ -158,6 +160,7 @@ class GameMapper {
                         toBeMapped.getAttack(),
                         toBeMapped.getLevel(),
                         ((INPC) toBeMapped).getExpDrop(),
+                        toBeMapped.getId(),
                         ((INPC) toBeMapped).getTalk(),
                         ((INPC) toBeMapped).getItemDropMap(),
                         toBeMapped.isHostile(),
