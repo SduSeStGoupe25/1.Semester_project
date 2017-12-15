@@ -1,6 +1,6 @@
 .root { 
     -fx-font-family: "Breathe Fire";
-    -fx-background-color: #56585b;
+    -fx-background-color: #2b2c2d;
 
 }
 
@@ -173,7 +173,7 @@
     -fx-border-style: solid;
     -fx-border-width: 0;
     -fx-border-color:#bc0909;
-    -fx-background-color:grey;
+    -fx-background-color: #2b2c2d;
     -fx-font-size:150%;
 }
 
