@@ -8,7 +8,7 @@ import Acq.ICombatResponse;
  *
  * This class is responsible for the combat between the player and a opponent
  */
-public class Combat implements ICombat{
+class Combat implements ICombat{
 
     private CharacterEntity opponent; //The characterEntity to fight against 
     private Room currentRoom; //The current room
@@ -16,7 +16,7 @@ public class Combat implements ICombat{
     private boolean running; //Indicating if the combat is running
     private DomainGame game;
 
-    public Combat(Player player, DomainGame game) {
+    Combat(Player player, DomainGame game) {
         this.player = player;
         this.game = game;
     }
@@ -37,6 +37,7 @@ public class Combat implements ICombat{
     /**
      * This method is our combat loop, where all combat mechanics take place.
      */
+    @Override
     public ICombatResponse combatLoop(int action) {
         CombatResponse cr = new CombatResponse(0, 0, running, player, opponent);
         switch (action) {
@@ -103,7 +104,7 @@ public class Combat implements ICombat{
      * @return calls the attack() method, with the specified chance to hit(n out
      * of 10) and additionalDamage
      */
-    public int heavyAttack() {
+    private int heavyAttack() {
         return attack(6, 2);
     }
 
@@ -113,7 +114,7 @@ public class Combat implements ICombat{
      * @return calls the attack() method, with the specified chance to hit(n out
      * of 10) and additionalDamage
      */
-    public int lightAttack() {
+    private int lightAttack() {
         return attack(9, 0);
     }
 
@@ -172,7 +173,7 @@ public class Combat implements ICombat{
      *
      * @return Returns the opponent object.
      */
-    public CharacterEntity getOpponent() {
+    CharacterEntity getOpponent() {
         return opponent;
     }
 

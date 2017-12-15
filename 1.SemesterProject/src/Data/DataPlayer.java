@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 /**
  * DataPlayer class
  */
-public class DataPlayer extends DataCharacterEntity implements IPlayer {
+class DataPlayer extends DataCharacterEntity implements IPlayer {
 
     private IInventory itemInventory;
     private IInventory equipableInventory;
@@ -25,7 +25,7 @@ public class DataPlayer extends DataCharacterEntity implements IPlayer {
     private int scoreValue;
     private int completedGame = 0;
 
-    public DataPlayer(DataInventory itemInventory, DataInventory equipableInventory, int gold, int exp, LinkedHashMap<Integer, IQuest> mainQuest, HashMap<String, IQuest> sideQuest, int questsCompleted, int hunger, int maxHunger, int expToLevelUp, int scoreValue, String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
+    DataPlayer(DataInventory itemInventory, DataInventory equipableInventory, int gold, int exp, LinkedHashMap<Integer, IQuest> mainQuest, HashMap<String, IQuest> sideQuest, int questsCompleted, int hunger, int maxHunger, int expToLevelUp, int scoreValue, String name, int health, int armor, int level, int maxHealth, int baseHealth, int baseAttack, int attack, int id) {
         super(name, health, armor, level, maxHealth, baseHealth, baseAttack, attack, id);
         this.itemInventory = itemInventory;
         this.equipableInventory = equipableInventory;

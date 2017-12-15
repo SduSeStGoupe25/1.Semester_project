@@ -25,7 +25,7 @@ public class HBoxCell extends HBox {
     
     private Tooltip tooltip = new Tooltip();
 
-    public HBoxCell(IItem item) {
+    HBoxCell(IItem item) {
         super(10);
         
         this.item = item;
@@ -69,11 +69,11 @@ public class HBoxCell extends HBox {
         this.getChildren().addAll(this.name, this.type, this.value, this.sellValue);
     }
     
-    public int getItemId(){
+    int getItemId(){
         return id;
     }
     
-    public IItem getItem(){
+    IItem getItem(){
         return item;
     }
 }

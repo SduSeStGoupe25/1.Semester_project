@@ -99,7 +99,7 @@ public class CombatScreenController implements Initializable {
         imagePane.getChildren().add(new UICharacter(c.getOpponent()));
     }
 
-    public void updatEquippedInventory() {
+    private void updatEquippedInventory() {
         for (IItem item : p.getEquipableInventory().getInventory()) { //loads players equipped inventory
             equippedList.add(item);
         }
@@ -107,7 +107,7 @@ public class CombatScreenController implements Initializable {
         equippedListView.setItems(observableEquippedList);
     }
 
-    public void updatePlayerStats() { //Method for updating the players combat-screen stats
+    private void updatePlayerStats() { //Method for updating the players combat-screen stats
         if (p.getHealth() < 1) {
             UI.getInstance().setState(UIState.GAMEOVERSCREEN);
         } else {
@@ -118,7 +118,7 @@ public class CombatScreenController implements Initializable {
 
     }
 
-    public void updateOpponentStats() { //updates opponent entity's combat-screen stats
+    private void updateOpponentStats() { //updates opponent entity's combat-screen stats
         ICharacterEntity o = c.getOpponent();
         if (o.getHealth() < 1) {
             exitCombat();
@@ -147,7 +147,7 @@ public class CombatScreenController implements Initializable {
         updateOpponentStats();
     }
 
-    public void exitCombat() {
+    private void exitCombat() {
         UI.getInstance().setState(UIState.WORLDSCREEN);
     }
 

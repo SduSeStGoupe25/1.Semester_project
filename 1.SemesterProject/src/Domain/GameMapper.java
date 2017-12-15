@@ -57,8 +57,6 @@ class GameMapper {
     }
 
     private Room map(IRoom toBeMapped) {
-        System.out.println("ROOM________________________ " + toBeMapped.getName());
-        System.out.println("Characters " + toBeMapped.getCharactersInRoom());
         Room r = new Room(
                 toBeMapped.getName(),
                 toBeMapped.getShortDescription());

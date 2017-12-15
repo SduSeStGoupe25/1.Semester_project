@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
  * This is the main class, that lets the user play the game. The game is played
  * by write in the console
  */
-public class DomainGame implements IGame {
+class DomainGame implements IGame {
 
     private transient static DomainGame instance = null;
     private String currentRoom;       //The current room
@@ -71,7 +71,7 @@ public class DomainGame implements IGame {
      *
      * @return Returns the currentRoom object
      */
-    public IRoom getCurrentIRoom() {
+    IRoom getCurrentIRoom() {
         return (IRoom) getRoomMap().get(currentRoom);
     }
 
@@ -88,7 +88,7 @@ public class DomainGame implements IGame {
      * This method is called when moveableNPC's should move. It uses a for-each
      * loop to go through all rooms, and calls the move() method in each.
      */
-    public void moveAllNPC() {
+    void moveAllNPC() {
         for (String room : rooms.keySet()) {
             ((Room) rooms.get(room)).move();
 
@@ -104,7 +104,7 @@ public class DomainGame implements IGame {
      * @param direction the direction to move to
      * @return true if the player has moved to the new room, else false
      */
-    public boolean goRoom(String direction) {
+    boolean goRoom(String direction) {
 
         IExit exit = ((Room) getCurrentIRoom()).getExit(direction); //Instantiats a room next to the current room
 

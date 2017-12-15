@@ -183,11 +183,11 @@ public class FXMLDocumentController implements Initializable {
         listItemsInRoom.setItems(itemsToPickUp);
     }
 
-    public BorderPane getBorderPane() {
+    BorderPane getBorderPane() {
         return borderPane;
     }
     
-    public void update(boolean menuButtonDisabled) {
+    void update(boolean menuButtonDisabled) {
         statController.updateBars();
         statController.updateTextElements();
         onPlayerDeath();

@@ -13,7 +13,7 @@ import javafx.stage.Popup;
  */
 public class UICharacter extends ImageView {
 
-    public UICharacter(ICharacterEntity ce) {
+    UICharacter(ICharacterEntity ce) {
 
         //Listener on mouse clicked on imageview
         this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {

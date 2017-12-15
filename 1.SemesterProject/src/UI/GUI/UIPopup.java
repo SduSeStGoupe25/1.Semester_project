@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class UIPopup extends Popup {
 
     //https://stackoverflow.com/questions/18669209/javafx-what-is-the-best-way-to-display-a-simple-message
-    public UIPopup(Initializable controller, String fxml, Stage stage, double x, double y) {
+    UIPopup(Initializable controller, String fxml, Stage stage, double x, double y) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             loader.setController(controller);

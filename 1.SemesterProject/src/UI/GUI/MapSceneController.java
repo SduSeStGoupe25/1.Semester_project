@@ -56,7 +56,7 @@ public class MapSceneController implements Initializable {
         updateMap();
     }
 
-    public void updateMap() {
+    void updateMap() {
         switch (merlinRoom) {
             case "tower":
                 mapGrid.add(merlinView, 4, 7);
@@ -130,7 +130,7 @@ public class MapSceneController implements Initializable {
 
     }
 
-    public String findMoveableNPC(String name) {
+    String findMoveableNPC(String name) {
         Map<String, IRoom> roomMap = UI.getInstance().getDomainGame().getRoomMap();
         for (Map.Entry<String, IRoom> room : roomMap.entrySet()) {
             for (ICharacterEntity npc : room.getValue().getCharactersInRoom()) {

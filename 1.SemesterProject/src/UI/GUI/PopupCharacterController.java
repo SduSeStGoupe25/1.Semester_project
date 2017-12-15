@@ -70,7 +70,7 @@ public class PopupCharacterController implements Initializable {
      * Called to set the character to show data about
      * @param ce the character
      */
-    public void setCE(ICharacterEntity ce) {
+    void setCE(ICharacterEntity ce) {
         this.ce = ce;
         update();
     }
@@ -79,7 +79,7 @@ public class PopupCharacterController implements Initializable {
      * Called to set the popup
      * @param popup the popup
      */
-    public void setPopup(Popup popup) {
+    void setPopup(Popup popup) {
         this.popup = popup;
     }
 

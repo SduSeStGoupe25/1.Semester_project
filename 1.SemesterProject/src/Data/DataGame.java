@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * DataGame class
  */
-public class DataGame implements IDomainGame {
+class DataGame implements IDomainGame {
 
     private String currentRoom;
     private DataPlayer player;

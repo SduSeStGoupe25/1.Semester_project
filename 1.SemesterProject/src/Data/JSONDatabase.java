@@ -313,18 +313,11 @@ public class JSONDatabase implements IData {
      */
     private class ItemDeserializer implements JsonDeserializer<IItem> {
 
-        private class tmpItem extends DataItem {
-
-            public tmpItem(String name, int sellValue, int count, int MAX_COUNT, int id) {
-                super(name, sellValue, count, MAX_COUNT, id);
-            }
-        }
-
         @Override
         public IItem deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
             Gson g = new Gson();
 
-            int id = g.fromJson(je, tmpItem.class).getId();
+            int id = g.fromJson(je, DataItem.class).getId();
 
             //Determinds what type of Item the JsonElement is
             switch (id) {

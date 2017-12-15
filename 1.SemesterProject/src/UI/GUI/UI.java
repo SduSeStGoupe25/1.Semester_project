@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  */
 public class UI extends Application implements IUI {
 
-    static UI ui = null;
+    private static UI ui = null;
 
     private IDomainData domainData;
     private IGame domainGame;
@@ -49,7 +49,9 @@ public class UI extends Application implements IUI {
     @Override
     public void startApplication(String[] args) {
         ui = this;
+        System.out.println("HHHHHHHHHHERE " + ui);
         launch(args);
+        System.out.println("-----------------");
     }
 
     @Override
@@ -64,6 +66,7 @@ public class UI extends Application implements IUI {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println("!!!!!!!!!!!!!!!");
         Font.loadFont(getClass().getResourceAsStream("Fonts/breathefire.otf"), 16);
         Font.loadFont(getClass().getResourceAsStream("Fonts/salterioshadow.ttf"), 16);
 
@@ -79,11 +82,11 @@ public class UI extends Application implements IUI {
         primaryStage.show();
     }
 
-    public UIState getState() {
+    UIState getState() {
         return state;
     }
 
-    public void setState(UIState state) {
+    void setState(UIState state) {
         try {
             switch (state) {
                 case TITLESCREEN:
@@ -142,7 +145,7 @@ public class UI extends Application implements IUI {
         return stage;
     }
 
-    public FXMLDocumentController getMainController() {
+    FXMLDocumentController getMainController() {
         return mainGameController;
     }
 }

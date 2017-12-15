@@ -48,7 +48,7 @@ public class PopupTalkController implements Initializable {
      *
      * @param text the text
      */
-    public void setText(String text) {
+    void setText(String text) {
         talkLabel.setText(text);
     }
 }

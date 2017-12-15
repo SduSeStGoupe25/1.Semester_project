@@ -5,14 +5,14 @@ import Acq.ICombatResponse;
 /**
  * CombatResponse class
  */
-public class CombatResponse implements ICombatResponse{
+class CombatResponse implements ICombatResponse{
     private int playerAttack;
     private int opponentAttack;
     private boolean isRunning;
     private Player player;
     private CharacterEntity opponent;
 
-    public CombatResponse(int playerAttack, int opponentAttack, boolean isRunning, Player player, CharacterEntity ce) {
+    CombatResponse(int playerAttack, int opponentAttack, boolean isRunning, Player player, CharacterEntity ce) {
         this.playerAttack = playerAttack;
         this.opponentAttack = opponentAttack;
         this.isRunning = isRunning;

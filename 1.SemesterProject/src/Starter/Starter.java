@@ -16,7 +16,8 @@ public class Starter {
         IData data = new JSONDatabase();
         IDomainData domain = DomainData.getInstance();
         domain.injectData(data);
-        IUI ui = new UI();
+        IUI ui = UI.getInstance();
+        System.out.println("UI_______________" + ui);
         ui.injectDomainData(domain);
         ui.startApplication(args);
     }

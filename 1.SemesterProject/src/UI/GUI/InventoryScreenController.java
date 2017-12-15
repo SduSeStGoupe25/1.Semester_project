@@ -78,7 +78,7 @@ public class InventoryScreenController implements Initializable {
     }
 
     // Responseable for updating the both the ListViews on the inventoryscreen
-    public void updateLists() {
+    void updateLists() {
 
         List<HBoxCell> items = new ArrayList<>();
 

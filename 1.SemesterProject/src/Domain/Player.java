@@ -214,6 +214,8 @@ class Player extends CharacterEntity implements IPlayer{
         }
         return false;
     }
+    
+    @Override
     public void getCompleteQuest(String room){
         checkQuest(room);
     }
