@@ -55,28 +55,34 @@ public class InventoryScreenController implements Initializable {
     }
 
     @FXML
+    // Uses the selected item (adds hp and hunger to the player).
     private void UseItemButton(ActionEvent event) {
         game.restoreHpPlayer(player.getItemInventory().getInventory().get(selectedIndex));
         updateLists();
     }
 
     @FXML
+    // Moves the selected item to the players equipable inventory.
     private void EquipItemButton(ActionEvent event) {
         game.equipItemPlayer(player.getItemInventory().getInventory().get(selectedIndex));
         updateLists();
     }
 
     @FXML
+    // Adds the selected item to the current room.
+    // Removes the selected item from the players inventory.
     private void DropItemButton(ActionEvent event) {
         game.getRoomMap().get(game.getCurrentRoom()).getItemList().add(player.getItemInventory().getInventory().get(selectedIndex));
         game.removeItemPlayer(player.getItemInventory().getInventory().get(selectedIndex), 1);
         updateLists();
     }
 
+    // Responseable for updating the both the ListViews on the inventoryscreen
     public void updateLists() {
 
         List<HBoxCell> items = new ArrayList<>();
 
+        // Adds item to the ArrayList "items" for each item in the players inventory.
         for (IItem item : player.getItemInventory().getInventory()) {
             items.add(new HBoxCell(item));
         }
@@ -84,18 +90,30 @@ public class InventoryScreenController implements Initializable {
 
         List<HBoxCell> equipableItems = new ArrayList<>();
 
+        // Adds item to the ArrayList "equipableItems" for each item in the players equipableInventory.
         for (IItem item : player.getEquipableInventory().getInventory()) {
             equipableItems.add(new HBoxCell(item));
         }
         listEquipedItems.setItems(FXCollections.observableList(equipableItems));
 
         UI.getInstance().getMainController().update(false);
+        // Sets the selected item to null and calls updateButtons so that the player
+        // is not able to use the buttons without having a selected item.
+        selectedItem = null;
+        updateButtons();
+
     }
 
+    // Sets selectedItem to the item the player has clicked within the ListView
     @FXML
     private void CheckSelectedItem(MouseEvent event) {
         selectedItem = listInventory.getSelectionModel().getSelectedItem();
         selectedIndex = listInventory.getSelectionModel().getSelectedIndex();
+        updateButtons();
+    }
+
+    // Responseable for enabling/disabling the buttons on the inventory screen
+    private void updateButtons() {
         if (selectedItem != null) {
 
             // Checks if item is a consumeable
@@ -124,6 +142,10 @@ public class InventoryScreenController implements Initializable {
                 btnEquip.setDisable(true);
                 btnDrop.setDisable(true);
             }
+        } else {
+            btnUse.setDisable(true);
+            btnDrop.setDisable(true);
+            btnEquip.setDisable(true);
         }
     }
 }
