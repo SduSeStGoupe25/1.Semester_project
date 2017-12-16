@@ -40,7 +40,10 @@ public class QuestlogSceneController implements Initializable {
         game = UI.getInstance().getDomainGame();
         QuestListView.setItems(FXCollections.observableList(completedQuests()));
     }
-
+    /**
+     * Method used to gather all the quests the Player has completed. It adds (completed) to quest names, to specify they have already been completed.
+     * @return Returns the completed quests as a List
+     */
     private List completedQuests() {
         int completedQuests = 0;
         List<String> completedQuestNames = new ArrayList<>();
@@ -52,6 +55,10 @@ public class QuestlogSceneController implements Initializable {
         return completedQuestNames;
     }
 
+    /**
+     * This method updates the quest UI, showing quest description, XP, gold and giver.
+     * @param event Fires the event upon clicking with the mouse
+     */
     @FXML
     private void setQuestText(MouseEvent event) {
         if (QuestListView.getSelectionModel().getSelectedItem() == null) { //prevents InvocationTargetException in case of the listview getting clicked withput an item being chosen
@@ -63,6 +70,10 @@ public class QuestlogSceneController implements Initializable {
         questGiverField.setText(game.getPlayer().getMainQuest().get(QuestListView.getSelectionModel().getSelectedIndex()).getGiver());
     }
 
+    /**
+     * Method used to complete a quest from UI
+     * @param event Fires when a quest has been selected, and button is pressed
+     */
     @FXML
     private void completeQuest(ActionEvent event) {
         int questIndex = QuestListView.getSelectionModel().getSelectedIndex();
