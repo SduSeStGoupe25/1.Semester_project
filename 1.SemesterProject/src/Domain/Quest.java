@@ -6,16 +6,17 @@ import java.util.HashMap;
 /**
  * Class creating and controlling quests in the game.
  */
-class Quest implements IQuest{
+class Quest implements IQuest {
 
-    private String name;
-    private String description; 
-    private int gold; //how much gold does the player reieve upon completion
-    private int exp; //how much experience the player recieves upon completion
-    private HashMap<String, Integer> items; //HashMap to hold items
-    private String giver; //The NPC from whom the quest is recieved
+    private String name; //Name of the quest
+    private String description; //Description of the quest
+    private int gold; //Gold reward for completing the quest
+    private int exp; //Experience reward for completing the quest
+    private HashMap<String, Integer> items; //HashMap containing required items to complete quest
+    private String giver; //The NPC the quest has to be turned in to
+    private String questDescription = ""; //Variable used to handle quest items in description
 
-    Quest(String name, String description, int gold, int exp, HashMap<String, Integer> items, String giver) { 
+    Quest(String name, String description, int gold, int exp, HashMap<String, Integer> items, String giver) {
         this.name = name;
         this.description = description;
         this.gold = gold;
@@ -33,9 +34,32 @@ class Quest implements IQuest{
         this.name = name;
     }
 
+    private void addItemsToDescription() { //This method adds quest items from our HashMap to the quest description, so the player can see what items are required for completion
+        String itemDescription = ""; //Empty string created to hold item names
+        if (items.keySet().size() == 1) {
+            for (String item : items.keySet()) {
+                itemDescription = "\n\nRequired item: " + item; //If there is any quest items, we add it to itemDescription
+            }
+        } else if (items.keySet().size() > 1) {
+            int i = 0;
+            itemDescription = "\n\nRequired items: "; //if there's more than one quest item, we add the "Required items" line, and then iterate through them
+            for (String item : items.keySet()) {
+                i++;
+                if (i == items.keySet().size()) {
+                    itemDescription += items.get(item) + " " + item + " "; //If the item is the last item, we don't want a comma at the end, so this if statement adds only a space
+                    break;
+                }
+                itemDescription += items.get(item) + " " + item + ", "; //Every item gets added to itemDescription
+            }
+        }
+        questDescription = description + itemDescription; //Finally it sets questDescription (which is initially empty) to be equals to the original description + the required items.
+        //The extra String variable questDescription was needed to prevent duplicates of "Required items..." to be added to description
+    }
+
     @Override
     public String getDescription() {
-        return description;
+        addItemsToDescription(); //This line starts the method addItemsToDescription, and updates questDescription if there's any quest items
+        return questDescription;
     }
 
     void setDescription(String description) {
@@ -73,8 +97,8 @@ class Quest implements IQuest{
     public String getGiver() {
         return giver;
     }
-    
-    void setGiver(String giver){
+
+    void setGiver(String giver) {
         this.giver = giver;
     }
 }

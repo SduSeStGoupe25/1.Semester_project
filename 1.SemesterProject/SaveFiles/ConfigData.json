@@ -17,7 +17,9 @@
             "description": "Hello there, my name is Merlin. You've come to try and draw the mighty Excalibur I assume? Very well. You can start by proving yourself worthy by killing some pigs. You might be able to find a weapon around here somewhere... Or maybe a rock will do.",
             "gold": 10,
             "exp": 5,
-            "items": {},
+            "items": {
+                "Wool": 1
+            },
             "giver": "Merlin"
          },
          "1": {
