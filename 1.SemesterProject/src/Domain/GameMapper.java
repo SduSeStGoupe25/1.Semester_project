@@ -134,7 +134,7 @@ class GameMapper {
         p.setExpToLevelUp(((IPlayer) toBeMapped).getExpToLevelUp());
         p.setHunger(((IPlayer) toBeMapped).getHunger());
         p.setMaxHunger(((IPlayer) toBeMapped).getMaxHunger());
-        //p.setMaxHealth(((IPlayer) toBeMapped).getMaxHealth());
+        p.setScoreValue(((IPlayer) toBeMapped).getScoreValue());
         p.setHealth(((IPlayer) toBeMapped).getHealth());
         p.setItemInventory(map(((IPlayer) toBeMapped).getItemInventory()));
         p.setEquipableInventory(map(((IPlayer) toBeMapped).getEquipableInventory()));
