@@ -33,12 +33,15 @@ class Quest implements IQuest {
     void setName(String name) {
         this.name = name;
     }
-
+    
+    /**
+     * Method used to add quest items to quest description
+     */
     private void addItemsToDescription() { //This method adds quest items from our HashMap to the quest description, so the player can see what items are required for completion
         String itemDescription = ""; //Empty string created to hold item names
         if (items.keySet().size() == 1) {
             for (String item : items.keySet()) {
-                itemDescription = "\n\nRequired item: " + item; //If there is any quest items, we add it to itemDescription
+                itemDescription = "\n\nRequired items: " + items.get(item) + " " + item; //If there is any quest items, we add it to itemDescription
             }
         } else if (items.keySet().size() > 1) {
             int i = 0;

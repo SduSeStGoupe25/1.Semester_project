@@ -14,17 +14,15 @@
       "mainQuest": {
          "0": {
             "name": "Arriving to town",
-            "description": "Hello there, my name is Merlin. You've come to try and draw the mighty Excalibur I assume? Very well. You can start by proving yourself worthy by killing some pigs. You might be able to find a weapon around here somewhere... Or maybe a rock will do.",
+            "description": "Hello there, my name is Merlin. You've come to try and draw the mighty Excalibur I assume? Very well. To start with, you should at least find a weapon, otherwise this might be a short adventure... You might be able to find a weapon around here somewhere, for example that rock over there. Or you can just move on, and continue bare-handed...",
             "gold": 10,
             "exp": 5,
-            "items": {
-                "Wool": 1
-            },
+            "items": {},
             "giver": "Merlin"
          },
          "1": {
             "name": "Helping out",
-            "description": "Good job on killing those pigs! I've heard the shopkeeper in town is in dire need of some supplies, maybe you could help him out?",
+            "description": "Alright, so now you can at least defend yourself. I've heard the shopkeeper in town is in dire need of some supplies, maybe you could help him out?",
             "gold": 0,
             "exp": 5,
             "items": {},
@@ -36,7 +34,7 @@
             "gold": 20,
             "exp": 10,
             "items": {
-               "Potion": 1
+               "Wool": 3
             },
             "giver": "Shopkeeper"
          },
@@ -50,25 +48,19 @@
          },
          "4": {
             "name": "Gathering some materials",
-            "description": "If we're gonna attempt getting Excalibur, we need to be ready for everything. There's a few... Let's call it obstacles, in the way. \nI need you to gather some horns from the wild boars out west. Good luck.",
-            "gold": 10,
-            "exp": 20,
-            "items": {},
-            "giver": "Merlin"
-         },
-         "5": {
-            "name": "Gathering some more materials",
-            "description": "Nice, now we need some bear skin. There's some roaming bears out in the deep woods, see if you can get some for me.",
-            "gold": 20,
-            "exp": 25,
-            "items": {},
+            "description": "If we're gonna attempt getting Excalibur, we need to be ready for everything. There's a few... Let's call it obstacles, in the way. \nI need you to gather some meat from the wild animals out west. Good luck.",
+            "gold": 50,
+            "exp": 30,
+            "items": {
+                "Meat": 5
+                },
             "giver": "Merlin"
          },
          "6": {
             "name": "The final encounter",
             "description": "You've made it! We're only a small step away from pulling the mighty Excalibur!\nThere's something I haven't told you yet, though. The sword is guarded by a big dragon... Let's hope we're strong enough to defeat it.",
             "gold": 50,
-            "exp": 35,
+            "exp": 45,
             "items": {},
             "giver": "Merlin"
          },
@@ -77,7 +69,9 @@
             "description": "We have done it! You pulled the mighty Excalibur! \n\nRequired items: Excalibur, the Mighty Greatsword",
             "gold": 500,
             "exp": 50,
-            "items": {},
+            "items": {
+                "Excalibur, the Mighty Greatsword": 1
+                },
             "giver": "Merlin"
          }
       },
