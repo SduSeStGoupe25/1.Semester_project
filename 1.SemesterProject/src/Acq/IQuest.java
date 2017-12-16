@@ -18,7 +18,7 @@ public interface IQuest {
     /**
      * Called to get the quest description
      *
-     * @return the description of the quest
+     * @return a String representing the description of the quest
      */
     String getDescription();
 

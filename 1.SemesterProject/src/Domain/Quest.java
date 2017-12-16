@@ -14,7 +14,7 @@ class Quest implements IQuest {
     private int exp; //Experience reward for completing the quest
     private HashMap<String, Integer> items; //HashMap containing required items to complete quest
     private String giver; //The NPC the quest has to be turned in to
-    private String questDescription = ""; //Variable used to handle quest items in description
+    private String questDescription = ""; //Variable used to handle quest items in description, to avoid duplicate quest items in description
 
     Quest(String name, String description, int gold, int exp, HashMap<String, Integer> items, String giver) {
         this.name = name;
@@ -39,6 +39,7 @@ class Quest implements IQuest {
      */
     private void addItemsToDescription() { //This method adds quest items from our HashMap to the quest description, so the player can see what items are required for completion
         String itemDescription = ""; //Empty string created to hold item names
+        questDescription = description;
         if (items.keySet().size() == 1) {
             for (String item : items.keySet()) {
                 itemDescription = "\n\nRequired items: " + items.get(item) + " " + item; //If there is any quest items, we add it to itemDescription
@@ -55,14 +56,15 @@ class Quest implements IQuest {
                 itemDescription += items.get(item) + " " + item + ", "; //Every item gets added to itemDescription
             }
         }
-        questDescription = description + itemDescription; //Finally it sets questDescription (which is initially empty) to be equals to the original description + the required items.
+        questDescription += itemDescription;
+//        questDescription = description + itemDescription; //Finally it sets questDescription (which is initially empty) to be equals to the original description + the required items.
         //The extra String variable questDescription was needed to prevent duplicates of "Required items..." to be added to description
     }
 
     @Override
     public String getDescription() {
         addItemsToDescription(); //This line starts the method addItemsToDescription, and updates questDescription if there's any quest items
-        return questDescription;
+        return questDescription; //Returning questDescription, otherwise items duplicate in description when called more than once
     }
 
     void setDescription(String description) {
