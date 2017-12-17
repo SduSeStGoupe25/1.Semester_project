@@ -58,7 +58,7 @@
          },
          "5": {
             "name": "The final encounter",
-            "description": "You've made it! We're only a small step away from pulling the mighty Excalibur!\nThere's something I haven't told you yet, though. The sword is guarded by a big dragon... Let's hope we're strong enough to defeat it.",
+            "description": "You've made it! We're only a small step away from pulling the mighty Excalibur! To acces the room where Excalibur is hidden, you will need a key. The king has this, and you must defeat him to get it, and to free this kingdom once and for all! \nThere's something I haven't told you yet, though. The sword is guarded by a big dragon... Let's hope we're strong enough to defeat the king, and slay the dragon!.",
             "gold": 50,
             "exp": 45,
             "items": {},

@@ -36,6 +36,5 @@ public class UICharacter extends ImageView {
         Image image = new Image(f.toURI().toString(), 100, 100, false, false);
         this.setImage(image);
 
-        System.out.println("image");
     }
 }

@@ -141,7 +141,6 @@ public class JSONDatabase implements IData {
             //Converts the string to a list
             List<IHighscoreWrapper> ho = gson.fromJson(jsonReader, type);
 
-            System.out.println("Done loading");
             return ho;
         } catch (IOException e) {
         }
@@ -194,7 +193,7 @@ public class JSONDatabase implements IData {
             //Creates a game instance from the json string
             DataGame game = gson.fromJson(jsonReader, DataGame.class);
 
-            System.out.println("Done loading");
+
 
             //Returns game
             return game;
@@ -284,7 +283,6 @@ public class JSONDatabase implements IData {
             //Checks if type is player
             if (type.equals(DataPlayer.class)) {
                 //Returns a instance of player
-                System.out.println(g.fromJson(je, DataPlayer.class));
                 return (DataPlayer) g.fromJson(je, DataPlayer.class);
             }
 
@@ -375,7 +373,7 @@ public class JSONDatabase implements IData {
             //Writes o to the file
             gson.toJson(o, writer);
 
-            System.out.println("Done saving");
+       
         } catch (IOException e) {
         }
     }

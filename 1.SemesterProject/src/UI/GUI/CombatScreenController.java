@@ -91,7 +91,6 @@ public class CombatScreenController implements Initializable {
         updatePlayerStats();
         updateOpponentStats();
         updatEquippedInventory();
-
         File f = new File("Img/combat.png");
         Image image = new Image(f.toURI().toString());
         BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);

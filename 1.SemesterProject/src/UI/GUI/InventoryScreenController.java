@@ -31,7 +31,7 @@ public class InventoryScreenController implements Initializable {
     private ListView<HBoxCell> listInventory;
     @FXML
     private ListView<HBoxCell> listEquipedItems;
-    
+
     HBoxCell selectedItem;
 
     int selectedIndex;
