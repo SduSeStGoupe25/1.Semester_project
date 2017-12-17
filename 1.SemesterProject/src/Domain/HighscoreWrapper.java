@@ -7,9 +7,22 @@ import Acq.IHighscoreWrapper;
  */
 class HighscoreWrapper implements Comparable<HighscoreWrapper>, IHighscoreWrapper {
 
+    /**
+     * The score
+     */
     private int score;
+
+    /**
+     * The name of the player
+     */
     private String name;
 
+    /**
+     * Constructor
+     *
+     * @param score {@link #score}
+     * @param name {@link #name}
+     */
     HighscoreWrapper(int score, String name) {
         this.score = score;
         this.name = name;
@@ -27,11 +40,11 @@ class HighscoreWrapper implements Comparable<HighscoreWrapper>, IHighscoreWrappe
 
     @Override
     public int compareTo(HighscoreWrapper h) {
-        return Integer.compare(score, h.getScore()); 
+        return Integer.compare(score, h.getScore());
     }
-    
-    @Override 
-    public String toString () { 
+
+    @Override
+    public String toString() {
         return this.name + "\t" + this.score + "\n";
     }
 }

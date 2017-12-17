@@ -1,22 +1,45 @@
 package Domain;
 
+import Acq.ICharacterEntity;
 import Acq.ICombatResponse;
 
 /**
  * CombatResponse class
  */
-class CombatResponse implements ICombatResponse{
-    private int playerAttack;
-    private int opponentAttack;
-    private boolean isRunning;
-    private Player player;
-    private CharacterEntity opponent;
+class CombatResponse implements ICombatResponse {
 
-    CombatResponse(int playerAttack, int opponentAttack, boolean isRunning, Player player, CharacterEntity ce) {
+    /**
+     * The value of the player attack
+     */
+    private int playerAttack;
+
+    /**
+     * The value of the opponentAttack
+     */
+    private int opponentAttack;
+
+    /**
+     * Whether the combat is running or not
+     */
+    private boolean isRunning;
+
+    /**
+     * The opponent
+     */
+    private ICharacterEntity opponent;
+
+    /**
+     * Constructor
+     *
+     * @param playerAttack {@link #playerAttack}
+     * @param opponentAttack {@link #opponentAttack}
+     * @param isRunning {@link #isRunning}
+     * @param ce {@link #opponent}
+     */
+    CombatResponse(int playerAttack, int opponentAttack, boolean isRunning, ICharacterEntity ce) {
         this.playerAttack = playerAttack;
         this.opponentAttack = opponentAttack;
         this.isRunning = isRunning;
-        this.player = player;
         opponent = ce;
     }
 
@@ -25,6 +48,11 @@ class CombatResponse implements ICombatResponse{
         return playerAttack;
     }
 
+    /**
+     * Called to set the player attack
+     *
+     * @param playerAttack the player attack value
+     */
     void setPlayerAttack(int playerAttack) {
         this.playerAttack = playerAttack;
     }
@@ -34,20 +62,26 @@ class CombatResponse implements ICombatResponse{
         return opponentAttack;
     }
 
-    public void setOpponentAttack(int opponentAttack) {
+    /**
+     * Called to set the opponentAttack
+     *
+     * @param opponentAttack the opponent attack value
+     */
+    void setOpponentAttack(int opponentAttack) {
         this.opponentAttack = opponentAttack;
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
     @Override
-    public CharacterEntity getOpponent() {
+    public ICharacterEntity getOpponent() {
         return opponent;
     }
 
-    public void setIsRunning(boolean isRunning) {
+    /**
+     * Called to set whether combat is running or not
+     *
+     * @param isRunning whether combat are running
+     */
+    void setIsRunning(boolean isRunning) {
         this.isRunning = isRunning;
     }
 

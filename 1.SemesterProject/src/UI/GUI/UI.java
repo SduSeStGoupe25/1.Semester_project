@@ -15,22 +15,48 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
- *
+ * The main class in the UI layer
  */
 public class UI extends Application implements IUI {
 
+    /**
+     * The instance of UI
+     */
     private static UI ui = null;
 
+    /**
+     * Instance of IDomainData
+     */
     private IDomainData domainData;
+    
+    /**
+     * Instance of IDomainGame
+     */
     private IGame domainGame;
+    
+    /**
+     * The current ui state
+     */
     private UIState state;
+    
+    /**
+     * The stage
+     */
     private Stage stage;
+    
+    /**
+     * The controller for the FXMLDocument.fxml
+     */
     private FXMLDocumentController mainGameController;
 
     public UI() {
         state = state.TITLESCREEN;
     }
 
+    /**
+     * Called to get the instance of ui
+     * @return 
+     */
     public static UI getInstance() {
         if (ui == null) {
             ui = new UI();
@@ -49,9 +75,7 @@ public class UI extends Application implements IUI {
     @Override
     public void startApplication(String[] args) {
         ui = this;
-        System.out.println("HHHHHHHHHHERE " + ui);
         launch(args);
-        System.out.println("-----------------");
     }
 
     @Override
@@ -66,7 +90,6 @@ public class UI extends Application implements IUI {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println("!!!!!!!!!!!!!!!");
         Font.loadFont(getClass().getResourceAsStream("Fonts/breathefire.otf"), 16);
         Font.loadFont(getClass().getResourceAsStream("Fonts/salterioshadow.ttf"), 16);
 
@@ -86,6 +109,10 @@ public class UI extends Application implements IUI {
         return state;
     }
 
+    /**
+     * Called to set the UI state 
+     * @param state the state to set to
+     */
     void setState(UIState state) {
         try {
             switch (state) {

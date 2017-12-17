@@ -31,6 +31,7 @@ class GameMapper {
 
     /**
      * Called to map an instance to IDomainGame to an instance of DomainGame
+     *
      * @param toBeMapped the instance of IDomainGame to be mapped
      * @return the instance of domainGame
      */
@@ -243,7 +244,7 @@ class GameMapper {
         }
         return m;
     }
-
+    
     private HashMap<String, IQuest> map(HashMap<String, IQuest> toBeMapped) {
         HashMap<String, IQuest> m = new LinkedHashMap<>();
         System.out.println(toBeMapped);

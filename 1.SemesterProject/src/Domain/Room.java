@@ -17,13 +17,43 @@ import java.util.Iterator;
  */
 class Room implements IRoom {
 
+    /**
+     * The name of the room
+     */
     private String name;
-    private String description; //The room description, printed upon entering
+
+    /**
+     * The room description, printed upon entering
+     */
+    private String description;
+
+    /**
+     * The exits from the room
+     */
     private HashMap<String, IExit> exits;
-    private List<ICharacterEntity> charactersInRoom; //ArrayList containing the NPC's in the room
-    private ArrayList<IItem> items; //ArrayList containing the items in the room which are pickupable through the "search function", e.g. rocks in the city center
+
+    /**
+     * ArrayList containing the CharacterEntity's in the room
+     */
+    private List<ICharacterEntity> charactersInRoom;
+
+    /**
+     * ArrayList containing the items in the room which are pickupable through
+     * the "search function", e.g. rocks in the city center
+     */
+    private ArrayList<IItem> items;
+
+    /**
+     * The names of the monsters that can spawn in the room
+     */
     private HashSet<String> allowedMonsters;
 
+    /**
+     * Constructor
+     *
+     * @param name {@link #name}
+     * @param description {@link #description}
+     */
     Room(String name, String description) {
         this.name = name;
         this.description = description;
@@ -40,32 +70,41 @@ class Room implements IRoom {
         return "Room{" + "name=" + name + ", description=" + description + ", charactersInRoom=" + charactersInRoom + ", items=" + items + ", allowedMonsters=" + allowedMonsters + '}';
     }
 
+    /**
+     * Called to remove a character from the room
+     *
+     * @param ce the CharacterEntity to remove
+     */
     void removeCharacterFromRoom(CharacterEntity ce) {
         charactersInRoom.remove(ce);
     }
 
-    void setExit(String direction, Exit neighbor) {
-        exits.put(direction, neighbor);
-    }
-
+    /**
+     * Called to get a exit in a direction
+     *
+     * @param direction the name of the direction
+     * @return a Exit
+     */
     IExit getExit(String direction) {
         return exits.get(direction);
     }
 
-    void addCharacterToRoom(CharacterEntity ce) { //Adds characters to the room
+    /**
+     * Adds characters to the room
+     *
+     * @param ce the Character to add
+     */
+    void addCharacterToRoom(CharacterEntity ce) {
         charactersInRoom.add(ce);
     }
 
-    void addCharacterToRoom(List<CharacterEntity> ce) { //Adds characters to the room
+    /**
+     * Adds characters to the room
+     *
+     * @param ce the characters to add
+     */
+    void addCharacterToRoom(List<CharacterEntity> ce) {
         charactersInRoom.addAll(ce);
-    }
-
-    void addAllowedMonsters(String name) {
-        allowedMonsters.add(name);
-    }
-
-    void addAllowedMonsters(HashSet<String> d) {
-        allowedMonsters.addAll(d);
     }
 
     /**
@@ -115,10 +154,6 @@ class Room implements IRoom {
         }
     }
 
-    ICharacterEntity getCharacterEntity(int index) {
-        return charactersInRoom.get(index);
-    }
-
     /**
      * Called to move all movableNPC's in the room
      */
@@ -138,6 +173,11 @@ class Room implements IRoom {
         return allowedMonsters;
     }
 
+    /**
+     * Called to set the allowed monsters
+     *
+     * @param allowedMonsters the names of the monsters
+     */
     void setAllowesMonsters(HashSet<String> allowedMonsters) {
         this.allowedMonsters = allowedMonsters;
     }
@@ -147,6 +187,11 @@ class Room implements IRoom {
         return items;
     }
 
+    /**
+     * Called to set the items in the room
+     *
+     * @param items the items
+     */
     void setItemList(ArrayList<IItem> items) {
         this.items = items;
     }
@@ -156,17 +201,9 @@ class Room implements IRoom {
         return description;
     }
 
-    void setShortDescription(String description) {
-        this.description = description;
-    }
-
     @Override
     public String getName() {
         return name;
-    }
-
-    void setName(String name) {
-        this.name = name;
     }
 
     @Override
@@ -174,6 +211,11 @@ class Room implements IRoom {
         return charactersInRoom;
     }
 
+    /**
+     * Called to set characters in the room
+     *
+     * @param charactersInRoom the characters in the room
+     */
     void setCharactersInRoom(List<ICharacterEntity> charactersInRoom) {
         this.charactersInRoom = charactersInRoom;
     }
@@ -183,6 +225,11 @@ class Room implements IRoom {
         return exits;
     }
 
+    /**
+     * Called to set the exits from the room
+     *
+     * @param exits the exits from the room
+     */
     void setExits(HashMap<String, IExit> exits) {
         this.exits = exits;
     }

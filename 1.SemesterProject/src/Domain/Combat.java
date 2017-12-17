@@ -8,17 +8,35 @@ import Acq.ICombatResponse;
  *
  * This class is responsible for the combat between the player and a opponent
  */
-class Combat implements ICombat{
+class Combat implements ICombat {
 
-    private CharacterEntity opponent; //The characterEntity to fight against 
-    private Room currentRoom; //The current room
-    private Player player; //The player
-    private boolean running; //Indicating if the combat is running
-    private DomainGame game;
+    /**
+     * The characterEntity to fight against
+     */
+    private CharacterEntity opponent;
 
-    Combat(Player player, DomainGame game) {
+    /**
+     * The current room
+     */
+    private Room currentRoom;
+
+    /**
+     * The player
+     */
+    private Player player;
+
+    /**
+     * Whether combat is running or not
+     */
+    private boolean running;
+
+    /**
+     * Constructor
+     *
+     * @param player {@link #player}
+     */
+    Combat(Player player) {
         this.player = player;
-        this.game = game;
     }
 
     /**
@@ -28,10 +46,10 @@ class Combat implements ICombat{
      */
     @Override
     public void startCombat(ICharacterEntity opponent) {
-        this.opponent = (CharacterEntity)opponent;
-        this.currentRoom = (Room) game.getCurrentIRoom();
+        this.opponent = (CharacterEntity) opponent;
+        this.currentRoom = (Room) DomainGame.getInstance().getCurrentIRoom();
         running = true;
-        
+
     }
 
     /**
@@ -39,7 +57,7 @@ class Combat implements ICombat{
      */
     @Override
     public ICombatResponse combatLoop(int action) {
-        CombatResponse cr = new CombatResponse(0, 0, running, player, opponent);
+        CombatResponse cr = new CombatResponse(0, 0, running, opponent);
         switch (action) {
             case 0:
                 cr.setPlayerAttack(lightAttack());
@@ -50,25 +68,24 @@ class Combat implements ICombat{
             case 2:
                 running = false;
                 break;
-            case 3: 
+            case 3:
                 return (ICombatResponse) cr;
-               
 
         }
         if (opponent.getHealth() < 1) { //If the opponents health is below 1 ( = dead), the opponent gets removed from the room / game.
             opponent.onDeath();
-            player.addExp(((NPC)opponent).getExpDrop());
+            player.addExp(((NPC) opponent).getExpDrop());
             currentRoom.removeCharacterFromRoom(opponent);
             running = false; //When our opponent has been removed, we set running to false to stop combat.
         }
 
         if (running) {
             cr.setOpponentAttack(opponentMove()); //The opponents move
-            if(player.getHealth()<1){
+            if (player.getHealth() < 1) {
                 player.onDeath();
             }
         } else {
-            game.moveAllNPC(); //At the end of combat we call moveAllNPC, to make all our moveableNPC's move around
+            DomainGame.getInstance().moveAllNPC(); //At the end of combat we call moveAllNPC, to make all our moveableNPC's move around
             player.addHunger(-8); //At the end of combat the player's hungervalue decreases
         }
         return (ICombatResponse) cr;

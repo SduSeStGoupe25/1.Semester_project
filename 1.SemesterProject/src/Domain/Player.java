@@ -11,23 +11,78 @@ import java.util.LinkedHashMap;
 /**
  * This class defines a Player
  */
-class Player extends CharacterEntity implements IPlayer{
+class Player extends CharacterEntity implements IPlayer {
 
-    private Inventory itemInventory;
-    private Inventory equipableInventory;
-    private int gold;
-    private int exp;
-    private LinkedHashMap<Integer, IQuest> mainQuest;
-    private HashMap<String, IQuest> sideQuest;
-    private int questsCompleted;
-    private int hunger;
-    private int maxHunger;
-    private int expToLevelUp;
-    private int scoreValue;
-    private int completedGame = 0;
-    
     /**
-     * Player constructor
+     * The inventory with items
+     */
+    private Inventory itemInventory;
+
+    /**
+     * The inventory with items that are equipped
+     */
+    private Inventory equipableInventory;
+
+    /**
+     * The amount of gold the player has
+     */
+    private int gold;
+
+    /**
+     * The amount of exp the player has. This resets the level up
+     */
+    private int exp;
+
+    /**
+     * The mainQuests
+     */
+    private LinkedHashMap<Integer, IQuest> mainQuest;
+
+    /**
+     * The sideQuests
+     */
+    private HashMap<String, IQuest> sideQuest;
+
+    /**
+     * The amount of main quest that are completed
+     */
+    private int questsCompleted;
+
+    /**
+     * The players hunger
+     */
+    private int hunger;
+
+    /**
+     * The max amount of hunger the player can get
+     */
+    private int maxHunger;
+
+    /**
+     * The exp need to level up
+     */
+    private int expToLevelUp;
+
+    /**
+     * The score the player has earned
+     */
+    private int scoreValue;
+
+    /**
+     * if set to 1 the game is lost
+     */
+    private int completedGame = 0;
+
+    /**
+     * Constructor
+     *
+     * @param name {@link CharacterEntity#name}
+     * @param health {@link CharacterEntity#health}
+     * @param armor {@link CharacterEntity#armor}
+     * @param attack {@link CharacterEntity#attack}
+     * @param level {@link CharacterEntity#level}
+     * @param gold {@link #gold}
+     * @param exp {@link #exp}
      */
     Player(String name, int health, int armor, int attack, int level, int gold, int exp) {
         super(name, health, armor, attack, level, 2);
@@ -43,10 +98,20 @@ class Player extends CharacterEntity implements IPlayer{
         this.scoreValue = 0;
     }
 
+    /**
+     * Called to get hunger of maxHunger
+     *
+     * @return hungerPercent
+     */
     double getHungerPercent() {
         return maxHunger / hunger;
     }
 
+    /**
+     * Called to add hunger to the players hunger
+     *
+     * @param hunger the amount to add
+     */
     void addHunger(int hunger) {
         if (this.hunger + hunger >= 100) {
             this.hunger = 100;
@@ -94,10 +159,20 @@ class Player extends CharacterEntity implements IPlayer{
         return armorValue;
     }
 
+    /**
+     * Called to add gold to the players gold
+     *
+     * @param amount the amount to add
+     */
     void addGold(int amount) {
         gold += amount;
     }
 
+    /**
+     * Called to remove gold from the player
+     *
+     * @param amount hte amount to remove
+     */
     void removeGold(int amount) {
         gold -= amount;
     }
@@ -116,8 +191,8 @@ class Player extends CharacterEntity implements IPlayer{
             if (item instanceof Weapon) { //Checks if the item is a weapon
                 for (IItem i : equipableInventory.getInventory()) { //Searches through our equipableInventory
                     if (i instanceof Weapon) {  //If we find a weapon that is currently equipped, it does:
-                        itemInventory.addItem((Item)i, 1);                //Adds the equipped item to our itemInventory
-                        equipableInventory.removeItem((Item)i, 1);        //Removes the equipped item from our equipableInventory
+                        itemInventory.addItem((Item) i, 1);                //Adds the equipped item to our itemInventory
+                        equipableInventory.removeItem((Item) i, 1);        //Removes the equipped item from our equipableInventory
                         equipableInventory.addItem(item, 1);        //Adds the new item to our equipableInventory
                         return true;
                     }
@@ -127,8 +202,8 @@ class Player extends CharacterEntity implements IPlayer{
             } else if (item instanceof Armor) { //Checks if the item is a piece of armor
                 for (IItem i : equipableInventory.getInventory()) { //Searches through our equipableInventory
                     if (i instanceof Armor) {   //If we find a piece of armor that is currently equipped, then do:
-                        ((Inventory) itemInventory).addItem((Item)i, 1);                //Adds the already equipped armor to our itemInventory
-                        equipableInventory.removeItem((Item)i, 1);        //Removes the equipped item from our equipableInventory
+                        ((Inventory) itemInventory).addItem((Item) i, 1);                //Adds the already equipped armor to our itemInventory
+                        equipableInventory.removeItem((Item) i, 1);        //Removes the equipped item from our equipableInventory
                         equipableInventory.addItem(item, 1);        //Adds the new item to our equipableInventory
                         return true;
                     }
@@ -175,10 +250,14 @@ class Player extends CharacterEntity implements IPlayer{
         }
     }
 
+    /**
+     * Called to get the current main quest
+     *
+     * @return the current main quest
+     */
     IQuest getCurrentMainQuest() {
         return mainQuest.get(questsCompleted);
     }
-
 
     /**
      * This method checks whether or not we can complete a quest
@@ -214,25 +293,34 @@ class Player extends CharacterEntity implements IPlayer{
         }
         return false;
     }
-    
+
     @Override
-    public void getCompleteQuest(String room){
+    public void getCompleteQuest(String room) {
         checkQuest(room);
     }
 
-    void levelUp() { //Function called to check wether the player has enough experience to level up, and the fuctionality for leveling up
+    /**
+     * Function called to check whether the player has enough experience to
+     * level up, and the fuctionality for leveling up
+     */
+    void levelUp() {
         setLevel(getLevel() + 1);
         super.setStats();
         scoreValue += exp;
-        if(expToLevelUp - exp != 0) {
-           exp -= expToLevelUp; 
+        if (expToLevelUp - exp != 0) {
+            exp -= expToLevelUp;
         } else {
             exp = 0;
         }
-        
+
         expToLevelUp += 5;
     }
 
+    /**
+     * Called to add exp to the players current exp
+     *
+     * @param exp the amount to add
+     */
     void addExp(int exp) {
         this.exp += exp;
         if (this.exp >= expToLevelUp) {
@@ -240,6 +328,11 @@ class Player extends CharacterEntity implements IPlayer{
         }
     }
 
+    /**
+     * Called to get the amount of exp of exp to level up
+     *
+     * @return exp percent
+     */
     double getExpPercent() {
         if (exp != 0) {
             return expToLevelUp / exp;
@@ -253,6 +346,11 @@ class Player extends CharacterEntity implements IPlayer{
         return itemInventory;
     }
 
+    /**
+     * Called to set the item inventory
+     *
+     * @param itemInventory the inventory to set to
+     */
     void setItemInventory(IInventory itemInventory) {
         this.itemInventory = (Inventory) itemInventory;
     }
@@ -262,6 +360,11 @@ class Player extends CharacterEntity implements IPlayer{
         return equipableInventory;
     }
 
+    /**
+     * Called to set the equipable inventory
+     *
+     * @param equipableInventory the inventory to set to
+     */
     void setEquipableInventory(IInventory equipableInventory) {
         this.equipableInventory = (Inventory) equipableInventory;
     }
@@ -271,17 +374,9 @@ class Player extends CharacterEntity implements IPlayer{
         return gold;
     }
 
-    void setGold(int gold) {
-        this.gold = gold;
-    }
-
     @Override
     public int getExp() {
         return exp;
-    }
-
-    void setExp(int exp) {
-        this.exp = exp;
     }
 
     @Override
@@ -289,6 +384,11 @@ class Player extends CharacterEntity implements IPlayer{
         return mainQuest;
     }
 
+    /**
+     * Called to set the mainQuest
+     *
+     * @param mainQuest LinkedHashMap to set to
+     */
     void setMainQuest(LinkedHashMap<Integer, IQuest> mainQuest) {
         this.mainQuest = mainQuest;
     }
@@ -298,6 +398,11 @@ class Player extends CharacterEntity implements IPlayer{
         return sideQuest;
     }
 
+    /**
+     * Called to set the sideQuest
+     *
+     * @param sideQuest HashMao to set to
+     */
     void setSideQuest(HashMap<String, IQuest> sideQuest) {
         this.sideQuest = sideQuest;
     }
@@ -307,6 +412,11 @@ class Player extends CharacterEntity implements IPlayer{
         return questsCompleted;
     }
 
+    /**
+     * Called to set the quests completed
+     *
+     * @param questsCompleted the amount of quest completed
+     */
     void setQuestsCompleted(int questsCompleted) {
         this.questsCompleted = questsCompleted;
     }
@@ -316,6 +426,11 @@ class Player extends CharacterEntity implements IPlayer{
         return hunger;
     }
 
+    /**
+     * Called to set the hunger of the player
+     *
+     * @param hunger the amount to set hunger to
+     */
     void setHunger(int hunger) {
         this.hunger = hunger;
     }
@@ -325,6 +440,11 @@ class Player extends CharacterEntity implements IPlayer{
         return maxHunger;
     }
 
+    /**
+     * Called to set the max hunger
+     *
+     * @param maxHunger the max hunger
+     */
     void setMaxHunger(int maxHunger) {
         this.maxHunger = maxHunger;
     }
@@ -334,6 +454,11 @@ class Player extends CharacterEntity implements IPlayer{
         return expToLevelUp;
     }
 
+    /**
+     * Called to set the expToLevelUp
+     *
+     * @param expToLevelUp amount of exp to level up
+     */
     void setExpToLevelUp(int expToLevelUp) {
         this.expToLevelUp = expToLevelUp;
     }
@@ -343,11 +468,21 @@ class Player extends CharacterEntity implements IPlayer{
         return scoreValue;
     }
 
+    /**
+     * Called to set the score value
+     *
+     * @param scoreValue the value to set score value to
+     */
     void setScoreValue(int scoreValue) {
         this.scoreValue = scoreValue;
     }
-    
-    void addScore (int expDrop) { 
+
+    /**
+     * Called to add score to scoreValue
+     *
+     * @param expDrop the amount to add
+     */
+    void addScore(int expDrop) {
         scoreValue += expDrop;
-    } 
+    }
 }

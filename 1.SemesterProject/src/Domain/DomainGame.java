@@ -19,20 +19,30 @@ import java.util.LinkedHashMap;
  */
 class DomainGame implements IGame {
 
+    /**
+     * Instance of DomainGame
+     */
     private transient static DomainGame instance = null;
-    private String currentRoom;       //The current room
+
+    /**
+     * The name of the current room
+     */
+    private String currentRoom;
+
+    /**
+     * Instance of player
+     */
     private Player player;
+
+    /**
+     * Instance of ICombat
+     */
     private transient ICombat combat;
 
-    private Map<String, IRoom> rooms; // creating objects of the Room-class
-
-    void setMap(Map<String, Room> m) {
-        rooms.clear();
-        rooms = new HashMap<>(m);
-    }
-
-    private transient boolean finished = false;
-
+    /**
+     * The rooms
+     */
+    private Map<String, IRoom> rooms;
 
     /**
      * This is the constructor, which is used when a instance of Game is made.
@@ -41,10 +51,18 @@ class DomainGame implements IGame {
         rooms = new HashMap<>();
     }
 
+    /**
+     * Called to make a instance of Combat
+     */
     void makeCombat() {
-        combat = new Combat(player, this);
+        combat = new Combat(player);
     }
 
+    /**
+     * Called to get a instance of DomainGame
+     *
+     * @return a instance a DomainGame
+     */
     public static DomainGame getInstance() {
         if (instance == null) {
             instance = new DomainGame();
@@ -52,16 +70,16 @@ class DomainGame implements IGame {
         return (DomainGame) instance;
     }
 
-    /**
-     * Gets the player
-     *
-     * @return Returns the player object
-     */
     @Override
     public IPlayer getPlayer() {
         return (IPlayer) player;
     }
 
+    /**
+     * Called to set the player
+     *
+     * @param player the player to set player to
+     */
     void setPlayer(IPlayer player) {
         this.player = (Player) player;
     }
@@ -83,7 +101,7 @@ class DomainGame implements IGame {
     void setCurrentIRoom(Room currentRoom) {
         this.currentRoom = currentRoom.getName();
     }
-    
+
     /**
      * This method is called when moveableNPC's should move. It uses a for-each
      * loop to go through all rooms, and calls the move() method in each.
@@ -95,12 +113,9 @@ class DomainGame implements IGame {
         }
     }
 
-    void setFinished(boolean finished) {
-        this.finished = finished;
-    }
-
     /**
      * Called to move the player to a new room
+     *
      * @param direction the direction to move to
      * @return true if the player has moved to the new room, else false
      */
@@ -114,7 +129,7 @@ class DomainGame implements IGame {
         } else if (((Exit) exit).isLocked(player.getItemInventory())) {
             return false;
         } else {  //If it has
-            ((Room)rooms.get(currentRoom)).despawnEnemies();
+            ((Room) rooms.get(currentRoom)).despawnEnemies();
             Room nextRoom = (Room) getRoomMap().get(((Exit) exit).nextRoom(getCurrentIRoom().getName()));
             setCurrentIRoom(nextRoom); //Current room is now the nextRoom
             player.addHunger(-3);
@@ -133,20 +148,25 @@ class DomainGame implements IGame {
         return currentRoom;
     }
 
+    /**
+     * Called to set the current room
+     *
+     * @param currentRoom the name of the room to set
+     */
     void setCurrentRoom(String currentRoom) {
         this.currentRoom = currentRoom;
     }
 
-    /**
-     * Gets the map of rooms
-     *
-     * @return Returns the map rooms
-     */
     @Override
     public Map<String, IRoom> getRoomMap() {
         return rooms;
     }
 
+    /**
+     * Called to set rooms Map
+     *
+     * @param rooms the Map to set rooms to
+     */
     void setRoomMap(Map<String, IRoom> rooms) {
         this.rooms = rooms;
     }
@@ -208,16 +228,15 @@ class DomainGame implements IGame {
         return combat.combatLoop(action);
     }
 
-
     @Override
     public boolean usePotion() {
         System.out.println("INVENTORY USEPOTION " + player.getItemInventory().getInventory());
         System.out.println("SIZE " + player.getItemInventory().getInventory().size());
-        
+
         for (IItem item : player.getItemInventory().getInventory()) {
             System.out.println("NAME " + item.getName());
         }
-        
+
         for (IItem consumeable : player.getItemInventory().getInventory()) {
             if (consumeable instanceof Consumeable) {
                 System.out.println("instanceof statement klaret jaja");
@@ -225,7 +244,7 @@ class DomainGame implements IGame {
                     player.restoreHp(consumeable);
                     return true;
                 }
-            } 
+            }
         }
 
         return false;

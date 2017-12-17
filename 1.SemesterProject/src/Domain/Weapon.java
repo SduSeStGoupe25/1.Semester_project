@@ -7,16 +7,35 @@ import Acq.IWeapon;
  */
 class Weapon extends Item implements IWeapon {
 
+    /**
+     * The attack at level 1
+     */
     private int baseAttack;
+
+    /**
+     * The attack value
+     */
     private int attackValue;
+
+    /**
+     * The item level
+     */
     private int itemLevel;
 
+    /**
+     * Constructor
+     *
+     * @param name {@link Item#name}
+     * @param sellValue {@link Item#sellValue}
+     * @param count {@link Item#count}
+     * @param baseAttack {@link #baseAttack}
+     * @param itemLevel {@link #itemLevel}
+     */
     Weapon(String name, int sellValue, int count, int baseAttack, int itemLevel) {
         super(name, sellValue, count, 1, 4);
         this.baseAttack = baseAttack;
         this.itemLevel = itemLevel;
         attackValue = baseAttack + itemLevel;
-        super.setName(name);
     }
 
     @Override
@@ -24,26 +43,14 @@ class Weapon extends Item implements IWeapon {
         return baseAttack;
     }
 
-    void setBaseAttack(int baseAttack) {
-        this.baseAttack = baseAttack;
-    }
-
     @Override
     public int getAttackValue() {
         return attackValue;
     }
 
-    void setAttackValue(int attackValue) {
-        this.attackValue = attackValue;
-    }
-
     @Override
     public int getItemLevel() {
         return itemLevel;
-    }
-
-    void setItemLevel(int itemLevel) {
-        this.itemLevel = itemLevel;
     }
 
     @Override

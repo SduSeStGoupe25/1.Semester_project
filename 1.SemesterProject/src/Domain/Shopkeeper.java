@@ -10,8 +10,25 @@ import java.util.Set;
  */
 class Shopkeeper extends NPC implements IShopkeeper {
 
+    /**
+     * The names of the items to sell
+     */
     private Set<String> itemstoSell = new HashSet<>();
 
+    /**
+     * Constructor
+     *
+     * @param name {@link CharacterEntity#name}
+     * @param health {@link CharacterEntity#health}
+     * @param armor {@link CharacterEntity#armor}
+     * @param attack {@link CharacterEntity#attack}
+     * @param level {@link CharacterEntity#level}
+     * @param expDrop {@link #expDrop}
+     * @param talk {@link #talk}
+     * @param itemMap {@link #itemMap}
+     * @param hostile {@link CharacterEntity#hostile}
+     * @param despawning {@link CharacterEntity#despawning}
+     */
     Shopkeeper(String name, int health, int armor, int attack, int level, int expDrop, String talk, Map<String, Integer> itemMap, boolean hostile, boolean despawning) {
         super(name, health, armor, attack, level, expDrop, 3, talk, itemMap, hostile, despawning);
 
@@ -19,6 +36,7 @@ class Shopkeeper extends NPC implements IShopkeeper {
 
     /**
      * Called to buy a item
+     *
      * @param item the item to buy
      * @param amount the amount to buy
      * @return true if the item was successful bought
@@ -39,6 +57,7 @@ class Shopkeeper extends NPC implements IShopkeeper {
 
     /**
      * Called to sell a item
+     *
      * @param item the item to sell
      * @param amount the amount to sell
      * @return true if the item was successful sold
@@ -57,6 +76,11 @@ class Shopkeeper extends NPC implements IShopkeeper {
         return itemstoSell;
     }
 
+    /**
+     * Called to set the items to sell
+     *
+     * @param itemstoSell the names of the items to sell
+     */
     void setItemsToSell(Set<String> itemstoSell) {
         this.itemstoSell = itemstoSell;
     }

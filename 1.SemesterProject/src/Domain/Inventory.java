@@ -9,9 +9,21 @@ import java.util.ArrayList;
  */
 class Inventory implements IInventory {
 
+    /**
+     * The ArrayList the items are stored in
+     */
     private ArrayList<IItem> inventory;
+
+    /**
+     * The max index of the {@link #inventory}
+     */
     private int maxSlots;
 
+    /**
+     * Constructor
+     *
+     * @param maxSlots {@link #maxSlots}
+     */
     Inventory(int maxSlots) {
         inventory = new ArrayList<>();
         this.maxSlots = maxSlots;
@@ -19,9 +31,10 @@ class Inventory implements IInventory {
 
     /**
      * Called to add a item to the inventory
+     *
      * @param item the item to add
      * @param amount the amount to add
-     * @return true if add was successful, else false 
+     * @return true if add was successful, else false
      */
     boolean addItem(Item item, int amount) {
         //Checks if there enough space in the inventory to the desired amount
@@ -84,6 +97,7 @@ class Inventory implements IInventory {
 
     /**
      * Called to remove a item from the inventory
+     *
      * @param item the item to remove
      * @param amount the amount to remove
      * @return true if remove was successful, else false
@@ -121,6 +135,11 @@ class Inventory implements IInventory {
         return inventory;
     }
 
+    /**
+     * Called to set the inventory
+     *
+     * @param inventory the ArrayList to set the inventory to
+     */
     void setInventory(ArrayList<IItem> inventory) {
         this.inventory = inventory;
     }
@@ -128,9 +147,5 @@ class Inventory implements IInventory {
     @Override
     public int getMaxSlots() {
         return maxSlots;
-    }
-
-    void setMaxSlots(int maxSlots) {
-        this.maxSlots = maxSlots;
     }
 }

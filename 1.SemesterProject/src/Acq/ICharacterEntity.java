@@ -32,7 +32,7 @@ public interface ICharacterEntity {
     /**
      * Called to get the base attack, the attack at level 1
      *
-     * @return
+     * @return the baseAttack
      */
     int getBaseAttack();
 

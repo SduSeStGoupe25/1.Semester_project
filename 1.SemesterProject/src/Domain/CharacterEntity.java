@@ -7,23 +7,87 @@ import Acq.ICharacterEntity;
  */
 abstract class CharacterEntity implements ICharacterEntity {
 
+    /**
+     * The name of the character
+     */
     private String name;
-    private int health;
-    private int armor;
-    private int level;
-    private int maxHealth;
-    private int baseHealth;
-    private int baseAttack;
-    private int attack;
-    private boolean hostile;
-    private boolean despawning;
-    private int id; // 0 = CharacterEntity, 1 = NPC, 2 = Player, 3 = Shopkeeper, 4 = MovableNPC
 
-    //Constructor
+    /**
+     * The character health
+     */
+    private int health;
+
+    /**
+     * The armor of the character
+     */
+    private int armor;
+
+    /**
+     * The level of the character
+     */
+    private int level;
+
+    /**
+     * The maximal healt the chracter can get
+     */
+    private int maxHealth;
+
+    /**
+     * The character healt at level 1
+     */
+    private int baseHealth;
+
+    /**
+     * The character attack at level 1
+     */
+    private int baseAttack;
+
+    /**
+     * The attack of the character
+     */
+    private int attack;
+
+    /**
+     * whether the character are hostile
+     */
+    private boolean hostile;
+
+    /**
+     * Whether the character are despawning
+     */
+    private boolean despawning;
+
+    /**
+     * The character id. 1 = NPC, 2 = Player, 3 = Shopkeeper, 4 = MovableNPC
+     */
+    private int id;
+
+    /**
+     * Constructor
+     *
+     * @param name {@link #name}
+     * @param baseHealth {@link #baseHealth}
+     * @param armor {@link #armor}
+     * @param baseAttack {@link #baseAttack}
+     * @param level {@link #level}
+     * @param id {@link #id}
+     */
     CharacterEntity(String name, int baseHealth, int armor, int baseAttack, int level, int id) {
         this(name, baseHealth, armor, baseAttack, level, id, false, false);
     }
 
+    /**
+     * Constructor
+     *
+     * @param name {@link #name}
+     * @param baseHealth {@link #baseHealth}
+     * @param armor {@link #armor}
+     * @param baseAttack {@link #baseAttack}
+     * @param level {@link #level}
+     * @param id {@link #id}
+     * @param hostile {@link #hostile}
+     * @param despawning {@link #despawning}
+     */
     CharacterEntity(String name, int baseHealth, int armor, int baseAttack, int level, int id, boolean hostile, boolean despawning) {
         this.baseHealth = baseHealth;
         this.baseAttack = baseAttack;
@@ -60,10 +124,20 @@ abstract class CharacterEntity implements ICharacterEntity {
      */
     abstract void onDeath();
 
+    /**
+     * Called to change the characters health
+     *
+     * @param amount the amount the change the health with
+     */
     void changeHealth(int amount) {
         health += amount;
     }
 
+    /**
+     * Called to get the percent of maxHealth
+     *
+     * @return the healthProcent
+     */
     public int getHealthPercent() {
         return maxHealth / health;
     }
@@ -73,6 +147,11 @@ abstract class CharacterEntity implements ICharacterEntity {
         return name;
     }
 
+    /**
+     * Called to set the player name
+     *
+     * @param name the name to set to
+     */
     void setName(String name) {
         this.name = name;
     }
@@ -82,6 +161,11 @@ abstract class CharacterEntity implements ICharacterEntity {
         return health;
     }
 
+    /**
+     * Called to set the health
+     *
+     * @param health the health to set health to
+     */
     void setHealth(int health) {
         this.health = health;
     }
@@ -91,6 +175,11 @@ abstract class CharacterEntity implements ICharacterEntity {
         return armor;
     }
 
+    /**
+     * Called to set the armor
+     *
+     * @param armor the armor to set armor to
+     */
     void setArmor(int armor) {
         this.armor = armor;
     }
@@ -100,6 +189,11 @@ abstract class CharacterEntity implements ICharacterEntity {
         return attack;
     }
 
+    /**
+     * Called to set attack
+     *
+     * @param attack the attack to set attack to
+     */
     void setAttack(int attack) {
         this.attack = attack;
     }
@@ -109,6 +203,11 @@ abstract class CharacterEntity implements ICharacterEntity {
         return level;
     }
 
+    /**
+     * Called to set level
+     *
+     * @param level the level to set level to
+     */
     void setLevel(int level) {
         this.level = level;
     }
@@ -118,17 +217,9 @@ abstract class CharacterEntity implements ICharacterEntity {
         return maxHealth;
     }
 
-    void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    }
-
     @Override
     public int getId() {
         return id;
-    }
-
-    void setId(int id) {
-        this.id = id;
     }
 
     @Override
@@ -136,17 +227,9 @@ abstract class CharacterEntity implements ICharacterEntity {
         return baseHealth;
     }
 
-    void setBaseHealth(int baseHealth) {
-        this.baseHealth = baseHealth;
-    }
-
     @Override
     public int getBaseAttack() {
         return baseHealth;
-    }
-
-    void setBaseAttack(int baseAttack) {
-        this.baseAttack = baseAttack;
     }
 
     @Override

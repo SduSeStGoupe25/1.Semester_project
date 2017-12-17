@@ -5,25 +5,67 @@ import Acq.IItem;
 /**
  * The item class
  */
-class Item implements IItem{
-    private String name;
-    private int sellValue;
-    private int count;
-    private final int MAX_COUNT;
-    private int id; // 0 = armor, 1 = comsum, 2 = key, 3 = normal, 4 = weapon
+public class Item implements IItem {
 
-    Item(String name, int sellValue, int count){
+    /**
+     * The name of the item
+     */
+    private String name;
+
+    /**
+     * The sell value of the item
+     */
+    private int sellValue;
+
+    /**
+     * The amount of items that are this item
+     */
+    private int count;
+
+    /**
+     * The amount of items that max can be in this item
+     */
+    private final int MAX_COUNT;
+
+    /**
+     * The ID of the item. 0 = armor, 1 = comsum, 2 = key, 3 = normal, 4 =
+     * weapon
+     */
+    private int id;
+
+    /**
+     * Constructor
+     *
+     * @param name {@link #name}
+     * @param sellValue {@link #sellValue}
+     * @param count {@link #count}
+     */
+    public Item(String name, int sellValue, int count) {
         this(name, sellValue, count, 10, 3);
     }
-    
-    Item(String name, int sellValue, int count, int MAX_COUNT, int id) {
+
+    /**
+     * Constructor
+     *
+     * @param name {@link #name}
+     * @param sellValue {@link #sellValue}
+     * @param count {@link #count}
+     * @param MAX_COUNT {@link #MAX_COUNT}
+     * @param id {@link #id}
+     */
+    public Item(String name, int sellValue, int count, int MAX_COUNT, int id) {
         this.name = name;
         this.sellValue = sellValue;
         this.count = count;
         this.MAX_COUNT = MAX_COUNT;
         this.id = id;
     }
-    
+
+    /**
+     * Called to add to the count
+     *
+     * @param countToAdd the amount to add
+     */
     void addCount(int countToAdd) {
         count += countToAdd;
     }
@@ -38,17 +80,9 @@ class Item implements IItem{
         return name;
     }
 
-    void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public int getSellValue() {
         return sellValue;
-    }
-
-    void setSellValue(int sellValue) {
-        this.sellValue = sellValue;
     }
 
     @Override
@@ -56,6 +90,11 @@ class Item implements IItem{
         return count;
     }
 
+    /**
+     * Called to set the count
+     *
+     * @param count the count to set count to
+     */
     void setCount(int count) {
         this.count = count;
     }
@@ -65,12 +104,8 @@ class Item implements IItem{
         return id;
     }
 
-    void setId(int id) {
-        this.id = id;
-    }  
-
     @Override
-    public int getMAX_COUNT(){
+    public int getMAX_COUNT() {
         return MAX_COUNT;
     }
 }

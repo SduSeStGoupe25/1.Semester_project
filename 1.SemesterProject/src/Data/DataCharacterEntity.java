@@ -44,7 +44,7 @@ abstract class DataCharacterEntity implements ICharacterEntity {
 
     @Override
     public int getBaseAttack() {
-        return baseHealth;
+        return baseAttack;
     }
 
     @Override

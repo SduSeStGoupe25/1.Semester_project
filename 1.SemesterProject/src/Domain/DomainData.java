@@ -15,18 +15,37 @@ import java.util.Map;
  */
 public class DomainData implements IDomainData {
 
+    /**
+     * Instance of IData
+     */
     private IData data;
+
+    /**
+     * GameMapper to map
+     */
     private final GameMapper mapper = new GameMapper();
-    
+
+    /**
+     * Instance of DomainData
+     */
     private static DomainData instance;
-    
+
+    /**
+     * Private Constructor, the class are instantiated using
+     * {@link #getInstance()}
+     */
     private DomainData() {
     }
-    
-    public static DomainData getInstance(){
-        if(instance == null){
+
+    /**
+     * Called to get the instance of DomainData
+     *
+     * @return a instance of domainData
+     */
+    public static DomainData getInstance() {
+        if (instance == null) {
             instance = new DomainData();
-        } 
+        }
         return instance;
     }
 
@@ -75,7 +94,7 @@ public class DomainData implements IDomainData {
     }
 
     @Override
-    public IItem getItem(String name) { 
+    public IItem getItem(String name) {
         return mapper.map(data.getItem().get(name.toLowerCase()));
     }
 

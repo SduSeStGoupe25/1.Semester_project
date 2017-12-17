@@ -8,14 +8,52 @@ import java.util.HashMap;
  */
 class Quest implements IQuest {
 
-    private String name; //Name of the quest
-    private String description; //Description of the quest
-    private int gold; //Gold reward for completing the quest
-    private int exp; //Experience reward for completing the quest
-    private HashMap<String, Integer> items; //HashMap containing required items to complete quest
-    private String giver; //The NPC the quest has to be turned in to
-    private String questDescription = ""; //Variable used to handle quest items in description, to avoid duplicate quest items in description
+    /**
+     * Name of the quest
+     */
+    private String name;
 
+    /**
+     * Description of the quest
+     */
+    private String description;
+
+    /**
+     * Gold reward for completing the quest
+     */
+    private int gold;
+
+    /**
+     * Experience reward for completing the quest
+     */
+    private int exp;
+
+    /**
+     * HashMap containing required items to complete quest
+     */
+    private HashMap<String, Integer> items;
+
+    /**
+     * The NPC the quest has to be turned in to
+     */
+    private String giver;
+
+    /**
+     * Variable used to handle quest items in description, to avoid duplicate
+     * quest items in description
+     */
+    private String questDescription = "";
+
+    /**
+     * Constructor
+     *
+     * @param name {@link #name}
+     * @param description {@link #description}
+     * @param gold {@link #gold}
+     * @param exp {@link #exp}
+     * @param items {@link #items}
+     * @param giver {@link #giver}
+     */
     Quest(String name, String description, int gold, int exp, HashMap<String, Integer> items, String giver) {
         this.name = name;
         this.description = description;
@@ -30,10 +68,6 @@ class Quest implements IQuest {
         return name;
     }
 
-    void setName(String name) {
-        this.name = name;
-    }
-    
     /**
      * Method used to add quest items to quest description
      */
@@ -67,17 +101,9 @@ class Quest implements IQuest {
         return questDescription; //Returning questDescription, otherwise items duplicate in description when called more than once
     }
 
-    void setDescription(String description) {
-        this.description = description;
-    }
-
     @Override
     public int getGold() {
         return gold;
-    }
-
-    void setGold(int gold) {
-        this.gold = gold;
     }
 
     @Override
@@ -85,25 +111,13 @@ class Quest implements IQuest {
         return exp;
     }
 
-    void setExp(int exp) {
-        this.exp = exp;
-    }
-
     @Override
     public HashMap<String, Integer> getItems() {
         return items;
     }
 
-    void setItems(HashMap<String, Integer> items) {
-        this.items = items;
-    }
-
     @Override
     public String getGiver() {
         return giver;
-    }
-
-    void setGiver(String giver) {
-        this.giver = giver;
     }
 }

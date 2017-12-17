@@ -9,18 +9,44 @@ import Acq.IItem;
  */
 class Exit implements IExit {
 
-    private final String name1;
-    private final String name2;
-    private boolean locked;
-    private final int lockID;
+    /**
+     * The name of one of the rooms
+     */
+    private String name1;
 
+    /**
+     * The name of the other room
+     */
+    private String name2;
+
+    /**
+     * Whether the exit is locked or not
+     */
+    private boolean locked;
+
+    /**
+     * The ID a item must have to unlock the exit
+     */
+    private int lockID;
+
+    /**
+     * Constructor
+     *
+     * @param room1 {@link #name1}
+     * @param room2 {@link #name2}
+     */
     Exit(String room1, String room2) {
-        this.name1 = room1;
-        this.name2 = room2;
-        locked = false;
-        lockID = 0;
+        this(room1, room2, false, 0);
     }
 
+    /**
+     * Constructor
+     *
+     * @param room1 {@link #name1}
+     * @param room2 {@link #name2}
+     * @param lock {@link #locked}
+     * @param lockID {@link #lockID}
+     */
     Exit(String room1, String room2, boolean lock, int lockID) {
         this.name1 = room1;
         this.name2 = room2;

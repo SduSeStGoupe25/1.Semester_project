@@ -7,15 +7,30 @@ import Acq.IArmor;
  */
 class Armor extends Item implements IArmor {
 
-    //Armor at level 1
-    private final int baseArmor;
-    
-    //Items armor value
-    private int armorValue;
-        
-    //Items level
-    private final int itemLevel;
+    /**
+     * Armor at level 1
+     */
+    private int baseArmor;
 
+    /**
+     * Items armor value
+     */
+    private int armorValue;
+
+    /**
+     * Items level
+     */
+    private int itemLevel;
+
+    /**
+     * Constructor
+     *
+     * @param name {@link Item#name}
+     * @param sellValue {@link Item#sellValue}
+     * @param count {@link Item#count}
+     * @param baseArmor {@link #baseArmor}
+     * @param itemLevel {@link #itemLevel}
+     */
     Armor(String name, int sellValue, int count, int baseArmor, int itemLevel) {
         super(name, sellValue, count, 1, 0);
         this.baseArmor = baseArmor;

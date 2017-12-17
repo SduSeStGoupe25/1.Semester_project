@@ -65,7 +65,7 @@ public interface IGame extends IDomainGame {
     /**
      * Called to use a potion from the player inventory
      *
-     * @return
+     * @return whether the potion was use or not
      */
     boolean usePotion();
 
