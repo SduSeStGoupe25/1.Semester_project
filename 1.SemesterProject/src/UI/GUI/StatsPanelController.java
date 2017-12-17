@@ -42,15 +42,11 @@ public class StatsPanelController implements Initializable {
     @FXML
     private Text currentExp;
     @FXML
-    private Text goldText;
-    @FXML
-    private Text levelText;
-    @FXML
-    private Text attackText;
-    @FXML
-    private Text armorText;
+    private Label levelText;
     @FXML
     private Label goldLabel;
+    @FXML
+    private Label bitcoinLabel;
 
     /**
      * Initializes the controller class.

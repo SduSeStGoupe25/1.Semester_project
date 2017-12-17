@@ -41,29 +41,22 @@
       <Text fx:id="currentHealth" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <Text fx:id="currentHunger" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Text fx:id="currentExp" strokeType="OUTSIDE" strokeWidth="0.0" text="50/100" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Text fx:id="attackText" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack value:" wrappingWidth="73.74951171875" GridPane.rowIndex="4">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Text fx:id="armorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Armor value:" wrappingWidth="73.74951171875" GridPane.rowIndex="5">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Text fx:id="goldText" strokeType="OUTSIDE" strokeWidth="0.0" text="Medieval Bitcoin:" GridPane.rowIndex="6">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
       <Label fx:id="goldLabel" text="Gold" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></Label>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Level" GridPane.rowIndex="3" />
-      <Text fx:id="levelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Label fx:id="levelText" text="Level" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>
-            <Insets left="8.0" />
-         </GridPane.margin></Text>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Level" GridPane.rowIndex="3" />
+      <Label text="Attack" GridPane.rowIndex="4" />
+      <Label text="Armor" GridPane.rowIndex="5" />
+      <Label fx:id="bitcoinLabel" text="Medieval Bitcoin:" wrapText="true" GridPane.rowIndex="6">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>

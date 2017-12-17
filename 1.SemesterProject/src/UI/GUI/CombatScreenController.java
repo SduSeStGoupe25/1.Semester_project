@@ -71,13 +71,13 @@ public class CombatScreenController implements Initializable {
     @FXML
     private Text opponentHealthText;
     @FXML
-    private Text opponentLevelText;
+    private Label opponentLevelText;
     @FXML
-    private Text opponentNameText;
+    private Label opponentNameText;
     @FXML
-    private Text attackText;
+    private Label attackText;
     @FXML
-    private Text defenceText;
+    private Label defenceText;
     @FXML
     private Pane imagePane;
 

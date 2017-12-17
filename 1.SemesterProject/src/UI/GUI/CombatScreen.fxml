@@ -44,8 +44,8 @@
                <children>
                   <Label text="ATK:" />
                   <Label text="DEF:" GridPane.rowIndex="1" />
-                  <Text fx:id="attackText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
-                  <Text fx:id="defenceText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="attackText" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="defenceText" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -114,8 +114,8 @@
                <GridPane.margin>
                   <Insets left="3.0" />
                </GridPane.margin></Text>
-            <Text fx:id="opponentLevelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Text fx:id="opponentNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Label fx:id="opponentLevelText" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="opponentNameText" text="Label" GridPane.columnSpan="2" />
          </children>
          <padding>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

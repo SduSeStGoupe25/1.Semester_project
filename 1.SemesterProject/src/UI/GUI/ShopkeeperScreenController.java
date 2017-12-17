@@ -12,11 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -43,9 +43,9 @@ public class ShopkeeperScreenController implements Initializable {
     @FXML
     private ImageView shopkeeperImage;
     @FXML
-    private Text playerGold;
+    private Label playerGold;
     @FXML
-    private Text priceText;
+    private Label priceText;
 
     /**
      * Initializes the controller class.
