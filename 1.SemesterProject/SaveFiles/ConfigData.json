@@ -56,7 +56,7 @@
                 },
             "giver": "Merlin"
          },
-         "6": {
+         "5": {
             "name": "The final encounter",
             "description": "You've made it! We're only a small step away from pulling the mighty Excalibur!\nThere's something I haven't told you yet, though. The sword is guarded by a big dragon... Let's hope we're strong enough to defeat it.",
             "gold": 50,
@@ -64,7 +64,7 @@
             "items": {},
             "giver": "Merlin"
          },
-         "7": {
+         "6": {
             "name": "The end of the Journey",
             "description": "We have done it! You pulled the mighty Excalibur! \n\nRequired items: Excalibur, the Mighty Greatsword",
             "gold": 500,
