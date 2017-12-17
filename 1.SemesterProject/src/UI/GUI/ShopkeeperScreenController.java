@@ -57,7 +57,7 @@ public class ShopkeeperScreenController implements Initializable {
     }
 
     void loadPlayerInfo() { //Loads the players current inventory to the listview, and displays players current gold balance
-        
+        playerInventoryList.getItems().clear();
         ObservableList<IItem> observableInventoryList = FXCollections.observableArrayList(p.getItemInventory().getInventory()); //makes observablelist of the arraylist, due to listviews restrictions
         playerInventoryList.setItems(observableInventoryList);
         playerGold.setText("Gold: " + p.getGold());
@@ -84,7 +84,6 @@ public class ShopkeeperScreenController implements Initializable {
             return;
         }
         UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()));
-
         loadPlayerInfo();
         UI.getInstance().getMainController().update(false);
     }

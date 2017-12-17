@@ -33,4 +33,10 @@ class Consumeable extends Item implements IConsumeable{
     void setHungerValue(int hungerValue) {
         this.hungerValue = hungerValue;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " useValue=" + useValue + ", hungerValue=" + hungerValue;
+    }
+
 }

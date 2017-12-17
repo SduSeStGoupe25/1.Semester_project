@@ -20,17 +20,11 @@ class Weapon extends Item implements IWeapon {
     }
 
     @Override
-    public String toString() {
-        return getName() + "Weapon{" + "attackValue=" + attackValue + ", itemLevel=" + itemLevel + '}';
-    }
-
-    @Override
     public int getBaseAttack() {
         return baseAttack;
     }
 
-    void setBaseAttack(int baseAttack
-    ) {
+    void setBaseAttack(int baseAttack) {
         this.baseAttack = baseAttack;
     }
 
@@ -39,8 +33,7 @@ class Weapon extends Item implements IWeapon {
         return attackValue;
     }
 
-    void setAttackValue(int attackValue
-    ) {
+    void setAttackValue(int attackValue) {
         this.attackValue = attackValue;
     }
 
@@ -49,8 +42,12 @@ class Weapon extends Item implements IWeapon {
         return itemLevel;
     }
 
-    void setItemLevel(int itemLevel
-    ) {
+    void setItemLevel(int itemLevel) {
         this.itemLevel = itemLevel;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " attackValue=" + attackValue;
     }
 }

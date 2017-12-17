@@ -40,6 +40,6 @@ class Armor extends Item implements IArmor {
 
     @Override
     public String toString() {
-        return super.toString() + "Armor{" + "baseArmor=" + baseArmor + ", armorValue=" + armorValue + ", itemLevel=" + itemLevel + '}';
+        return super.toString() + " armorValue=" + armorValue;
     }
 }
