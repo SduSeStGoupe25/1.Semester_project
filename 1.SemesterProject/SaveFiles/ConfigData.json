@@ -445,13 +445,13 @@
                   "excalibur": 100
                },
                "name": "Dragon",
-               "health": 1140,
+               "health": 200,
                "armor": 10,
                "level": 15,
-               "maxHealth": 1140,
-               "baseHealth": 1000,
-               "baseAttack": 1000,
-               "attack": 1500,
+               "maxHealth": 200,
+               "baseHealth": 10,
+               "baseAttack": 10,
+               "attack": 200,
                "hostile": false,
                "despawning": false,
                "id": 1

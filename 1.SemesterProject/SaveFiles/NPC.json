@@ -164,22 +164,22 @@
 			}
 		},
 		"dragon":{
-			"talk":"You've made it far traveler, most impressively far. You could have been king by now. Sadly for you, your journey ends right. Now.",
-               		"expDrop":100,
-               		"name":"Dragon",
-              		"health":1000,
-               		"armor":10,
-              		"level":15,
-             		"maxHealth":1000,
-             		"baseHealth":100,
-               		"baseAttack":100,
-              		"attack":1000,
-                       "hostile": true,
-                       "despawning": false,
-              		"id":1,
-		       "itemMap":{
-				"excalibur":100
-			}
+               "talk": "You've made it far traveler, most impressively far. You could have been king by now, had you not run into me.. Prepare to die",
+               "expDrop": 1,
+               "itemMap": {
+                  "excalibur": 100
+               },
+               "name": "Dragon",
+               "health": 200,
+               "armor": 10,
+               "level": 15,
+               "maxHealth": 200,
+               "baseHealth": 10,
+               "baseAttack": 10,
+               "attack": 200,
+               "hostile": false,
+               "despawning": false,
+               "id": 1
 		},
 		"sheep":{
                	       "talk":"Baaaah",
