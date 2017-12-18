@@ -141,7 +141,7 @@ public class InventoryScreenController implements Initializable {
             if (selectedItem.getItemId() == 2) {
                 btnUse.setDisable(true);
                 btnEquip.setDisable(true);
-                btnDrop.setDisable(true);
+                btnDrop.setDisable(false);
             }
         } else {
             btnUse.setDisable(true);
