@@ -81,6 +81,7 @@ public class ShopkeeperScreenController implements Initializable {
         if (amountField.getText().isEmpty()) {
             UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), 1);
             loadPlayerInfo();
+            UI.getInstance().getMainController().update(false);
             return;
         }
         UI.getInstance().getDomainGame().buy(shopSelectionList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()));
@@ -96,10 +97,12 @@ public class ShopkeeperScreenController implements Initializable {
         if (amountField.getText().isEmpty() ) { 
              UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), 1);
              loadPlayerInfo();
+             UI.getInstance().getMainController().update(false);
              return;
         }
         UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()));
         loadPlayerInfo();
+        UI.getInstance().getMainController().update(false);
     }
 
     @FXML
