@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.GameWonWindowController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.GameWonWindowController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
@@ -47,14 +47,14 @@
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </GridPane.margin>
       </Button>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Congratulations!" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Text fx:id="congratulationsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Congratulations!" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
             <Font size="36.0" />
          </font>
          <GridPane.margin>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </GridPane.margin></Text>
-      <Text layoutX="128.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have won the game!" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Text fx:id="congratsSubText" layoutX="128.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have won the game!" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
