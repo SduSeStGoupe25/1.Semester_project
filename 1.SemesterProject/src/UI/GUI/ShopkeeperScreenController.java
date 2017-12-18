@@ -3,6 +3,7 @@ package UI.GUI;
 import Acq.IItem;
 import Acq.IPlayer;
 import Acq.IShopkeeper;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -15,8 +16,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -39,13 +46,12 @@ public class ShopkeeperScreenController implements Initializable {
 
     private IShopkeeper s = UI.getInstance().getDomainGame().getShopkeeper();
 
-
-    @FXML
-    private ImageView shopkeeperImage;
     @FXML
     private Label playerGold;
     @FXML
     private Label priceText;
+    @FXML
+    private Pane imagePane;
 
     /**
      * Initializes the controller class.
@@ -54,6 +60,12 @@ public class ShopkeeperScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         loadPlayerInfo();
         loadShopkeeper();
+
+        File f = new File("Img/shopkeeperArt.png");
+        Image image = new Image(f.toURI().toString());
+        BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
+        imagePane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize)));
+
     }
 
     void loadPlayerInfo() { //Loads the players current inventory to the listview, and displays players current gold balance
@@ -68,7 +80,7 @@ public class ShopkeeperScreenController implements Initializable {
         for (String s : UI.getInstance().getDomainGame().getShopkeeper().getItemsToSell()) {
             itemsToSell.add(UI.getInstance().getDomainData().getItem(s));
         }
-        
+
         ObservableList<IItem> ob = FXCollections.observableArrayList(itemsToSell);
         shopSelectionList.setItems(ob);
     }
@@ -94,11 +106,11 @@ public class ShopkeeperScreenController implements Initializable {
         if (playerInventoryList.getSelectionModel().getSelectedItem() == null) { //prevents invocation target exception if buy is pressed without an item selected
             return;
         }
-        if (amountField.getText().isEmpty() ) { 
-             UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), 1);
-             loadPlayerInfo();
-             UI.getInstance().getMainController().update(false);
-             return;
+        if (amountField.getText().isEmpty()) {
+            UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), 1);
+            loadPlayerInfo();
+            UI.getInstance().getMainController().update(false);
+            return;
         }
         UI.getInstance().getDomainGame().sell(playerInventoryList.getSelectionModel().getSelectedItem(), Integer.parseInt(amountField.getText()));
         loadPlayerInfo();

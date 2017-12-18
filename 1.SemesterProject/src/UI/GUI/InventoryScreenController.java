@@ -51,6 +51,7 @@ public class InventoryScreenController implements Initializable {
         btnUse.setDisable(true);
         btnEquip.setDisable(true);
         btnDrop.setDisable(true);
+        
         updateLists();
     }
 
