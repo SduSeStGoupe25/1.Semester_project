@@ -70,7 +70,7 @@
             "gold": 500,
             "exp": 50,
             "items": {
-                "Excalibur, the Mighty Greatsword": 1
+                "Excalibur": 1
                 },
             "giver": "Merlin"
          }
@@ -497,7 +497,17 @@
             }
          },
          "charactersInRoom": [],
-         "items": [],
+         "items": [
+{
+			"useValue":25,
+			"hungerValue":5,
+        	       "name":"Potion",
+	               "sellValue":50,
+        	       "count":1,
+	               "MAX_COUNT":20,
+	               "id":1
+			}
+	],
          "allowedMonsters": []
       }
    }
