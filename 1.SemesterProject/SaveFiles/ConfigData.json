@@ -210,7 +210,7 @@
                   "tavern",
                   "tower"
                ],
-               "talk": "Hello",
+               "talk": "Good day to you traveler. I've heard whispers that you're gonna attempt to pull the mighty Excalibur from the stone. But you won't make it without the key. Get the key from the king, and go to the room to the east in the castle hall. Save this kingdom, please",
                "expDrop": 10,
                "itemMap": {
                   "berry": 20
